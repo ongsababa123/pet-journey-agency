@@ -4,7 +4,7 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 
-class HomePage_edit_cover extends BaseController
+class HomePage_edit_about extends BaseController
 {
     protected $uri_menu;
     public function __construct()
@@ -20,13 +20,12 @@ class HomePage_edit_cover extends BaseController
         $this->uri_menu = $path_parts[count($path_parts) - 2] . '/' . $path_parts[count($path_parts) - 1];
     }
     
-    
     //-- index --//
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
         echo view('dashboard/header', $data);
-        echo view('dashboard/home_page/index_cover');
+        echo view('dashboard/home_page/index_about');
         echo view('dashboard/footer');
     }
 
