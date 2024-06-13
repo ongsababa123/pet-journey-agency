@@ -37,16 +37,16 @@
                 <section class="col-lg-12">
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card" style="border-radius: 15px;">
-                        <div class="card-header">
+                        <div class="card-header" style="background-color: #0198B4;color: white">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
                                 <strong>ข้อมูลเมนูติดต่อ</strong>
                             </h3>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-primary" onclick="open_edit()" id="btn_action"><i class="fa fa-edit"></i> แก้ไขข้อมูล</button>
+                                <button type="button" class="btn btn-warning" onclick="open_edit()" id="btn_action"><i class="fa fa-edit"></i> แก้ไขข้อมูล</button>
                                 <button type="button" class="btn btn-success" onclick="action()" id="btn_save"><i class="fa fa-edit"></i> บันทึกข้อมูล</button>
                                 <button type="button" class="btn btn-danger" onclick="cancel()" id="btn_cancel"> ยกเลิก</button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" style="color: white">
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>
