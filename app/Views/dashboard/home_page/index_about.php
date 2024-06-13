@@ -399,6 +399,7 @@
         var textarea = document.getElementById('text_area_content_about');
         var charCount = textarea.value.length;
         document.getElementById('char_count_about').textContent = charCount + ' / 200 characters';
-        console.log(textarea);
+        document.getElementById("content_about").innerText = textarea.value;
+
     }
 </script>
