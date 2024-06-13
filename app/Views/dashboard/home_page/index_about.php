@@ -12,9 +12,9 @@
 <style>
     .offcanvas {
         width: 100%;
-        height: 497px;
+        height: 530px;
         position: fixed;
-        bottom: -497px;
+        bottom: -530px;
         left: 0;
         background-color: white;
         z-index: 1051;
@@ -27,7 +27,7 @@
     }
 
     .offcanvas.half {
-        bottom: -48%;
+        bottom: -52%;
     }
 
     .offcanvas-backdrop {
@@ -108,7 +108,7 @@
                         <div class="card-header">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                <strong>ข้อมูลหน้าปก</strong>
+                                <strong>ข้อมูลเกี่ยวกับเรา</strong>
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-primary" onclick="switchLanguage()">เปลี่ยนภาษาตัวอย่าง</button>
@@ -149,7 +149,7 @@
                                             ให้สัตว์เลี้ยงเดินทางไปด้วย
                                         </td>
                                         <td width="10%">
-                                            <a href="javascript:toggleOffcanvas()"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
+                                            <a href="javascript:toggleOffcanvas('new_open_th')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
                                         </td>
@@ -171,7 +171,7 @@
                                             experience to make every step of the process easy and safe.
                                         </td>
                                         <td width="10%">
-                                            <a href="javascript:toggleOffcanvas()"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
+                                            <a href="javascript:toggleOffcanvas('new_open_en')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
                                         </td>
@@ -208,29 +208,40 @@
                     <div class="row">
                         <div class="col-6">
                             <h3 style="color: white" class="text-center"><strong>อัพโหลดวิดีโอ</strong></h3>
-                            <div class="file-upload" style="border-radius: 15px" style="max-width: 500px">
-                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )" style="background-color: #007BFF; border-radius: 20px">เพิ่มวิดีโอ</button>
+                            <div class="file-upload" style="border-radius: 15px; max-width: 500px;">
+                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')" style="background-color: #007BFF; border-radius: 20px;">เพิ่มวิดีโอ</button>
                                 <div class="image-upload-wrap">
-                                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="mp4" />
+                                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".mp4" />
                                     <div class="drag-text">
-                                        <h3>"ลากและวางไฟล์วิดีโอ"</h3>
+                                        <h3>ลากและวางไฟล์วิดีโอ</h3>
                                     </div>
                                 </div>
                                 <div class="file-upload-content">
-                                    <img class="file-upload-image" src="#" alt="your image" />
+                                    <video class="file-upload-video" autoplay loop controls width="300">
+                                        <source src="#" type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
                                     <div class="image-title-wrap">
                                         <button type="button" onclick="removeUpload()" class="remove-image">ลบวิดีโอ <span class="image-title">อัพโหลดวิดีโอ</span></button>
                                     </div>
                                 </div>
                             </div>
                             <p class="text-right" style="color: #C2C2C2; margin-right: 180px">*mp4</p>
-
                         </div>
+
                         <div class="col-6">
                             <h3 style="color: white" class="text-center"><strong>ข้อความเกี่ยวกับเรา</strong></h3>
                             <div>
-                                <textarea class="form-control" id="text_area_content_about" rows="7" maxlength="200" oninput="updateCharCount()"></textarea>
-                                <small class="text-right" id="char_count_about" style="color: #C2C2C2">0 / 200 ตัวอักษร</small>
+                                <textarea class="form-control" id="text_area_content_about" rows="7" maxlength="300" oninput="updateCharCount()"></textarea>
+                                <small class="text-right" id="char_count_about" style="color: #C2C2C2">0 / 300 ตัวอักษร</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-success" onclick="saveAbout()">บันทึก</button>
+                                <button type="button" class="btn btn-danger" onclick="closeOffcanvas()">ยกเลิก</button>
                             </div>
                         </div>
                     </div>
@@ -266,41 +277,6 @@
         });
     })
 </script>
-<!-- script upload image -->
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                $('.image-upload-wrap').hide();
-
-                $('.file-upload-image').attr('src', e.target.result);
-                $('.file-upload-content').show();
-
-                $('.image-title').html(input.files[0].name);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-
-        } else {
-            removeUpload();
-        }
-    }
-
-    function removeUpload() {
-        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-        $('.file-upload-content').hide();
-        $('.image-upload-wrap').show();
-    }
-    $('.image-upload-wrap').bind('dragover', function() {
-        $('.image-upload-wrap').addClass('image-dropping');
-    });
-    $('.image-upload-wrap').bind('dragleave', function() {
-        $('.image-upload-wrap').removeClass('image-dropping');
-    });
-</script>
 <!-- switch language -->
 <script>
     var lang = 'th';
@@ -318,7 +294,6 @@
             video_about = document.getElementById("video_about_th");
 
         }
-        console.log(video_about.src);
         document.getElementById("header_about").innerHTML = "<strong>" + header_about + "</strong>";
         document.getElementById("content_about").innerText = content_about;
         document.getElementById("video_about_src").src = video_about.src;
@@ -327,16 +302,27 @@
 </script>
 <!-- offcanvas -->
 <script>
-    function toggleOffcanvas() {
+    function toggleOffcanvas(action) {
         const offcanvas = document.getElementById('offcanvas');
         const offcanvasBackdrop = document.getElementById('offcanvasBackdrop');
         offcanvas.classList.toggle('show');
         offcanvas.classList.remove('half');
         offcanvasBackdrop.classList.toggle('show');
-
+        if (action === 'new_open_en') {
+            document.getElementById('text_area_content_about').value = document.getElementById('content_about_en').innerText;
+            lang = 'th';
+            switchLanguage();
+            removeUpload();
+        } else if (action === 'new_open_th') {
+            document.getElementById('text_area_content_about').value = document.getElementById('content_about_th').innerText;
+            lang = 'en';
+            switchLanguage();
+            removeUpload();
+        }
         document.getElementById('halftoggleoffcanvas').onclick = function() {
             halfOffcanvas();
         };
+        updateCharCount();
     }
 
     function closeOffcanvas() {
@@ -345,9 +331,10 @@
         offcanvas.classList.remove('show');
         offcanvas.classList.remove('half');
         offcanvasBackdrop.classList.remove('show');
+        lang = (lang === 'en') ? 'th' : 'en';
+
+        switchLanguage();
     }
-
-
 
     function halfOffcanvas() {
         console.log("test");
@@ -358,20 +345,19 @@
         };
     }
 </script>
-<!-- script upload image -->
+<!-- script upload video -->
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
-
             var reader = new FileReader();
 
             reader.onload = function(e) {
                 $('.image-upload-wrap').hide();
-
-                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-video').attr('src', e.target.result);
                 $('.file-upload-content').show();
-
                 $('.image-title').html(input.files[0].name);
+                document.getElementById("video_about_src").src = e.target.result;
+                document.getElementById("video_about").load();
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -386,19 +372,22 @@
         $('.file-upload-content').hide();
         $('.image-upload-wrap').show();
     }
+
     $('.image-upload-wrap').bind('dragover', function() {
         $('.image-upload-wrap').addClass('image-dropping');
     });
+
     $('.image-upload-wrap').bind('dragleave', function() {
         $('.image-upload-wrap').removeClass('image-dropping');
     });
 </script>
+
 <!-- function check char-->
 <script>
     function updateCharCount() {
         var textarea = document.getElementById('text_area_content_about');
         var charCount = textarea.value.length;
-        document.getElementById('char_count_about').textContent = charCount + ' / 200 characters';
+        document.getElementById('char_count_about').textContent = charCount + ' / 300 ตัวอักษร';
         document.getElementById("content_about").innerText = textarea.value;
 
     }
