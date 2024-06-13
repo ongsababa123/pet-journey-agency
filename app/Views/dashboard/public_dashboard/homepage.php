@@ -13,8 +13,7 @@
 
         .carousel-item img {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
+            height: auto;
         }
 
         .carousel-caption {
@@ -44,50 +43,59 @@
         }
 
         .about-us-section {
-            background-color: #f8f9fa;
             padding: 50px 0;
+            background-color: #f8f9fa;
         }
 
         .about-us-content {
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: space-between;
             border-radius: 10px;
             overflow: hidden;
-            height: 400px; /* Fix the height */
+            background-color: #00A4E4;
+            height: auto;
         }
 
         .video-wrapper {
             background-color: #ffd700;
             width: 50%;
-            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0; /* Remove padding */
+            padding: 20px;
         }
 
         .video-wrapper iframe {
             width: 80%;
-            height: 80%; /* Ensure it takes the full height */
+            height: 80%;
             border-radius: 0;
         }
 
         .text-wrapper {
             width: 50%;
-            background-color: #0198B4;
             padding: 30px;
             color: #fff;
             display: flex;
             flex-direction: column;
-            justify-content: start;
-            height: 100%;
+            justify-content: center;
+        }
+
+        .text-wrapper h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 30pt;
+            font-weight: 700;
         }
 
         .text-wrapper p {
             font-size: 19px;
-            margin-bottom: 20px;
-            line-height: 200%;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .about-us-button {
+            margin-top: auto;
         }
 
         .about-us-button a {
@@ -96,71 +104,75 @@
             color: #000;
             border-radius: 5px;
             text-decoration: none;
-            align-self: start;
+        }
+
+        @media (max-width: 768px) {
+            .about-us-content {
+                flex-direction: column;
+            }
+
+            .video-wrapper,
+            .text-wrapper {
+                width: 100%;
+                height: auto;
+            }
+
+            .video-wrapper {
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Content Wrapper -->
-    <div class="content-wrapper">
-        <!-- Content Header -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <!-- sec slide -->
-                <section>
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="<?= base_url('dist/img/slide_home_page/1.png') ?>" class="d-block w-100" alt="Slide 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="<?= base_url('dist/img/slide_home_page/2.png') ?>" class="d-block w-100" alt="Slide 2">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="<?= base_url('dist/img/slide_home_page/3.png') ?>" class="d-block w-100" alt="Slide 3">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </section>
+    <section>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="<?= base_url('dist/img/slide_home_page/1.png') ?>" class="d-block w-100" alt="Slide 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="<?= base_url('dist/img/slide_home_page/2.png') ?>" class="d-block w-100" alt="Slide 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="<?= base_url('dist/img/slide_home_page/3.png') ?>" class="d-block w-100" alt="Slide 3">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
 
-                <!-- sec about us -->
-                <section>
-                    <div class="about-us-section">
-                        <div class="container">
-                            <div class="about-us-content">
-                                <div class="video-wrapper">
-                                    <iframe src="https://www.youtube.com/embed/Yovlj-mSGrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                                <div class="text-wrapper">
-                                    <span style="color: #FFD700; font-size: 30pt; font-weight: 700;">ABOUT US</span>
-                                    <p>เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเปรียบเสมือนสมาชิกในครอบครัว ด้วยเหตุนี้ผู้เชี่ยวชาญของเราจึงก่อตั้ง Pet Journey Agency ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่ายและสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยังต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการใหสัตว์เลี้ยงเดินทางไปด้วย </p>
-                                    <div class="about-us-button">
-                                        <a href="#">View More</a>
-                                    </div>
-                                </div>
-                            </div>
+    <!-- sec about us -->
+    <section>
+        <div class="about-us-section">
+            <div class="container">
+                <div class="about-us-content">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Yovlj-mSGrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="text-wrapper">
+                        <h2>ABOUT US</h2>
+                        <p>เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเปรียบเสมือนสมาชิกในครอบครัว ด้วยเหตุนี้ผู้เชี่ยวชาญของเราจึงก่อตั้ง Pet Journey Agency ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่ายและสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยังต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการใหสัตว์เลี้ยงเดินทางไปด้วย</p>
+                        <div class="about-us-button">
+                            <a href="#">View More</a>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
-        <!-- /.content-header -->
-    </div>
-    <!-- /.content-wrapper -->
+    </section>
 
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
