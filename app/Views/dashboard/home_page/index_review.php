@@ -1,5 +1,4 @@
-<title>แก้ไขหน้าแรก หน้าปก</title>
-<!-- Content Wrapper. Contains page content -->
+<title>แก้ไขหน้าแรก รีวิว</title>
 <style>
     .icon-spacing {
         margin-right: 10px;
@@ -24,47 +23,12 @@
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
                                         <li class="breadcrumb-item active">หน้าหลัก</li>
-                                        <li class="breadcrumb-item active">หน้าปก</li>
+                                        <li class="breadcrumb-item active">รีวิว</li>
                                     </ol>
                                 </div><!-- /.col -->
                             </div>
-                        </div><!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 p-5" style="background-color: #ECF0F3; border-radius: 15px;">
-                                    <div id="carouselExampleIndicators" class="carousel slide mx-auto" data-ride="carousel" style="width: 100%;">
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        </ol>
-                                        <div class="carousel-inner" style="height: 500px">
-                                            <div class="carousel-item active">
-                                                <img class="d-block w-100" src="<?= base_url('dist/img/golden_.jpg') ?>" alt="First slide">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img class="d-block w-100" src="<?= base_url('dist/img/golden_.jpg') ?>" alt="Second slide">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img class="d-block w-100" src="<?= base_url('dist/img/golden_.jpg') ?>" alt="Third slide">
-                                            </div>
-                                        </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                            <span class="carousel-control-custom-icon" aria-hidden="true">
-                                                <i class="fas fa-chevron-left"></i>
-                                            </span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                            <span class="carousel-control-custom-icon" aria-hidden="true">
-                                                <i class="fas fa-chevron-right"></i>
-                                            </span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.card-header -->
                     </div>
                     <!-- /.card -->
                 </section>
@@ -76,13 +40,12 @@
                         <div class="card-header">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                <strong>ข้อมูลหน้าปก</strong>
+                                <strong>ข้อมูลรีวิว</strong>
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', 'data')">
-                                    <i class="fas fa-plus"></i> เพิ่มหน้าปก
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i> เพิ่มรีวิว
+                                </button> <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>
@@ -92,11 +55,11 @@
                             <table id="example2" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
-                                        <th>ลำดับ</th>
-                                        <th>รูปภาพ</th>
-                                        <th>ชื่อหน้าปก</th>
+                                        <th width="6%">ลําดับ</th>
+                                        <th width="30%">รูปภาพ</th>
+                                        <th width="30%">คำอธิบาย</th>
                                         <th>สถานะ</th>
-                                        <th>การจัดการ</th>
+                                        <th width="10%">การจัดการ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,31 +67,16 @@
                                         <td>1</td>
                                         <td>
                                             <a href="<?= base_url('dist/img/golden_.jpg') ?>" data-toggle="lightbox" data-title="รูปปกน้องหมา" data-gallery="gallery">
-                                                <img src="<?= base_url('dist/img/golden_.jpg') ?>" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
+                                                <img src="<?= base_url('dist/img/golden_.jpg') ?>" class="img-fluid mb-2" alt="white sample" style="width: 20rem;" />
                                             </a>
                                         </td>
-                                        <td>รูปปกน้องหมา</td>
+                                        <td>
+                                            นำเข้าและส่งออกสัตว์เลี้ยง
+                                        </td>
                                         <td>
                                             <h2 class="badge bg-success">กำลังใช้งาน</h2>
                                         </td>
-                                        <td>
-                                            <a href="javascript:load_modal('Update', 'data')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <a href="<?= base_url('dist/img/golden_.jpg') ?>" data-toggle="lightbox" data-title="รูปปกน้องหมา" data-gallery="gallery">
-                                                <img src="<?= base_url('dist/img/golden_.jpg') ?>" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
-                                            </a>
-                                        </td>
-                                        <td>รูปปกน้องหมา</td>
-                                        <td>
-                                            <h2 class="badge bg-success">กำลังใช้งาน</h2>
-                                        </td>
-                                        <td>
+                                        <td width="10%">
                                             <a href="javascript:load_modal('Update', 'data')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
@@ -146,7 +94,6 @@
     </div>
     <!-- /.content-header -->
 </div>
-
 <div class="modal fade" id="modal-lg">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -172,10 +119,12 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="form-group">
-                        <label for="inputName">ชื่อหน้าปก</label>
-                        <input type="text" id="inputName" class="form-control">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="inputName">คำอธิบาย</label>
+                            <input type="text" id="inputName" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,23 +148,22 @@
         switch (action) {
             case 'Create':
                 console.log(action);
-                $("#modal-title").text('เพิ่มหน้าปก');
+                $("#modal-title").text('เพิ่มรีวิว');
                 break;
             case 'Update':
-                $("#modal-title").text('แก้ไขหน้าปก');
+                $("#modal-title").text('แก้ไขรีวิว');
                 break;
             default:
                 break;
         }
     }
 </script>
-
 <!-- table data -->
 <script>
     $(function() {
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "searching": true,
             "ordering": true,
             "info": true,
@@ -229,13 +177,14 @@
                 sInfoThousands: ",",
                 sLoadingRecords: "กำลังโหลดข้อมูล...",
                 sProcessing: "กำลังดำเนินการ...",
-                sSearch: "ค้นหา ชื่อรูปภาพ: ",
+                sSearch: "ค้นหา คำอธิบายรีวิว: ",
                 oPaginate: {
                     sFirst: "หน้าแรก",
                     sPrevious: "ก่อนหน้า",
                     sNext: "ถัดไป",
                     sLast: "หน้าสุดท้าย"
                 },
+                sLengthMenu: "แสดง _MENU_ แถว",
             },
         });
     });

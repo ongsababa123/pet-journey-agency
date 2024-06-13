@@ -31,7 +31,7 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->get('homepage/about', 'HomePage_edit_about::index');
     $routes->get('homepage/service', 'HomePage_edit_service::index');
     $routes->get('homepage/review', 'HomePage_edit_review::index');
-    $routes->get('homepage/contact', 'HomePage_edit_contact::index');
+    $routes->get('homepage/contact', 'HomePage_edit_contact_menu::index');
 
 });
 

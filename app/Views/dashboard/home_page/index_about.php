@@ -1,4 +1,3 @@
-<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 
 <title>แก้ไขหน้าแรก เกี่ยวกับฉัน</title>
 <!-- Content Wrapper. Contains page content -->
