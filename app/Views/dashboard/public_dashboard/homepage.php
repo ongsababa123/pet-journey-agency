@@ -44,7 +44,7 @@
 
         .about-us-section {
             padding: 50px 0;
-            background-color: #f8f9fa;
+            background-color: #fff;
         }
 
         .about-us-content {
@@ -173,7 +173,6 @@
             </div>
         </div>
     </section>
-
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
