@@ -29,6 +29,9 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->get('homepage/cover', 'HomePage_edit_cover::index');
 
     $routes->get('homepage/about', 'HomePage_edit_about::index');
+    $routes->post('homepage/about/update/(:num)/(:segment)', 'HomePage_edit_about::update_about_homepage/$1/$2');
+
+
     $routes->get('homepage/service', 'HomePage_edit_service::index');
     $routes->get('homepage/review', 'HomePage_edit_review::index');
     $routes->get('homepage/contact', 'HomePage_edit_contact_menu::index');

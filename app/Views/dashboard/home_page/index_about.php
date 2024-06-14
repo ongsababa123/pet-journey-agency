@@ -1,4 +1,3 @@
-
 <title>แก้ไขหน้าแรก เกี่ยวกับฉัน</title>
 <!-- Content Wrapper. Contains page content -->
 <style>
@@ -74,8 +73,7 @@
                                         <div class="col-7" style="background-color: #EACC52;">
                                             <div class="p-5 text-center">
                                                 <video width="700" controls id="video_about">
-                                                    <source src="<?= base_url('dist/video/pet_th.mp4') ?>" type="video/mp4" id="video_about_src">
-                                                    Your browser does not support HTML video.
+                                                    <source src="<?= base_url('dist/video/about_video/' . $about_home_data['0']['path_video']) ?>" type="video/mp4" id="video_about_src">
                                                 </video>
                                             </div>
                                         </div>
@@ -84,13 +82,8 @@
                                                 <strong>เกี่ยวกับเรา</strong>
                                             </p>
                                             <p class="text-left pl-5 mr-5" style="color: white;font-size: 20px" id="content_about">
-                                                เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับ
-                                                เจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเสมือนสมาชิกในครอบครัว
-                                                ด้วยเหตุนี้ทีมงานของเราจึงก่อตั้ง Pet Journey Agency
-                                                ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่าย
-                                                และสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยัง
-                                                ต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการ
-                                                ให้สัตว์เลี้ยงเดินทางไปด้วย</p>
+                                                <?= $about_home_data['0']['detail'] ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -131,48 +124,33 @@
                                     <tr>
                                         <td>
                                             <video width="300" controls>
-                                                <source src="<?= base_url('dist/video/pet_th.mp4') ?>" type="video/mp4" id="video_about_th">
-                                                Your browser does not support HTML video.
+                                                <source src="<?= base_url('dist/video/about_video/' . $about_home_data['0']['path_video']) ?>" type="video/mp4" id="video_about_th">
                                             </video>
                                         </td>
                                         <td id="header_about_th">
                                             เกี่ยวกับเรา
                                         </td>
                                         <td width="50%" id="content_about_th">
-                                            เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับ
-                                            เจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเสมือนสมาชิกในครอบครัว
-                                            ด้วยเหตุนี้ทีมงานของเราจึงก่อตั้ง Pet Journey Agency
-                                            ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่าย
-                                            และสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยัง
-                                            ต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการ
-                                            ให้สัตว์เลี้ยงเดินทางไปด้วย
+                                            <?= $about_home_data['0']['detail'] ?>
                                         </td>
                                         <td width="10%">
                                             <a href="javascript:toggleOffcanvas('new_open_th')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <video width="300" controls>
-                                                <source src="<?= base_url('dist/video/pet_en.mp4') ?>" type="video/mp4" id="video_about_en">
-                                                Your browser does not support HTML video.
+                                                <source src="<?= base_url('dist/video/about_video/' . $about_home_data['1']['path_video']) ?>" type="video/mp4" id="video_about_en">
                                             </video>
                                         </td>
                                         <td id="header_about_en">
                                             ABOUT US
                                         </td>
                                         <td width="50%" id="content_about_en">
-                                            At Pet Journey Agency, we specialize in the professional import and export
-                                            of pets. Whether you want to transport your beloved pet abroad or are
-                                            looking to welcome a new pet into your family, we have the expertise and
-                                            experience to make every step of the process easy and safe.
+                                            <?= $about_home_data['1']['detail'] ?>
                                         </td>
                                         <td width="10%">
                                             <a href="javascript:toggleOffcanvas('new_open_en')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                                            <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -204,46 +182,46 @@
         <div class="card-body" style="padding: 0rem; padding-top: 1.5rem; padding-bottom: 4rem; padding-left: 1.5rem; padding-right: 5rem">
             <div class="row">
                 <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <h3 style="color: white" class="text-center"><strong>อัพโหลดวิดีโอ</strong></h3>
-                            <div class="file-upload" style="border-radius: 15px; max-width: 500px;">
-                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')" style="background-color: #007BFF; border-radius: 20px;">เพิ่มวิดีโอ</button>
-                                <div class="image-upload-wrap">
-                                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".mp4" />
-                                    <div class="drag-text">
-                                        <h3>ลากและวางไฟล์วิดีโอ</h3>
+                    <form class="mb-3" id="form_about" action="javascript:void(0)" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 style="color: white" class="text-center"><strong>อัพโหลดวิดีโอ</strong></h3>
+                                <div class="file-upload" style="border-radius: 15px; max-width: 500px;">
+                                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')" style="background-color: #007BFF; border-radius: 20px;">เพิ่มวิดีโอ</button>
+                                    <div class="image-upload-wrap">
+                                        <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".mp4" id="upload_video" name="upload_video" />
+                                        <div class="drag-text">
+                                            <h3>ลากและวางไฟล์วิดีโอ</h3>
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <video class="file-upload-video" autoplay loop controls width="300">
+                                            <source src="#" type="video/mp4" />
+                                        </video>
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">ลบวิดีโอ <span class="image-title">อัพโหลดวิดีโอ</span></button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="file-upload-content">
-                                    <video class="file-upload-video" autoplay loop controls width="300">
-                                        <source src="#" type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    <div class="image-title-wrap">
-                                        <button type="button" onclick="removeUpload()" class="remove-image">ลบวิดีโอ <span class="image-title">อัพโหลดวิดีโอ</span></button>
-                                    </div>
+                                <p class="text-right" style="color: #C2C2C2; margin-right: 180px">*mp4</p>
+                            </div>
+                            <div class="col-6">
+                                <h3 style="color: white" class="text-center"><strong>ข้อความเกี่ยวกับเรา</strong></h3>
+                                <div>
+                                    <textarea class="form-control" id="text_area_content_about" name="text_area_content_about" rows="7" maxlength="400" oninput="updateCharCount()"></textarea>
+                                    <small class="text-right" id="char_count_about" style="color: #C2C2C2">0 / 400 ตัวอักษร</small>
                                 </div>
                             </div>
-                            <p class="text-right" style="color: #C2C2C2; margin-right: 180px">*mp4</p>
                         </div>
-
-                        <div class="col-6">
-                            <h3 style="color: white" class="text-center"><strong>ข้อความเกี่ยวกับเรา</strong></h3>
-                            <div>
-                                <textarea class="form-control" id="text_area_content_about" rows="7" maxlength="300" oninput="updateCharCount()"></textarea>
-                                <small class="text-right" id="char_count_about" style="color: #C2C2C2">0 / 300 ตัวอักษร</small>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success">บันทึก</button>
+                                    <button type="button" class="btn btn-danger" onclick="closeOffcanvas()">ยกเลิก</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-success" onclick="saveAbout()">บันทึก</button>
-                                <button type="button" class="btn btn-danger" onclick="closeOffcanvas()">ยกเลิก</button>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div><!-- /.card-body -->
@@ -302,6 +280,7 @@
 <!-- offcanvas -->
 <script>
     function toggleOffcanvas(action) {
+
         const offcanvas = document.getElementById('offcanvas');
         const offcanvasBackdrop = document.getElementById('offcanvasBackdrop');
         offcanvas.classList.toggle('show');
@@ -336,11 +315,14 @@
     }
 
     function halfOffcanvas() {
-        console.log("test");
-        closeOffcanvas();
+        const offcanvas = document.getElementById('offcanvas');
+        const offcanvasBackdrop = document.getElementById('offcanvasBackdrop');
+        offcanvas.classList.remove('show');
+        offcanvasBackdrop.classList.remove('show');
+
         offcanvas.classList.toggle('half');
         document.getElementById('halftoggleoffcanvas').onclick = function() {
-            toggleOffcanvas();
+            toggleOffcanvas('edit');
         };
     }
 </script>
@@ -354,7 +336,7 @@
                 $('.image-upload-wrap').hide();
                 $('.file-upload-video').attr('src', e.target.result);
                 $('.file-upload-content').show();
-                $('.image-title').html(input.files[0].name);
+                $('.image-title').html('');
                 document.getElementById("video_about_src").src = e.target.result;
                 document.getElementById("video_about").load();
             };
@@ -380,14 +362,29 @@
         $('.image-upload-wrap').removeClass('image-dropping');
     });
 </script>
-
 <!-- function check char-->
 <script>
     function updateCharCount() {
         var textarea = document.getElementById('text_area_content_about');
         var charCount = textarea.value.length;
-        document.getElementById('char_count_about').textContent = charCount + ' / 300 ตัวอักษร';
+        document.getElementById('char_count_about').textContent = charCount + ' / 400 ตัวอักษร';
         document.getElementById("content_about").innerText = textarea.value;
 
     }
+</script>
+<!-- form submit -->
+<script>
+    $("#form_about").on('submit', function(event) {
+        event.preventDefault();
+        var id_about_home = '';
+        var path_video = '';
+        if (lang == 'en') {
+            id_about_home = <?= $about_home_data['1']['id_about_home'] ?>;
+            path_video = '<?= $about_home_data['1']['path_video'] ?>';
+        } else if (lang == 'th') {
+            id_about_home = <?= $about_home_data['0']['id_about_home'] ?>;
+            path_video = '<?= $about_home_data['0']['path_video'] ?>';
+        }
+        action_('dashboard/homepage/about/update/' + id_about_home + '/' + path_video, 'form_about');
+    });
 </script>
