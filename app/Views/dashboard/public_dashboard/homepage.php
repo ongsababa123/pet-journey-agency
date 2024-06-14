@@ -1,11 +1,38 @@
+<?php
+class Service
+{
+    public $image;
+    public $title;
+    public $description;
+
+    public function __construct($image, $title, $description)
+    {
+        $this->image = $image;
+        $this->title = $title;
+        $this->description = $description;
+    }
+}
+
+$services = [
+    new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
+    new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
+    new Service("dist/img/service3.png", "Veterinary services", "Professional pet grooming"),
+    new Service("dist/img/service4.png", "Pet vaccination services", "Expert pet training"),
+    new Service("dist/img/service5.png", "Airline ticket booking services", "Safe and fun pet daycare"),
+    new Service("dist/img/service6.png", "Pet hotels", "Find the perfect pet accommodation"),
+    new Service("dist/img/service7.png", "Pet-friendly hotels", "Regular pet walking services"),
+    new Service("dist/img/service8.png", "International pet trading", "Reliable pet sitting services")
+];
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .icon-spacing {
             margin-right: 10px;
@@ -44,7 +71,30 @@
 
         .about-us-section {
             padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-us-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
             background-color: #fff;
+            z-index: 1;
+        }
+
+        .about-us-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #23456B;
+            z-index: 1;
         }
 
         .about-us-content {
@@ -53,8 +103,10 @@
             justify-content: space-between;
             border-radius: 10px;
             overflow: hidden;
-            background-color: #00A4E4;
             height: auto;
+            background-color: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .video-wrapper {
@@ -79,6 +131,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background-color: #00A4E4;
+            position: relative;
         }
 
         .text-wrapper h2 {
@@ -106,6 +160,21 @@
             text-decoration: none;
         }
 
+        .paw-prints {
+            position: absolute;
+            top: 28%;
+            right: 3%;
+            width: 32%;
+            transform: translateY(-50%);
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .paw-prints i {
+            display: block;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
             .about-us-content {
                 flex-direction: column;
@@ -121,10 +190,105 @@
                 margin-bottom: 20px;
             }
         }
+
+        .our-service-section {
+            padding: 50px 0;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .our-service-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background-image: linear-gradient(to bottom,
+                    rgba(9, 18, 66, 0.8) 0%,
+                    rgba(9, 18, 66, 0) 100%), url('<?php echo base_url('dist/img/service.png'); ?>');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+
+        .our-service-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .our-service-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .our-service-title h2 {
+            font-size: 50px;
+            font-weight: 700;
+            color: #00A4E4;
+        }
+
+        .our-service-title span {
+            color: #FFD700;
+        }
+
+        .service-item {
+            background-color: #24466C;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 30px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-item h3,
+        .service-item p,
+        .service-item .badge-pill {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-item h3 {
+            font-size: 17px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .service-item p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .service-item .badge-pill {
+            background-color: #FFD700;
+            color: #333;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: unset;
+            width: 150px;
+            align-self: center;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- sec slide page -->
     <section>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -170,6 +334,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="paw-prints">
+                    <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" alt="Paw Prints" class="paw-prints">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- sec our service -->
+    <section class="our-service-section">
+        <div class="container">
+            <div class="our-service-title">
+                <h2>OUR <span>SERVICE</span></h2>
+            </div>
+            <div class="row">
+                <?php foreach ($services as $service) { ?>
+                    <div class="col-md-3 mb-3">
+                        <div class="service-item">
+                            <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
+                            <h3 class="p-2"><?php echo $service->title; ?></h3>
+                            <span class="badge badge-pill badge-primary">View More</span>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </section>
