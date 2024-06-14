@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Paradise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #ffc107;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 1em;
+            color: #343a40;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #e0a800;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        .pet-card {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25em;
+            margin: 1em 0;
+            padding: 1em;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            display: flex;
+            align-items: center;
+        }
+
+        .pet-card img {
+            border-radius: 0.25em;
+            margin-right: 1em;
+            max-width: 150px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pet Paradise</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Pets</a>
+        <a href="#">Contact</a>
+    </nav>
+    <main>
+        <h2>Meet Our Pets</h2>
+        <div class="pet-card">
+            <img src="https://via.placeholder.com/150" alt="Dog">
+            <div>
+                <h3>Buddy</h3>
+                <p>Breed: Golden Retriever</p>
+                <button onclick="alert('Buddy has been adopted!')">Adopt</button>
+            </div>
+        </div>
+        <div class="pet-card">
+            <img src="https://via.placeholder.com/150" alt="Cat">
+            <div>
+                <h3>Whiskers</h3>
+                <p>Breed: Siamese Cat</p>
+                <button onclick="alert('Whiskers has been adopted!')">Adopt</button>
+            </div>
+        </div>
+        <div class="pet-card">
+            <img src="https://via.placeholder.com/150" alt="Rabbit">
+            <div>
+                <h3>Thumper</h3>
+                <p>Breed: Netherland Dwarf</p>
+                <button onclick="alert('Thumper has been adopted!')">Adopt</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Pet Paradise</p>
+    </footer>
+</body>
+</html>
