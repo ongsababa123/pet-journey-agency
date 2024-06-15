@@ -13,6 +13,18 @@ class Service
     }
 }
 
+class Review
+{
+    public $img;
+    public $text;
+
+    public function __construct($img, $text)
+    {
+        $this->img = $img;
+        $this->text = $text;
+    }
+}
+
 $services = [
     new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
     new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
@@ -23,7 +35,19 @@ $services = [
     new Service("dist/img/service7.png", "Pet-friendly hotels", "Regular pet walking services"),
     new Service("dist/img/service8.png", "International pet trading", "Reliable pet sitting services")
 ];
+
+$reviews = [
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
+    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว")
+];
 ?>
+
 <!DOCTYPE html>
 <html lang="th">
 
@@ -34,10 +58,39 @@ $services = [
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        /* General Styles */
+        * {
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 100px;
+        }
+
         .icon-spacing {
             margin-right: 10px;
         }
 
+        .badge-pill {
+            background-color: #FFD700;
+            color: #333;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: unset;
+            width: 100px;
+            align-self: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        /* Carousel Styles */
         .carousel-item img {
             width: 100%;
             height: auto;
@@ -47,15 +100,6 @@ $services = [
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
-        }
-
-        .navbar-custom {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .navbar-custom .navbar-nav .nav-link {
-            color: #000000;
         }
 
         .carousel-indicators li {
@@ -69,32 +113,41 @@ $services = [
             background-color: #000;
         }
 
+        /* Navbar Styles */
+        .navbar-custom {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            color: #000000;
+        }
+
+        /* About Us Section */
         .about-us-section {
             padding: 50px 0;
             position: relative;
             overflow: hidden;
         }
 
-        .about-us-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background-color: #fff;
-            z-index: 1;
-        }
-
+        .about-us-section::before,
         .about-us-section::after {
             content: "";
             position: absolute;
-            bottom: 0;
             left: 0;
             width: 100%;
             height: 50%;
-            background-color: #23456B;
             z-index: 1;
+        }
+
+        .about-us-section::before {
+            top: 0;
+            background-color: #fff;
+        }
+
+        .about-us-section::after {
+            bottom: 0;
+            background-color: #23456B;
         }
 
         .about-us-content {
@@ -175,26 +228,7 @@ $services = [
             margin-bottom: 10px;
         }
 
-        @media (max-width: 768px) {
-            .about-us-content {
-                flex-direction: column;
-            }
-
-            .video-wrapper,
-            .text-wrapper {
-                width: 100%;
-                height: auto;
-            }
-
-            .video-wrapper {
-                margin-bottom: 20px;
-            }
-
-            .header-bottom {
-                display: none;
-            }
-        }
-
+        /* Our Service Section */
         .our-service-section {
             padding: 50px 0;
             background-color: #fff;
@@ -298,21 +332,6 @@ $services = [
             margin-bottom: 15px;
         }
 
-        .service-item .badge-pill {
-            background-color: #FFD700;
-            color: #333;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 3px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: unset;
-            width: 100px;
-            align-self: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-
         .paw-left,
         .paw-right {
             position: absolute;
@@ -320,6 +339,102 @@ $services = [
             z-index: 1;
         }
 
+        /* Review Section */
+        .review-section {
+            padding: 50px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .review-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #23456B;
+            padding: 10px;
+            color: #fff;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+        }
+
+        .review-title h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-left: 30px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .review-title img {
+            max-width: 300px;
+            height: auto;
+            position: absolute;
+            right: 0px;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
+        .review-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .review-item {
+            flex: 0 0 25%;
+            max-width: 25%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #23456B;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .review-item img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .review-item p {
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: #FFD700;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-controls button.prev {
+            position: absolute;
+            left: 10px;
+        }
+
+        .carousel-controls button.next {
+            position: absolute;
+            right: 10px;
+        }
+
+        /* Media Queries */
         @media (max-width: 991.98px) {
             .our-service-title h2 {
                 font-size: 40px;
@@ -345,6 +460,20 @@ $services = [
         }
 
         @media (max-width: 767.98px) {
+            .about-us-content {
+                flex-direction: column;
+            }
+
+            .video-wrapper,
+            .text-wrapper {
+                width: 100%;
+                height: auto;
+            }
+
+            .header-bottom {
+                display: none;
+            }
+
             .our-service-title h2 {
                 font-size: 30px;
             }
@@ -358,13 +487,22 @@ $services = [
             }
 
             .service-item h3 {
-                font-size: 13px;
-                margin-top: 5px;
+                font-size: 10px;
+                margin-top: 3px;
             }
 
             .service-item .badge-pill {
                 margin-bottom: 10px;
                 font-size: 8px;
+            }
+
+            .text-wrapper h2 {
+                font-size: 20px;
+            }
+
+            .text-wrapper p {
+                font-size: 14px;
+                padding: 10px;
             }
         }
     </style>
@@ -431,7 +569,7 @@ $services = [
             </div>
             <div class="row">
                 <?php foreach ($services as $service) { ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                    <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <div class="service-item fade-in">
                             <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
                             <h3 class="p-2"><?php echo $service->title; ?></h3>
@@ -440,10 +578,28 @@ $services = [
                     </div>
                 <?php } ?>
             </div>
-            <!-- <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" class="paw-left" alt="Paw Print">
-            <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" class="paw-right" alt="Paw Print"> -->
         </div>
     </section>
+    <!-- sec review -->
+    <section class="review-section">
+        <div class="review-title">
+            <h2>REVIEW</h2>
+            <img src="<?= base_url('dist/img/review_title.png') ?>" alt="Review Image">
+        </div>
+        <div class="review-carousel">
+            <?php foreach ($reviews as $review) { ?>
+                <div class="review-item">
+                    <img src="<?php echo base_url($review->img); ?>" alt="Review Image">
+                    <p><?php echo $review->text; ?></p>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="carousel-controls">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </section>
+
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -467,6 +623,22 @@ $services = [
 
             document.querySelectorAll(".fade-in").forEach(item => {
                 observer.observe(item);
+            });
+        });
+    </script>
+    <script>
+        // JavaScript for carousel controls
+        document.querySelector('.prev').addEventListener('click', () => {
+            document.querySelector('.review-carousel').scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            document.querySelector('.review-carousel').scrollBy({
+                left: 300,
+                behavior: 'smooth'
             });
         });
     </script>

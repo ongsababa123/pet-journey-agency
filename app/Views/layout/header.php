@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
-    <style>
+      <style>
         * {
             font-family: 'Kanit', sans-serif;
             margin: 0;
@@ -46,15 +46,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .header-top {
+            z-index: 2;
+            position: relative;
+            /* เพิ่ม */
         }
 
         .header-bottom,
         .header-bottom-mobile {
+            z-index: 1;
             background-color: rgba(12, 20, 70, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
+        }
+
+        .header-bottom.hide {
+            transform: translateY(-100%);
         }
 
         .header-bottom .navbar-nav,
@@ -88,8 +100,7 @@
             color: #00A4E4;
         }
 
-        .header-top .logo img,
-        .header-top-mobile .logo img {
+        .header-top .logo img {
             height: 60px;
         }
 
@@ -160,6 +171,34 @@
             display: none;
         }
 
+        .dropdown-menu {
+            position: absolute;
+            display: none;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu a {
+            padding: 10px 20px;
+            display: block;
+            color: #000;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link:hover .dropdown-menu {
+            display: block;
+            position: absolute;
+        }
+
         @media (max-width: 768px) {
 
             .header-top,
@@ -202,7 +241,7 @@
             }
 
             .header-top-mobile .logo img {
-                height: 50px;
+                height: 75px;
             }
 
             .header-top-mobile .menu,
@@ -225,7 +264,7 @@
             }
         }
 
-        @media (max-width: 1250px) {
+        @media (max-width: 1340px) {
             .header-top .contact-info {
                 display: none;
             }
@@ -263,7 +302,14 @@
             <div class="navbar-nav">
                 <div class="nav-link"><a href="#">Home</a></div>
                 <div class="nav-link"><a href="#">About</a></div>
-                <div class="nav-link"><a href="#">Our Service</a></div>
+                <div class="nav-link">
+                    <a href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#">Service 1</a>
+                        <a href="#">Service 2</a>
+                        <a href="#">Service 3</a>
+                    </div>
+                </div>
                 <div class="nav-link"><a href="#">Review</a></div>
                 <div class="nav-link"><a href="#">Contact</a></div>
             </div>
@@ -291,12 +337,22 @@
     </header>
 
     <script>
-        document.getElementById('language-select').addEventListener('change', function() {
+        document.getElementById('language-select').addEventListener('change', function () {
             var flagImg = document.getElementById('flag-img');
             if (this.value === 'th') {
                 flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
             } else {
                 flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
+            }
+        });
+
+        // Function to handle the header bottom visibility
+        window.addEventListener('scroll', function () {
+            const headerBottom = document.querySelector('.header-bottom');
+            if (window.scrollY > 100) {
+                headerBottom.classList.add('hide');
+            } else {
+                headerBottom.classList.remove('hide');
             }
         });
     </script>

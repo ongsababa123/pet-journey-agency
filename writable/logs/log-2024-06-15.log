@@ -12,3 +12,59 @@ in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 413.
  9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-15 08:50:26 --> ErrorException: Undefined variable $services
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 407.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(407): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $services', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 407)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 5 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-15 09:12:43 --> ErrorException: Undefined variable $services
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 416.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(416): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $services', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 416)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 5 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-15 13:13:20 --> ErrorException: Undefined variable $services
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 426.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(426): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $services', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 426)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 5 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-15 15:35:33 --> ErrorException: Undefined variable $services
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 552.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(552): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $services', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 552)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 5 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
