@@ -189,12 +189,17 @@ $services = [
             .video-wrapper {
                 margin-bottom: 20px;
             }
+
+            .header-bottom {
+                display: none;
+            }
         }
 
         .our-service-section {
             padding: 50px 0;
             background-color: #fff;
             position: relative;
+            overflow: hidden;
         }
 
         .our-service-section::before {
@@ -204,14 +209,11 @@ $services = [
             left: 0;
             width: 100%;
             height: 40%;
-            background-image: linear-gradient(to bottom,
-                    rgba(9, 18, 66, 0.8) 0%,
-                    rgba(9, 18, 66, 0) 100%), url('<?php echo base_url('dist/img/service.png'); ?>');
+            background-image: linear-gradient(to bottom, rgba(9, 18, 66, 0.5) 0%, rgba(9, 18, 66, 0) 100%), url('<?php echo base_url('dist/img/service.png'); ?>');
             background-size: cover;
             background-position: center;
             z-index: 1;
         }
-
 
         .our-service-section .container {
             position: relative;
@@ -226,7 +228,7 @@ $services = [
         .our-service-title h2 {
             font-size: 50px;
             font-weight: 700;
-            color: #00A4E4;
+            color: #57d0ff;
         }
 
         .our-service-title span {
@@ -239,18 +241,42 @@ $services = [
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin-bottom: 30px;
-            height: 300px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-item img {
             width: 100%;
-            height: 200px;
+            height: 212px;
             object-fit: cover;
+        }
+
+        .service-item::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(9, 18, 66, 0.6) 0%, rgba(9, 18, 66, 0) 70%);
+            z-index: 1;
+            transition: background 0.5s ease;
+        }
+
+        .service-item:hover::before {
+            background: linear-gradient(to top, rgba(9, 18, 66, 0.8) 0%, rgba(9, 18, 66, 0) 70%);
         }
 
         .service-item h3,
@@ -268,21 +294,78 @@ $services = [
 
         .service-item p {
             font-size: 14px;
-            color: #666;
+            color: #fff;
             margin-bottom: 15px;
         }
 
         .service-item .badge-pill {
             background-color: #FFD700;
             color: #333;
-            font-size: 16px;
-            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 20px;
             border-radius: 25px;
             text-decoration: none;
             display: unset;
-            width: 150px;
+            width: 100px;
             align-self: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .paw-left,
+        .paw-right {
+            position: absolute;
+            width: 50px;
+            z-index: 1;
+        }
+
+        @media (max-width: 991.98px) {
+            .our-service-title h2 {
+                font-size: 40px;
+            }
+
+            .service-item {
+                height: auto;
+            }
+
+            .service-item img {
+                height: auto;
+            }
+
+            .service-item h3 {
+                font-size: 14px;
+                margin-top: 5px;
+            }
+
+            .service-item .badge-pill {
+                margin-bottom: 10px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .our-service-title h2 {
+                font-size: 30px;
+            }
+
+            .service-item {
+                height: auto;
+            }
+
+            .service-item img {
+                height: auto;
+            }
+
+            .service-item h3 {
+                font-size: 13px;
+                margin-top: 5px;
+            }
+
+            .service-item .badge-pill {
+                margin-bottom: 10px;
+                font-size: 8px;
+            }
         }
     </style>
 </head>
@@ -342,14 +425,14 @@ $services = [
     </section>
     <!-- sec our service -->
     <section class="our-service-section">
-        <div class="container">
+        <div class="container fade-in">
             <div class="our-service-title">
                 <h2>OUR <span>SERVICE</span></h2>
             </div>
             <div class="row">
                 <?php foreach ($services as $service) { ?>
-                    <div class="col-md-3 mb-3">
-                        <div class="service-item">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        <div class="service-item fade-in">
                             <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
                             <h3 class="p-2"><?php echo $service->title; ?></h3>
                             <span class="badge badge-pill badge-primary">View More</span>
@@ -357,12 +440,36 @@ $services = [
                     </div>
                 <?php } ?>
             </div>
+            <!-- <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" class="paw-left" alt="Paw Print">
+            <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" class="paw-right" alt="Paw Print"> -->
         </div>
     </section>
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            document.querySelectorAll(".fade-in").forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
 </body>
 
 </html>

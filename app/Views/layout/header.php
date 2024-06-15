@@ -32,8 +32,6 @@
         }
 
         header {
-            display: flex;
-            flex-direction: column;
             width: 100%;
             z-index: 1000;
             position: fixed;
@@ -41,7 +39,8 @@
         }
 
         .header-top,
-        .header-bottom {
+        .header-bottom,
+        .header-top-mobile {
             background-color: #ffffff;
             padding: 10px 2%;
             display: flex;
@@ -49,27 +48,27 @@
             align-items: center;
         }
 
-        .header-bottom {
+        .header-bottom,
+        .header-bottom-mobile {
             background-color: rgba(12, 20, 70, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
-            /* Center the menu items horizontally */
         }
 
-        .header-bottom .navbar-nav {
+        .header-bottom .navbar-nav,
+        .header-bottom-mobile .navbar-nav {
             display: flex;
             justify-content: space-around;
-            /* Distribute menu items evenly */
             align-items: center;
             width: 100%;
             max-width: 1000px;
             flex-direction: row;
-            /* Ensure the menu items are in a row */
         }
 
-        .header-bottom .nav-link {
+        .header-bottom .nav-link,
+        .header-bottom-mobile .nav-link {
             color: #fff;
             margin-right: 20px;
             position: relative;
@@ -77,19 +76,21 @@
             align-items: center;
         }
 
-        .header-bottom .nav-link a {
+        .header-bottom .nav-link a,
+        .header-bottom-mobile .nav-link a {
             font-size: 120%;
             color: inherit;
             text-decoration: none;
         }
 
-        .header-bottom .nav-link:hover {
+        .header-bottom .nav-link:hover,
+        .header-bottom-mobile .nav-link:hover {
             color: #00A4E4;
         }
 
-        .header-top .logo img {
+        .header-top .logo img,
+        .header-top-mobile .logo img {
             height: 60px;
-            /* Adjust logo size */
         }
 
         .header-top .contact-info {
@@ -97,18 +98,14 @@
             align-items: center;
             justify-content: center;
             flex-grow: 1;
-            /* Expand contact-info to full width */
             flex-wrap: wrap;
-            /* Wrap content on smaller screens */
         }
 
         .header-top .contact-info>div {
             display: flex;
             align-items: center;
             text-align: left;
-            /* Align text to the left */
             margin: 10px 20px;
-            /* Add space between contact items */
         }
 
         .header-top .contact-info>div i {
@@ -127,7 +124,6 @@
             display: flex;
             align-items: center;
             margin-top: 10px;
-            /* Add space above social icons */
         }
 
         .header-top .social-icons a {
@@ -156,62 +152,89 @@
             outline: none;
         }
 
-        @media (max-width: 768px) {
+        .header-top-mobile {
+            display: none;
+        }
 
-            .header-top .contact-info,
-            .header-top .social-icons {
-                display: none;
-            }
+        .header-bottom-mobile {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
 
             .header-top,
             .header-bottom {
-                flex-direction: column;
-                align-items: flex-start;
+                display: none;
             }
 
-            .header-bottom .navbar-nav {
-                flex-direction: column;
+            .header-top-mobile,
+            .header-bottom-mobile {
+                display: flex;
+                justify-content: space-between;
                 width: 100%;
             }
 
-            .header-bottom .nav-link {
+            .header-top-mobile .logo {
+                margin: 0 auto;
+            }
+
+            .header-top-mobile .menu {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+            }
+
+            .header-top-mobile .lang {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .header-top-mobile .language-selector {
                 margin-right: 0;
-                margin-bottom: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            .header-top {
+            .header-top-mobile {
                 padding: 10px 2%;
             }
 
-            .header-top .logo img {
-                height: 40px;
-                /* Adjust logo size for small screens */
+            .header-top-mobile .logo img {
+                height: 50px;
             }
 
-            .header-bottom {
-                padding: 5px 2%;
+            .header-top-mobile .menu,
+            .header-top-mobile .lang {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
             }
 
-            .header-bottom .navbar-nav {
-                flex-direction: column;
-                align-items: flex-start;
+            .header-top-mobile .menu {
+                justify-content: flex-start;
             }
 
-            .header-bottom .nav-link {
-                margin-right: 0;
-                margin-bottom: 10px;
+            .header-top-mobile .lang {
+                justify-content: flex-end;
             }
 
             .language-selector {
                 padding: 5px 5px;
             }
         }
+
+        @media (max-width: 1250px) {
+            .header-top .contact-info {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- header normal -->
     <header>
         <div class="header-top">
             <div class="logo">
@@ -243,6 +266,26 @@
                 <div class="nav-link"><a href="#">Our Service</a></div>
                 <div class="nav-link"><a href="#">Review</a></div>
                 <div class="nav-link"><a href="#">Contact</a></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header mobile -->
+    <header>
+        <div class="header-top-mobile">
+            <div class="menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="logo">
+                <img src="<?= base_url('dist/img/logo_mobile.png') ?>" alt="Logo">
+            </div>
+            <div class="lang">
+                <div class="language-selector">
+                    <select id="language-select-mobile">
+                        <option value="en">EN</option>
+                        <option value="th">TH</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
