@@ -3,15 +3,20 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
+use App\Models\CoverPageModel;
 
 class HomePage_edit_cover extends BaseController
 {
     protected $uri_menu;
+    protected $CoverPageModel;
+
     public function __construct()
     {
-        helper(['url', 'form', 'view']);
+        helper(['form']);
+        helper(['filesystem']);
+        $this->CoverPageModel = new CoverPageModel();
         $current_url = current_url();
-    
+
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
         $parsed_url = parse_url($current_url, PHP_URL_PATH);
         $path_parts = explode('/', $parsed_url);

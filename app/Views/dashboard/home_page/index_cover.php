@@ -73,13 +73,13 @@
                 <section class="col-lg-12">
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card" style="border-radius: 15px;">
-                        <div class="card-header">
+                        <div class="card-header" style="background-color: #043062;color: white">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
                                 <strong>ข้อมูลหน้าปก</strong>
                             </h3>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', 'data')">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', 'data')">
                                     <i class="fas fa-plus"></i> เพิ่มหน้าปก
                                 </button>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
