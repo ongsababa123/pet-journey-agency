@@ -13,6 +13,20 @@ class Service
     }
 }
 
+class Review
+{
+    public $image;
+    public $text;
+    public $bgColor;
+
+    public function __construct($image, $text, $bgColor)
+    {
+        $this->image = $image;
+        $this->text = $text;
+        $this->bgColor = $bgColor;
+    }
+}
+
 $services = [
     new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
     new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
@@ -40,6 +54,20 @@ $partners = [
         "dist/img/logopartner.png",
     ]
 ];
+
+$reviews = [
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+];
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -50,6 +78,8 @@ $partners = [
     <title>Home Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
     <style>
         /* General Styles */
         * {
@@ -337,6 +367,7 @@ $partners = [
             padding: 50px 0;
             background-color: #fff;
             text-align: center;
+            position: relative;
         }
 
         .review-title {
@@ -488,6 +519,62 @@ $partners = [
             transform: translateY(-50%);
         }
 
+        /* Review Box Styles */
+        .review-box {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 230px;
+            height: 300px;
+            margin: 15px;
+            background-color: white;
+        }
+
+        .review-box img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .review-box p {
+            margin: 0;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .review-box:hover {
+            transform: scale(1.05);
+        }
+
+        .bg-yellow {
+            background-color: #FFD700 !important;
+        }
+
+        .bg-blue {
+            background-color: #23456B !important;
+            color: #fff;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: #23456B;
+        }
+
+        @media (max-width: 991.98px) {
+            .review-box {
+                border: 1px solid #eaeaea;
+                border-radius: 10px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                width: 130px;
+                height: 200px;
+                margin: 15px;
+            }
+        }
+
         @media (max-width: 991.98px) {
             .our-service-title h2 {
                 font-size: 40px;
@@ -509,6 +596,10 @@ $partners = [
             .service-item .badge-pill {
                 margin-bottom: 10px;
                 font-size: 10px;
+            }
+
+            .review-box p {
+                font-size: 9px;
             }
         }
 
@@ -566,6 +657,43 @@ $partners = [
                 justify-content: center;
             }
         }
+
+        @media (max-width: 1200px) {
+            .review-content .col-md-3 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+
+            .review-box {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .review-content .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .review-box {
+                width: 100%;
+                height: auto;
+            }
+
+            .review-title img {
+                display: none;
+            }
+
+            .review-title h2 {
+                font-size: 2.5rem;
+                font-weight: bold;
+                margin-left: 20px;
+                flex: 1;
+                text-align: left;
+            }
+
+        }
     </style>
 </head>
 
@@ -622,6 +750,7 @@ $partners = [
             </div>
         </div>
     </section>
+
     <!-- sec our service -->
     <section class="our-service-section">
         <div class="container fade-in">
@@ -641,12 +770,24 @@ $partners = [
             </div>
         </div>
     </section>
+
     <!-- sec review -->
     <section class="review-section">
         <div class="review-title">
             <h2>REVIEW</h2>
             <img src="<?= base_url('dist/img/review_title.png') ?>" alt="Review Image">
         </div>
+        <div class="container">
+            <div class="review-slider">
+                <?php foreach ($reviews as $review) { ?>
+                    <div class="review-box p-2" style="border-radius: 10px;">
+                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                        <p class="<?php echo $review->bgColor; ?>"><?php echo $review->text; ?></p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
     </section>
 
     <!-- sec partner -->
@@ -711,7 +852,7 @@ $partners = [
         </div>
         <div class="quote-content">
             <h3 class="d-flex justify-content-center flex-wrap p-2">
-                รับใบเสนอราคาของคุณได้ที่นี่ 
+                รับใบเสนอราคาของคุณได้ที่นี่
                 <div class="text-success mx-2">ฟรี</div>
                 ไม่มีค่าใช้จ่าย!
             </h3>
@@ -797,10 +938,12 @@ $partners = [
         </div>
         </div>
     </section>
-    <!-- Bootstrap scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
@@ -822,8 +965,7 @@ $partners = [
                 observer.observe(item);
             });
         });
-    </script>
-    <script>
+
         // Object containing service data
         const services = [{
                 id: 'service1',
@@ -899,7 +1041,35 @@ $partners = [
 
         // Generate checkboxes on page load
         window.onload = generateCheckboxes;
+
+        $(document).ready(function() {
+            $('.review-slider').slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                responsive: [{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
     </script>
+
 </body>
 
 </html>

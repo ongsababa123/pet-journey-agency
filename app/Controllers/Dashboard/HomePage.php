@@ -27,5 +27,6 @@ class HomePage extends BaseController
         $data['uri_menu'] = $this->uri_menu;
         echo view('layout/header');
         echo view('dashboard/public_dashboard/homepage');
+        echo view('layout/footer');
     }
 }
