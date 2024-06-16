@@ -104,6 +104,7 @@
         .file-upload {
             width: 60%;
         }
+
         .drag-text {
             font-size: 1.5em;
         }
@@ -305,14 +306,14 @@ function check_menu_state($uri_menu, $input, $type)
                                         <p>เซอร์วิส</p>
                                     </a>
                                 </li>
-                                <li class="nav-item <?= check_menu_state($uri_menu, 'homepage/review', 'active') ?>">
-                                    <a href="<?= base_url('dashboard/homepage/review') ?>" class="nav-link">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('dashboard/homepage/review') ?>" class="nav-link <?= check_menu_state($uri_menu, 'homepage/review', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>รีวิว</p>
                                     </a>
                                 </li>
-                                <li class="nav-item <?= check_menu_state($uri_menu, 'homepage/contact', 'active') ?>">
-                                    <a href="<?= base_url('dashboard/homepage/contact') ?></a>" class="nav-link">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('dashboard/homepage/contact') ?>" class="nav-link <?= check_menu_state($uri_menu, 'homepage/contact', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>เมนูติดต่อ</p>
                                     </a>
@@ -402,7 +403,7 @@ function check_menu_state($uri_menu, $input, $type)
     <script src="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.min.js'); ?>"></script>
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- function action ajax request -->
     <script>
         function action_(url, form) {

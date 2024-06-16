@@ -20,23 +20,23 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 
 // Default route
-$routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+$routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function($routes) {
     $routes->get('', 'HomePage_edit_cover::index');
 });
 
 // Grouped routes with a common namespace
-$routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    $routes->get('homepage', 'HomePage::index');
+$routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function($routes) {
     $routes->get('homepage/cover', 'HomePage_edit_cover::index');
+
     $routes->get('homepage/about', 'HomePage_edit_about::index');
+    $routes->post('homepage/about/update/(:num)/(:segment)', 'HomePage_edit_about::update_about_homepage/$1/$2');
+
+
     $routes->get('homepage/service', 'HomePage_edit_service::index');
     $routes->get('homepage/review', 'HomePage_edit_review::index');
-    $routes->get('homepage/contact', 'HomePage_edit_contact::index');
+    $routes->get('homepage/contact', 'HomePage_edit_contact_menu::index');
+
 });
-
-
-
-
 
 // Another group with a different namespace
 // $routes->group('api', ['namespace' => 'App\Controllers\Api'], function($routes) {
