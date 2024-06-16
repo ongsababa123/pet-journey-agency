@@ -78,8 +78,8 @@ $reviews = [
     <title>Home Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
         * {
@@ -127,9 +127,6 @@ $reviews = [
 
         .carousel-indicators li {
             background-color: #fff;
-            border-radius: 50%;
-            width: 12px;
-            height: 12px;
         }
 
         .carousel-indicators .active {
@@ -370,36 +367,6 @@ $reviews = [
             position: relative;
         }
 
-        .review-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #23456B;
-            padding: 10px;
-            color: #fff;
-            margin-bottom: 30px;
-            margin-top: 30px;
-            position: relative;
-            height: 100px;
-        }
-
-        .review-title h2 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-left: 30px;
-            flex: 1;
-            text-align: left;
-        }
-
-        .review-title img {
-            max-width: 350px;
-            height: auto;
-            position: absolute;
-            right: 0px;
-            top: 40%;
-            transform: translateY(-50%);
-        }
-
         /* Partner Section */
         .line-partner {
             background-color: #24466C;
@@ -520,28 +487,70 @@ $reviews = [
         }
 
         /* Review Box Styles */
+        .review-section {
+            padding: 50px 0;
+            background-color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .review-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #23456B;
+            padding: 10px;
+            color: #fff;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+        }
+
+        .review-title h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-left: 30px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .review-title img {
+            max-width: 250px;
+            height: auto;
+            position: absolute;
+            right: 0px;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+
         .review-box {
             border: none;
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
-            width: 230px;
+            width: cover;
             height: 300px;
-            margin: 15px;
             background-color: white;
         }
 
         .review-box img {
             width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eaeaea;
+            height: 80%;
+            object-fit: cover;
         }
 
         .review-box p {
             margin: 0;
             padding: 10px;
             font-size: 14px;
-            background-color: #f8f9fa;
             text-align: center;
         }
 
@@ -558,20 +567,35 @@ $reviews = [
             color: #fff;
         }
 
-        .slick-prev:before,
-        .slick-next:before {
-            color: #23456B;
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        @media (max-width: 991.98px) {
+        .pagination button {
+            background-color: #23456B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 1200px) {
+            .review-content .col-md-3 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+
             .review-box {
-                border: 1px solid #eaeaea;
-                border-radius: 10px;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                width: 130px;
-                height: 200px;
-                margin: 15px;
+                width: 100%;
+                height: auto;
             }
         }
 
@@ -598,8 +622,24 @@ $reviews = [
                 font-size: 10px;
             }
 
+            .review-box {
+                border: 1px solid #eaeaea;
+                border-radius: 5px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                width: 250px;
+                height: 280px;
+                margin: 15px;
+            }
+
+            .review-box img {
+                width: 100%;
+                height: 80%;
+                object-fit: cover;
+            }
+
             .review-box p {
-                font-size: 9px;
+                font-size: 12px;
             }
         }
 
@@ -656,43 +696,32 @@ $reviews = [
             .title-animalclinic {
                 justify-content: center;
             }
-        }
 
-        @media (max-width: 1200px) {
-            .review-content .col-md-3 {
-                flex: 0 0 33.333333%;
-                max-width: 33.333333%;
+            .review-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
 
             .review-box {
                 width: 100%;
-                height: auto;
+                height: 150px;
             }
-        }
 
-        @media (max-width: 768px) {
+            .review-box img {
+                height: 70%;
+            }
+
+            .review-box p {
+                font-size: 9px;
+            }
+
             .review-content .col-md-3 {
                 flex: 0 0 50%;
                 max-width: 50%;
             }
 
-            .review-box {
-                width: 100%;
-                height: auto;
-            }
-
-            .review-title img {
+            .img_pic_title {
                 display: none;
             }
-
-            .review-title h2 {
-                font-size: 2.5rem;
-                font-weight: bold;
-                margin-left: 20px;
-                flex: 1;
-                text-align: left;
-            }
-
         }
     </style>
 </head>
@@ -744,9 +773,6 @@ $reviews = [
                         </div>
                     </div>
                 </div>
-                <div class="paw-prints">
-                    <img src="<?= base_url('dist/img/iconfeetpet.png') ?>" alt="Paw Prints" class="paw-prints">
-                </div>
             </div>
         </div>
     </section>
@@ -775,19 +801,17 @@ $reviews = [
     <section class="review-section">
         <div class="review-title">
             <h2>REVIEW</h2>
-            <img src="<?= base_url('dist/img/review_title.png') ?>" alt="Review Image">
+            <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <div class="container">
-            <div class="review-slider">
-                <?php foreach ($reviews as $review) { ?>
-                    <div class="review-box p-2" style="border-radius: 10px;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
-                        <p class="<?php echo $review->bgColor; ?>"><?php echo $review->text; ?></p>
-                    </div>
-                <?php } ?>
+            <div id="review-grid" class="review-grid">
+                <!-- Reviews will be inserted here -->
+            </div>
+            <div class="pagination">
+                <button id="prev-btn" onclick="changePage(-1)" disabled>Previous</button>
+                <button id="next-btn" onclick="changePage(1)">Next</button>
             </div>
         </div>
-
     </section>
 
     <!-- sec partner -->
@@ -943,7 +967,7 @@ $reviews = [
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
@@ -963,6 +987,22 @@ $reviews = [
 
             document.querySelectorAll(".fade-in").forEach(item => {
                 observer.observe(item);
+            });
+
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
             });
         });
 
@@ -1039,37 +1079,114 @@ $reviews = [
             });
         }
 
-        // Generate checkboxes on page load
-        window.onload = generateCheckboxes;
+        generateCheckboxes();
+    </script>
+    <script>
+        const reviews = [{
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-yellow"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-yellow"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-yellow"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-yellow"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-yellow"
+            },
+            {
+                image: "dist/img/review_pic.png",
+                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                bgColor: "bg-blue"
+            }
+        ];
 
-        $(document).ready(function() {
-            $('.review-slider').slick({
-                infinite: true,
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                dots: true,
-                arrows: true,
-                responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
+        let currentPage = 1;
+        let reviewsPerPage = 8; // Default for desktop
+
+        function setReviewsPerPage() {
+            if (window.innerWidth < 768) {
+                reviewsPerPage = 4; // Mobile
+            } else if (window.innerWidth < 992) {
+                reviewsPerPage = 6; // Tablet
+            } else {
+                reviewsPerPage = 8; // Desktop
+            }
+        }
+
+        function displayReviews(page) {
+            setReviewsPerPage();
+            const startIndex = (page - 1) * reviewsPerPage;
+            const endIndex = page * reviewsPerPage;
+            const reviewsToShow = reviews.slice(startIndex, endIndex);
+
+            const reviewGrid = document.getElementById('review-grid');
+            reviewGrid.innerHTML = '';
+            reviewsToShow.forEach(review => {
+                const reviewBox = document.createElement('div');
+                reviewBox.classList.add('review-box', review.bgColor);
+                reviewBox.innerHTML = `
+                    <img src="<?= base_url('dist/img/review_pic.png') ?>">
+                    <p>${review.text}</p>
+                `;
+                reviewGrid.appendChild(reviewBox);
             });
+
+            document.getElementById('prev-btn').disabled = page === 1;
+            document.getElementById('next-btn').disabled = endIndex >= reviews.length;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            displayReviews(currentPage);
+        }
+
+        window.addEventListener('resize', () => {
+            displayReviews(currentPage);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            displayReviews(currentPage);
         });
     </script>
-
 </body>
 
 </html>
