@@ -13,18 +13,6 @@ class Service
     }
 }
 
-class Review
-{
-    public $img;
-    public $text;
-
-    public function __construct($img, $text)
-    {
-        $this->img = $img;
-        $this->text = $text;
-    }
-}
-
 $services = [
     new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
     new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
@@ -36,18 +24,23 @@ $services = [
     new Service("dist/img/service8.png", "International pet trading", "Reliable pet sitting services")
 ];
 
-$reviews = [
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว"),
-    new Review("dist/img/review_pic.png", "ตัวอย่างข้อความรีวิว")
+$partners = [
+    "animal_clinic" => [
+        "dist/img/logopartner.png",
+        "dist/img/logopartner.png",
+        "dist/img/logopartner.png",
+        "dist/img/logopartner.png"
+    ],
+    "pet_friendly_hotel" => [
+        "dist/img/logopartner.png",
+        "dist/img/logopartner.png",
+    ],
+    "pet_hotel" => [
+        "dist/img/logopartner.png",
+        "dist/img/logopartner.png",
+    ]
 ];
 ?>
-
 <!DOCTYPE html>
 <html lang="th">
 
@@ -368,7 +361,7 @@ $reviews = [
         }
 
         .review-title img {
-            max-width: 300px;
+            max-width: 350px;
             height: auto;
             position: absolute;
             right: 0px;
@@ -376,65 +369,125 @@ $reviews = [
             transform: translateY(-50%);
         }
 
-        .review-carousel {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        /* Partner Section */
+        .line-partner {
+            background-color: #24466C;
+            width: 100%;
+            height: 60px;
+            margin-bottom: 30px;
+        }
+
+        .partner-section {
+            padding: 50px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .partner-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .partner-title h2 {
+            font-size: 50px;
+            font-weight: 700;
+            color: #57d0ff;
+        }
+
+        .partner-title span {
+            color: #FFD700;
+        }
+
+        .partner-category {
+            margin-bottom: 50px;
+            padding: 10px;
+            border: 1px solid #23456B;
+            border-radius: 10px;
             position: relative;
         }
 
-        .review-item {
-            flex: 0 0 25%;
-            max-width: 25%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            border-radius: 10px;
-            background-color: #23456B;
+        .title-animalclinic {
+            font-size: 18px;
             color: #fff;
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .review-item img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-
-        .review-item p {
-            margin-top: 15px;
-            font-size: 1rem;
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
             position: absolute;
-            top: 50%;
+            top: -23px;
+            left: 10px;
+            background-color: #0198B4;
+            border-radius: 30px;
+            padding: 6px 16px;
+            display: flex;
+        }
+
+        .title-petfriendly {
+            font-size: 18px;
+            color: #fff;
+            position: absolute;
+            top: -23px;
+            left: 10px;
+            background-color: #FFB629;
+            border-radius: 30px;
+            padding: 6px 16px;
+            display: flex;
+        }
+
+        .title-pethotel {
+            font-size: 18px;
+            color: #fff;
+            position: absolute;
+            top: -23px;
+            left: 10px;
+            background-color: #23456B;
+            border-radius: 30px;
+            padding: 6px 16px;
+            display: flex;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 20px;
+        }
+
+        .partner-logo {
+            margin: 10px;
+        }
+
+        .partner-logo img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 50px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .quote-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0198B4;
+            padding: 10px;
+            color: #fff;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            position: relative;
+            height: 80px;
+        }
+
+        .quote-title img {
+            max-width: 350px;
+            height: auto;
+            position: absolute;
+            right: 0px;
+            top: -78%;
             transform: translateY(-50%);
         }
 
-        .carousel-controls button {
-            background-color: #FFD700;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .carousel-controls button.prev {
-            position: absolute;
-            left: 10px;
-        }
-
-        .carousel-controls button.next {
-            position: absolute;
-            right: 10px;
-        }
-
-        /* Media Queries */
         @media (max-width: 991.98px) {
             .our-service-title h2 {
                 font-size: 40px;
@@ -503,6 +556,14 @@ $reviews = [
             .text-wrapper p {
                 font-size: 14px;
                 padding: 10px;
+            }
+
+            .icontitle_partner {
+                display: none;
+            }
+
+            .title-animalclinic {
+                justify-content: center;
             }
         }
     </style>
@@ -586,20 +647,156 @@ $reviews = [
             <h2>REVIEW</h2>
             <img src="<?= base_url('dist/img/review_title.png') ?>" alt="Review Image">
         </div>
-        <div class="review-carousel">
-            <?php foreach ($reviews as $review) { ?>
-                <div class="review-item">
-                    <img src="<?php echo base_url($review->img); ?>" alt="Review Image">
-                    <p><?php echo $review->text; ?></p>
+    </section>
+
+    <!-- sec partner -->
+    <section class="partner-section">
+        <div class="line-partner"></div>
+        <div class="container">
+            <div class="partner-title" style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-size: 50px; font-weight: 700; color: #23456B; display: flex; align-items: center; justify-content: flex-start;">
+                    OUR PARTNER
+                    <img class="icontitle_partner" src="<?= base_url('dist/svg/icontitle_partner.svg') ?>" width="80" height="80" style="margin-left: 7px;">
+                </h2>
+                <span style="font-size: 15pt; color: #424141;">
+                    Pet Journey Agency เข้าใจถึงความสำคัญของความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของเสมือนสมาชิกครอบครัว ดังนั้น เราได้รวบรวมพันธมิตรที่มีความเชี่ยวชาญและมืออาชีพเพื่อให้บริการที่ดีที่สุดแก่ลูกค้าของเรา
+                </span>
+            </div>
+            <div class="partner-category">
+                <h3 class="title-animalclinic">
+                    Animal clinic
+                    <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                </h3>
+                <div class="partner-logos">
+                    <?php foreach ($partners['animal_clinic'] as $partner) { ?>
+                        <div class="partner-logo">
+                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                        </div>
+                    <?php } ?>
                 </div>
-            <?php } ?>
-        </div>
-        <div class="carousel-controls">
-            <button class="prev">&lt;</button>
-            <button class="next">&gt;</button>
+            </div>
+            <div class="partner-category">
+                <h3 class="title-petfriendly">
+                    Pet friendly hotel
+                    <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                </h3>
+                <div class="partner-logos">
+                    <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
+                        <div class="partner-logo">
+                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="partner-category">
+                <h3 class="title-pethotel">
+                    Pet hotel
+                    <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                </h3>
+                <div class="partner-logos">
+                    <?php foreach ($partners['pet_hotel'] as $partner) { ?>
+                        <div class="partner-logo">
+                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- sec quote -->
+    <section class="quote-section">
+        <div class="quote-title">
+            <img src="<?= base_url('dist/img/pet_quote.png') ?>" alt="Quote Image">
+        </div>
+        <div class="quote-content">
+            <h3 class="d-flex justify-content-center flex-wrap p-2">
+                รับใบเสนอราคาของคุณได้ที่นี่ 
+                <div class="text-success mx-2">ฟรี</div>
+                ไม่มีค่าใช้จ่าย!
+            </h3>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">ชื่อ<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="text" id="name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="text" id="phone" name="phone" placeholder="ระบุชื่อผู้ติดต่อหมายเลขโทรศัพท์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">อีเมล<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="email" id="email" name="email" placeholder="ระบุอีเมล">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">วันเดินทาง</div>
+                        <input class="form-control" type="date" id="travel-date" name="travel-date">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">ประเทศต้นทาง</div>
+                        <select class="form-control" id="origin-country" name="origin-country">
+                            <option value="">เช่น กรุงเทพ (BKK)</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">ประเทศต้นปลายทาง</div>
+                        <select class="form-control" id="destination-country" name="destination-country">
+                            <option value="">เช่น เกาหลี (KR)</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">ประเภทการเดินทาง</div>
+                        <select class="form-control" class="form-control" id="travel-type" name="travel-type">
+                            <option value="">เลือกประเภทการเดินทาง</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</div>
+                        <select class="form-control" id="pet-transport" name="pet-transport">
+                            <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group text-left">
+                    <label for="services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
+                    <div id="services-container"></div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">ชนิดสัตว์</div>
+                        <input type="text" class="form-control" id="pet-type" name="pet-type" placeholder="ระบุชนิดสัตว์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">สายพันธุ์</div>
+                        <input type="text" class="form-control" id="breed" name="breed" placeholder="ระบุสายพันธุ์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">อายุ</div>
+                        <input type="text" class="form-control" id="age" name="age" placeholder="ระบุอายุ">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">น้ำหนัก</div>
+                        <input type="text" class="form-control" id="weight" name="weight" placeholder="ระบุน้ำหนัก">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="d-flex">หมายเหตุ</div>
+                        <input type="text" class="form-control" id="reason" name="reason" placeholder="ระบุหมายเหตุ">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>
+            </div>
+        </div>
+        </div>
+    </section>
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -627,20 +824,81 @@ $reviews = [
         });
     </script>
     <script>
-        // JavaScript for carousel controls
-        document.querySelector('.prev').addEventListener('click', () => {
-            document.querySelector('.review-carousel').scrollBy({
-                left: -300,
-                behavior: 'smooth'
-            });
-        });
+        // Object containing service data
+        const services = [{
+                id: 'service1',
+                value: 'import-export',
+                label: 'บริการนำเข้าและส่งออกสัตว์เลี้ยง'
+            },
+            {
+                id: 'service2',
+                value: 'checkup',
+                label: 'บริการตรวจสัตว์เลี้ยง'
+            },
+            {
+                id: 'service3',
+                value: 'vet',
+                label: 'บริการด้านสัตวแพทย์'
+            },
+            {
+                id: 'service4',
+                value: 'transport',
+                label: 'บริการรับส่งสัตว์เลี้ยง'
+            },
+            {
+                id: 'service5',
+                value: 'booking',
+                label: 'บริการจองตั๋วเครื่องบินสำหรับสัตว์เลี้ยง'
+            },
+            {
+                id: 'service6',
+                value: 'hotel',
+                label: 'โรงแรมสำหรับสัตว์เลี้ยง'
+            },
+            {
+                id: 'service7',
+                value: 'pet-friendly-hotel',
+                label: 'โรงแรมที่เป็นมิตรกับสัตว์เลี้ยง (Pet Friendly)'
+            },
+            {
+                id: 'service8',
+                value: 'international-transport',
+                label: 'บริการขนส่งสัตว์เลี้ยงข้ามต่างประเทศ'
+            },
+            {
+                id: 'service9',
+                value: 'other',
+                label: 'อื่น ๆ'
+            }
+        ];
 
-        document.querySelector('.next').addEventListener('click', () => {
-            document.querySelector('.review-carousel').scrollBy({
-                left: 300,
-                behavior: 'smooth'
+        // Function to generate checkboxes
+        function generateCheckboxes() {
+            const container = document.getElementById('services-container');
+            services.forEach(service => {
+                const div = document.createElement('div');
+                div.className = 'form-check';
+
+                const input = document.createElement('input');
+                input.className = 'form-check-input';
+                input.type = 'checkbox';
+                input.id = service.id;
+                input.name = 'services';
+                input.value = service.value;
+
+                const label = document.createElement('label');
+                label.className = 'form-check-label';
+                label.htmlFor = service.id;
+                label.textContent = service.label;
+
+                div.appendChild(input);
+                div.appendChild(label);
+                container.appendChild(div);
             });
-        });
+        }
+
+        // Generate checkboxes on page load
+        window.onload = generateCheckboxes;
     </script>
 </body>
 

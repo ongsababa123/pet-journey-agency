@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
-      <style>
+    <style>
         * {
             font-family: 'Kanit', sans-serif;
             margin: 0;
@@ -52,7 +52,6 @@
         .header-top {
             z-index: 2;
             position: relative;
-            /* เพิ่ม */
         }
 
         .header-bottom,
@@ -100,7 +99,8 @@
             color: #00A4E4;
         }
 
-        .header-top .logo img {
+        .header-top .logo img,
+        .header-top-mobile .logo img {
             height: 60px;
         }
 
@@ -214,6 +214,7 @@
             }
 
             .header-top-mobile .logo {
+                width: 90px;
                 margin: 0 auto;
             }
 
@@ -273,8 +274,8 @@
 </head>
 
 <body>
-    <!-- header normal -->
     <header>
+        <!-- header normal -->
         <div class="header-top">
             <div class="logo">
                 <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
@@ -314,10 +315,8 @@
                 <div class="nav-link"><a href="#">Contact</a></div>
             </div>
         </div>
-    </header>
 
-    <!-- header mobile -->
-    <header>
+        <!-- header mobile -->
         <div class="header-top-mobile">
             <div class="menu">
                 <i class="fas fa-bars"></i>
@@ -337,7 +336,7 @@
     </header>
 
     <script>
-        document.getElementById('language-select').addEventListener('change', function () {
+        document.getElementById('language-select').addEventListener('change', function() {
             var flagImg = document.getElementById('flag-img');
             if (this.value === 'th') {
                 flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
@@ -347,7 +346,7 @@
         });
 
         // Function to handle the header bottom visibility
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             const headerBottom = document.querySelector('.header-bottom');
             if (window.scrollY > 100) {
                 headerBottom.classList.add('hide');
