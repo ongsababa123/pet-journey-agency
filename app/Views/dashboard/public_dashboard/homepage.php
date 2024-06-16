@@ -1144,8 +1144,8 @@ $reviews = [
 
         function setReviewsPerPage() {
             if (window.innerWidth < 768) {
-                reviewsPerPage = 4; // Mobile
-            } else if (window.innerWidth < 992) {
+                reviewsPerPage = 6; // Mobile
+            } else if (window.innerWidth < 1150) {
                 reviewsPerPage = 6; // Tablet
             } else {
                 reviewsPerPage = 8; // Desktop
