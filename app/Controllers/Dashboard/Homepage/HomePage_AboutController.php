@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers\Dashboard\Homepage;
 
 use App\Controllers\BaseController;
 use App\Models\AboutHomeModel;
 
-class HomePage_edit_about extends BaseController
+class HomePage_AboutController extends BaseController
 {
     protected $uri_menu;
     protected $about_home_model;
     public function __construct()
     {
-        helper(['form']);
-        helper(['filesystem']);
+        helper(['form', 'file']);
         $this->about_home_model = new AboutHomeModel();
         $current_url = current_url();
 
@@ -31,9 +30,9 @@ class HomePage_edit_about extends BaseController
 
         $data['about_home_data'] = $this->about_home_model->findAll();
         // var_dump($data['about_home_data']);
-        echo view('dashboard/header', $data);
+        echo view('dashboard/layout/header', $data);
         echo view('dashboard/home_page/index_about');
-        echo view('dashboard/footer');
+        echo view('dashboard/layout/footer');
     }
 
     // อัพเดทข้อมูลหน้าแรกเกี่ยวกับ //

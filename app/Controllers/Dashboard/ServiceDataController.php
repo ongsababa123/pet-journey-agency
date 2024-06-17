@@ -4,7 +4,7 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 
-class HomePage_edit_service extends BaseController
+class ServiceDataController extends BaseController
 {
     protected $uri_menu;
     public function __construct()
@@ -24,9 +24,9 @@ class HomePage_edit_service extends BaseController
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
-        echo view('dashboard/header', $data);
-        echo view('dashboard/home_page/index_service');
-        echo view('dashboard/footer');
+        echo view('dashboard/layout/header', $data);
+        echo view('dashboard/index_service');
+        echo view('dashboard/layout/footer');
     }
 
 
