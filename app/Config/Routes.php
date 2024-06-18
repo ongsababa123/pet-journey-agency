@@ -20,23 +20,50 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 
 // Default route
-$routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function($routes) {
-    $routes->get('', 'HomePage_edit_cover::index');
+$routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    $routes->get('', 'ReviewDataController::index');
 });
 
 // Grouped routes with a common namespace
-$routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function($routes) {
-    $routes->get('homepage/cover', 'HomePage_edit_cover::index');
-
-    $routes->get('homepage/about', 'HomePage_edit_about::index');
-    $routes->post('homepage/about/update/(:num)/(:segment)', 'HomePage_edit_about::update_about_homepage/$1/$2');
-
-
-    $routes->get('homepage/service', 'HomePage_edit_service::index');
-    $routes->get('homepage/review', 'HomePage_edit_review::index');
-    $routes->get('homepage/contact', 'HomePage_edit_contact_menu::index');
-
+$routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('review', 'ReviewDataController::index'); //index review
+    $routes->get('review/getdata', 'ReviewDataController::getData_review'); //getdata review
+    $routes->get('review/changestatus/(:num)/(:num)', 'ReviewDataController::change_status_review/$1/$2'); //change status review
+    $routes->get('review/delete/(:num)/(:segment)', 'ReviewDataController::delete_cover/$1/$2'); //delete review
+    $routes->post('review/create', 'ReviewDataController::create_review'); // create review
+    $routes->post('review/update/(:num)', 'ReviewDataController::update_review/$1'); //update review
+//------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('contact', 'ContactDataController::index'); //index contact
+    $routes->post('contact/update/(:num)/(:segment)', 'ContactDataController::update_contact/$1/$2'); //update contact
+//------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('service', 'ServiceDataController::index');
 });
+
+$routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage'], function ($routes) {
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('cover', 'HomePage_ConverController::index'); //index cover
+    $routes->get('cover/getdata', 'HomePage_ConverController::getData_cover'); //getdata cover
+    $routes->get('cover/changestatus/(:num)/(:num)', 'HomePage_ConverController::change_status_cover/$1/$2'); //change status cover
+    $routes->get('cover/delete/(:num)/(:segment)', 'HomePage_ConverController::delete_cover/$1/$2'); //delete cover
+    $routes->post('cover/create', 'HomePage_ConverController::create_cover'); //create cover
+    $routes->post('cover/update/(:num)', 'HomePage_ConverController::update_cover/$1'); //update cover
+//------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('about', 'HomePage_AboutController::index'); //index about
+    $routes->post('about/update/(:num)/(:segment)', 'HomePage_AboutController::update_about_homepage/$1/$2'); //update about
+});
+
+$routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboard\Aboutpage'], function ($routes) {
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('abouthead', 'AboutPage_HeadController::index'); //index about head
+    $routes->post('abouthead/update/(:num)/(:segment)', 'AboutPage_HeadController::update_about_head/$1/$2'); //update about head
+
+    $routes->get('aboutteam', 'AboutPage_TeamController::index'); //index about team
+    $routes->get('aboutteam/getdata', 'AboutPage_TeamController::getData_team'); //index about team
+
+    $routes->get('aboutmore', 'AboutPage_MoreController::index'); //index about more
+});
+
 
 // Another group with a different namespace
 // $routes->group('api', ['namespace' => 'App\Controllers\Api'], function($routes) {

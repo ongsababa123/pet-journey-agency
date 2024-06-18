@@ -57,6 +57,14 @@
         color: white !important;
     }
 
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active p,
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active .nav-icon,
+    .nav-sidebar .nav-item .nav-link:active .nav-icon {
+        background-color: #23456B !important;
+        color: white !important;
+    }
+
     /* Tree View */
     .nav-sidebar .nav-treeview .nav-link:focus,
     .nav-sidebar .nav-treeview .nav-link:focus p,
@@ -229,6 +237,8 @@ function check_menu_state($uri_menu, $input, $type)
             return $input == $cut[0] ? 'menu-is-opening menu-open' : '';
         case 'display':
             return $input == $cut[0] ? 'block' : 'none';
+        case 'active_display':
+            return $input == $cut[1] ? 'active' : '';
         default:
             return '';
     }
@@ -281,7 +291,7 @@ function check_menu_state($uri_menu, $input, $type)
                         <li class="nav-header">จัดการหน้าเพจ</li>
                         <li class="nav-item <?= check_menu_state($uri_menu, 'homepage', 'treeview') ?>">
                             <a href="#" class="nav-link <?= check_menu_state($uri_menu, 'homepage', 'active') ?>">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     หน้าหลัก
                                     <i class="right fas fa-angle-left"></i>
@@ -300,48 +310,60 @@ function check_menu_state($uri_menu, $input, $type)
                                         <p>เกี่ยวกับเรา</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/homepage/service') ?>" class="nav-link <?= check_menu_state($uri_menu, 'homepage/service', 'active') ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>เซอร์วิส</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/homepage/review') ?>" class="nav-link <?= check_menu_state($uri_menu, 'homepage/review', 'active') ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>รีวิว</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/homepage/contact') ?>" class="nav-link <?= check_menu_state($uri_menu, 'homepage/contact', 'active') ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>เมนูติดต่อ</p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <li class="nav-item <?= check_menu_state($uri_menu, 'aboutpage', 'treeview') ?>">
+                            <a href="#" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage', 'active') ?>">
+                                <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     หน้าเกียวกับฉัน
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" style="display: <?= check_menu_state($uri_menu, 'aboutpage', 'display') ?>;">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('dashboard/aboutpage/abouthead')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/abouthead', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>รูปปก</p>
+                                        <p>ส่วนข้อมูลเกี่ยวกับ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutteam')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutteam', 'active')?>">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>รายละเอียดข้อมูล</p>
+                                        <p>ส่วนข้อมูลทีมแพทย์</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutmore')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutmore', 'active')?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ส่วนข้อมูลเพิ่มเติม</p>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/service') ?>" class="nav-link <?= check_menu_state($uri_menu, 'service', 'active_display') ?>">
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>
+                                    เซอร์วิส
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/review') ?>" class="nav-link <?= check_menu_state($uri_menu, 'review', 'active_display') ?>">
+                                <i class="nav-icon fas fa-star"></i>
+                                <p>
+                                    ข้อมูลรีวิว
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/contact') ?>" class="nav-link <?= check_menu_state($uri_menu, 'contact', 'active_display') ?>">
+                                <i class="nav-icon fas fa-file-contract"></i>
+                                <p>
+                                    ข้อมูลติดต่อ
+                                </p>
+                            </a>
                         </li>
                         <div>
                             <hr>
@@ -351,14 +373,6 @@ function check_menu_state($uri_menu, $input, $type)
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ข้อมูลเสนอราคา</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
-                                <p>
-                                    Kanban Board
-                                </p>
                             </a>
                         </li>
                         <li class="nav-item">

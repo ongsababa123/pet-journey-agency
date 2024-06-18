@@ -1,4 +1,4 @@
-<title>แก้ไขหน้าแรก รีวิว</title>
+<title>แก้ไขข้อมูล เซอร์วิส</title>
 <style>
     .icon-spacing {
         margin-right: 10px;
@@ -22,8 +22,8 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active">หน้าหลัก</li>
-                                        <li class="breadcrumb-item active">รีวิว</li>
+                                        <li class="breadcrumb-item active">ข้อมูล</li>
+                                        <li class="breadcrumb-item active">เซอร์วิส</li>
                                     </ol>
                                 </div><!-- /.col -->
                             </div>
@@ -40,11 +40,11 @@
                         <div class="card-header" style="background-color: #0198B4;color: white">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                <strong>ข้อมูลรีวิว</strong>
+                                <strong>ข้อมูลเซอร์วิส</strong>
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', 'data')">
-                                    <i class="fas fa-plus"></i> เพิ่มรีวิว
+                                    <i class="fas fa-plus"></i> เพิ่มเซอร์วิส
                                 </button> <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
@@ -57,9 +57,11 @@
                                     <tr>
                                         <th width="6%">ลําดับ</th>
                                         <th width="30%">รูปภาพ</th>
-                                        <th width="30%">คำอธิบาย</th>
+                                        <th width="20%">หัวข้อเซอร์วิส ไทย</th>
+                                        <th width="20%">หัวข้อเซอร์วิส อังกฤษ</th>
                                         <th>สถานะ</th>
-                                        <th width="10%">การจัดการ</th>
+                                        <th>การจัดการ</th>
+                                        <th>แก้ไขหน้า</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,12 +76,18 @@
                                             นำเข้าและส่งออกสัตว์เลี้ยง
                                         </td>
                                         <td>
+                                            Pet import and export
+                                        </td>
+                                        <td>
                                             <h2 class="badge bg-success">กำลังใช้งาน</h2>
                                         </td>
                                         <td width="10%">
                                             <a href="javascript:load_modal('Update', 'data')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                                             <a href="javascript:confirm_Alert('text', 'url')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('dashboard/home_page/index_about') ?>" class="btn btn-primary" target="_blank"><i class="fas fa-keyboard"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -120,9 +128,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="inputName">คำอธิบาย</label>
+                            <label for="inputName">หัวข้อเซอร์วิส ภาษาไทย</label>
+                            <input type="text" id="inputName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputName">หัวข้อเซอร์วิส ภาษาอังกฤษ</label>
                             <input type="text" id="inputName" class="form-control">
                         </div>
                     </div>
@@ -148,10 +162,10 @@
         switch (action) {
             case 'Create':
                 console.log(action);
-                $("#modal-title").text('เพิ่มรีวิว');
+                $("#modal-title").text('เพิ่มเซอร์วิส');
                 break;
             case 'Update':
-                $("#modal-title").text('แก้ไขรีวิว');
+                $("#modal-title").text('แก้ไขเซอร์วิส');
                 break;
             default:
                 break;
@@ -177,7 +191,7 @@
                 sInfoThousands: ",",
                 sLoadingRecords: "กำลังโหลดข้อมูล...",
                 sProcessing: "กำลังดำเนินการ...",
-                sSearch: "ค้นหา คำอธิบายรีวิว: ",
+                sSearch: "ค้นหา หัวข้อเซอร์วิส: ",
                 oPaginate: {
                     sFirst: "หน้าแรก",
                     sPrevious: "ก่อนหน้า",

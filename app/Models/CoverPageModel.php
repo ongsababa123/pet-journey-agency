@@ -10,5 +10,5 @@ class CoverPageModel extends Model
     protected $primaryKey = 'id_cover';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['path_image', 'status', 'language'];
+    protected $allowedFields = ['name_image', 'path_image', 'status', 'language'];
 }

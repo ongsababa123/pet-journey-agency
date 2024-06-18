@@ -1,4 +1,4 @@
-<title>แก้ไขหน้าแรก หน้าปก</title>
+<title>แก้ไขข้อมูลทีมแพทย์</title>
 <!-- Content Wrapper. Contains page content -->
 <style>
     .icon-spacing {
@@ -193,7 +193,7 @@
             $('#example2').DataTable({
                 'serverSide': true,
                 'ajax': {
-                    'url': "<?php echo site_url('dashboard/homepage/cover/getdata'); ?>",
+                    'url': "<?php echo site_url('dashboard/aboutpage/aboutteam/getdata'); ?>",
                     'type': 'GET',
                     'dataSrc': 'data',
                 },
@@ -236,7 +236,7 @@
                         daData.forEach(element => {
                             if (element.status == 1) {
                                 var carousel_html = `<div class="carousel-item ${count_carousel == 0 ? 'active' : ''}">
-                                                    <img class="d-block w-100" src="<?= base_url('dist/img/cover/') ?>${element.path_image}">
+                                                    <img class="d-block w-100" src="<?= base_url('dist/img/team/') ?>${element.image_path}">
                                                 </div> `;
                                 var carousel_indicators = `<li data-target="#carouselExampleIndicators" data-slide-to="${count_carousel}" class="${count_carousel == 0 ? 'active' : ''}"></li>`;
                                 count_carousel++;
@@ -256,21 +256,21 @@
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/cover/') ?>${data.path_image}" data-toggle="lightbox" data-title="${data.name_image}" data-gallery="gallery">
-                                        <img src="<?= base_url('dist/img/cover/') ?>${data.path_image}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
+                            return `<a href="<?= base_url('dist/img/team/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_last_name}" data-gallery="gallery">
+                                        <img src="<?= base_url('dist/img/team/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
                         }
                     }, {
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return data.name_image;
+                            return data.name_last_name;
                         }
                     }, {
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return data.language;
+                            return data.position;
                         }
                     }, {
                         'data': null,
@@ -289,8 +289,8 @@
                         'render': function(data, type, row, meta) {
                             const encodedRowData = encodeURIComponent(JSON.stringify(row));
                             return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/homepage/cover/changestatus/${data.id_cover}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/homepage/cover/delete/${data.id_cover}/${data.path_image}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/homepage/cover/changestatus/${data.id_team }/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/homepage/cover/delete/${data.id_team}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                         }
                     },
                 ],

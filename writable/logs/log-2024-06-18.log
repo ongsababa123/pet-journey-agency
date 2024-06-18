@@ -1,0 +1,54 @@
+CRITICAL - 2024-06-18 10:04:31 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard/aboutpage/index_about_head.php"
+[Method: GET, Route: dashboard/aboutpage/abouthead]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard/aboutpage/index_about_head.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/aboutpage/index_about_head', [], true)
+ 3 APPPATH\Controllers\Dashboard\Aboutpage\AboutPage_HeadController.php(28): view('dashboard/aboutpage/index_about_head')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-18 10:04:47 --> ErrorException: Undefined variable $about_home_data
+[Method: GET, Route: dashboard/aboutpage/abouthead]
+in APPPATH\Views\dashboard\about_page\index_about_head.php on line 76.
+ 1 APPPATH\Views\dashboard\about_page\index_about_head.php(76): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $about_home_data', 'C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php', 76)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/about_page/index_about_head', [], true)
+ 5 APPPATH\Controllers\Dashboard\Aboutpage\AboutPage_HeadController.php(28): view('dashboard/about_page/index_about_head')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-18 13:35:06 --> ErrorException: Undefined array key "image"
+[Method: GET, Route: dashboard/aboutpage/abouthead]
+in APPPATH\Views\dashboard\about_page\index_about_head.php on line 279.
+ 1 APPPATH\Views\dashboard\about_page\index_about_head.php(279): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "image"', 'C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php', 279)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/about_page/index_about_head', [], true)
+ 5 APPPATH\Controllers\Dashboard\Aboutpage\AboutPage_HeadController.php(32): view('dashboard/about_page/index_about_head', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-18 13:56:53 --> ErrorException: Undefined variable $initial_content
+[Method: GET, Route: dashboard/aboutpage/abouthead]
+in APPPATH\Views\dashboard\about_page\index_about_head.php on line 301.
+ 1 APPPATH\Views\dashboard\about_page\index_about_head.php(301): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $initial_content', 'C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php', 301)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\about_page\\index_about_head.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/about_page/index_about_head', [], true)
+ 5 APPPATH\Controllers\Dashboard\Aboutpage\AboutPage_HeadController.php(32): view('dashboard/about_page/index_about_head', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\Aboutpage\AboutPage_HeadController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
