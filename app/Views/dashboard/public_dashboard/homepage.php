@@ -56,17 +56,17 @@ $partners = [
 ];
 
 $reviews = [
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
+    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
 ];
 ?>
 <!DOCTYPE html>
@@ -204,7 +204,7 @@ $reviews = [
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: #00A4E4;
+            background-color: #0198B4;
             position: relative;
         }
 
@@ -357,14 +357,6 @@ $reviews = [
             position: absolute;
             width: 50px;
             z-index: 1;
-        }
-
-        /* Review Section */
-        .review-section {
-            padding: 50px 0;
-            background-color: #fff;
-            text-align: center;
-            position: relative;
         }
 
         /* Partner Section */
@@ -569,22 +561,51 @@ $reviews = [
 
         .pagination {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 500px;
+            width: 80%;
+            transform: translateY(-50%);
+            left: 10%;
+        }
+
+        .pagination i {
+            font-size: 2em;
+            cursor: pointer;
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination i#prev-btn {
+            margin-left: -50px;
+            /* Negative margin to position correctly */
+        }
+
+        .pagination i#next-btn {
+            margin-right: -50px;
+            /* Negative margin to position correctly */
+        }
+
+        .page-indicators {
+            display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .pagination button {
-            background-color: #23456B;
-            color: white;
-            border: none;
-            padding: 10px 20px;
+        .page-indicators span {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #ddd;
             margin: 0 5px;
-            cursor: pointer;
+            display: inline-block;
         }
 
-        .pagination button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+        .page-indicators .active {
+            background-color: #23456B;
         }
 
         @media (max-width: 1200px) {
@@ -722,6 +743,10 @@ $reviews = [
             .img_pic_title {
                 display: none;
             }
+
+            .pagination {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -808,8 +833,11 @@ $reviews = [
                 <!-- Reviews will be inserted here -->
             </div>
             <div class="pagination">
-                <button id="prev-btn" onclick="changePage(-1)" disabled>Previous</button>
-                <button id="next-btn" onclick="changePage(1)">Next</button>
+                <i class="fas fa-arrow-circle-left" id="prev-btn" onclick="changePage(-1)"></i>
+                <i class="fas fa-arrow-circle-right" id="next-btn" onclick="changePage(1)"></i>
+            </div>
+            <div class="page-indicators" id="page-indicators">
+                <!-- Page indicators will be inserted here -->
             </div>
         </div>
     </section>
@@ -904,22 +932,14 @@ $reviews = [
                     <div class="form-group col-md-4">
                         <div class="d-flex">ประเทศต้นทาง</div>
                         <select class="form-control" id="origin-country" name="origin-country">
-                            <option value="">เช่น กรุงเทพ (BKK)</option>
+                            <option value="">เช่น ไทย (TH)</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <div class="d-flex">ประเทศต้นปลายทาง</div>
+                        <div class="d-flex">ประเทศปลายทาง</div>
                         <select class="form-control" id="destination-country" name="destination-country">
                             <option value="">เช่น เกาหลี (KR)</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <div class="d-flex">ประเภทการเดินทาง</div>
-                        <select class="form-control" class="form-control" id="travel-type" name="travel-type">
-                            <option value="">เลือกประเภทการเดินทาง</option>
-                            <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -1084,57 +1104,57 @@ $reviews = [
     <script>
         const reviews = [{
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อควมตัวอย่างรีวิวสั้น ๆ ข้อควมตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
                 bgColor: "bg-blue"
             }
         ];
@@ -1185,6 +1205,66 @@ $reviews = [
 
         document.addEventListener('DOMContentLoaded', function() {
             displayReviews(currentPage);
+        });
+    </script>
+<script>
+        let currentPage = 1;
+        const totalPages = 3; // ตั้งค่าจำนวนหน้าทั้งหมดที่นี่
+        let xDown = null;
+
+        function updatePageIndicators() {
+            const indicators = document.getElementById('page-indicators');
+            indicators.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const indicator = document.createElement('span');
+                indicator.className = i === currentPage ? 'active' : '';
+                indicators.appendChild(indicator);
+            }
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            document.getElementById('prev-btn').style.visibility = currentPage === 1 ? 'hidden' : 'visible';
+            document.getElementById('next-btn').style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
+
+            // เพิ่มตรรกะในการดึงและแสดงเนื้อหาหน้าใหม่ที่นี่
+            console.log('หน้าปัจจุบัน:', currentPage);
+
+            updatePageIndicators();
+        }
+
+        document.getElementById('prev-btn').style.visibility = 'hidden';
+        updatePageIndicators();
+
+    </script>
+    <script>
+        async function fetchCountries() {
+            const response = await fetch('<?= base_url('public/data/countries.json'); ?>');
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const countries = await response.json();
+            return countries;
+        }
+
+        function populateSelect(elementId, countries, language) {
+            const select = document.getElementById(elementId);
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.code;
+                option.text = language === 'en' ? `${country.name_en} (${country.code})` : `${country.name_th} (${country.code})`;
+                select.appendChild(option);
+            });
+        }
+
+        fetchCountries().then(countries => {
+            populateSelect('origin-country', countries, 'th');
+            populateSelect('destination-country', countries, 'th');
+        }).catch(error => {
+            console.error('Failed to fetch countries:', error);
         });
     </script>
 </body>
