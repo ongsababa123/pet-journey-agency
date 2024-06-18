@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
+
     <style>
         * {
             font-family: 'Kanit', sans-serif;
@@ -134,6 +135,8 @@
         .header-top .social-icons {
             display: flex;
             align-items: center;
+            display: flex;
+            justify-content: center;
             margin-top: 10px;
         }
 
@@ -270,6 +273,117 @@
                 display: none;
             }
         }
+
+        .backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .backdrop.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .menu-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 100%;
+            background-color: #fff;
+            color: #333;
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .menu-mobile.show {
+            display: flex;
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .menu-mobile a {
+            color: #333;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-mobile a i {
+            margin-right: 10px;
+        }
+
+        .menu-mobile a:hover {
+            background-color: #FFF792;
+            color: #23456B;
+            border-radius: 13px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu-mobile .contact {
+            font-size: 16px;
+            text-align: left;
+            margin-top: auto;
+        }
+
+        .menu-mobile .contact p {
+            margin: 5px 0;
+            color: #23456B;
+        }
+
+        .menu-mobile .contact div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        .menu-mobile .contact div i {
+            margin-right: 10px;
+            color: #FFC919;
+        }
+
+        .menu-mobile .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .menu-mobile .social-icons a {
+            margin-right: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .menu-mobile .social-icons a:hover {
+            color: #00A4E4;
+        }
     </style>
 </head>
 
@@ -319,7 +433,7 @@
         <!-- header mobile -->
         <div class="header-top-mobile">
             <div class="menu">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" onclick="toggleMobileMenu()"></i>
             </div>
             <div class="logo">
                 <img src="<?= base_url('dist/img/logo_mobile.png') ?>" alt="Logo">
@@ -333,9 +447,60 @@
                 </div>
             </div>
         </div>
+        <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
+        <div class="menu-mobile" id="menu-mobile">
+            <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
+            <div>
+                <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
+                <a href="#home"><i class="fas fa-home"></i>Home</a>
+                <a href="#about"><i class="fas fa-info-circle"></i>About</a>
+                <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
+                <a href="#review"><i class="fas fa-star"></i>Review</a>
+                <a href="#content"><i class="fas fa-file-alt"></i>Content</a>
+            </div>
+            <div class="contact">
+                <p style="font-size: larger;">Contact</p>
+                <div>
+                    <i class="fab fa-facebook"></i>
+                    <p>&nbsp;Pet Journey Agency</p>
+                </div>
+                <p>&nbsp;นำเข้าส่งออกสัตว์เลี้ยง</p>
+                <div>
+                    <i class="fas fa-phone-alt"></i>
+                    <p>&nbsp;081 615 5644</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone-alt"></i>
+                    <p>&nbsp;088 657 3909</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone-alt"></i>
+                    <p>&nbsp;082 519 2892</p>
+                </div>
+
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
     </header>
 
     <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('menu-mobile');
+            var backdrop = document.getElementById('backdrop');
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                backdrop.classList.remove('show');
+            } else {
+                menu.classList.add('show');
+                backdrop.classList.add('show');
+            }
+        }
+
         document.getElementById('language-select').addEventListener('change', function() {
             var flagImg = document.getElementById('flag-img');
             if (this.value === 'th') {
