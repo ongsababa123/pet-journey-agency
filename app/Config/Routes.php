@@ -21,7 +21,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 
 // Default route
 $routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    $routes->get('', 'HomePage_edit_cover::index');
+    $routes->get('', 'ReviewDataController::index');
 });
 
 // Grouped routes with a common namespace
@@ -51,6 +51,17 @@ $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard
 //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('about', 'HomePage_AboutController::index'); //index about
     $routes->post('about/update/(:num)/(:segment)', 'HomePage_AboutController::update_about_homepage/$1/$2'); //update about
+});
+
+$routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboard\Aboutpage'], function ($routes) {
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('abouthead', 'AboutPage_HeadController::index'); //index about head
+    $routes->post('abouthead/update/(:num)/(:segment)', 'AboutPage_HeadController::update_about_head/$1/$2'); //update about head
+
+    $routes->get('aboutteam', 'AboutPage_TeamController::index'); //index about team
+    $routes->get('aboutteam/getdata', 'AboutPage_TeamController::getData_team'); //index about team
+
+    $routes->get('aboutmore', 'AboutPage_MoreController::index'); //index about more
 });
 
 

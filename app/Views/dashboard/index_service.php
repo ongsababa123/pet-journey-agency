@@ -1,4 +1,4 @@
-<title>แก้ไขหน้าแรก เซอร์วิส</title>
+<title>แก้ไขข้อมูล เซอร์วิส</title>
 <style>
     .icon-spacing {
         margin-right: 10px;
@@ -22,7 +22,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active">หน้าหลัก</li>
+                                        <li class="breadcrumb-item active">ข้อมูล</li>
                                         <li class="breadcrumb-item active">เซอร์วิส</li>
                                     </ol>
                                 </div><!-- /.col -->

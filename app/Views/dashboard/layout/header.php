@@ -312,25 +312,31 @@ function check_menu_state($uri_menu, $input, $type)
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item <?= check_menu_state($uri_menu, 'aboutpage', 'treeview') ?>">
+                            <a href="#" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage', 'active') ?>">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     หน้าเกียวกับฉัน
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" style="display: <?= check_menu_state($uri_menu, 'aboutpage', 'display') ?>;">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('dashboard/aboutpage/abouthead')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/abouthead', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>รูปปก</p>
+                                        <p>ส่วนข้อมูลเกี่ยวกับ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutteam')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutteam', 'active')?>">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>รายละเอียดข้อมูล</p>
+                                        <p>ส่วนข้อมูลทีมแพทย์</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutmore')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutmore', 'active')?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ส่วนข้อมูลเพิ่มเติม</p>
                                     </a>
                                 </li>
                             </ul>

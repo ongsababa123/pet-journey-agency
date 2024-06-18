@@ -1,4 +1,4 @@
-<title>แก้ไขหน้าแรก เมนูติดต่อ</title>
+<title>แก้ไขข้อมูล ติดต่อ</title>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -17,8 +17,8 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active">หน้าหลัก</li>
-                                        <li class="breadcrumb-item active">เมนูติดต่อ</li>
+                                        <li class="breadcrumb-item active">ข้อมูล</li>
+                                        <li class="breadcrumb-item active">ติดต่อ</li>
                                     </ol>
                                 </div><!-- /.col -->
                             </div>
