@@ -37,12 +37,13 @@
             z-index: 1000;
             position: fixed;
             top: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .header-top,
         .header-bottom,
         .header-top-mobile {
-            background-color: #ffffff;
             padding: 10px 2%;
             display: flex;
             justify-content: space-between;
@@ -53,18 +54,32 @@
         .header-top {
             z-index: 2;
             position: relative;
+            background-color: #ffffff;
         }
 
         .header-bottom,
         .header-bottom-mobile {
             z-index: 1;
-            background-color: rgba(12, 20, 70, 0.1);
+            background-color: #76767626;
+            /* สไตล์ A */
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
         }
 
+        .header-bottom.scrolled {
+            background-color: #FAD046;
+            /* สไตล์ B */
+            color: #23456B;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            justify-content: space-between;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+
+        .header-top.hide,
         .header-bottom.hide {
             transform: translateY(-100%);
         }
@@ -82,6 +97,7 @@
         .header-bottom .nav-link,
         .header-bottom-mobile .nav-link {
             color: #fff;
+            /* สีของข้อความในสไตล์ A */
             margin-right: 20px;
             position: relative;
             display: flex;
@@ -97,12 +113,33 @@
 
         .header-bottom .nav-link:hover,
         .header-bottom-mobile .nav-link:hover {
-            color: #00A4E4;
+            color: #FAD046;
+            /* สีของข้อความเมื่อ hover ในสไตล์ A */
+        }
+
+        .header-bottom.scrolled .nav-link,
+        .header-bottom.scrolled .nav-link a {
+            color: #0198B4;
+            font-size: medium;
+            /* สีของข้อความในสไตล์ B */
+        }
+
+        .header-bottom.scrolled .nav-link:hover {
+            color: #000;
+            /* สีของข้อความเมื่อ hover ในสไตล์ B */
         }
 
         .header-top .logo img,
         .header-top-mobile .logo img {
             height: 60px;
+        }
+
+        .header-bottom .logo {
+            display: none;
+        }
+
+        .header-bottom.scrolled .logo {
+            display: block;
         }
 
         .header-top .contact-info {
@@ -214,6 +251,7 @@
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
+                background-color: #fff;
             }
 
             .header-top-mobile .logo {
@@ -414,6 +452,9 @@
             </div>
         </div>
         <div class="header-bottom">
+            <div class="logo">
+                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+            </div>
             <div class="navbar-nav">
                 <div class="nav-link"><a href="#">Home</a></div>
                 <div class="nav-link"><a href="#">About</a></div>
@@ -510,13 +551,16 @@
             }
         });
 
-        // Function to handle the header bottom visibility
+        // Function to handle the header top visibility
         window.addEventListener('scroll', function() {
+            const headerTop = document.querySelector('.header-top');
             const headerBottom = document.querySelector('.header-bottom');
             if (window.scrollY > 100) {
-                headerBottom.classList.add('hide');
+                headerTop.classList.add('hide');
+                headerBottom.classList.add('scrolled');
             } else {
-                headerBottom.classList.remove('hide');
+                headerTop.classList.remove('hide');
+                headerBottom.classList.remove('scrolled');
             }
         });
     </script>

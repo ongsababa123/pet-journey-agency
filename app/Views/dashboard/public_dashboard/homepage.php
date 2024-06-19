@@ -1207,8 +1207,8 @@ $reviews = [
             displayReviews(currentPage);
         });
     </script>
-<script>
-        let currentPage = 1;
+    <script>
+        let currentPagePoint = 1;
         const totalPages = 3; // ตั้งค่าจำนวนหน้าทั้งหมดที่นี่
         let xDown = null;
 
@@ -1217,28 +1217,27 @@ $reviews = [
             indicators.innerHTML = '';
             for (let i = 1; i <= totalPages; i++) {
                 const indicator = document.createElement('span');
-                indicator.className = i === currentPage ? 'active' : '';
+                indicator.className = i === currentPagePoint ? 'active' : '';
                 indicators.appendChild(indicator);
             }
         }
 
         function changePage(direction) {
-            currentPage += direction;
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages) currentPage = totalPages;
+            currentPagePoint += direction;
+            if (currentPagePoint < 1) currentPagePoint = 1;
+            if (currentPagePoint > totalPages) currentPagePoint = totalPages;
 
-            document.getElementById('prev-btn').style.visibility = currentPage === 1 ? 'hidden' : 'visible';
-            document.getElementById('next-btn').style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
+            document.getElementById('prev-btn').style.visibility = currentPagePoint === 1 ? 'hidden' : 'visible';
+            document.getElementById('next-btn').style.visibility = currentPagePoint === totalPages ? 'hidden' : 'visible';
 
             // เพิ่มตรรกะในการดึงและแสดงเนื้อหาหน้าใหม่ที่นี่
-            console.log('หน้าปัจจุบัน:', currentPage);
+            console.log('หน้าปัจจุบัน:', currentPagePoint);
 
             updatePageIndicators();
         }
 
         document.getElementById('prev-btn').style.visibility = 'hidden';
         updatePageIndicators();
-
     </script>
     <script>
         async function fetchCountries() {
