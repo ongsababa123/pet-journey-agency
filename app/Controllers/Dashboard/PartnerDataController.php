@@ -3,17 +3,17 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
-use App\Models\ServiceHeaderModel;
+use App\Models\PartnerModel;
 
-class ServiceDataController extends BaseController
+class PartnerDataController extends BaseController
 {
     protected $uri_menu;
-    protected $ServiceHeaderModel;
+    protected $PartnerModel;
 
     public function __construct()
     {
         helper(['form', 'file']);
-        $this->ServiceHeaderModel = new ServiceHeaderModel();
+        $this->PartnerModel = new PartnerModel();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -29,12 +29,12 @@ class ServiceDataController extends BaseController
     {
         $data['uri_menu'] = $this->uri_menu;
         echo view('dashboard/layout/header', $data);
-        echo view('dashboard/index_service');
+        echo view('dashboard/index_partner');
         echo view('dashboard/layout/footer');
     }
 
-    //-- get data service --//
-    public function getData_service()
+    //-- get data partner --//
+    public function getData_partner($type_partner)
     {
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
@@ -42,19 +42,19 @@ class ServiceDataController extends BaseController
         $searchValue = $this->request->getVar('search')['value'];
 
         if (!empty($searchValue)) {
-            $this->ServiceHeaderModel->groupStart()
-                ->like('header_service_name', $searchValue)
+            $this->PartnerModel->groupStart()
+                ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->ServiceHeaderModel->countAllResults();
+        $totalRecords = $this->PartnerModel->where('type_partner', $type_partner)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
-            $this->ServiceHeaderModel->groupStart()
-                ->like('header_service_name', $searchValue)
+            $this->PartnerModel->groupStart()
+                ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->ServiceHeaderModel->findAll($limit, $start);
+        $data = $this->PartnerModel->where('type_partner', $type_partner)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -67,12 +67,11 @@ class ServiceDataController extends BaseController
         return $this->response->setJSON($response);
     }
 
-    //-- create data service --//
-    public function create_service()
+    //-- create partner --//
+    public function create_partner($type_partner)
     {
-        $target_dir = ROOTPATH . 'dist/img/service/';
-
-        $image = $this->request->getFile('upload_image');
+        $target_dir = ROOTPATH . 'dist/img/partner/';
+        $image = $this->request->getFile('input_image');
         if ($image->isValid() && !$image->hasMoved()) {
             $imageName = $image->getName();
 
@@ -81,17 +80,16 @@ class ServiceDataController extends BaseController
             }
 
             $image->move($target_dir, $imageName);
-            $data_service = [
-                'header_service_name' => $this->request->getVar('header_service_name'),
-                'image_path' => $imageName,
-                'status' => 0,
-                'language' => $this->request->getVar('select_language'),
+            $data_partner = [
+                'name_partner' => $this->request->getVar('name_partner'),
+                'type_partner' => $type_partner,
+                'logo_partner_path' => $imageName,
             ];
 
-            $this->ServiceHeaderModel->insert((object) $data_service);
+            $this->PartnerModel->insert((object) $data_partner);
             $response = [
                 'success' => true,
-                'message' => 'สร้างข้อมูลเซอร์วิสเรียบร้อย',
+                'message' => 'สร้างพาร์ทเนอร์สำเร็จ',
                 'reload' => true,
             ];
             return $this->response->setJSON($response);
@@ -105,47 +103,62 @@ class ServiceDataController extends BaseController
         }
     }
 
-    //- edit data service --//
-    public function update_service($id_service_header, $path_image_old)
+    //-- change status partner --//
+    public function change_status_partner($id_partner, $status)
     {
-        $data_service = [
-            'header_service_name' => $this->request->getVar('header_service_name'),
-            'language' => $this->request->getVar('select_language'),
+        $this->PartnerModel->update($id_partner, (object)[
+            'status' => $status == 1 ? 0 : 1
+        ]);
+        $response = [
+            'success' => true,
+            'message' => 'เปลี่ยนสถานะพาร์ทเนอร์สำเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- delete image partner --//
+    public function delete_partner($id_partner, $path_image)
+    {
+        $this->PartnerModel->delete($id_partner);
+        if (file_exists(ROOTPATH . 'dist/img/partner/' . $path_image)) {
+            unlink(ROOTPATH . 'dist/img/partner/' . $path_image);
+        }
+        $response = [
+            'success' => true,
+            'message' => 'ลบภาพพาร์ทเนอร์สำเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //- edit partner --//
+    public function update_partner($id_partner, $path_image_old)
+    {
+        $data_partner = [
+            'name_partner' => $this->request->getVar('name_partner'),
         ];
 
-        $target_dir = ROOTPATH . 'dist/img/service/';
-        $image = $this->request->getFile('upload_image');
+        $target_dir = ROOTPATH . 'dist/img/partner/';
+        $image = $this->request->getFile('input_image');
         if ($image->isValid() && !$image->hasMoved()) {
             $imageName = $image->getName();
             if (file_exists($target_dir . $imageName)) {
                 $imageName = $image->getRandomName();
             }
+
             $image->move($target_dir, $imageName);
-            $data_service['image_path'] = $imageName;
+            $data_partner['logo_partner_path'] = $imageName;
 
             if (is_file($target_dir . $path_image_old)) {
                 unlink($target_dir . $path_image_old);
             }
         }
 
-        $this->ServiceHeaderModel->update($id_service_header, (object) $data_service);
+        $this->PartnerModel->update($id_partner, (object) $data_partner);
         $response = [
             'success' => true,
-            'message' => 'แก้ไขข้อมูลทีมสําเร็จ',
-            'reload' => true,
-        ];
-        return $this->response->setJSON($response);
-    }
-
-    //-- change status service --//
-    public function change_status_service($id_team, $status)
-    {
-        $this->ServiceHeaderModel->update($id_team, (object)[
-            'status' => $status == 1 ? 0 : 1
-        ]);
-        $response = [
-            'success' => true,
-            'message' => 'เปลี่ยนสถานะสําเร็จ',
+            'message' => 'แก้ไขข้อมูลพาร์ทเนอร์สำเร็จ',
             'reload' => true,
         ];
         return $this->response->setJSON($response);

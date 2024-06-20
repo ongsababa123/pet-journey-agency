@@ -121,7 +121,7 @@ class HomePage_ConverController extends BaseController
     }
 
     //- edit image cover --//
-    public function update_cover($id_cover)
+    public function update_about_team($id_cover, $path_image_old)
     {
         $data_cover = [
             'name_image' => $this->request->getVar('inputName_cover'),
@@ -137,6 +137,10 @@ class HomePage_ConverController extends BaseController
             }
             $image->move($target_dir, $imageName);
             $data_cover['path_image'] = $imageName;
+
+            if (is_file($target_dir . $path_image_old)) {
+                unlink($target_dir . $path_image_old);
+            }
         }
 
         $this->CoverPageModel->update($id_cover, (object) $data_cover);

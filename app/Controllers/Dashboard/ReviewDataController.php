@@ -130,7 +130,7 @@ class ReviewDataController extends BaseController
         return $this->response->setJSON($response);
     }
     //- edit review --//
-    public function update_review($id_review)
+    public function update_review($id_review, $path_image_old)
     {
         $data_cover = [
             'detail_comment' => $this->request->getVar('input_detail_comment'),
@@ -144,8 +144,13 @@ class ReviewDataController extends BaseController
             if (file_exists($target_dir . $imageName)) {
                 $imageName = $image->getRandomName();
             }
+            
             $image->move($target_dir, $imageName);
             $data_cover['image_path'] = $imageName;
+
+            if (is_file($target_dir . $path_image_old)) {
+                unlink($target_dir . $path_image_old);
+            }
         }
 
         $this->ReviewDataModel->update($id_review, (object) $data_cover);

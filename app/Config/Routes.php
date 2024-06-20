@@ -32,12 +32,27 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->get('review/changestatus/(:num)/(:num)', 'ReviewDataController::change_status_review/$1/$2'); //change status review
     $routes->get('review/delete/(:num)/(:segment)', 'ReviewDataController::delete_cover/$1/$2'); //delete review
     $routes->post('review/create', 'ReviewDataController::create_review'); // create review
-    $routes->post('review/update/(:num)', 'ReviewDataController::update_review/$1'); //update review
-//------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->post('review/update/(:num)/(:segment)', 'ReviewDataController::update_review/$1/$2'); //update review
+    //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('contact', 'ContactDataController::index'); //index contact
     $routes->post('contact/update/(:num)/(:segment)', 'ContactDataController::update_contact/$1/$2'); //update contact
-//------------------------------------------------------------------------------------------------------------------------------------//
+    //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('service', 'ServiceDataController::index');
+    $routes->get('service/getdata', 'ServiceDataController::getData_service'); //get data for service
+    $routes->get('service/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_service/$1/$2'); //change status service
+    $routes->post('service/create', 'ServiceDataController::create_service'); //create service data
+    $routes->post('service/update/(:num)/(:segment)', 'ServiceDataController::update_service/$1/$2'); //update service data
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('partner', 'PartnerDataController::index');
+    $routes->get('partner/getdata/(:num)', 'PartnerDataController::getData_partner/$1'); //get data for partner
+    $routes->get('partner/changestatus/(:num)/(:num)', 'PartnerDataController::change_status_partner/$1/$2'); //change status partner
+    $routes->get('partner/delete/(:num)/(:segment)', 'PartnerDataController::delete_partner/$1/$2'); //delete partner
+    $routes->post('partner/create/(:num)', 'PartnerDataController::create_partner/$1'); //create partner data
+    $routes->post('partner/update/(:num)/(:segment)', 'PartnerDataController::update_partner/$1/$2'); //update partner data
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('quotation', 'QuotationDataController::index');
+
+
 });
 
 $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage'], function ($routes) {
@@ -47,8 +62,8 @@ $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard
     $routes->get('cover/changestatus/(:num)/(:num)', 'HomePage_ConverController::change_status_cover/$1/$2'); //change status cover
     $routes->get('cover/delete/(:num)/(:segment)', 'HomePage_ConverController::delete_cover/$1/$2'); //delete cover
     $routes->post('cover/create', 'HomePage_ConverController::create_cover'); //create cover
-    $routes->post('cover/update/(:num)', 'HomePage_ConverController::update_cover/$1'); //update cover
-//------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->post('cover/update/(:num)/(:segment)', 'HomePage_ConverController::update_cover/$1/$2'); //update cover
+    //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('about', 'HomePage_AboutController::index'); //index about
     $routes->post('about/update/(:num)/(:segment)', 'HomePage_AboutController::update_about_homepage/$1/$2'); //update about
 });
@@ -59,9 +74,21 @@ $routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboar
     $routes->post('abouthead/update/(:num)/(:segment)', 'AboutPage_HeadController::update_about_head/$1/$2'); //update about head
 
     $routes->get('aboutteam', 'AboutPage_TeamController::index'); //index about team
-    $routes->get('aboutteam/getdata', 'AboutPage_TeamController::getData_team'); //index about team
+    $routes->get('aboutteam/getdata', 'AboutPage_TeamController::getData_team'); //getdata about team
+    $routes->get('aboutteam/delete/(:num)/(:segment)', 'AboutPage_TeamController::delete_team/$1/$2'); //delete team
+    $routes->get('aboutteam/changestatus/(:num)/(:num)', 'AboutPage_TeamController::change_status_team/$1/$2'); //change status team
+    $routes->post('aboutteam/update/(:num)/(:segment)', 'AboutPage_TeamController::update_about_team/$1/$2'); //update about team
+    $routes->post('aboutteam/create', 'AboutPage_TeamController::create_about_team'); //create about team
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('aboutmore', 'AboutPage_MoreController::index'); //index about more create_about_more
+    $routes->get('aboutmore/getdata', 'AboutPage_MoreController::getData_more'); //getdata about more
 
-    $routes->get('aboutmore', 'AboutPage_MoreController::index'); //index about more
+    $routes->get('aboutmore/changestatus/(:num)/(:num)', 'AboutPage_MoreController::change_status_more/$1/$2'); //change status more
+    $routes->get('aboutmore/delete/(:num)/(:segment)', 'AboutPage_MoreController::delete_more/$1/$2'); //delete more
+
+    $routes->post('aboutmore/create', 'AboutPage_MoreController::create_about_more'); //create about more
+    $routes->post('aboutmore/update/(:num)/(:segment)', 'AboutPage_MoreController::update_about_more/$1/$2'); //update about more
+
 });
 
 

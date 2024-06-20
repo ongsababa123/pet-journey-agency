@@ -316,25 +316,25 @@ function check_menu_state($uri_menu, $input, $type)
                             <a href="#" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage', 'active') ?>">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
-                                    หน้าเกียวกับฉัน
+                                    หน้าเกียวกับเรา
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="display: <?= check_menu_state($uri_menu, 'aboutpage', 'display') ?>;">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/aboutpage/abouthead')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/abouthead', 'active') ?>">
+                                    <a href="<?= base_url('dashboard/aboutpage/abouthead') ?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/abouthead', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ส่วนข้อมูลเกี่ยวกับ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/aboutpage/aboutteam')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutteam', 'active')?>">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutteam') ?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutteam', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ส่วนข้อมูลทีมแพทย์</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('dashboard/aboutpage/aboutmore')?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutmore', 'active')?>">
+                                    <a href="<?= base_url('dashboard/aboutpage/aboutmore') ?>" class="nav-link <?= check_menu_state($uri_menu, 'aboutpage/aboutmore', 'active') ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ส่วนข้อมูลเพิ่มเติม</p>
                                     </a>
@@ -365,14 +365,24 @@ function check_menu_state($uri_menu, $input, $type)
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/partner') ?>" class="nav-link <?= check_menu_state($uri_menu, 'partner', 'active_display') ?>">
+                                <i class="nav-icon fas fa-handshake"></i>
+                                <p>
+                                    ข้อมูลพาร์ทเนอร์
+                                </p>
+                            </a>
+                        </li>
                         <div>
                             <hr>
                         </div>
                         <li class="nav-header">จัดการข้อมูลลูกค้า</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ข้อมูลเสนอราคา</p>
+                            <a href="<?= base_url('dashboard/quotation') ?>" class="nav-link <?= check_menu_state($uri_menu, 'quotation', 'active_display') ?>">
+                                <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                                <p>
+                                    ข้อมูลเสนอราคา
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
