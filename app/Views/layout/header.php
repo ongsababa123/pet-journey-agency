@@ -108,7 +108,7 @@
 
         /* header-bottom.scrolled */
         .header-bottom.scrolled {
-            background-color: #FAD046;
+            background-color: #FFD700;
             color: #23456B;
             position: fixed;
             top: 0;
@@ -472,7 +472,7 @@
 
         @media (min-width: 769px) {
             .header-bottom.scrolled {
-                background-color: #FAD046;
+                background-color: #FFD700;
                 color: #23456B;
                 position: fixed;
                 top: 0;
@@ -486,7 +486,7 @@
 
         @media (min-width: 1500px) {
             .header-bottom.scrolled {
-                background-color: #FAD046;
+                background-color: #FFD700;
                 color: #23456B;
                 position: fixed;
                 top: 0;

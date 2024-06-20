@@ -27,6 +27,7 @@ $routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($rou
 // Grouped routes with a common namespace
 $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
+    $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('homepage/cover', 'HomePage_edit_cover::index');
     $routes->get('homepage/about', 'HomePage_edit_about::index');
     $routes->get('homepage/service', 'HomePage_edit_service::index');

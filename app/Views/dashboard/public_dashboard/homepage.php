@@ -68,6 +68,21 @@ $reviews = [
     new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
     new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
 ];
+
+$servicesdata = [
+    "service1" => "บริการนำเข้าและส่งออกสัตว์เลี้ยง",
+    "service2" => "บริการตรวจเลือดสัตว์เลี้ยง",
+    "service3" => "บริการด้านสัตวแพทย์",
+    "service4" => "บริการรับส่งสัตว์เลี้ยง",
+    "service5" => "บริการจองตั๋วเครื่องบินสำหรับสัตว์เลี้ยง",
+    "service6" => "โรงแรมสำหรับสัตว์เลี้ยง",
+    "service7" => "โรงแรมที่เป็นมิตรกับสัตว์เลี้ยง (Pet Friendly)",
+    "service8" => "บริการซื้อขายสัตว์เลี้ยงจากต่างประเทศ",
+    "service9" => "อื่น ๆ"
+];
+
+$services_json = json_encode($servicesdata);
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -1025,56 +1040,19 @@ $reviews = [
                 },
             });
         });
+    </script>
+    <script>
+        // รับข้อมูลจาก PHP
+        const servicesData = <?php echo $services_json; ?>;
 
-        // Object containing service data
-        const services = [{
-                id: 'service1',
-                value: 'import-export',
-                label: 'บริการนำเข้าและส่งออกสัตว์เลี้ยง'
-            },
-            {
-                id: 'service2',
-                value: 'checkup',
-                label: 'บริการตรวจสัตว์เลี้ยง'
-            },
-            {
-                id: 'service3',
-                value: 'vet',
-                label: 'บริการด้านสัตวแพทย์'
-            },
-            {
-                id: 'service4',
-                value: 'transport',
-                label: 'บริการรับส่งสัตว์เลี้ยง'
-            },
-            {
-                id: 'service5',
-                value: 'booking',
-                label: 'บริการจองตั๋วเครื่องบินสำหรับสัตว์เลี้ยง'
-            },
-            {
-                id: 'service6',
-                value: 'hotel',
-                label: 'โรงแรมสำหรับสัตว์เลี้ยง'
-            },
-            {
-                id: 'service7',
-                value: 'pet-friendly-hotel',
-                label: 'โรงแรมที่เป็นมิตรกับสัตว์เลี้ยง (Pet Friendly)'
-            },
-            {
-                id: 'service8',
-                value: 'international-transport',
-                label: 'บริการขนส่งสัตว์เลี้ยงข้ามต่างประเทศ'
-            },
-            {
-                id: 'service9',
-                value: 'other',
-                label: 'อื่น ๆ'
-            }
-        ];
+        // แปลงข้อมูลเป็นรูปแบบที่ต้องการ
+        const services = Object.keys(servicesData).map((key, index) => ({
+            id: key,
+            value: key.replace('service', 'value'), // สมมติว่า value เป็น value1, value2, ...
+            label: servicesData[key]
+        }));
 
-        // Function to generate checkboxes
+        // ฟังก์ชันสร้าง checkboxes
         function generateCheckboxes() {
             const container = document.getElementById('services-container');
             services.forEach(service => {
@@ -1099,6 +1077,7 @@ $reviews = [
             });
         }
 
+        // เรียกฟังก์ชันสร้าง checkboxes
         generateCheckboxes();
     </script>
     <script>
