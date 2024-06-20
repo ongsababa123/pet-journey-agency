@@ -485,6 +485,17 @@
         }
 
         @media (min-width: 1500px) {
+            .header-bottom.scrolled {
+                background-color: #FAD046;
+                color: #23456B;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 10px 2%;
+            }
             .header-bottom.scrolled .logo {
                 display: block;
             }
