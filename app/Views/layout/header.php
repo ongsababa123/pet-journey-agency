@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
 
     <style>
+        /* general */
         * {
             font-family: 'Kanit', sans-serif;
             margin: 0;
@@ -32,6 +33,7 @@
             padding-top: 100px;
         }
 
+        /* header */
         header {
             width: 100%;
             z-index: 1000;
@@ -41,6 +43,7 @@
             flex-direction: column;
         }
 
+        /* general header-top, header-bottom, header-top-mobile */
         .header-top,
         .header-bottom,
         .header-top-mobile {
@@ -61,22 +64,9 @@
         .header-bottom-mobile {
             z-index: 1;
             background-color: #76767626;
-            /* สไตล์ A */
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
-        }
-
-        .header-bottom.scrolled {
-            background-color: #FAD046;
-            /* สไตล์ B */
-            color: #23456B;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            justify-content: space-between;
-            padding-left: 2%;
-            padding-right: 2%;
         }
 
         .header-top.hide,
@@ -84,6 +74,7 @@
             transform: translateY(-100%);
         }
 
+        /* header-bottom, header-bottom-mobile */
         .header-bottom .navbar-nav,
         .header-bottom-mobile .navbar-nav {
             display: flex;
@@ -97,7 +88,6 @@
         .header-bottom .nav-link,
         .header-bottom-mobile .nav-link {
             color: #fff;
-            /* สีของข้อความในสไตล์ A */
             margin-right: 20px;
             position: relative;
             display: flex;
@@ -114,21 +104,58 @@
         .header-bottom .nav-link:hover,
         .header-bottom-mobile .nav-link:hover {
             color: #FAD046;
-            /* สีของข้อความเมื่อ hover ในสไตล์ A */
+        }
+
+        /* header-bottom.scrolled */
+        .header-bottom.scrolled {
+            background-color: #FAD046;
+            color: #23456B;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 2%;
         }
 
         .header-bottom.scrolled .nav-link,
         .header-bottom.scrolled .nav-link a {
             color: #0198B4;
             font-size: medium;
-            /* สีของข้อความในสไตล์ B */
         }
 
         .header-bottom.scrolled .nav-link:hover {
             color: #000;
-            /* สีของข้อความเมื่อ hover ในสไตล์ B */
         }
 
+        .header-bottom.scrolled .social-icons-bottom {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-bottom.scrolled .language-selector {
+            display: flex;
+            align-items: center;
+            background: #f0f0f0;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .header-bottom.scrolled .language-selector img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .header-bottom.scrolled .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* logo */
         .header-top .logo img,
         .header-top-mobile .logo img {
             height: 60px;
@@ -138,10 +165,7 @@
             display: none;
         }
 
-        .header-bottom.scrolled .logo {
-            display: block;
-        }
-
+        /* contact-info */
         .header-top .contact-info {
             display: flex;
             align-items: center;
@@ -169,8 +193,8 @@
             justify-content: center;
         }
 
+        /* social-icons */
         .header-top .social-icons {
-            display: flex;
             align-items: center;
             display: flex;
             justify-content: center;
@@ -183,6 +207,15 @@
             font-size: 20px;
         }
 
+        .header-bottom .social-icons-bottom {
+            display: none;
+        }
+
+        .header-bottom.scrolled .social-icons-bottom {
+            display: none;
+        }
+
+        /* language-selector */
         .language-selector {
             display: flex;
             align-items: center;
@@ -203,6 +236,15 @@
             outline: none;
         }
 
+        .header-bottom .language-selector {
+            display: none;
+        }
+
+        .header-bottom.scrolled .language-selector {
+            display: none;
+        }
+
+        /* mobile header */
         .header-top-mobile {
             display: none;
         }
@@ -211,6 +253,7 @@
             display: none;
         }
 
+        /* dropdown-menu */
         .dropdown-menu {
             position: absolute;
             display: none;
@@ -239,79 +282,7 @@
             position: absolute;
         }
 
-        @media (max-width: 768px) {
-
-            .header-top,
-            .header-bottom {
-                display: none;
-            }
-
-            .header-top-mobile,
-            .header-bottom-mobile {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                background-color: #fff;
-            }
-
-            .header-top-mobile .logo {
-                width: 90px;
-                margin: 0 auto;
-            }
-
-            .header-top-mobile .menu {
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
-            }
-
-            .header-top-mobile .lang {
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-            }
-
-            .header-top-mobile .language-selector {
-                margin-right: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-top-mobile {
-                padding: 10px 2%;
-            }
-
-            .header-top-mobile .logo img {
-                height: 75px;
-            }
-
-            .header-top-mobile .menu,
-            .header-top-mobile .lang {
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
-            }
-
-            .header-top-mobile .menu {
-                justify-content: flex-start;
-            }
-
-            .header-top-mobile .lang {
-                justify-content: flex-end;
-            }
-
-            .language-selector {
-                padding: 5px 5px;
-            }
-        }
-
-        @media (max-width: 1340px) {
-            .header-top .contact-info {
-                display: none;
-            }
-        }
-
+        /* backdrop */
         .backdrop {
             display: none;
             position: fixed;
@@ -330,6 +301,7 @@
             opacity: 1;
         }
 
+        /* mobile menu */
         .menu-mobile {
             display: none;
             position: fixed;
@@ -422,6 +394,109 @@
         .menu-mobile .social-icons a:hover {
             color: #00A4E4;
         }
+
+        /* responsive */
+        @media (max-width: 768px) {
+
+            .header-top,
+            .header-bottom,
+            .header-bottom.scrolled {
+                display: none;
+            }
+
+            .header-top-mobile,
+            .header-bottom-mobile {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                background-color: #fff;
+            }
+
+            .header-top-mobile .logo {
+                width: 90px;
+                margin: 0 auto;
+            }
+
+            .header-top-mobile .menu {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+            }
+
+            .header-top-mobile .lang {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .header-top-mobile .language-selector {
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-top-mobile {
+                padding: 10px 2%;
+            }
+
+            .header-top-mobile .logo img {
+                height: 75px;
+            }
+
+            .header-top-mobile .menu,
+            .header-top-mobile .lang {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+            }
+
+            .header-top-mobile .menu {
+                justify-content: flex-start;
+            }
+
+            .header-top-mobile .lang {
+                justify-content: flex-end;
+            }
+
+            .language-selector {
+                padding: 5px 5px;
+            }
+        }
+
+        @media (max-width: 1340px) {
+            .header-top .contact-info {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header-bottom.scrolled {
+                background-color: #FAD046;
+                color: #23456B;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 2%;
+            }
+        }
+
+        @media (min-width: 1500px) {
+            .header-bottom.scrolled .logo {
+                display: block;
+            }
+
+            .header-bottom.scrolled .social-icons-bottom {
+                display: block;
+            }
+
+            .header-bottom.scrolled .language-selector {
+                display: block;
+            }
+        }
     </style>
 </head>
 
@@ -469,6 +544,22 @@
                 <div class="nav-link"><a href="#">Review</a></div>
                 <div class="nav-link"><a href="#">Contact</a></div>
             </div>
+            <div class="d-flex align-items-center">
+                <div class="social-icons-bottom">
+                    <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
+                </div>
+                <div class="language-selector">
+                    <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="th">Thai</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
 
         <!-- header mobile -->
@@ -518,7 +609,6 @@
                     <i class="fas fa-phone-alt"></i>
                     <p>&nbsp;082 519 2892</p>
                 </div>
-
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
