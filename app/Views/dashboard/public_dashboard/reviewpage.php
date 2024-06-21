@@ -20,6 +20,12 @@ $reviews = [
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 ];
 ?>
@@ -32,9 +38,13 @@ $reviews = [
     <title>Review Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <style>
-        body {
+        * {
             font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         .review-section {
@@ -49,11 +59,16 @@ $reviews = [
             font-weight: bold;
         }
 
-        .review-grid {
+        .review-grid,
+        .review-grid-mobile {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             justify-items: center;
+        }
+
+        .review-grid-mobile {
+            display: none;
         }
 
         .review-box {
@@ -65,6 +80,7 @@ $reviews = [
             max-width: 250px;
             background-color: white;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
         .review-box img {
@@ -104,7 +120,7 @@ $reviews = [
             position: absolute;
             top: 420px;
             right: 0px;
-            z-index: 10;
+            z-index: 1;
             width: 180px;
         }
 
@@ -112,18 +128,32 @@ $reviews = [
             position: absolute;
             top: 600px;
             left: 37px;
-            z-index: 10;
+            z-index: 1;
             width: 100px;
         }
 
+        .review-buttons {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+        }
 
-        @media (max-width: 1200px) {
+        .review-buttons-mobile {
+            display: none;
+        }
+
+        @media (max-width: 1240px) {
             .review-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
 
             .review-box p {
                 font-size: 12px;
+            }
+
+            .feetpet-icon {
+                display: none;
             }
         }
 
@@ -169,7 +199,14 @@ $reviews = [
 
         @media (max-width: 575.98px) {
             .review-grid {
+                display: none;
+            }
+
+            .review-grid-mobile {
+                display: grid;
                 grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+                justify-items: center;
             }
 
             .review-box {
@@ -190,15 +227,24 @@ $reviews = [
             .dog-icon {
                 width: 130px;
             }
+
+            .review-buttons {
+                display: none;
+            }
+
+            .review-buttons-mobile {
+                display: flex;
+                justify-content: center;
+            }
+
+            .rv-btn-mb1 .rv-btn-mb2 {
+                display: block;
+            }
         }
 
         @media (max-width: 400px) {
-            .review-grid {
+            .review-grid-mobile {
                 grid-template-columns: repeat(3, 1fr);
-            }
-
-            .review-box {
-                max-width: 100%;
             }
 
             .review-box img {
@@ -232,9 +278,10 @@ $reviews = [
                 <div style="color: #FFB629;">รีวิว</div>
                 จากลูกค้าของเรา
             </h3>
-            <div class="review-grid">
-                <?php foreach ($reviews as $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?>">
+            <!-- review-grid -->
+            <div id="review-grid" class="review-grid">
+                <?php foreach ($reviews as $index => $review) : ?>
+                    <div class="review-box <?php echo $review->bgColor; ?> review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
                         <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
@@ -244,21 +291,75 @@ $reviews = [
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="mt-3" style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-warning"><i class="fas fa-search"></i>&nbsp; &nbsp; รีวิวเพิ่มเติม</button>&nbsp; &nbsp;
-                <button type="button" class="btn btn-primary"><i class="fab fa-facebook"></i>&nbsp; &nbsp; รีวิวเพิ่มเติมบน Facebook</button>
+            <div class="mt-3 review-buttons">
+                <button id="load-more" type="button" class="btn btn-warning" style="margin-right: 10px;"><i class="fas fa-search"></i>&nbsp; &nbsp; รีวิวเพิ่มเติม</button>
+                <a href="https://www.facebook.com/petjourney.agency" class="btn btn-primary">
+                    <i class="fab fa-facebook"></i>&nbsp; &nbsp; รีวิวเพิ่มเติมบน Facebook
+                </a>
+            </div>
+            <!-- review-grid-mobile -->
+            <div id="review-grid-mobile" class="review-grid-mobile">
+                <?php foreach ($reviews as $index => $review) : ?>
+                    <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
+                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                        <p>
+                            <i class="fas fa-quote-left icon-quote-left"></i>
+                            <?php echo $review->text; ?>
+                            <i class="fas fa-quote-right icon-quote-right"></i>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="mt-3 review-buttons-mobile">
+                <button id="load-more-mobile" type="button" class="btn btn-warning btn-sm rv-btn-mb1" style="margin-right: 10px;"><i class="fas fa-search"></i>&nbsp; &nbsp; รีวิวเพิ่มเติม</button>
+                <a href="https://www.facebook.com/petjourney.agency" class="btn btn-primary">
+                    <i class="fab fa-facebook"></i>&nbsp; &nbsp; รีวิวเพิ่มเติมบน Facebook
+                </a>
             </div>
             <img class="dog-icon" src="<?= base_url('dist/img/dog1.png') ?>" width="200px" style="margin-left: 7px;">
             <img class="feetpet-icon" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
         </div>
-
     </section>
-
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const reviewsPerClick = 4; // จำนวนรีวิวที่จะเพิ่มเมื่อกดปุ่ม 'รีวิวเพิ่มเติม'
+
+            $('#load-more').click(function() {
+                console.log('load more')
+                let totalReviews = $('#review-grid .review-item').length;
+                let currentlyVisible = $('#review-grid .review-item:visible').length;
+
+                if (currentlyVisible < totalReviews) {
+                    $('#review-grid .review-item:lt(' + (currentlyVisible + reviewsPerClick) + ')').slideDown();
+                }
+
+                if ((currentlyVisible + reviewsPerClick) >= totalReviews) {
+                    $('#load-more').hide();
+                }
+            });
+
+            const reviewsPerClickMobile = 3; // จำนวนรีวิวที่จะเพิ่มเมื่อกดปุ่ม 'รีวิวเพิ่มเติม'
+
+            $('#load-more-mobile').click(function() {
+                console.log('load more mobile')
+                let totalReviewsMobile = $('#review-grid-mobile .review-item-mobile').length;
+                let currentlyVisibleMobile = $('#review-grid-mobile .review-item-mobile:visible').length;
+
+                if (currentlyVisibleMobile < totalReviewsMobile) {
+                    $('#review-grid-mobile .review-item-mobile:lt(' + (currentlyVisibleMobile + reviewsPerClickMobile) + ')').slideDown();
+                }
+
+                if ((currentlyVisibleMobile + reviewsPerClickMobile) >= totalReviewsMobile) {
+                    $('#load-more-mobile').hide();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

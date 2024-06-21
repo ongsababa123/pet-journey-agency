@@ -629,6 +629,10 @@ $services_json = json_encode($servicesdata);
                 max-width: 33.333333%;
             }
 
+            .review-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
             .review-box {
                 width: 100%;
                 height: auto;
@@ -656,6 +660,10 @@ $services_json = json_encode($servicesdata);
             .service-item .badge-pill {
                 margin-bottom: 10px;
                 font-size: 10px;
+            }
+
+            .review-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
 
             .review-box {
@@ -734,7 +742,7 @@ $services_json = json_encode($servicesdata);
             }
 
             .review-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                grid-template-columns: repeat(4, 1fr);
             }
 
             .review-box {
@@ -838,14 +846,39 @@ $services_json = json_encode($servicesdata);
     </section>
 
     <!-- sec review -->
-    <section class="review-section">
+    <!-- <section class="review-section">
         <div class="review-title">
             <h2>REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <div class="container">
             <div id="review-grid" class="review-grid">
-                <!-- Reviews will be inserted here -->
+            </div>
+            <div class="pagination">
+                <i class="fas fa-arrow-circle-left" id="prev-btn" onclick="changePage(-1)"></i>
+                <i class="fas fa-arrow-circle-right" id="next-btn" onclick="changePage(1)"></i>
+            </div>
+            <div class="page-indicators" id="page-indicators">
+            </div>
+        </div>
+    </section> -->
+    <section class="review-section">
+        <div class="review-title">
+            <h2>REVIEW</h2>
+            <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
+        </div>
+        <div class="container">
+            <div id="review-grid-mobile" class="review-grid-mobile">
+                <?php foreach ($reviews as $index => $review) : ?>
+                    <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
+                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                        <p>
+                            <i class="fas fa-quote-left icon-quote-left"></i>
+                            <?php echo $review->text; ?>
+                            <i class="fas fa-quote-right icon-quote-right"></i>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="pagination">
                 <i class="fas fa-arrow-circle-left" id="prev-btn" onclick="changePage(-1)"></i>
@@ -1083,57 +1116,57 @@ $services_json = json_encode($servicesdata);
     <script>
         const reviews = [{
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว1",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว2",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว3",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว4",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว5",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว6",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว7",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว8",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว9",
                 bgColor: "bg-blue"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว10",
                 bgColor: "bg-yellow"
             },
             {
                 image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว",
+                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว11",
                 bgColor: "bg-blue"
             }
         ];
@@ -1163,9 +1196,9 @@ $services_json = json_encode($servicesdata);
                 const reviewBox = document.createElement('div');
                 reviewBox.classList.add('review-box', review.bgColor);
                 reviewBox.innerHTML = `
-                    <img src="<?= base_url('dist/img/review_pic.png') ?>">
-                    <p>${review.text}</p>
-                `;
+                <img src="<?= base_url('dist/img/review_pic.png') ?>">
+                <p>${review.text}</p>
+            `;
                 reviewGrid.appendChild(reviewBox);
             });
 
