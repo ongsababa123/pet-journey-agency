@@ -13,20 +13,6 @@ class Service
     }
 }
 
-class Review
-{
-    public $image;
-    public $text;
-    public $bgColor;
-
-    public function __construct($image, $text, $bgColor)
-    {
-        $this->image = $image;
-        $this->text = $text;
-        $this->bgColor = $bgColor;
-    }
-}
-
 $services = [
     new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
     new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
@@ -53,20 +39,6 @@ $partners = [
         "dist/img/logopartner.png",
         "dist/img/logopartner.png",
     ]
-];
-
-$reviews = [
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-yellow"),
-    new Review("dist/img/review_pic.png", "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว", "bg-blue"),
 ];
 
 $servicesdata = [
@@ -367,6 +339,45 @@ $services_json = json_encode($servicesdata);
             margin-bottom: 15px;
         }
 
+        /* Our Service Section */
+                /* Review Box Styles */
+                .review-section {
+            padding: 50px 0;
+            background-color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .review-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #23456B;
+            padding: 10px;
+            color: #fff;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+        }
+
+        .review-title h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-left: 30px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .review-title img {
+            max-width: 250px;
+            height: auto;
+            position: absolute;
+            right: 0px;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
         .paw-left,
         .paw-right {
             position: absolute;
@@ -493,151 +504,8 @@ $services_json = json_encode($servicesdata);
             transform: translateY(-50%);
         }
 
-        /* Review Box Styles */
-        .review-section {
-            padding: 50px 0;
-            background-color: #fff;
-            text-align: center;
-            position: relative;
-        }
 
-        .review-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #23456B;
-            padding: 10px;
-            color: #fff;
-            margin-bottom: 30px;
-            margin-top: 30px;
-            position: relative;
-            height: 100px;
-        }
-
-        .review-title h2 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-left: 30px;
-            flex: 1;
-            text-align: left;
-        }
-
-        .review-title img {
-            max-width: 250px;
-            height: auto;
-            position: absolute;
-            right: 0px;
-            top: 40%;
-            transform: translateY(-50%);
-        }
-
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            justify-items: center;
-        }
-
-        .review-box {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            width: cover;
-            height: 300px;
-            background-color: white;
-        }
-
-        .review-box img {
-            width: 100%;
-            height: 80%;
-            object-fit: cover;
-        }
-
-        .review-box p {
-            margin: 0;
-            padding: 10px;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .review-box:hover {
-            transform: scale(1.05);
-        }
-
-        .bg-yellow {
-            background-color: #FFD700 !important;
-        }
-
-        .bg-blue {
-            background-color: #23456B !important;
-            color: #fff;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            top: 500px;
-            width: 80%;
-            transform: translateY(-50%);
-            left: 10%;
-        }
-
-        .pagination i {
-            font-size: 2em;
-            cursor: pointer;
-            background-color: white;
-            border-radius: 50%;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .pagination i#prev-btn {
-            margin-left: -50px;
-            /* Negative margin to position correctly */
-        }
-
-        .pagination i#next-btn {
-            margin-right: -50px;
-            /* Negative margin to position correctly */
-        }
-
-        .page-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .page-indicators span {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin: 0 5px;
-            display: inline-block;
-        }
-
-        .page-indicators .active {
-            background-color: #23456B;
-        }
-
-        @media (max-width: 1200px) {
-            .review-content .col-md-3 {
-                flex: 0 0 33.333333%;
-                max-width: 33.333333%;
-            }
-
-            .review-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .review-box {
-                width: 100%;
-                height: auto;
-            }
-        }
+        @media (max-width: 1200px) {}
 
         @media (max-width: 991.98px) {
             .our-service-title h2 {
@@ -660,30 +528,6 @@ $services_json = json_encode($servicesdata);
             .service-item .badge-pill {
                 margin-bottom: 10px;
                 font-size: 10px;
-            }
-
-            .review-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .review-box {
-                border: 1px solid #eaeaea;
-                border-radius: 5px;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                width: 250px;
-                height: 280px;
-                margin: 15px;
-            }
-
-            .review-box img {
-                width: 100%;
-                height: 80%;
-                object-fit: cover;
-            }
-
-            .review-box p {
-                font-size: 12px;
             }
         }
 
@@ -741,34 +585,18 @@ $services_json = json_encode($servicesdata);
                 justify-content: center;
             }
 
-            .review-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .review-box {
-                width: 100%;
-                height: 150px;
-            }
-
-            .review-box img {
-                height: 70%;
-            }
-
-            .review-box p {
-                font-size: 9px;
-            }
-
-            .review-content .col-md-3 {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-
             .img_pic_title {
                 display: none;
             }
 
             .pagination {
                 display: none;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .review-title h2 {
+                font-size: 2.0rem;
             }
         }
     </style>
@@ -846,48 +674,12 @@ $services_json = json_encode($servicesdata);
     </section>
 
     <!-- sec review -->
-    <!-- <section class="review-section">
-        <div class="review-title">
-            <h2>REVIEW</h2>
-            <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
-        </div>
-        <div class="container">
-            <div id="review-grid" class="review-grid">
-            </div>
-            <div class="pagination">
-                <i class="fas fa-arrow-circle-left" id="prev-btn" onclick="changePage(-1)"></i>
-                <i class="fas fa-arrow-circle-right" id="next-btn" onclick="changePage(1)"></i>
-            </div>
-            <div class="page-indicators" id="page-indicators">
-            </div>
-        </div>
-    </section> -->
     <section class="review-section">
         <div class="review-title">
             <h2>REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
-        <div class="container">
-            <div id="review-grid-mobile" class="review-grid-mobile">
-                <?php foreach ($reviews as $index => $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
-                        <p>
-                            <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?php echo $review->text; ?>
-                            <i class="fas fa-quote-right icon-quote-right"></i>
-                        </p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="pagination">
-                <i class="fas fa-arrow-circle-left" id="prev-btn" onclick="changePage(-1)"></i>
-                <i class="fas fa-arrow-circle-right" id="next-btn" onclick="changePage(1)"></i>
-            </div>
-            <div class="page-indicators" id="page-indicators">
-                <!-- Page indicators will be inserted here -->
-            </div>
-        </div>
+        <?php include 'app\Views\dashboard\public_dashboard\reviewtest.php'; ?>
     </section>
 
     <!-- sec partner -->
@@ -1113,112 +905,7 @@ $services_json = json_encode($servicesdata);
         // เรียกฟังก์ชันสร้าง checkboxes
         generateCheckboxes();
     </script>
-    <script>
-        const reviews = [{
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว1",
-                bgColor: "bg-blue"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว2",
-                bgColor: "bg-yellow"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว3",
-                bgColor: "bg-blue"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว4",
-                bgColor: "bg-yellow"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว5",
-                bgColor: "bg-blue"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว6",
-                bgColor: "bg-yellow"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว7",
-                bgColor: "bg-blue"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว8",
-                bgColor: "bg-yellow"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว9",
-                bgColor: "bg-blue"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว10",
-                bgColor: "bg-yellow"
-            },
-            {
-                image: "dist/img/review_pic.png",
-                text: "ข้อความตัวอย่างรีวิวสั้น ๆ ข้อความตัวอย่างรีวิว11",
-                bgColor: "bg-blue"
-            }
-        ];
 
-        let currentPage = 1;
-        let reviewsPerPage = 8; // Default for desktop
-
-        function setReviewsPerPage() {
-            if (window.innerWidth < 768) {
-                reviewsPerPage = 6; // Mobile
-            } else if (window.innerWidth < 1150) {
-                reviewsPerPage = 6; // Tablet
-            } else {
-                reviewsPerPage = 8; // Desktop
-            }
-        }
-
-        function displayReviews(page) {
-            setReviewsPerPage();
-            const startIndex = (page - 1) * reviewsPerPage;
-            const endIndex = page * reviewsPerPage;
-            const reviewsToShow = reviews.slice(startIndex, endIndex);
-
-            const reviewGrid = document.getElementById('review-grid');
-            reviewGrid.innerHTML = '';
-            reviewsToShow.forEach(review => {
-                const reviewBox = document.createElement('div');
-                reviewBox.classList.add('review-box', review.bgColor);
-                reviewBox.innerHTML = `
-                <img src="<?= base_url('dist/img/review_pic.png') ?>">
-                <p>${review.text}</p>
-            `;
-                reviewGrid.appendChild(reviewBox);
-            });
-
-            document.getElementById('prev-btn').disabled = page === 1;
-            document.getElementById('next-btn').disabled = endIndex >= reviews.length;
-        }
-
-        function changePage(direction) {
-            currentPage += direction;
-            displayReviews(currentPage);
-        }
-
-        window.addEventListener('resize', () => {
-            displayReviews(currentPage);
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            displayReviews(currentPage);
-        });
-    </script>
     <script>
         let currentPagePoint = 1;
         const totalPages = 3; // ตั้งค่าจำนวนหน้าทั้งหมดที่นี่
