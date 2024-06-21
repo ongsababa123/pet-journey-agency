@@ -262,6 +262,73 @@ $reviews = [
                 width: 110px;
             }
         }
+
+        /* New layout style */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 200px);
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .layout-box {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: #ccc;
+        }
+
+        .box1 { grid-column: span 2; grid-row: span 2; }
+        .box2 { grid-column: span 2; grid-row: span 1; }
+        .box3 { grid-column: span 1; grid-row: span 1; }
+        .box4 { grid-column: span 1; grid-row: span 2; }
+        .box5 { grid-column: span 1; grid-row: span 2; }
+        .box6 { grid-column: span 1; grid-row: span 1; }
+        .box7 { grid-column: span 1; grid-row: span 1; }
+        .box8 { grid-column: span 1; grid-row: span 1; }
+        .box9 { grid-column: span 2; grid-row: span 1; }
+        .box10 { grid-column: span 1; grid-row: span 1; }
+        .box11 { grid-column: span 1; grid-row: span 1; }
+        .box12 { grid-column: span 1; grid-row: span 1; }
+
+        @media (max-width: 991.98px) {
+            .layout-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(6, 200px);
+            }
+            .box1 { grid-column: span 2; grid-row: span 1; }
+            .box2 { grid-column: span 2; grid-row: span 1; }
+            .box3 { grid-column: span 1; grid-row: span 1; }
+            .box4 { grid-column: span 1; grid-row: span 1; }
+            .box5 { grid-column: span 2; grid-row: span 1; }
+            .box6 { grid-column: span 1; grid-row: span 1; }
+            .box7 { grid-column: span 1; grid-row: span 1; }
+            .box8 { grid-column: span 2; grid-row: span 1; }
+            .box9 { grid-column: span 2; grid-row: span 1; }
+            .box10 { grid-column: span 1; grid-row: span 1; }
+            .box11 { grid-column: span 1; grid-row: span 1; }
+            .box12 { grid-column: span 2; grid-row: span 1; }
+        }
+
+        @media (max-width: 575.98px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(12, 200px);
+            }
+            .box1 { grid-column: span 1; grid-row: span 1; }
+            .box2 { grid-column: span 1; grid-row: span 1; }
+            .box3 { grid-column: span 1; grid-row: span 1; }
+            .box4 { grid-column: span 1; grid-row: span 1; }
+            .box5 { grid-column: span 1; grid-row: span 1; }
+            .box6 { grid-column: span 1; grid-row: span 1; }
+            .box7 { grid-column: span 1; grid-row: span 1; }
+            .box8 { grid-column: span 1; grid-row: span 1; }
+            .box9 { grid-column: span 1; grid-row: span 1; }
+            .box10 { grid-column: span 1; grid-row: span 1; }
+            .box11 { grid-column: span 1; grid-row: span 1; }
+            .box12 { grid-column: span 1; grid-row: span 1; }
+        }
     </style>
 </head>
 
@@ -320,11 +387,37 @@ $reviews = [
             <img class="feetpet-icon" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
         </div>
     </section>
+
+    <!-- sec team's work -->
+    <section>
+        <div class="container mt-5">
+            <h3 class="d-flex p-2" style="color: #23456B; font-weight: 600;">
+                <div style="color: #FFB629;">ผลงาน</div>
+                การทำงานของทีม
+            </h3>
+            <div class="layout-grid">
+                <div class="layout-box box1"></div>
+                <div class="layout-box box2"></div>
+                <div class="layout-box box3"></div>
+                <div class="layout-box box4"></div>
+                <div class="layout-box box5"></div>
+                <div class="layout-box box6"></div>
+                <div class="layout-box box7"></div>
+                <div class="layout-box box8"></div>
+                <div class="layout-box box9"></div>
+                <div class="layout-box box10"></div>
+                <div class="layout-box box11"></div>
+                <div class="layout-box box12"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- reviews our customers -->
     <script>
         $(document).ready(function() {
             const reviewsPerClick = 4; // จำนวนรีวิวที่จะเพิ่มเมื่อกดปุ่ม 'รีวิวเพิ่มเติม'

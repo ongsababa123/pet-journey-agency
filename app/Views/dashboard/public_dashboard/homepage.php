@@ -679,7 +679,7 @@ $services_json = json_encode($servicesdata);
             <h2>REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
-        <?php include 'app\Views\dashboard\public_dashboard\reviewtest.php'; ?>
+        <?php include 'app\Views\dashboard\public_dashboard\reviewhomepage.php'; ?>
     </section>
 
     <!-- sec partner -->
