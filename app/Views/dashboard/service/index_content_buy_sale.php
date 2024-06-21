@@ -1,4 +1,4 @@
-<title>แก้ไขข้อมูล เซอร์วิส</title>
+<title>แก้ไขข้อมูล ข้อมูลสัตว์เลี้ยง</title>
 <style>
     .icon-spacing {
         margin-right: 10px;
@@ -17,13 +17,13 @@
                         <div class="card-header" style="border-bottom: none">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <h1 class="m-0"><strong>จัดการหน้าเพจ</strong></h1>
+                                    <h1 class="m-0"><strong><?= $data_service['header_service_name'] ?></strong></h1>
                                 </div><!-- /.col -->
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active">ข้อมูล</li>
-                                        <li class="breadcrumb-item active">เซอร์วิส</li>
+                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name'] ?></li>
+                                        <li class="breadcrumb-item active">ข้อมูลสัตว์เลี้ยง</li>
                                     </ol>
                                 </div><!-- /.col -->
                             </div>
@@ -40,11 +40,11 @@
                         <div class="card-header" style="background-color: #0198B4;color: white">
                             <h3 class="card-title mt-2">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                <strong>ข้อมูลเซอร์วิส</strong>
+                                <strong>ข้อมูลสัตว์เลี้ยง</strong>
                             </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', 'data')">
-                                    <i class="fas fa-plus"></i> เพิ่มเซอร์วิส
+                                    <i class="fas fa-plus"></i> เพิ่มสัตว์เลี้ยง
                                 </button>
                                 <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -57,12 +57,11 @@
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
                                         <th width="6%">ลําดับ</th>
-                                        <th width="30%">รูปภาพ</th>
-                                        <th width="20%">หัวข้อเซอร์วิส ไทย</th>
-                                        <th>ประเภทภาษา</th>
+                                        <th width="30%">รูปภาพสัตว์เลี้ยง</th>
+                                        <th width="20%">ชื่อสัตว์เลี้ยง</th>
+                                        <th>วันที่อัพเดท</th>
                                         <th>สถานะ</th>
                                         <th>การจัดการ</th>
-                                        <th>แก้ไขหน้าเพจ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +80,7 @@
 
 
 <div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-title"></h4>
@@ -107,19 +106,59 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="header_service_name">หัวข้อเซอร์วิส</label>
-                                <input type="text" id="header_service_name" name="header_service_name" class="form-control" required>
+                                <label for="name_pet">ชื่อสัตว์เลี้ยง</label>
+                                <input type="text" id="name_pet" name="name_pet" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="select_language">ประเภทภาษา</label>
-                                <select class="form-control" id="select_language" name="select_language" required>
-                                    <option value="th">ไทย</option>
-                                    <option value="en">อังกฤษ</option>
+                                <label for="breed">ชื่อพันธ์</label>
+                                <input type="text" id="breed" name="breed" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="gender">เพศ</label>
+                                <select class="form-control" id="gender" name="gender" required>
+                                    <option value="male">ผู้</option>
+                                    <option value="female">หญิง</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="age">อายุ</label>
+                                <input type="text" id="age" name="age" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="color">สีขน</label>
+                                <input type="text" id="color" name="color" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="characteristics">ลักษณะนิสัย</label>
+                                <input type="text" id="characteristics" name="characteristics" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="vaccination_history">ประวัติการฉีดวัคซีน</label>
+                                <input type="text" id="vaccination_history" name="vaccination_history" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="price">ราคา</label>
+                                <input type="text" id="price" name="price" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -142,12 +181,19 @@
 
     function load_modal(action, data_encode) {
         $('#upload_image').val('');
-        $('#header_service_name').val('');
-        $('#select_language').val('th');
+        $('#name_pet').val('');
+        $('#breed').val('');
+        $('#gender').val('male');
+        $('#age').val('');
+        $('#color').val('');
+        $('#characteristics').val('');
+        $('#vaccination_history').val('');
+        $('#price').val('');
+        $('#price').val('');
         removeUpload();
         switch (action) {
             case 'Create':
-                $("#modal-title").text('เพิ่มข้อมูลเซอร์วิส');
+                $("#modal-title").text('เพิ่มข้อมูลสัตว์เลี้ยง');
                 $('#url_route').val('dashboard/service/create');
                 check_action = 'Create';
                 break;
@@ -155,7 +201,6 @@
                 $("#modal-title").text('ข้อมูลเซอร์วิส');
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#header_service_name').val(data.header_service_name);
-                $('#select_language').val(data.language);
                 $('#url_route').val('dashboard/service/update/' + data.id_service_header + '/' + data.image_path);
                 check_action = 'Update';
                 break;
@@ -171,7 +216,7 @@
             $('#example2').DataTable({
                 'serverSide': true,
                 'ajax': {
-                    'url': "<?php echo site_url('dashboard/service/getdata'); ?>",
+                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header']); ?>",
                     'type': 'GET',
                     'dataSrc': 'data',
                 },
@@ -212,63 +257,36 @@
                     }
                 },
                 'columns': [{
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/service/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.header_service_name}" data-gallery="gallery">
-                                        <img src="<?= base_url('dist/img/service/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
-                                    </a>`;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.header_service_name;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.language;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            if (data.status == 0) {
-                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
-                            } else {
-                                return '<span class="badge bg-success">ใช้งาน</span>';
-                            }
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            const encodedRowData = encodeURIComponent(JSON.stringify(row));
-                            return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/service/changestatus/${data.id_service_header}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>`;
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            if (data.id_service_header == 1 || data.id_service_header == 2) {
-                                return `<a href="<?= base_url('dashboard/animal/')?>${data.id_service_header}" class="btn btn-info">ข้อมูลสัตว์เลี้ยง</a>`;
-                            } else {
-                                return `<a href="#" class="btn btn-info"><i class="fas fa-newspaper"></i></a>`;
-                            }
-                        }
-                    },
-                ],
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, ],
             });
         });
     });

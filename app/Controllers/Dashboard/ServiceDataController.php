@@ -4,16 +4,19 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 use App\Models\ServiceHeaderModel;
+use App\Models\Service_Content_Buy_SaleModel;
 
 class ServiceDataController extends BaseController
 {
     protected $uri_menu;
     protected $ServiceHeaderModel;
+    protected $Service_Content_Buy_SaleModel;
 
     public function __construct()
     {
         helper(['form', 'file']);
         $this->ServiceHeaderModel = new ServiceHeaderModel();
+        $this->Service_Content_Buy_SaleModel = new Service_Content_Buy_SaleModel();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -148,6 +151,53 @@ class ServiceDataController extends BaseController
             'message' => 'เปลี่ยนสถานะสําเร็จ',
             'reload' => true,
         ];
+        return $this->response->setJSON($response);
+    }
+
+    //------------------------------ service_content_buy_sale --------------------------//
+
+    public function index_service_content_buy_sale($id_service_header)
+    {
+        $data['uri_menu'] = $this->uri_menu;
+        $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
+        echo view('dashboard/layout/header', $data);
+        echo view('dashboard/service/index_content_buy_sale' , $data_service);
+        echo view('dashboard/layout/footer');
+    }
+
+    //-- get data animal --//
+    public function getData_animal($id_service_header)
+    {
+        $limit = $this->request->getVar('length');
+        $start = $this->request->getVar('start');
+        $draw = $this->request->getVar('draw');
+        $searchValue = $this->request->getVar('search')['value'];
+
+        if (!empty($searchValue)) {
+            $this->Service_Content_Buy_SaleModel->groupStart()
+                ->like('name_pet', $searchValue)
+                ->like('breed', $searchValue)
+                ->groupEnd();
+        }
+        $totalRecords = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->countAllResults();
+
+        $recordsFiltered = $totalRecords;
+        if (!empty($searchValue)) {
+            $this->Service_Content_Buy_SaleModel->groupStart()
+                ->like('name_pet', $searchValue)
+                ->like('breed', $searchValue)
+                ->groupEnd();
+        }
+        $data = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->findAll($limit, $start);
+
+        $response = [
+            'draw' => intval($draw),
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $recordsFiltered,
+            'data' => $data,
+            'searchValue' => $searchValue,
+        ];
+
         return $this->response->setJSON($response);
     }
 }

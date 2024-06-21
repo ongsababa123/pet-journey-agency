@@ -1,0 +1,14 @@
+CRITICAL - 2024-06-21 15:47:59 --> ErrorException: Undefined variable $data
+[Method: GET, Route: dashboard/service]
+in APPPATH\Views\dashboard\index_service.php on line 265.
+ 1 APPPATH\Views\dashboard\index_service.php(265): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\index_service.php', 265)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\index_service.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/index_service', [], true)
+ 5 APPPATH\Controllers\Dashboard\ServiceDataController.php(35): view('dashboard/index_service')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\ServiceDataController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\ServiceDataController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

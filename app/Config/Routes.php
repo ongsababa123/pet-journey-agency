@@ -51,7 +51,13 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->post('partner/update/(:num)/(:segment)', 'PartnerDataController::update_partner/$1/$2'); //update partner data
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('quotation', 'QuotationDataController::index');
-
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('animal/(:num)', 'ServiceDataController::index_service_content_buy_sale/$1'); //index animal
+    $routes->get('animal/getdata/(:num)', 'ServiceDataController::getData_animal/$1'); //getdata animal
+    $routes->get('animal/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_animal/$1/$2'); //change status animal
+    $routes->get('animal/delete/(:num)/(:segment)', 'ServiceDataController::delete_animal/$1/$2'); //delete animal
+    $routes->post('animal/create/(:num)', 'ServiceDataController::create_animal/$1'); //create animal
+    $routes->post('animal/update/(:num)/(:segment)', 'ServiceDataController::update_animal/$1/$2'); //update animal
 
 });
 
