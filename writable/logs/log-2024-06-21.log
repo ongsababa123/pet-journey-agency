@@ -1,14 +1,340 @@
-CRITICAL - 2024-06-21 15:47:59 --> ErrorException: Undefined variable $data
-[Method: GET, Route: dashboard/service]
-in APPPATH\Views\dashboard\index_service.php on line 265.
- 1 APPPATH\Views\dashboard\index_service.php(265): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\index_service.php', 265)
- 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\index_service.php')
- 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/index_service', [], true)
- 5 APPPATH\Controllers\Dashboard\ServiceDataController.php(35): view('dashboard/index_service')
- 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\ServiceDataController->index()
- 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\ServiceDataController))
- 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
-10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
-11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 02:37:59 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "พำอรำไ"
+[Method: GET, Route: dashboard/%E0%B8%9E%E0%B8%B3%E0%B8%AD%E0%B8%A3%E0%B8%B3%E0%B9%84]
+in SYSTEMPATH\Router\Router.php on line 736.
+ 1 SYSTEMPATH\Router\Router.php(203): CodeIgniter\Router\Router->checkDisallowedChars('dashboard/พำอรำไ')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('dashboard/พำอรำไ')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:55:57 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:44 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:44 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:45 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:45 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:45 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:46 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:57:46 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:58:03 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:58:03 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:58:04 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 06:58:04 --> ErrorException: include(app\Views\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 633.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 633)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(633): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 07:29:07 --> ErrorException: Undefined variable $reviews
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\reviewtest.php on line 119.
+ 1 APPPATH\Views\dashboard\public_dashboard\reviewtest.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reviews', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php', 119)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(676): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php')
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 07:38:39 --> ErrorException: Undefined variable $reviews
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\reviewtest.php on line 126.
+ 1 APPPATH\Views\dashboard\public_dashboard\reviewtest.php(126): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reviews', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php', 126)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(676): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php')
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 07:39:17 --> ErrorException: Undefined variable $reviews
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\reviewtest.php on line 126.
+ 1 APPPATH\Views\dashboard\public_dashboard\reviewtest.php(126): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reviews', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php', 126)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(676): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php')
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 07:39:18 --> ErrorException: Undefined variable $reviews
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\reviewtest.php on line 126.
+ 1 APPPATH\Views\dashboard\public_dashboard\reviewtest.php(126): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reviews', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php', 126)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(676): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\reviewtest.php')
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:24 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:31 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:32 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:32 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:32 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-21 09:26:33 --> ErrorException: include(app\Views\dashboard\public_dashboard\reviewtest.php): Failed to open stream: No such file or directory
+[Method: GET, Route: dashboard/homepage]
+in APPPATH\Views\dashboard\public_dashboard\homepage.php on line 682.
+ 1 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(app\\Views\\dashboard\\public_dashboard\\reviewtest.php): Failed to open stream: No such file or directory', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php', 682)
+ 2 APPPATH\Views\dashboard\public_dashboard\homepage.php(682): include()
+ 3 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\dashboard\\public_dashboard\\homepage.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/public_dashboard/homepage', [], true)
+ 6 APPPATH\Controllers\Dashboard\HomePage.php(29): view('dashboard/public_dashboard/homepage')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dashboard\HomePage->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard\HomePage))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
