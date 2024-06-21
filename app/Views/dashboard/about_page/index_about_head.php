@@ -58,7 +58,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active">เกี่ยวกับเรา</li>
+                                        <li class="breadcrumb-item active">หน้าเกียวกับเรา</li>
                                         <li class="breadcrumb-item active">ข้อมูลเกี่ยวกับเรา</li>
                                     </ol>
                                 </div>

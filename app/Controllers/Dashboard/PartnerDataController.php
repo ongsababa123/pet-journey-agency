@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controllers\Dashboard\Homepage;
+namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
-use App\Models\CoverPageModel;
+use App\Models\PartnerModel;
 
-class HomePage_ConverController extends BaseController
+class PartnerDataController extends BaseController
 {
     protected $uri_menu;
-    protected $CoverPageModel;
+    protected $PartnerModel;
 
     public function __construct()
     {
         helper(['form', 'file']);
-        $this->CoverPageModel = new CoverPageModel();
+        $this->PartnerModel = new PartnerModel();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -24,18 +24,17 @@ class HomePage_ConverController extends BaseController
         $this->uri_menu = $path_parts[count($path_parts) - 2] . '/' . $path_parts[count($path_parts) - 1];
     }
 
-
     //-- index --//
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
         echo view('dashboard/layout/header', $data);
-        echo view('dashboard/home_page/index_cover');
+        echo view('dashboard/index_partner');
         echo view('dashboard/layout/footer');
     }
 
-    //-- get data image cover --//
-    public function getData_cover()
+    //-- get data partner --//
+    public function getData_partner($type_partner)
     {
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
@@ -43,19 +42,19 @@ class HomePage_ConverController extends BaseController
         $searchValue = $this->request->getVar('search')['value'];
 
         if (!empty($searchValue)) {
-            $this->CoverPageModel->groupStart()
-                ->like('name_image', $searchValue)
+            $this->PartnerModel->groupStart()
+                ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->CoverPageModel->countAllResults();
+        $totalRecords = $this->PartnerModel->where('type_partner', $type_partner)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
-            $this->CoverPageModel->groupStart()
-                ->like('name_image', $searchValue)
+            $this->PartnerModel->groupStart()
+                ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->CoverPageModel->findAll($limit, $start);
+        $data = $this->PartnerModel->where('type_partner', $type_partner)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -68,12 +67,11 @@ class HomePage_ConverController extends BaseController
         return $this->response->setJSON($response);
     }
 
-    //-- create image cover --//
-    public function create_cover()
+    //-- create partner --//
+    public function create_partner($type_partner)
     {
-        $target_dir = ROOTPATH . 'dist/img/cover/';
-
-        $image = $this->request->getFile('upload_image');
+        $target_dir = ROOTPATH . 'dist/img/partner/';
+        $image = $this->request->getFile('input_image');
         if ($image->isValid() && !$image->hasMoved()) {
             $imageName = $image->getName();
 
@@ -82,85 +80,85 @@ class HomePage_ConverController extends BaseController
             }
 
             $image->move($target_dir, $imageName);
-            $data_cover = [
-                'name_image' => $this->request->getVar('inputName_cover'),
-                'path_image' => $imageName,
-                'status' => 0,
-                'language' => $this->request->getVar('select_language'),
+            $data_partner = [
+                'name_partner' => $this->request->getVar('name_partner'),
+                'type_partner' => $type_partner,
+                'logo_partner_path' => $imageName,
             ];
 
-            $this->CoverPageModel->insert((object) $data_cover);
+            $this->PartnerModel->insert((object) $data_partner);
             $response = [
                 'success' => true,
-                'message' => 'สร้างภาพหน้าปกสําเร็จ',
+                'message' => 'สร้างพาร์ทเนอร์สำเร็จ',
                 'reload' => true,
             ];
             return $this->response->setJSON($response);
         } else {
             $response = [
                 'success' => false,
-                'message' => 'โปรดอัพโหลดภาพหน้าปก',
+                'message' => 'โปรดอัพโหลดภาพ',
                 'reload' => false,
             ];
             return $this->response->setJSON($response);
         }
     }
 
-    //-- change status image --//
-    public function change_status_cover($id_cover, $status)
+    //-- change status partner --//
+    public function change_status_partner($id_partner, $status)
     {
-        $this->CoverPageModel->update($id_cover, (object)[
+        $this->PartnerModel->update($id_partner, (object)[
             'status' => $status == 1 ? 0 : 1
         ]);
         $response = [
             'success' => true,
-            'message' => 'เปลี่ยนสถานะของรางวัลสําเร็จ',
+            'message' => 'เปลี่ยนสถานะพาร์ทเนอร์สำเร็จ',
             'reload' => true,
         ];
         return $this->response->setJSON($response);
     }
 
-    //- edit image cover --//
-    public function update_about_team($id_cover, $path_image_old)
+    //-- delete image partner --//
+    public function delete_partner($id_partner, $path_image)
     {
-        $data_cover = [
-            'name_image' => $this->request->getVar('inputName_cover'),
-            'language' => $this->request->getVar('select_language'),
+        $this->PartnerModel->delete($id_partner);
+        if (file_exists(ROOTPATH . 'dist/img/partner/' . $path_image)) {
+            unlink(ROOTPATH . 'dist/img/partner/' . $path_image);
+        }
+        $response = [
+            'success' => true,
+            'message' => 'ลบภาพพาร์ทเนอร์สำเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //- edit partner --//
+    public function update_partner($id_partner, $path_image_old)
+    {
+        $data_partner = [
+            'name_partner' => $this->request->getVar('name_partner'),
         ];
 
-        $target_dir = ROOTPATH . 'dist/img/cover/';
-        $image = $this->request->getFile('upload_image');
+        $target_dir = ROOTPATH . 'dist/img/partner/';
+        $image = $this->request->getFile('input_image');
         if ($image->isValid() && !$image->hasMoved()) {
             $imageName = $image->getName();
             if (file_exists($target_dir . $imageName)) {
                 $imageName = $image->getRandomName();
             }
+
             $image->move($target_dir, $imageName);
-            $data_cover['path_image'] = $imageName;
+            $data_partner['logo_partner_path'] = $imageName;
 
             if (is_file($target_dir . $path_image_old)) {
                 unlink($target_dir . $path_image_old);
             }
         }
 
-        $this->CoverPageModel->update($id_cover, (object) $data_cover);
+        $this->PartnerModel->update($id_partner, (object) $data_partner);
         $response = [
             'success' => true,
-            'message' => 'แก้ไขภาพหน้าปกสําเร็จ',
-            'reload' => true,
-        ];
-        return $this->response->setJSON($response);
-    }
-    //-- delete image cover --//
-    public function delete_cover($id_cover, $path_image)
-    {
-        $this->CoverPageModel->delete($id_cover);
-        if (file_exists(ROOTPATH . 'dist/img/cover/' . $path_image)) {
-            unlink(ROOTPATH . 'dist/img/cover/' . $path_image);
-        }
-        $response = [
-            'success' => true,
-            'message' => 'ลบภาพหน้าปกสําเร็จ',
+            'message' => 'แก้ไขข้อมูลพาร์ทเนอร์สำเร็จ',
             'reload' => true,
         ];
         return $this->response->setJSON($response);

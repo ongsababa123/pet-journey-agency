@@ -153,7 +153,7 @@
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#input_detail_comment').val(data.detail_comment);
                 $('#select_language').val(data.language);
-                $('#url_route').val('dashboard/review/update/' + data.id_review);
+                $('#url_route').val('dashboard/review/update/' + data.id_review + '/' + data.image_path);
                 check_action = 'Update';
                 break;
             default:

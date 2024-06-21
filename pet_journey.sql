@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2024 at 12:07 PM
+-- Generation Time: Jun 21, 2024 at 12:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -110,8 +110,78 @@ CREATE TABLE `cover_page_data` (
 --
 
 INSERT INTO `cover_page_data` (`id_cover`, `name_image`, `path_image`, `status`, `language`) VALUES
-(1, 'test', 'final-1.jpg', 0, 'en'),
+(1, 'test', '1718852655_a63efd68162eb44ab452.jpg', 0, 'en'),
 (3, 'sadasd', 'download.png', 1, 'en');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `more_about_pet`
+--
+
+CREATE TABLE `more_about_pet` (
+  `id_more_about_pet` int(11) NOT NULL,
+  `topic_name` varchar(255) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `image_path` varchar(100) NOT NULL,
+  `language` varchar(10) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `more_about_pet`
+--
+
+INSERT INTO `more_about_pet` (`id_more_about_pet`, `topic_name`, `detail`, `image_path`, `language`, `status`) VALUES
+(2, 'ความรักที่ไม่ต้องการคำพูด', 'แมวตัวน้อยที่บ้านไม่เคยพูดอะไรแต่การนั่งเฝ้าข้างๆ เวลาฉันรู้สึกเศร้าก็เพียงพอแล้วที่จะทำให้ใจอุ่นขึ้น  ความรักจากแมวนั้นไม่ต้องการคำพูด แค่การสัมผัส นุ่มนวลและการมองตาเราด้วยสายตาที่เต็มไปด้วย ความหวังดีก็เพียงพอแล้วที่จะรู้สึกว่ามีใครสักคน อยู่เคียงข้างเ', 'golden_.jpg', 'th', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partner_data`
+--
+
+CREATE TABLE `partner_data` (
+  `id_partner` int(11) NOT NULL,
+  `name_partner` varchar(255) NOT NULL,
+  `type_partner` int(11) NOT NULL,
+  `logo_partner_path` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `partner_data`
+--
+
+INSERT INTO `partner_data` (`id_partner`, `name_partner`, `type_partner`, `logo_partner_path`, `status`) VALUES
+(2, 'xxxxx', 1, 'avatar3.png', 1),
+(3, 'etert', 2, 'avatar6.png', 0),
+(4, 'xxxxx', 3, 'avatar4.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotation`
+--
+
+CREATE TABLE `quotation` (
+  `id_quotation` int(11) NOT NULL COMMENT 'รหัสไอดี',
+  `name_last` varchar(255) NOT NULL COMMENT 'ชื่อ - นามสกุล',
+  `email` varchar(255) NOT NULL COMMENT 'อีเมล์',
+  `phone_number` varchar(100) NOT NULL COMMENT 'เบอร์โทรศัพท์',
+  `travel_date` date NOT NULL COMMENT 'วันเดินทาง',
+  `country_of_origin` varchar(100) NOT NULL COMMENT 'ประเทศต้นทาง',
+  `destination_country` varchar(100) NOT NULL COMMENT 'ประเทศปลายทาง',
+  `travel_type` varchar(100) NOT NULL COMMENT 'ประเภทการเดินทาง',
+  `transport_format` varchar(100) NOT NULL COMMENT 'รูปแบบขนส่งสัตว์เลี้ยง',
+  `service` varchar(100) NOT NULL COMMENT 'ประเภทการเดินทาง array ,',
+  `animal_type` varchar(100) NOT NULL COMMENT 'ชนิดสัตว์',
+  `breed` varchar(100) NOT NULL COMMENT 'สายพันธุ์',
+  `age` varchar(100) NOT NULL COMMENT 'อายุ',
+  `weight` varchar(100) NOT NULL COMMENT 'น้ำหนัก',
+  `note` varchar(255) NOT NULL COMMENT 'หมายเหตุ',
+  `status` int(11) NOT NULL COMMENT 'สถานะ \r\n1-อ่านแล้ว\r\n0- ยังไม่ได้อ่าน'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -132,7 +202,53 @@ CREATE TABLE `review_data` (
 --
 
 INSERT INTO `review_data` (`id_review`, `image_path`, `detail_comment`, `status`, `language`) VALUES
-(2, 'download.png', 'asdasdasasdasdasdasdasdasdas', 1, 'en');
+(2, 'golden_.jpg', 'asdasdasasdasdasdasdasdasdas', 1, 'en');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_content_buy_sale`
+--
+
+CREATE TABLE `service_content_buy_sale` (
+  `id_service_content_buy_sale` int(11) NOT NULL COMMENT 'รหัสคอนเท้นเซอร์วิส',
+  `id_service_header` int(11) NOT NULL COMMENT 'รหัสเซอร์วิส',
+  `image_path` varchar(100) NOT NULL COMMENT 'ไฟล์ภาพ',
+  `name_pet` varchar(100) NOT NULL COMMENT 'ชื่อสัตว์',
+  `breed` varchar(100) NOT NULL COMMENT 'พันธ์',
+  `gender` varchar(100) NOT NULL COMMENT 'เพศ',
+  `age` varchar(100) NOT NULL COMMENT 'อายุ',
+  `color` varchar(100) NOT NULL COMMENT 'สีขน',
+  `characteristics` varchar(100) NOT NULL COMMENT 'ลักษณะนิสัย',
+  `vaccination_history` varchar(100) NOT NULL COMMENT 'ประวัติการฉีดวัคซีน',
+  `price` varchar(100) NOT NULL COMMENT 'ราคา',
+  `status` int(11) NOT NULL COMMENT 'สถานะ',
+  `language` varchar(10) NOT NULL COMMENT 'ประเภทภาษา',
+  `create_date` date NOT NULL COMMENT 'วันที่ลง'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_header`
+--
+
+CREATE TABLE `service_header` (
+  `id_service_header` int(11) NOT NULL,
+  `header_service_name` varchar(100) NOT NULL,
+  `image_path` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
+  `language` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `service_header`
+--
+
+INSERT INTO `service_header` (`id_service_header`, `header_service_name`, `image_path`, `status`, `language`) VALUES
+(1, 'นำเข้าและส่งออกสัตว์เลี้ยง', 'avatar.png', 1, 'th'),
+(2, 'Pet import and export', 'avatar5.png', 0, 'en'),
+(3, 'บริการตรวจเลือดสัตว์เลี้ยง', 'avatar6.png', 0, 'th');
 
 -- --------------------------------------------------------
 
@@ -154,7 +270,7 @@ CREATE TABLE `veterinary_team` (
 --
 
 INSERT INTO `veterinary_team` (`id_team`, `name_last_name`, `position`, `image_path`, `language`, `status`) VALUES
-(1, 'หมออนุชา ตรีวิจิตร', 'สัตวแพทย์ทั่วไป', 'avatar.png', 'th', 0);
+(1, 'หมออนุชา ตรีวิจิตร', 'สัตวแพทย์ทั่วไป', 'avatar5.png', 'th', 0);
 
 --
 -- Indexes for dumped tables
@@ -185,10 +301,40 @@ ALTER TABLE `cover_page_data`
   ADD PRIMARY KEY (`id_cover`);
 
 --
+-- Indexes for table `more_about_pet`
+--
+ALTER TABLE `more_about_pet`
+  ADD PRIMARY KEY (`id_more_about_pet`);
+
+--
+-- Indexes for table `partner_data`
+--
+ALTER TABLE `partner_data`
+  ADD PRIMARY KEY (`id_partner`);
+
+--
+-- Indexes for table `quotation`
+--
+ALTER TABLE `quotation`
+  ADD PRIMARY KEY (`id_quotation`);
+
+--
 -- Indexes for table `review_data`
 --
 ALTER TABLE `review_data`
   ADD PRIMARY KEY (`id_review`);
+
+--
+-- Indexes for table `service_content_buy_sale`
+--
+ALTER TABLE `service_content_buy_sale`
+  ADD PRIMARY KEY (`id_service_content_buy_sale`);
+
+--
+-- Indexes for table `service_header`
+--
+ALTER TABLE `service_header`
+  ADD PRIMARY KEY (`id_service_header`);
 
 --
 -- Indexes for table `veterinary_team`
@@ -225,16 +371,46 @@ ALTER TABLE `cover_page_data`
   MODIFY `id_cover` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `more_about_pet`
+--
+ALTER TABLE `more_about_pet`
+  MODIFY `id_more_about_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `partner_data`
+--
+ALTER TABLE `partner_data`
+  MODIFY `id_partner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `quotation`
+--
+ALTER TABLE `quotation`
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี';
+
+--
 -- AUTO_INCREMENT for table `review_data`
 --
 ALTER TABLE `review_data`
   MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `service_content_buy_sale`
+--
+ALTER TABLE `service_content_buy_sale`
+  MODIFY `id_service_content_buy_sale` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสคอนเท้นเซอร์วิส';
+
+--
+-- AUTO_INCREMENT for table `service_header`
+--
+ALTER TABLE `service_header`
+  MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `veterinary_team`
 --
 ALTER TABLE `veterinary_team`
-  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

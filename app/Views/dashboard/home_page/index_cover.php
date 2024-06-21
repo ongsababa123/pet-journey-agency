@@ -178,7 +178,7 @@
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#inputName_cover').val(data.name_image);
                 $('#select_language').val(data.language);
-                $('#url_route').val('dashboard/homepage/cover/update/' + data.id_cover);
+                $('#url_route').val('dashboard/homepage/cover/update/' + data.id_cover + '/' + data.path_image);
                 check_action = 'Update';
                 break;
             default:

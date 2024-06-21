@@ -68,4 +68,105 @@ class AboutPage_TeamController extends BaseController
 
         return $this->response->setJSON($response);
     }
+
+    //-- create data team --//
+    public function create_about_team()
+    {
+        $target_dir = ROOTPATH . 'dist/img/team/';
+
+        $image = $this->request->getFile('upload_image');
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageName = $image->getName();
+
+            if (file_exists($target_dir . $imageName)) {
+                $imageName = $image->getRandomName();
+            }
+
+            $image->move($target_dir, $imageName);
+            $data_team = [
+                'name_last_name' => $this->request->getVar('name_last_name'),
+                'position' => $this->request->getVar('position'),
+                'image_path' => $imageName,
+                'status' => 0,
+                'language' => $this->request->getVar('select_language'),
+            ];
+
+            $this->TeamModel->insert((object) $data_team);
+            $response = [
+                'success' => true,
+                'message' => 'สร้างข้อมูลทีมสำเร็จ',
+                'reload' => true,
+            ];
+            return $this->response->setJSON($response);
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'โปรดอัพโหลดภาพทีม',
+                'reload' => false,
+            ];
+            return $this->response->setJSON($response);
+        }
+    }
+
+    //- edit data team --//
+    public function update_about_team($id_team, $path_image_old)
+    {
+        $data_team = [
+            'name_last_name' => $this->request->getVar('name_last_name'),
+            'position' => $this->request->getVar('position'),
+            'language' => $this->request->getVar('select_language'),
+        ];
+
+        $target_dir = ROOTPATH . 'dist/img/team/';
+        $image = $this->request->getFile('upload_image');
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageName = $image->getName();
+            if (file_exists($target_dir . $imageName)) {
+                $imageName = $image->getRandomName();
+            }
+            $image->move($target_dir, $imageName);
+            $data_team['image_path'] = $imageName;
+
+            if (is_file($target_dir . $path_image_old)) {
+                unlink($target_dir . $path_image_old);
+            }
+        }
+
+        $this->TeamModel->update($id_team, (object) $data_team);
+        $response = [
+            'success' => true,
+            'message' => 'แก้ไขข้อมูลทีมสําเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- delete data team --//
+    public function delete_team($id_team, $path_image)
+    {
+        $this->TeamModel->delete($id_team);
+        if (file_exists(ROOTPATH . 'dist/img/team/' . $path_image)) {
+            unlink(ROOTPATH . 'dist/img/team/' . $path_image);
+        }
+        $response = [
+            'success' => true,
+            'message' => 'ลบข้อมูลทีมสำเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- change status team --//
+    public function change_status_team($id_team, $status)
+    {
+        $this->TeamModel->update($id_team, (object)[
+            'status' => $status == 1 ? 0 : 1
+        ]);
+        $response = [
+            'success' => true,
+            'message' => 'เปลี่ยนสถานะสําเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
 }
