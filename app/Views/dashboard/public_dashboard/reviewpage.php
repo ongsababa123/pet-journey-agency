@@ -267,7 +267,7 @@ $reviews = [
         .layout-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 200px);
+            grid-template-rows: repeat(5, 200px); /* Adjusted to fit new boxes */
             gap: 10px;
             margin-top: 50px;
         }
@@ -291,11 +291,15 @@ $reviews = [
         .box10 { grid-column: span 1; grid-row: span 1; }
         .box11 { grid-column: span 1; grid-row: span 1; }
         .box12 { grid-column: span 1; grid-row: span 1; }
+        .box13 { grid-column: span 2; grid-row: span 2; } 
+        .box14 { grid-column: span 2; grid-row: span 1; } 
+        .box15 { grid-column: span 1; grid-row: span 1; } 
+        .box16 { grid-column: span 1; grid-row: span 1; } 
 
         @media (max-width: 991.98px) {
             .layout-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(6, 200px);
+                grid-template-rows: repeat(8, 200px); /* Adjusted to fit new boxes */
             }
             .box1 { grid-column: span 2; grid-row: span 1; }
             .box2 { grid-column: span 2; grid-row: span 1; }
@@ -309,12 +313,16 @@ $reviews = [
             .box10 { grid-column: span 1; grid-row: span 1; }
             .box11 { grid-column: span 1; grid-row: span 1; }
             .box12 { grid-column: span 2; grid-row: span 1; }
+            .box13 { grid-column: span 2; grid-row: span 1; } 
+            .box14 { grid-column: span 2; grid-row: span 1; } 
+            .box15 { grid-column: span 1; grid-row: span 1; } 
+            .box16 { grid-column: span 1; grid-row: span 1; } 
         }
 
         @media (max-width: 575.98px) {
             .layout-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(12, 200px);
+                grid-template-rows: repeat(16, 200px); /* Adjusted to fit new boxes */
             }
             .box1 { grid-column: span 1; grid-row: span 1; }
             .box2 { grid-column: span 1; grid-row: span 1; }
@@ -328,6 +336,10 @@ $reviews = [
             .box10 { grid-column: span 1; grid-row: span 1; }
             .box11 { grid-column: span 1; grid-row: span 1; }
             .box12 { grid-column: span 1; grid-row: span 1; }
+            .box13 { grid-column: span 1; grid-row: span 1; } 
+            .box14 { grid-column: span 1; grid-row: span 1; } 
+            .box15 { grid-column: span 1; grid-row: span 1; } 
+            .box16 { grid-column: span 1; grid-row: span 1; } 
         }
     </style>
 </head>
@@ -408,6 +420,10 @@ $reviews = [
                 <div class="layout-box box10"></div>
                 <div class="layout-box box11"></div>
                 <div class="layout-box box12"></div>
+                <div class="layout-box box13"></div>
+                <div class="layout-box box14"></div>
+                <div class="layout-box box15"></div>
+                <div class="layout-box box16"></div>
             </div>
         </div>
     </section>
