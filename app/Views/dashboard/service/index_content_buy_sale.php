@@ -88,7 +88,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="mb-3" id="form_service" action="javascript:void(0)" method="post" enctype="multipart/form-data">
+            <form class="mb-3" id="form_service_animal" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="file-upload">
                         <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">เพิ่มรูปภาพ</button>
@@ -149,13 +149,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-10">
                             <div class="form-group">
                                 <label for="vaccination_history">ประวัติการฉีดวัคซีน</label>
-                                <input type="text" id="vaccination_history" name="vaccination_history" class="form-control" required>
+                                <textarea name="vaccination_history" id="vaccination_history" class="form-control" rows="5"></textarea>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="price">ราคา</label>
                                 <input type="text" id="price" name="price" class="form-control" required>
@@ -194,7 +194,7 @@
         switch (action) {
             case 'Create':
                 $("#modal-title").text('เพิ่มข้อมูลสัตว์เลี้ยง');
-                $('#url_route').val('dashboard/service/create');
+                $('#url_route').val('dashboard/animal/create/' + <?= $data_service['id_service_header'] ?>);
                 check_action = 'Create';
                 break;
             case 'Update':
@@ -334,7 +334,7 @@
 </script>
 <!-- form submit -->
 <script>
-    $("#form_service").on('submit', function(event) {
+    $("#form_service_animal").on('submit', function(event) {
         event.preventDefault();
         const value_image = document.getElementById('upload_image').value;
         const urlRouteInput = document.getElementById("url_route").value;
@@ -347,7 +347,7 @@
                     showConfirmButton: true,
                 });
             } else {
-                action_(urlRouteInput, 'form_service');
+                action_(urlRouteInput, 'form_service_animal');
             }
         }
     });

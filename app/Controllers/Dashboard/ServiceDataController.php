@@ -161,7 +161,7 @@ class ServiceDataController extends BaseController
         $data['uri_menu'] = $this->uri_menu;
         $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
         echo view('dashboard/layout/header', $data);
-        echo view('dashboard/service/index_content_buy_sale' , $data_service);
+        echo view('dashboard/service/index_content_buy_sale', $data_service);
         echo view('dashboard/layout/footer');
     }
 
@@ -199,5 +199,52 @@ class ServiceDataController extends BaseController
         ];
 
         return $this->response->setJSON($response);
+    }
+
+    //-- create data animal --//
+    public function create_animal($id_service_header)
+    {
+        $target_dir = ROOTPATH . 'dist/img/animal/';
+
+        $image = $this->request->getFile('upload_image');
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageName = $image->getName();
+
+            if (file_exists($target_dir . $imageName)) {
+                $imageName = $image->getRandomName();
+            }
+
+            $image->move($target_dir, $imageName);
+            $data_service = [
+                'name_pet' => $this->request->getVar('name_pet'),
+                'breed' => $this->request->getVar('breed'),
+                'gender' => $this->request->getVar('gender'),
+                'age' => $this->request->getVar('age'),
+                'color' => $this->request->getVar('color'),
+                'characteristics' => $this->request->getVar('characteristics'),
+                'vaccination_history' => $this->request->getVar('vaccination_history'),
+                'price' => $this->request->getVar('price'),
+                'create_date' => date('Y-m-d H:i:s'),
+                'image_path' => $imageName,
+                'status' => 0,
+                'language' => $this->request->getVar('select_language'),
+                'id_service_header' => $id_service_header
+            ];
+
+            $this->ServiceHeaderModel->insert((object) $data_service);
+            $response = [
+                'success' => true,
+                'message' => 'สร้างข้อมูลสัตว์เลี้ยงเรียบร้อย',
+                'reload' => true,
+            ];
+            return $this->response->setJSON($response);
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'โปรดอัพโหลดภาพ',
+                'reload' => false,
+            ];
+            return $this->response->setJSON($response);
+        }
     }
 }

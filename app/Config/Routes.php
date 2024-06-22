@@ -21,7 +21,9 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 
 // Default route
 $routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    $routes->get('', 'ReviewDataController::index');
+    // $routes->get('', 'ReviewDataController::index');
+    $routes->get('', 'HomePage::index');
+
 });
 
 // Grouped routes with a common namespace
@@ -56,7 +58,7 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->get('animal/getdata/(:num)', 'ServiceDataController::getData_animal/$1'); //getdata animal
     $routes->get('animal/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_animal/$1/$2'); //change status animal
     $routes->get('animal/delete/(:num)/(:segment)', 'ServiceDataController::delete_animal/$1/$2'); //delete animal
-    $routes->post('animal/create/(:num)', 'ServiceDataController::create_animal/$1'); //create animal
+    $routes->post('animal/create/(:num)', ' ServiceDataController::create_animal/$1'); //create animal
     $routes->post('animal/update/(:num)/(:segment)', 'ServiceDataController::update_animal/$1/$2'); //update animal
 
 });
