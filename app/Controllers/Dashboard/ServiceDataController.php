@@ -215,7 +215,7 @@ class ServiceDataController extends BaseController
             }
 
             $image->move($target_dir, $imageName);
-            $data_service = [
+            $data_animal = [
                 'name_pet' => $this->request->getVar('name_pet'),
                 'breed' => $this->request->getVar('breed'),
                 'gender' => $this->request->getVar('gender'),
@@ -231,7 +231,7 @@ class ServiceDataController extends BaseController
                 'id_service_header' => $id_service_header
             ];
 
-            $this->ServiceHeaderModel->insert((object) $data_service);
+            $this->Service_Content_Buy_SaleModel->insert((object) $data_animal);
             $response = [
                 'success' => true,
                 'message' => 'สร้างข้อมูลสัตว์เลี้ยงเรียบร้อย',
@@ -246,5 +246,73 @@ class ServiceDataController extends BaseController
             ];
             return $this->response->setJSON($response);
         }
+    }
+
+    //- edit data service --//
+    public function update_animal($id_service_content_buy_sale, $path_image_old)
+    {
+        $data_animal = [
+            'name_pet' => $this->request->getVar('name_pet'),
+            'breed' => $this->request->getVar('breed'),
+            'gender' => $this->request->getVar('gender'),
+            'age' => $this->request->getVar('age'),
+            'color' => $this->request->getVar('color'),
+            'characteristics' => $this->request->getVar('characteristics'),
+            'vaccination_history' => $this->request->getVar('vaccination_history'),
+            'price' => $this->request->getVar('price'),
+            'create_date' => date('Y-m-d H:i:s'),
+        ];
+
+        $target_dir = ROOTPATH . 'dist/img/animal/';
+        $image = $this->request->getFile('upload_image');
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageName = $image->getName();
+            if (file_exists($target_dir . $imageName)) {
+                $imageName = $image->getRandomName();
+            }
+            $image->move($target_dir, $imageName);
+            $data_animal['image_path'] = $imageName;
+
+            if (is_file($target_dir . $path_image_old)) {
+                unlink($target_dir . $path_image_old);
+            }
+        }
+
+        $this->Service_Content_Buy_SaleModel->update($id_service_content_buy_sale, (object) $data_animal);
+        $response = [
+            'success' => true,
+            'message' => 'แก้ไขข้อมูลสัตว์เลี้ยงเรียบร้อย',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- change status animal --//
+    public function change_status_animal($id_service_content_buy_sale, $status)
+    {
+        $this->Service_Content_Buy_SaleModel->update($id_service_content_buy_sale, (object)[
+            'status' => $status
+        ]);
+        $response = [
+            'success' => true,
+            'message' => 'เปลี่ยนสถานะสําเร็จ',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- delete animal --//
+    public function delete_animal($id_service_content_buy_sale, $path_image)
+    {
+        $this->Service_Content_Buy_SaleModel->delete($id_service_content_buy_sale);
+        if (file_exists(ROOTPATH . 'dist/img/animal/' . $path_image)) {
+            unlink(ROOTPATH . 'dist/img/animal/' . $path_image);
+        }
+        $response = [
+            'success' => true,
+            'message' => 'ลบข้อมูลสัตว์เลี้ยงเรียบร้อย',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
     }
 }

@@ -297,14 +297,14 @@
         if (lang == 'th') {
             lang = 'en';
             document.getElementById("header_about").innerHTML = '<strong>เกี่ยวกับ <span style="color: #FAD046;">เรา</span></strong>';
-            document.getElementById("content_about").innerHTML = "<?= $about_page['1']['detail_page'] ?>";
+            document.getElementById("content_about").innerHTML = <?= json_encode($about_page['1']['detail_page']); ?>;
             document.getElementById("image_about_img").src = '<?= base_url('dist/img/about-team/' . $about_page['1']['image_page_path']) ?>';
             document.getElementById("image_about").href = '<?= base_url('dist/img/about-team/' . $about_page['1']['image_page_path']) ?>';
 
         } else {
             lang = 'th';
             document.getElementById("header_about").innerHTML = '<strong>เกี่ยวกับ <span style="color: #FAD046;">เรา</span></strong>';
-            document.getElementById("content_about").innerHTML = "<?= $about_page['0']['detail_page'] ?>";
+            document.getElementById("content_about").innerHTML = <?= json_encode($about_page['0']['detail_page']); ?>;
             document.getElementById("image_about_img").src = '<?= base_url('dist/img/about-team/' . $about_page['0']['image_page_path']) ?>';
             document.getElementById("image_about").href = '<?= base_url('dist/img/about-team/' . $about_page['0']['image_page_path']) ?>';
         }
@@ -320,12 +320,12 @@
         offcanvas.classList.remove('closehalf');
 
         if (action === 'new_open_en') {
-            $('#summernote').summernote('code', "<?= $about_page['1']['detail_page'] ?>");
+            $('#summernote').summernote('code', <?= json_encode($about_page['1']['detail_page']); ?>);
             lang = 'th';
             switchLanguage();
             removeUpload();
         } else if (action === 'new_open_th') {
-            $('#summernote').summernote('code', "<?= $about_page['0']['detail_page'] ?>");
+            $('#summernote').summernote('code', <?= json_encode($about_page['0']['detail_page']); ?>);
             lang = 'en';
             switchLanguage();
             removeUpload();
