@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers\FrontPage;
 
 use App\Controllers\BaseController;
 
-class HomePage extends BaseController
+class ContactPage extends BaseController
 {
     protected $uri_menu;
     public function __construct()
@@ -26,7 +26,7 @@ class HomePage extends BaseController
     {
         $data['uri_menu'] = $this->uri_menu;
         echo view('layout/header');
-        echo view('dashboard/public_dashboard/homepage');
-        echo view('layout/footer');
+        echo view('front_page/contactpage');
+        // echo view('layout/footer');
     }
 }

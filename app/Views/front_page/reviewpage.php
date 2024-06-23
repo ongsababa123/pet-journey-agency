@@ -124,10 +124,34 @@ $reviews = [
             width: 180px;
         }
 
-        .feetpet-icon {
+        .feetpet-icon1 {
             position: absolute;
             top: 600px;
             left: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon2 {
+            position: absolute;
+            top: 1420px;
+            right: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon3 {
+            position: absolute;
+            top: 2000px;
+            left: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon4 {
+            position: absolute;
+            top: 2600px;
+            right: 37px;
             z-index: 1;
             width: 100px;
         }
@@ -152,7 +176,19 @@ $reviews = [
                 font-size: 12px;
             }
 
-            .feetpet-icon {
+            .feetpet-icon1 {
+                display: none;
+            }
+
+            .feetpet-icon2 {
+                display: none;
+            }
+
+            .feetpet-icon3 {
+                display: none;
+            }
+
+            .feetpet-icon4 {
                 display: none;
             }
         }
@@ -267,7 +303,7 @@ $reviews = [
         .layout-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(5, 200px); /* Adjusted to fit new boxes */
+            grid-template-rows: repeat(7, 200px);
             gap: 10px;
             margin-top: 50px;
         }
@@ -279,67 +315,251 @@ $reviews = [
             background-color: #ccc;
         }
 
-        .box1 { grid-column: span 2; grid-row: span 2; }
-        .box2 { grid-column: span 2; grid-row: span 1; }
-        .box3 { grid-column: span 1; grid-row: span 1; }
-        .box4 { grid-column: span 1; grid-row: span 2; }
-        .box5 { grid-column: span 1; grid-row: span 2; }
-        .box6 { grid-column: span 1; grid-row: span 1; }
-        .box7 { grid-column: span 1; grid-row: span 1; }
-        .box8 { grid-column: span 1; grid-row: span 1; }
-        .box9 { grid-column: span 2; grid-row: span 1; }
-        .box10 { grid-column: span 1; grid-row: span 1; }
-        .box11 { grid-column: span 1; grid-row: span 1; }
-        .box12 { grid-column: span 1; grid-row: span 1; }
-        .box13 { grid-column: span 2; grid-row: span 2; } 
-        .box14 { grid-column: span 2; grid-row: span 1; } 
-        .box15 { grid-column: span 1; grid-row: span 1; } 
-        .box16 { grid-column: span 1; grid-row: span 1; } 
+        .box1 {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .box2 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box3 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box4 {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .box5 {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .box6 {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .box7 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box8 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box9 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box10 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box11 {
+            grid-column: span 2;
+            grid-row: span 3;
+        }
+
+        .box12 {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .box13 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .box14 {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .box15 {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
 
         @media (max-width: 991.98px) {
             .layout-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(8, 200px); /* Adjusted to fit new boxes */
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(7, 115px);
             }
-            .box1 { grid-column: span 2; grid-row: span 1; }
-            .box2 { grid-column: span 2; grid-row: span 1; }
-            .box3 { grid-column: span 1; grid-row: span 1; }
-            .box4 { grid-column: span 1; grid-row: span 1; }
-            .box5 { grid-column: span 2; grid-row: span 1; }
-            .box6 { grid-column: span 1; grid-row: span 1; }
-            .box7 { grid-column: span 1; grid-row: span 1; }
-            .box8 { grid-column: span 2; grid-row: span 1; }
-            .box9 { grid-column: span 2; grid-row: span 1; }
-            .box10 { grid-column: span 1; grid-row: span 1; }
-            .box11 { grid-column: span 1; grid-row: span 1; }
-            .box12 { grid-column: span 2; grid-row: span 1; }
-            .box13 { grid-column: span 2; grid-row: span 1; } 
-            .box14 { grid-column: span 2; grid-row: span 1; } 
-            .box15 { grid-column: span 1; grid-row: span 1; } 
-            .box16 { grid-column: span 1; grid-row: span 1; } 
+
+            .box1 {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .box2 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box3 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box4 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box5 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box6 {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .box7 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box8 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box9 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box10 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box11 {
+                grid-column: span 2;
+                grid-row: span 3;
+            }
+
+            .box12 {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .box13 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box14 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box15 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
         }
 
         @media (max-width: 575.98px) {
             .layout-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(16, 200px); /* Adjusted to fit new boxes */
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(7, 70px);
             }
-            .box1 { grid-column: span 1; grid-row: span 1; }
-            .box2 { grid-column: span 1; grid-row: span 1; }
-            .box3 { grid-column: span 1; grid-row: span 1; }
-            .box4 { grid-column: span 1; grid-row: span 1; }
-            .box5 { grid-column: span 1; grid-row: span 1; }
-            .box6 { grid-column: span 1; grid-row: span 1; }
-            .box7 { grid-column: span 1; grid-row: span 1; }
-            .box8 { grid-column: span 1; grid-row: span 1; }
-            .box9 { grid-column: span 1; grid-row: span 1; }
-            .box10 { grid-column: span 1; grid-row: span 1; }
-            .box11 { grid-column: span 1; grid-row: span 1; }
-            .box12 { grid-column: span 1; grid-row: span 1; }
-            .box13 { grid-column: span 1; grid-row: span 1; } 
-            .box14 { grid-column: span 1; grid-row: span 1; } 
-            .box15 { grid-column: span 1; grid-row: span 1; } 
-            .box16 { grid-column: span 1; grid-row: span 1; } 
+
+            .box1 {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .box2 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box3 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box4 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box5 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box6 {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .box7 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box8 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box9 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box10 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box11 {
+                grid-column: span 2;
+                grid-row: span 3;
+            }
+
+            .box12 {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .box13 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .box14 {
+                grid-column: span 1;
+                grid-row: span 2;
+            }
+
+            .box15 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        hr.custom-hr {
+            border: none;
+            height: 2px;
+            background-color: #002157;
+            width: 50%;
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -396,15 +616,15 @@ $reviews = [
                 </a>
             </div>
             <img class="dog-icon" src="<?= base_url('dist/img/dog1.png') ?>" width="200px" style="margin-left: 7px;">
-            <img class="feetpet-icon" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+            <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
         </div>
     </section>
-
+    <hr class="custom-hr">
     <!-- sec team's work -->
     <section>
         <div class="container mt-5">
             <h3 class="d-flex p-2" style="color: #23456B; font-weight: 600;">
-                <div style="color: #FFB629;">ผลงาน</div>
+                <div style="color: #0198B4;">ผลงาน</div>
                 การทำงานของทีม
             </h3>
             <div class="layout-grid">
@@ -426,6 +646,9 @@ $reviews = [
                 <div class="layout-box box16"></div>
             </div>
         </div>
+        <img class="feetpet-icon2" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+        <img class="feetpet-icon3" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+        <img class="feetpet-icon4" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
     </section>
 
     <!-- Scripts -->
@@ -436,7 +659,7 @@ $reviews = [
     <!-- reviews our customers -->
     <script>
         $(document).ready(function() {
-            const reviewsPerClick = 4; // จำนวนรีวิวที่จะเพิ่มเมื่อกดปุ่ม 'รีวิวเพิ่มเติม'
+            const reviewsPerClick = 4;
 
             $('#load-more').click(function() {
                 console.log('load more')
@@ -452,7 +675,7 @@ $reviews = [
                 }
             });
 
-            const reviewsPerClickMobile = 3; // จำนวนรีวิวที่จะเพิ่มเมื่อกดปุ่ม 'รีวิวเพิ่มเติม'
+            const reviewsPerClickMobile = 3;
 
             $('#load-more-mobile').click(function() {
                 console.log('load more mobile')

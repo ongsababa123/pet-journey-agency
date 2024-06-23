@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers\FrontPage;
 
 use App\Controllers\BaseController;
 
@@ -26,7 +26,7 @@ class ReviewPage extends BaseController
     {
         $data['uri_menu'] = $this->uri_menu;
         echo view('layout/header');
-        echo view('dashboard/public_dashboard/reviewpage');
+        echo view('front_page/reviewpage');
         echo view('layout/footer');
     }
 }

@@ -26,14 +26,19 @@ $routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($rou
 
 // Grouped routes with a common namespace
 $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    $routes->get('homepage', 'HomePage::index');
-    $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('homepage/cover', 'HomePage_edit_cover::index');
     $routes->get('homepage/about', 'HomePage_edit_about::index');
     $routes->get('homepage/service', 'HomePage_edit_service::index');
     $routes->get('homepage/review', 'HomePage_edit_review::index');
     $routes->get('homepage/contact', 'HomePage_edit_contact::index');
 });
+
+$routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
+    $routes->get('homepage', 'HomePage::index');
+    $routes->get('reviewpage', 'ReviewPage::index');
+    $routes->get('contactpage', 'ContactPage::index');
+});
+
 
 
 

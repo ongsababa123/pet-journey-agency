@@ -340,8 +340,8 @@ $services_json = json_encode($servicesdata);
         }
 
         /* Our Service Section */
-                /* Review Box Styles */
-                .review-section {
+        /* Review Box Styles */
+        .review-section {
             padding: 50px 0;
             background-color: #fff;
             text-align: center;
@@ -504,8 +504,56 @@ $services_json = json_encode($servicesdata);
             transform: translateY(-50%);
         }
 
+        .feetpet-icon1 {
+            position: absolute;
+            top: 600px;
+            left: 37px;
+            z-index: 1;
+            width: 100px;
+        }
 
-        @media (max-width: 1200px) {}
+        .feetpet-icon2 {
+            position: absolute;
+            top: 1420px;
+            right: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon3 {
+            position: absolute;
+            top: 2300px;
+            left: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon4 {
+            position: absolute;
+            top: 2750px;
+            right: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        @media (max-width: 1300px) {
+
+            .feetpet-icon1 {
+                display: none;
+            }
+
+            .feetpet-icon2 {
+                display: none;
+            }
+
+            .feetpet-icon3 {
+                display: none;
+            }
+
+            .feetpet-icon4 {
+                display: none;
+            }
+        }
 
         @media (max-width: 991.98px) {
             .our-service-title h2 {
@@ -679,7 +727,7 @@ $services_json = json_encode($servicesdata);
             <h2>REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
-        <?php include 'app\Views\dashboard\public_dashboard\reviewhomepage.php'; ?>
+        <?php include 'app\Views\front_page\reviewhomepage.php'; ?>
     </section>
 
     <!-- sec partner -->
@@ -822,6 +870,10 @@ $services_json = json_encode($servicesdata);
         </div>
         </div>
     </section>
+    <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+    <img class="feetpet-icon2" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+    <img class="feetpet-icon3" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
+    <img class="feetpet-icon4" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -831,7 +883,7 @@ $services_json = json_encode($servicesdata);
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
-                threshold: 0.1
+                threshold: 0.3
             };
 
             const observerCallback = (entries, observer) => {
@@ -866,18 +918,16 @@ $services_json = json_encode($servicesdata);
             });
         });
     </script>
+    <!-- service -->
     <script>
-        // รับข้อมูลจาก PHP
         const servicesData = <?php echo $services_json; ?>;
 
-        // แปลงข้อมูลเป็นรูปแบบที่ต้องการ
         const services = Object.keys(servicesData).map((key, index) => ({
             id: key,
-            value: key.replace('service', 'value'), // สมมติว่า value เป็น value1, value2, ...
+            value: key.replace('service', 'value'),
             label: servicesData[key]
         }));
 
-        // ฟังก์ชันสร้าง checkboxes
         function generateCheckboxes() {
             const container = document.getElementById('services-container');
             services.forEach(service => {
@@ -902,13 +952,12 @@ $services_json = json_encode($servicesdata);
             });
         }
 
-        // เรียกฟังก์ชันสร้าง checkboxes
         generateCheckboxes();
     </script>
 
     <script>
         let currentPagePoint = 1;
-        const totalPages = 3; // ตั้งค่าจำนวนหน้าทั้งหมดที่นี่
+        const totalPages = 3;
         let xDown = null;
 
         function updatePageIndicators() {
@@ -929,7 +978,6 @@ $services_json = json_encode($servicesdata);
             document.getElementById('prev-btn').style.visibility = currentPagePoint === 1 ? 'hidden' : 'visible';
             document.getElementById('next-btn').style.visibility = currentPagePoint === totalPages ? 'hidden' : 'visible';
 
-            // เพิ่มตรรกะในการดึงและแสดงเนื้อหาหน้าใหม่ที่นี่
             console.log('หน้าปัจจุบัน:', currentPagePoint);
 
             updatePageIndicators();
@@ -938,6 +986,8 @@ $services_json = json_encode($servicesdata);
         document.getElementById('prev-btn').style.visibility = 'hidden';
         updatePageIndicators();
     </script>
+
+    <!-- ดึงข้อมูลแต่ละประเทศ -->
     <script>
         async function fetchCountries() {
             const response = await fetch('<?= base_url('public/data/countries.json'); ?>');
