@@ -20,9 +20,10 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 
 // Default route
-$routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    // $routes->get('', 'ReviewDataController::index');
-    $routes->get('', 'HomePage::index');
+$routes->group('', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
+    $routes->get('homepage', 'HomePage::index');
+    $routes->get('reviewpage', 'ReviewPage::index');
+    $routes->get('contactpage', 'ContactPage::index');
 });
 
 // Grouped routes with a common namespace
@@ -101,6 +102,12 @@ $routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboar
     $routes->post('aboutmore/update/(:num)/(:segment)', 'AboutPage_MoreController::update_about_more/$1/$2'); //update about more
 
 });
+
+
+
+
+
+
 
 
 // Another group with a different namespace
