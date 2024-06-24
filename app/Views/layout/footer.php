@@ -47,10 +47,44 @@
 
         .footer .pic-footer {
             position: absolute;
-            top: -350px;
+            top: -370px;
             left: 50%;
             transform: translateX(-50%);
             height: 400px;
+        }
+
+        /* contact-info */
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            flex-wrap: wrap;
+        }
+
+        .contact-info>div {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin: 10px 20px;
+        }
+
+        .contact-info>div i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #fff;
+            background-color: #00A4E4;
+            border-radius: 50%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1200px) {
+            .contact-info {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -94,6 +128,11 @@
         <img class="pic-footer" src="<?= base_url('dist/img/footerpic.png') ?>" alt="Logo">
         <div>
             <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Logo">
+        </div>
+        <div class="contact-info">
+            <div><i class="fas fa-clock"></i> <span>Mon - Sat 9.00 - 18.00 <br> Sunday Closed</span></div>
+            <div><i class="fas fa-envelope"></i> <span>Email <br> contact@logistics.com</span></div>
+            <div><i class="fas fa-phone"></i> <span>Call Us <br> (00) 112 365 489</span></div>
         </div>
         <div class="social-icons">
             <a href="#"><i class="fab fa-instagram"></i></a>
