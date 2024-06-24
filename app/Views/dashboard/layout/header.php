@@ -373,6 +373,14 @@ function check_menu_state($uri_menu, $input, $type)
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/performanceteam') ?>" class="nav-link <?= check_menu_state($uri_menu, 'performanceteam', 'active_display') ?>">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    ข้อมูลผลงานทีม
+                                </p>
+                            </a>
+                        </li>
                         <div>
                             <hr>
                         </div>
@@ -383,12 +391,6 @@ function check_menu_state($uri_menu, $input, $type)
                                 <p>
                                     ข้อมูลเสนอราคา
                                 </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ข้อมูลลูกค้า</p>
                             </a>
                         </li>
                     </ul>

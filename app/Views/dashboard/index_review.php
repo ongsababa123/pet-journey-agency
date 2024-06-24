@@ -57,8 +57,8 @@
                                     <tr>
                                         <th width="6%">ลําดับ</th>
                                         <th width="30%">รูปภาพ</th>
-                                        <th width="30%">คำอธิบาย</th>
-                                        <th>ประเภทภาษา</th>
+                                        <th width="25%">คำอธิบาย (ภาษาไทย)</th>
+                                        <th width="25%">คำอธิบาย (ภาษาอังกฤษ)</th>
                                         <th>สถานะ</th>
                                         <th width="10%">การจัดการ</th>
                                     </tr>
@@ -106,17 +106,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="input_detail_comment">คำอธิบาย</label>
-                                <textarea type="text" id="input_detail_comment" name="input_detail_comment" class="form-control" rows="4"></textarea>
+                                <label for="detail_comment_th">คำอธิบาย (ภาษาไทย)</label>
+                                <textarea type="text" id="detail_comment_th" name="detail_comment_th" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="select_language">ประเภทภาษา</label>
-                                <select class="form-control" id="select_language" name="select_language" required>
-                                    <option value="th">ไทย</option>
-                                    <option value="en">อังกฤษ</option>
-                                </select>
+                                <label for="detail_comment_en">คำอธิบาย (ภาษาอังกฤษ)</label>
+                                <textarea type="text" id="detail_comment_en" name="detail_comment_en" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
                     </div>
@@ -139,8 +136,8 @@
 
     function load_modal(action, data_encode) {
         $('#input_image').val('');
-        $('#input_detail_comment').val('');
-        $('#select_language').val('th');
+        $('#detail_comment_th').val('');
+        $('#detail_comment_en').val('');
         removeUpload();
         switch (action) {
             case 'Create':
@@ -151,7 +148,8 @@
             case 'Update':
                 $("#modal-title").text('แก้ไขรีวิว');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#input_detail_comment').val(data.detail_comment);
+                $('#detail_comment_th').val(data.detail_comment_th);
+                $('#detail_comment_en').val(data.detail_comment_en);
                 $('#select_language').val(data.language);
                 $('#url_route').val('dashboard/review/update/' + data.id_review + '/' + data.image_path);
                 check_action = 'Update';
@@ -226,11 +224,11 @@
                         }
                     },
                     {
-                        'data': 'detail_comment',
+                        'data': 'detail_comment_th',
                         'class': 'text-center',
                     },
                     {
-                        'data': 'language',
+                        'data': 'detail_comment_en',
                         'class': 'text-center',
                     },
                     {

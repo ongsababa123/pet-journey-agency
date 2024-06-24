@@ -59,7 +59,7 @@
                                         <th width="6%">ลําดับ</th>
                                         <th width="30%">รูปภาพ</th>
                                         <th width="20%">หัวข้อเซอร์วิส ไทย</th>
-                                        <th>ประเภทภาษา</th>
+                                        <th width="20%">หัวข้อเซอร์วิส อังกฤษ</th>
                                         <th>สถานะ</th>
                                         <th>การจัดการ</th>
                                         <th>แก้ไขหน้าเพจ</th>
@@ -109,17 +109,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="header_service_name">หัวข้อเซอร์วิส</label>
-                                <input type="text" id="header_service_name" name="header_service_name" class="form-control" required>
+                                <label for="header_service_name_th">หัวข้อเซอร์วิส ภาษาไทย</label>
+                                <input type="text" id="header_service_name_th" name="header_service_name_th" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="select_language">ประเภทภาษา</label>
-                                <select class="form-control" id="select_language" name="select_language" required>
-                                    <option value="th">ไทย</option>
-                                    <option value="en">อังกฤษ</option>
-                                </select>
+                                <label for="header_service_name_en">หัวข้อเซอร์วิส ภาษาอังกฤษ</label>
+                                <input type="text" id="header_service_name_en" name="header_service_name_en" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -142,8 +139,8 @@
 
     function load_modal(action, data_encode) {
         $('#upload_image').val('');
-        $('#header_service_name').val('');
-        $('#select_language').val('th');
+        $('#header_service_name_th').val('');
+        $('#header_service_name_en').val('');
         removeUpload();
         switch (action) {
             case 'Create':
@@ -154,8 +151,8 @@
             case 'Update':
                 $("#modal-title").text('ข้อมูลเซอร์วิส');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#header_service_name').val(data.header_service_name);
-                $('#select_language').val(data.language);
+                $('#header_service_name_th').val(data.header_service_name_th);
+                $('#header_service_name_en').val(data.header_service_name_en);
                 $('#url_route').val('dashboard/service/update/' + data.id_service_header + '/' + data.image_path);
                 check_action = 'Update';
                 break;
@@ -205,7 +202,7 @@
                     if (daData.length == 0) {
                         $('#example2 tbody').html(`
                         <tr>
-                            <td colspan="6" class="text-center">
+                            <td colspan="7" class="text-center">
                             ไม่พบข้อมูล
                             </td>
                         </tr>`);
@@ -229,13 +226,13 @@
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return data.header_service_name;
+                            return data.header_service_name_th;
                         }
                     }, {
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return data.language;
+                            return data.header_service_name_en;
                         }
                     }, {
                         'data': null,
@@ -261,10 +258,16 @@
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            if (data.id_service_header == 1 || data.id_service_header == 2) {
-                                return `<a href="<?= base_url('dashboard/animal/')?>${data.id_service_header}" class="btn btn-info">ข้อมูลสัตว์เลี้ยง</a>`;
+                            if (data.id_service_header == 1) {
+                                return `<a href="<?= base_url('dashboard/animal/') ?>${data.id_service_header}/th" class="btn btn-info btn-sm">ข้อมูลสัตว์เลี้ยงไทย</a>
+                                        <br>
+                                        <br>
+                                        <a href="<?= base_url('dashboard/animal/') ?>${data.id_service_header}/en" class="btn btn-info btn-sm">ข้อมูลสัตว์เลี้ยงอังกฤษ</a>`;
                             } else {
-                                return `<a href="<?= base_url('dashboard/service_content/')?>${data.id_service_header}" class="btn btn-info"><i class="fas fa-newspaper"></i></a>`;
+                                return `<a href="<?= base_url('dashboard/service_content/') ?>${data.id_service_header}/th" class="btn btn-info">หน้าเพจ ภาษาไทย</i></a>
+                                        <br>
+                                        <br>
+                                        <a href="<?= base_url('dashboard/service_content/') ?>${data.id_service_header}/en" class="btn btn-info">หน้าเพจ ภาษาอังกฤษ</i></a>`;
                             }
                         }
                     },

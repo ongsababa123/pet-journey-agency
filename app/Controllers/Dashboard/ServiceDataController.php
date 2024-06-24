@@ -55,7 +55,8 @@ class ServiceDataController extends BaseController
 
         if (!empty($searchValue)) {
             $this->ServiceHeaderModel->groupStart()
-                ->like('header_service_name', $searchValue)
+                ->like('header_service_name_th', $searchValue)
+                ->like('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
         $totalRecords = $this->ServiceHeaderModel->countAllResults();
@@ -63,7 +64,8 @@ class ServiceDataController extends BaseController
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->ServiceHeaderModel->groupStart()
-                ->like('header_service_name', $searchValue)
+                ->like('header_service_name_th', $searchValue)
+                ->like('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
         $data = $this->ServiceHeaderModel->findAll($limit, $start);
@@ -94,7 +96,8 @@ class ServiceDataController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_service = [
-                'header_service_name' => $this->request->getVar('header_service_name'),
+                'header_service_name_th' => $this->request->getVar('header_service_name_th'),
+                'header_service_name_en' => $this->request->getVar('header_service_name_en'),
                 'image_path' => $imageName,
                 'status' => 0,
                 'language' => $this->request->getVar('select_language'),
@@ -121,8 +124,8 @@ class ServiceDataController extends BaseController
     public function update_service($id_service_header, $path_image_old)
     {
         $data_service = [
-            'header_service_name' => $this->request->getVar('header_service_name'),
-            'language' => $this->request->getVar('select_language'),
+            'header_service_name_th' => $this->request->getVar('header_service_name_th'),
+            'header_service_name_en' => $this->request->getVar('header_service_name_en'),
         ];
 
         $target_dir = ROOTPATH . 'dist/img/service/';
@@ -165,17 +168,18 @@ class ServiceDataController extends BaseController
 
     //------------------------------ service_content_buy_sale --------------------------//
 
-    public function index_service_content_buy_sale($id_service_header)
+    public function index_service_content_buy_sale($id_service_header , $language)
     {
         $data['uri_menu'] = $this->uri_menu;
         $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
+        $data_service['data_service'] = array_merge($data_service['data_service'], ['language' => $language]);
         echo view('dashboard/layout/header', $data);
         echo view('dashboard/service/index_content_buy_sale', $data_service);
         echo view('dashboard/layout/footer');
     }
 
     //-- get data animal --//
-    public function getData_animal($id_service_header)
+    public function getData_animal($id_service_header , $language)
     {
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
@@ -188,7 +192,7 @@ class ServiceDataController extends BaseController
                 ->like('breed', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->countAllResults();
+        $totalRecords = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->where('language', $language)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
@@ -197,7 +201,7 @@ class ServiceDataController extends BaseController
                 ->like('breed', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->findAll($limit, $start);
+        $data = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->where('language', $language)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -328,11 +332,12 @@ class ServiceDataController extends BaseController
     //------------------------------ service_content --------------------------//
     //-- index service content --//
 
-    public function index_service_content($id_service_header)
+    public function index_service_content($id_service_header , $language)
     {
         $data['uri_menu'] = $this->uri_menu;
         $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
-        $data_service['data_service_content'] = $this->Service_Content->where('id_service_header', $id_service_header)->first();
+        $data_service['data_service'] = array_merge($data_service['data_service'], ['language' => $language]);
+        $data_service['data_service_content'] = $this->Service_Content->where('id_service_header', $id_service_header)->where('language', $language)->first();
 
         echo view('dashboard/layout/header', $data);
         echo view('dashboard/service/index_content', $data_service);

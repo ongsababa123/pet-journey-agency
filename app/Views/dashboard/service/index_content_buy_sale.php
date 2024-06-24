@@ -17,12 +17,12 @@
                         <div class="card-header" style="border-bottom: none">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <h1 class="m-0"><strong><?= $data_service['header_service_name']  . ' ' . $data_service['language'] ?></strong></h1>
+                                    <h1 class="m-0"><strong><?= $data_service['header_service_name_th']  . ' ' . $data_service['language'] ?></strong></h1>
                                 </div><!-- /.col -->
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name'] . ' ' . $data_service['language'] ?></li>
+                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name_th'] . ' ' . $data_service['language'] ?></li>
                                         <li class="breadcrumb-item active">ข้อมูลสัตว์เลี้ยง</li>
                                     </ol>
                                 </div><!-- /.col -->
@@ -223,7 +223,7 @@
             $('#example2').DataTable({
                 'serverSide': true,
                 'ajax': {
-                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header']); ?>",
+                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header'] . '/' . $data_service['language']); ?>",
                     'type': 'GET',
                     'dataSrc': 'data',
                 },

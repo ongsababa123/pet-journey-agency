@@ -58,9 +58,10 @@
                                     <tr>
                                         <th>ลำดับ</th>
                                         <th>รูปภาพ</th>
-                                        <th>ชื่อ - นามสกุล</th>
-                                        <th>ตำแหน่ง</th>
-                                        <th>ประเภทภาษา</th>
+                                        <th>ชื่อ - นามสกุล (ภาษาไทย)</th>
+                                        <th>ตำแหน่ง (ภาษาไทย)</th>
+                                        <th>ชื่อ - นามสกุล (ภาษาอังกฤษ)</th>
+                                        <th>ตำแหน่ง (ภาษาอังกฤษ)</th>
                                         <th>สถานะ</th>
                                         <th>การจัดการ</th>
                                     </tr>
@@ -108,23 +109,28 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="inputName">ชื่อ - นามสกุล</label>
-                                <input type="text" id="name_last_name" name="name_last_name" class="form-control" required>
+                                <label for="name_last_name_th">ชื่อ - นามสกุล (ภาษาไทย)</label>
+                                <input type="text" id="name_last_name_th" name="name_last_name_th" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="inputName">ตำแหน่ง</label>
-                                <input type="text" id="position" name="position" class="form-control" required>
+                                <label for="position_th">ตำแหน่ง (ภาษาไทย)</label>
+                                <input type="text" id="position_th" name="position_th" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="name_last_name_en">ชื่อ - นามสกุล (ภาษาอังกฤษ)</label>
+                                <input type="text" id="name_last_name_en" name="name_last_name_en" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="inputName">ประเภทภาษา</label>
-                                <select class="form-control" id="select_language" name="select_language" required>
-                                    <option value="th">ไทย</option>
-                                    <option value="en">อังกฤษ</option>
-                                </select>
+                                <label for="position_en">ตำแหน่ง (ภาษาอังกฤษ)</label>
+                                <input type="text" id="position_en" name="position_en" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -147,9 +153,10 @@
 
     function load_modal(action, data_encode) {
         $('#upload_image').val('');
-        $('#name_last_name').val('');
-        $('#position').val('');
-        $('#select_language').val('th');
+        $('#name_last_name_th').val('');
+        $('#position_th').val('');
+        $('#name_last_name_en').val('');
+        $('#position_en').val('');
         removeUpload();
         switch (action) {
             case 'Create':
@@ -160,9 +167,10 @@
             case 'Update':
                 $("#modal-title").text('ข้อมูลทีม');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#name_last_name').val(data.name_last_name);
-                $('#position').val(data.position);
-                $('#select_language').val(data.language);
+                $('#name_last_name_th').val(data.name_last_name_th);
+                $('#position_th').val(data.position_th);
+                $('#name_last_name_en').val(data.name_last_name_en);
+                $('#position_en').val(data.position_en);
                 $('#url_route').val('dashboard/aboutpage/aboutteam/update/' + data.id_team + '/' + data.image_path);
                 check_action = 'Update';
                 break;
@@ -233,23 +241,17 @@
                                     </a>`;
                         }
                     }, {
-                        'data': null,
+                        'data': 'name_last_name_th',
                         'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.name_last_name;
-                        }
                     }, {
-                        'data': null,
+                        'data': 'position_th',
                         'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.position;
-                        }
                     }, {
-                        'data': null,
+                        'data': 'name_last_name_en',
                         'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.language;
-                        }
+                    }, {
+                        'data': 'position_en',
+                        'class': 'text-center',
                     }, {
                         'data': null,
                         'class': 'text-center',

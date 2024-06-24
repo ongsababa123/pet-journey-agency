@@ -43,8 +43,10 @@ class AboutPage_TeamController extends BaseController
 
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
-                ->like('name_last_name', $searchValue)
-                ->like('position', $searchValue)
+                ->like('name_last_name_th', $searchValue)
+                ->like('position_th', $searchValue)
+                ->like('name_last_name_en', $searchValue)
+                ->like('position_en', $searchValue)
                 ->groupEnd();
         }
         $totalRecords = $this->TeamModel->countAllResults();
@@ -52,8 +54,10 @@ class AboutPage_TeamController extends BaseController
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
-                ->like('name_last_name', $searchValue)
-                ->like('position', $searchValue)
+                ->like('name_last_name_th', $searchValue)
+                ->like('position_th', $searchValue)
+                ->like('name_last_name_en', $searchValue)
+                ->like('position_en', $searchValue)
                 ->groupEnd();
         }
         $data = $this->TeamModel->findAll($limit, $start);
@@ -84,11 +88,12 @@ class AboutPage_TeamController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_team = [
-                'name_last_name' => $this->request->getVar('name_last_name'),
-                'position' => $this->request->getVar('position'),
+                'name_last_name_th' => $this->request->getVar('name_last_name_th'),
+                'position_th' => $this->request->getVar('position_th'),
+                'name_last_name_en' => $this->request->getVar('name_last_name_en'),
+                'position_en' => $this->request->getVar('position_en'),
                 'image_path' => $imageName,
                 'status' => 0,
-                'language' => $this->request->getVar('select_language'),
             ];
 
             $this->TeamModel->insert((object) $data_team);
@@ -112,9 +117,10 @@ class AboutPage_TeamController extends BaseController
     public function update_about_team($id_team, $path_image_old)
     {
         $data_team = [
-            'name_last_name' => $this->request->getVar('name_last_name'),
-            'position' => $this->request->getVar('position'),
-            'language' => $this->request->getVar('select_language'),
+            'name_last_name_th' => $this->request->getVar('name_last_name_th'),
+            'position_th' => $this->request->getVar('position_th'),
+            'name_last_name_en' => $this->request->getVar('name_last_name_en'),
+            'position_en' => $this->request->getVar('position_en'),
         ];
 
         $target_dir = ROOTPATH . 'dist/img/team/';
