@@ -4,16 +4,20 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 use App\Models\QuotationModel;
+use App\Models\ServiceHeaderModel;
 
 class QuotationDataController extends BaseController
 {
     protected $uri_menu;
     protected $QuotationModel;
+    protected $ServiceHeaderModel;
+
 
     public function __construct()
     {
         helper(['form', 'file']);
         $this->QuotationModel = new QuotationModel();
+        $this->ServiceHeaderModel = new ServiceHeaderModel();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -28,8 +32,9 @@ class QuotationDataController extends BaseController
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
+        $data['service_header'] = $this->ServiceHeaderModel->findAll();
         echo view('dashboard/layout/header', $data);
-        echo view('dashboard/index_quotation');
+        echo view('dashboard/index_quotation' , $data);
         echo view('dashboard/layout/footer');
     }
 }

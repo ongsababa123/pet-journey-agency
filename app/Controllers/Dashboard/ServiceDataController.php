@@ -5,18 +5,25 @@ namespace App\Controllers\Dashboard;
 use App\Controllers\BaseController;
 use App\Models\ServiceHeaderModel;
 use App\Models\Service_Content_Buy_SaleModel;
+use App\Models\Service_Content;
+use App\Models\PartnerModel;
 
 class ServiceDataController extends BaseController
 {
     protected $uri_menu;
     protected $ServiceHeaderModel;
     protected $Service_Content_Buy_SaleModel;
+    protected $Service_Content;
+    protected $PartnerModel;
+    
 
     public function __construct()
     {
         helper(['form', 'file']);
         $this->ServiceHeaderModel = new ServiceHeaderModel();
         $this->Service_Content_Buy_SaleModel = new Service_Content_Buy_SaleModel();
+        $this->Service_Content = new Service_Content();
+        $this->PartnerModel = new PartnerModel();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -27,7 +34,9 @@ class ServiceDataController extends BaseController
         $this->uri_menu = $path_parts[count($path_parts) - 2] . '/' . $path_parts[count($path_parts) - 1];
     }
 
+    //------------------------------ header service --------------------------//
     //-- index --//
+
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
@@ -311,6 +320,55 @@ class ServiceDataController extends BaseController
         $response = [
             'success' => true,
             'message' => 'ลบข้อมูลสัตว์เลี้ยงเรียบร้อย',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //------------------------------ service_content --------------------------//
+    //-- index service content --//
+
+    public function index_service_content($id_service_header)
+    {
+        $data['uri_menu'] = $this->uri_menu;
+        $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
+        $data_service['data_service_content'] = $this->Service_Content->where('id_service_header', $id_service_header)->first();
+
+        echo view('dashboard/layout/header', $data);
+        echo view('dashboard/service/index_content', $data_service);
+        echo view('dashboard/layout/footer');
+    }
+
+    //-- create service content --//
+    public function create_service_content($id_service_header)
+    {
+        $data_service_content = [
+            'id_service_header' => $id_service_header,
+            'content' => $this->request->getVar('content'),
+            'language' => $this->request->getVar('select_language'),
+            'id_partner' => $this->request->getVar('partner'),
+        ];
+        $this->Service_Content->insert((object) $data_service_content);
+        $response = [
+            'success' => true,
+            'message' => 'อัพเดทข้อมูลเรียบร้อย',
+            'reload' => true,
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    //-- update service content --//
+    public function update_service_content($id_service_content)
+    {
+        $data_service_content = [
+            'content' => $this->request->getVar('content'),
+            'language' => $this->request->getVar('select_language'),
+            'id_partner' => $this->request->getVar('partner'),
+        ];
+        $this->Service_Content->update($id_service_content, (object) $data_service_content);
+        $response = [
+            'success' => true,
+            'message' => 'อัพเดทข้อมูลเรียบร้อย',
             'reload' => true,
         ];
         return $this->response->setJSON($response);

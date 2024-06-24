@@ -23,7 +23,6 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 $routes->group('/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
     // $routes->get('', 'ReviewDataController::index');
     $routes->get('', 'HomePage::index');
-
 });
 
 // Grouped routes with a common namespace
@@ -39,12 +38,6 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->get('contact', 'ContactDataController::index'); //index contact
     $routes->post('contact/update/(:num)/(:segment)', 'ContactDataController::update_contact/$1/$2'); //update contact
     //------------------------------------------------------------------------------------------------------------------------------------//
-    $routes->get('service', 'ServiceDataController::index');
-    $routes->get('service/getdata', 'ServiceDataController::getData_service'); //get data for service
-    $routes->get('service/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_service/$1/$2'); //change status service
-    $routes->post('service/create', 'ServiceDataController::create_service'); //create service data
-    $routes->post('service/update/(:num)/(:segment)', 'ServiceDataController::update_service/$1/$2'); //update service data
-    //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('partner', 'PartnerDataController::index');
     $routes->get('partner/getdata/(:num)', 'PartnerDataController::getData_partner/$1'); //get data for partner
     $routes->get('partner/changestatus/(:num)/(:num)', 'PartnerDataController::change_status_partner/$1/$2'); //change status partner
@@ -54,12 +47,22 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('quotation', 'QuotationDataController::index');
     //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('service', 'ServiceDataController::index');
+    $routes->get('service/getdata', 'ServiceDataController::getData_service'); //get data for service
+    $routes->get('service/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_service/$1/$2'); //change status service
+    $routes->post('service/create', 'ServiceDataController::create_service'); //create service data
+    $routes->post('service/update/(:num)/(:segment)', 'ServiceDataController::update_service/$1/$2'); //update service data
+    //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('animal/(:num)', 'ServiceDataController::index_service_content_buy_sale/$1'); //index animal
     $routes->get('animal/getdata/(:num)', 'ServiceDataController::getData_animal/$1'); //getdata animal
     $routes->post('animal/create/(:num)', 'ServiceDataController::create_animal/$1'); //create animal
     $routes->post('animal/update/(:num)/(:segment)', 'ServiceDataController::update_animal/$1/$2'); //update animal
     $routes->get('animal/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_animal/$1/$2'); //change status animal
     $routes->get('animal/delete/(:num)/(:segment)', 'ServiceDataController::delete_animal/$1/$2'); //delete animal
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('service_content/(:num)', 'ServiceDataController::index_service_content/$1'); //index service content
+    $routes->post('service_content/update/(:num)', 'ServiceDataController::update_service_content/$1'); //update service content
+    $routes->post('service_content/create/(:num)', 'ServiceDataController::create_service_content/$1'); //create service content
 
 });
 

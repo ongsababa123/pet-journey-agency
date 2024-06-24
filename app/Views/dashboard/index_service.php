@@ -264,7 +264,7 @@
                             if (data.id_service_header == 1 || data.id_service_header == 2) {
                                 return `<a href="<?= base_url('dashboard/animal/')?>${data.id_service_header}" class="btn btn-info">ข้อมูลสัตว์เลี้ยง</a>`;
                             } else {
-                                return `<a href="#" class="btn btn-info"><i class="fas fa-newspaper"></i></a>`;
+                                return `<a href="<?= base_url('dashboard/service_content/')?>${data.id_service_header}" class="btn btn-info"><i class="fas fa-newspaper"></i></a>`;
                             }
                         }
                     },

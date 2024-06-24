@@ -5,6 +5,8 @@
         /* สามารถปรับค่าได้ตามต้องการ */
     }
 </style>
+<link rel="stylesheet" href="<?= base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -111,27 +113,27 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="name_last">ชื่อ-นามสกุล</label>
-                            <input type="text" id="name_last" name="name_last" class="form-control">
+                            <input type="text" id="name_last" name="name_last" class="form-control" placeholder="ระบุชื่อ-นามสกุล">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="phone_number">หมายเลขโทรศัพท์</label>
-                            <input type="text" id="phone_number" name="phone_number" class="form-control">
+                            <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="ระบุหมายเลขโทรศัพท์">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="email">อีเมล์</label>
-                            <input type="text" id="email" name="email" class="form-control">
+                            <input type="text" id="email" name="email" class="form-control" placeholder="ระบุอีเมล">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="name_last">วันเดินทาง</label>
-                            <input type="text" id="name_last" name="name_last" class="form-control">
+                            <label for="travel_date">วันเดินทาง</label>
+                            <input type="date" id="travel_date" name="travel_date" class="form-control" placeholder="เลือกวันเดินทาง">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -166,12 +168,16 @@
                         <strong>เลือกบริการที่ต้องการ</strong>
                     </label>
                     <div class="col-sm-12">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                                <label for="customCheckbox1" class="custom-control-label">บริการนำเข้าและส่งออกสัตว์เลี้ยง</label>
+                        <?php foreach ($service_header as $key => $value) : ?>
+                            <div class="form-group clearfix"> 
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="service_<?= $key ?>" name="service_<?= $key ?>" value="<?= $value['id_service_header'] ?>">
+                                    <label for="service_<?= $key ?>" style="color: grey">
+                                        <?= $value['header_service_name'] ?>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
