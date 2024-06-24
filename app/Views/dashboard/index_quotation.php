@@ -169,7 +169,7 @@
                     </label>
                     <div class="col-sm-12">
                         <?php foreach ($service_header as $key => $value) : ?>
-                            <div class="form-group clearfix"> 
+                            <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
                                     <input type="checkbox" id="service_<?= $key ?>" name="service_<?= $key ?>" value="<?= $value['id_service_header'] ?>">
                                     <label for="service_<?= $key ?>" style="color: grey">
@@ -238,3 +238,33 @@
         });
     });
 </script>
+
+<!-- ดึงข้อมูลแต่ละประเทศ -->
+<script>
+    async function fetchCountries() {
+        const response = await fetch('<?= base_url('public/data/countries.json'); ?>');
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const countries = await response.json();
+        return countries;
+    }
+
+    function populateSelect(elementId, countries, language) {
+        const select = document.getElementById(elementId);
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.text = language === 'en' ? `${country.name_en} (${country.code})` : `${country.name_th} (${country.code})`;
+            select.appendChild(option);
+        });
+    }
+
+    fetchCountries().then(countries => {
+        populateSelect('origin-country', countries, 'th');
+        populateSelect('destination-country', countries, 'th');
+    }).catch(error => {
+        console.error('Failed to fetch countries:', error);
+    });
+</script>
+</body>
