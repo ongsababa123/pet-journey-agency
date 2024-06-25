@@ -28,6 +28,45 @@ $reviews = [
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 ];
+
+$data = [
+    [
+        "box" => 1,
+        "text" => "บริการตรวจสัตว์เลี้ยง",
+        "image" => base_url("dist/img/review_work1.png"),
+        "textColor" => "#ffffff"
+    ],
+    [
+        "box" => 2,
+        "text" => "ทำวัคซีนอย่างมืออาชีพ",
+        "image" => "",
+        "textColor" => "#ffffff",
+        "backgroundColor" => "#FF8B00"
+    ],
+    [
+        "box" => 3,
+        "text" => "",
+        "image" => base_url("dist/img/review_work3.png")
+    ],
+    [
+        "box" => 4,
+        "text" => "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+        "image" => base_url("dist/img/review_work3.png"),
+        "textColor" => "#ffffff"
+    ],
+    [
+        "box" => 5,
+        "text" => "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+        "image" => base_url("dist/img/review_work3.png"),
+        "textColor" => "#ffffff"
+    ],
+    [
+        "box" => 6,
+        "text" => "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+        "image" => base_url("dist/img/review_work3.png"),
+        "textColor" => "#ffffff"
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -313,6 +352,43 @@ $reviews = [
             overflow: hidden;
             transition: all 0.3s ease;
             background-color: #ccc;
+            position: relative;
+        }
+
+        .layout-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .layout-box .text-content {
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .layout-box .text-content-img {
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .layout-box.has-image .text-content {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(27, 59, 93, 0.75) 100%);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
         }
 
         .box1 {
@@ -628,22 +704,23 @@ $reviews = [
                 การทำงานของทีม
             </h3>
             <div class="layout-grid">
-                <div class="layout-box box1"></div>
-                <div class="layout-box box2"></div>
-                <div class="layout-box box3"></div>
-                <div class="layout-box box4"></div>
-                <div class="layout-box box5"></div>
-                <div class="layout-box box6"></div>
-                <div class="layout-box box7"></div>
-                <div class="layout-box box8"></div>
-                <div class="layout-box box9"></div>
-                <div class="layout-box box10"></div>
-                <div class="layout-box box11"></div>
-                <div class="layout-box box12"></div>
-                <div class="layout-box box13"></div>
-                <div class="layout-box box14"></div>
-                <div class="layout-box box15"></div>
-                <div class="layout-box box16"></div>
+                <div class="layout-box box1" id="box-1"></div>
+                <div class="layout-box box2" id="box-2"></div>
+                <div class="layout-box box3" id="box-3"></div>
+                <div class="layout-box box4" id="box-4"></div>
+                <div class="layout-box box5" id="box-5"></div>
+                <div class="layout-box box6" id="box-6"></div>
+                <div class="layout-box box7" id="box-7"></div>
+                <div class="layout-box box8" id="box-8"></div>
+                <div class="layout-box box9" id="box-9"></div>
+                <div class="layout-box box10" id="box-10"></div>
+                <div class="layout-box box11" id="box-11"></div>
+                <div class="layout-box box12" id="box-12"></div>
+                <div class="layout-box box13" id="box-13"></div>
+                <div class="layout-box box14" id="box-14"></div>
+                <div class="layout-box box15" id="box-15"></div>
+                <div class="layout-box box16" id="box-16"></div>
+
             </div>
         </div>
         <img class="feetpet-icon2" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
@@ -690,6 +767,74 @@ $reviews = [
                     $('#load-more-mobile').hide();
                 }
             });
+        });
+    </script>
+
+    <script>
+        const base_url = '<?= base_url(); ?>';
+        const data = [{
+                box: 1,
+                text: "บริการตรวจสัตว์เลี้ยง",
+                image: base_url + "dist/img/review_work1.png",
+                textColor: "#ffffff",
+            },
+            {
+                box: 2,
+                text: "ทำวัคซีนอย่างมืออาชีพ",
+                image: "",
+                textColor: "#ffffff",
+                backgroundColor: "#FFB629"
+            },
+            {
+                box: 3,
+                text: "",
+                image: base_url + "dist/img/review_work3.png"
+            },
+            {
+                box: 4,
+                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+                image: base_url + "dist/img/review_work3.png",
+                textColor: "#ffffff",
+            },
+            {
+                box: 5,
+                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+                image: base_url + "dist/img/review_work3.png",
+                textColor: "#ffffff",
+            },
+            {
+                box: 6,
+                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
+                image: base_url + "dist/img/review_work3.png",
+                textColor: "#ffffff",
+            }
+        ];
+
+        data.forEach(item => {
+            const box = document.getElementById(`box-${item.box}`);
+
+            if (item.image) {
+                const img = document.createElement('img');
+                img.src = item.image;
+                box.appendChild(img);
+                box.classList.add('has-image');
+            }
+
+            if (item.text) {
+                const text = document.createElement('div');
+                text.classList.add('text-content');
+                text.textContent = `“${item.text}”`;
+
+                if (item.textColor) {
+                    text.style.color = item.textColor;
+                }
+
+                if (item.backgroundColor) {
+                    text.style.backgroundColor = item.backgroundColor;
+                }
+
+                box.appendChild(text);
+            }
         });
     </script>
 </body>
