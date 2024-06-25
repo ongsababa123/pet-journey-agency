@@ -73,8 +73,6 @@
             color: #000000;
         }
 
-
-
         .pagination {
             display: flex;
             justify-content: space-between;
@@ -125,15 +123,22 @@
         }
 
         @media (max-width: 1200px) {
-
+            .carousel-item img {
+                height: 300px;
+            }
         }
 
         @media (max-width: 991.98px) {
-         
+            .carousel-item img {
+                height: 250px;
+            }
         }
 
         @media (max-width: 767.98px) {
-            
+            .carousel-item img {
+                height: 200px;
+            }
+
             .pagination {
                 display: none;
             }
