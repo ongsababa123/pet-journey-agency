@@ -10,5 +10,5 @@ class PerformanceTeamModel extends Model
     protected $primaryKey = 'id_team';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['image_path', 'detail_th', 'detail_en', 'status'];
+    protected $allowedFields = ['image_path', 'color_bg', 'color_text', 'detail_th', 'detail_en', 'status', 'type_show'];
 }

@@ -186,7 +186,7 @@
                         <textarea id="summernote" name="text_area_content_about"></textarea>
                     </div>
                     <div class="col-6">
-                        <h3 style="color: white" class="text-center"><strong>อัพโหลดวิดีโอ</strong></h3>
+                        <h3 style="color: white" class="text-center"><strong>อัพโหลดภาพ</strong></h3>
                         <div class="file-upload">
                             <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">เพิ่มรูปภาพ</button>
                             <div class="image-upload-wrap">

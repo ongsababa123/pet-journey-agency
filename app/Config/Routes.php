@@ -70,7 +70,9 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     $routes->post('service_content/update/(:num)', 'ServiceDataController::update_service_content/$1'); //update service content
     $routes->post('service_content/create/(:num)', 'ServiceDataController::create_service_content/$1'); //create service content
     //------------------------------------------------------------------------------------------------------------------------------------//
-    $routes->get('performanceteam', 'PerformanceTeamController::index');
+    $routes->get('performanceteam', 'PerformanceTeamController::index'); //index performance team
+    $routes->post('performanceteam/update/(:num)/(:segment)', 'PerformanceTeamController::update_performance/$1/$2'); //update performance
+
 });
 
 $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage'], function ($routes) {

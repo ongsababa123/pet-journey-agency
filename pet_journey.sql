@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2024 at 12:29 PM
+-- Generation Time: Jun 25, 2024 at 11:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -171,29 +171,30 @@ CREATE TABLE `performance_team_data` (
   `color_text` varchar(100) NOT NULL,
   `detail_th` varchar(100) NOT NULL,
   `detail_en` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `type_show` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `performance_team_data`
 --
 
-INSERT INTO `performance_team_data` (`id_team`, `image_path`, `color_bg`, `color_text`, `detail_th`, `detail_en`, `status`) VALUES
-(1, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(2, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(3, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(4, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(5, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(6, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(7, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(8, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(9, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(10, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(11, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(12, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(13, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(14, 'avatar.png', '', '', 'asdas', 'asdasd', 1),
-(15, 'avatar.png', '', '', 'asdas', 'asdasd', 1);
+INSERT INTO `performance_team_data` (`id_team`, `image_path`, `color_bg`, `color_text`, `detail_th`, `detail_en`, `status`, `type_show`) VALUES
+(1, 'footer.png', '#ffb629', '#ffffff', 'ปปปปปปปปปป', 'asdasdasdasdasd', 1, 3),
+(2, 'contact_pic.png', '#3b3935', '#bb0c0c', 'ไไไไไไฟหกฟหกฟหกฟหกฟห', 'xxxxฟหกฟหกฟหกฟหก', 1, 3),
+(3, 'pexels-christian-heitz-842711.jpg', '#ffb629', '#ffffff', 'asdasd', 'sadasd', 1, 1),
+(4, '1719306250_62e95d2521e30f4fecea.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(5, 'paypal2.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(6, '3bb43251e9f3f81e96cfa0d2aabb1564.jpg', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(7, 'golden_.jpg', '#FFB629', '#ffffff', 'ฟหก', 'asdasd', 1, 1),
+(8, 'photo2.png', '#FFB629', '#ffffff', 'ผปแปผแ', 'asdasd', 1, 1),
+(9, 'logo-pet.png', '#FFB629', '#ffffff', 'ๆไำไๆำ', 'asdasd', 1, 1),
+(10, 'boxed-bg.png', '#FFB629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(11, 'dog1.png', '#FFB629', '#ffffff', 'ปผแผปแผปแผป', 'asdasd', 1, 1),
+(12, 'bfb9c2b7-da69-4203-87ac-a85bfe1d90bd.jpg', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(13, 'download.png', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(14, 'mastercard.png', '#ffb629', '#ffffff', 'หฟกฟหก', 'asdasd', 1, 1),
+(15, 'final-1.jpg', '#ffb629', '#ffffff', 'asdasฟหกฟหกหฟ', 'asdasd', 1, 1);
 
 -- --------------------------------------------------------
 
