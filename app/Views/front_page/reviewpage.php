@@ -361,7 +361,6 @@ $data = [
             object-fit: cover;
         }
 
-
         .layout-box .text-content {
             padding: 10px;
             border-radius: 5px;
@@ -378,17 +377,14 @@ $data = [
             border-radius: 5px;
             text-align: center;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: space-around;
+            align-items: end;
+            width: 100%;
             height: 100%;
-            width: 100%;
-        }
-
-        .layout-box.has-image .text-content {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(27, 59, 93, 0.75) 100%);
-            width: 100%;
             position: absolute;
-            bottom: 0;
+            top: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(27, 59, 93, 0.75) 100%);
+            color: #ffffff;
         }
 
         .box1 {
@@ -546,6 +542,11 @@ $data = [
                 grid-column: span 1;
                 grid-row: span 1;
             }
+
+            .layout-box .text-content,
+            .layout-box .text-content-img {
+                font-size: 9pt;
+            }
         }
 
         @media (max-width: 575.98px) {
@@ -627,6 +628,11 @@ $data = [
             .box15 {
                 grid-column: span 1;
                 grid-row: span 1;
+            }
+
+            .layout-box .text-content,
+            .layout-box .text-content-img {
+                font-size: 6pt;
             }
         }
 
@@ -809,7 +815,6 @@ $data = [
                 textColor: "#ffffff",
             }
         ];
-
         data.forEach(item => {
             const box = document.getElementById(`box-${item.box}`);
 
@@ -820,9 +825,10 @@ $data = [
                 box.classList.add('has-image');
             }
 
+            const textClass = item.image ? 'text-content-img' : 'text-content';
             if (item.text) {
                 const text = document.createElement('div');
-                text.classList.add('text-content');
+                text.classList.add(textClass);
                 text.textContent = `“${item.text}”`;
 
                 if (item.textColor) {

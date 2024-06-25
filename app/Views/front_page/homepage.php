@@ -831,6 +831,13 @@ $services_json = json_encode($servicesdata);
                         </select>
                     </div>
                     <div class="form-group col-md-4">
+                        <div class="d-flex">ประเภทการเดินทาง</div>
+                        <select class="form-control" id="travel-type" name="travel-type">
+                            <option value="">เลือกประเภทการเดินทาง</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
                         <div class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</div>
                         <select class="form-control" id="pet-transport" name="pet-transport">
                             <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>

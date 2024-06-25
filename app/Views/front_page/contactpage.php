@@ -33,6 +33,54 @@
             flex: 1;
             text-align: left;
         }
+
+        .contact-form {
+            background-color: #23456B;
+            background-size: cover;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .contact-form h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-form p {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-form .form-control {
+            margin-bottom: 15px;
+        }
+        .contact-details {
+            padding: 30px;
+        }
+
+        .contact-details-title {
+            display: ruby;
+            font-size: 14pt;
+            margin-bottom: 20px;
+        }
+
+        .contact-details p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-details p i {
+            margin-right: 20px;
+            font-size: 2.3rem;
+        }
+
+        .contact-details img {
+            display: block;
+            margin: 20px auto;
+        }
     </style>
 </head>
 
@@ -42,7 +90,7 @@
         <?php include 'app\Views\layout\slide.php'; ?>
     </section>
 
-    <!-- sec contct -->
+    <!-- sec contact -->
     <section>
         <div class="contact-title">
             <h1 class="d-flex p-2" style="color: #fff; font-weight: 600; font-size: 45pt; margin-left: 30px;">
@@ -52,12 +100,10 @@
         </div>
         <div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="padding: 70px;">
                     <div class="contact-form">
-                        <div class="d-flex justify-content-center">
-                            <h2>ติดต่อเรา</h2>
-                            <p>โปรดกรอกข้อมูลด้านล่างเพื่อให้เราสามารถตอบกลับคุณได้อย่างถูกต้องและรวดเร็ว</p>
-                        </div>
+                        <h2>ติดต่อเรา</h2>
+                        <p>โปรดกรอกข้อมูลด้านล่างเพื่อให้เราสามารถตอบกลับคุณได้อย่างถูกต้องและรวดเร็ว</p>
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <input type="text" class="form-control" placeholder="Your name*">
@@ -75,36 +121,57 @@
                                 <textarea class="form-control" placeholder="Message*" rows="3"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-warning btn-block">Submit</button>
+                        <button type="submit" class="btn btn-warning btn-block" style="color: #fff;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send</button>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="padding: 70px;">
                     <div class="contact-details">
-                        <p>เรายินดีรับฟังจากคุณ! หากคุณมีคำถาม ข้อเสนอแนะ หรือความคิดเห็นใด ๆ กรุณาติดต่อเราตามข้อมูลด้านล่าง</p>
-                        <p>
-                            <strong>เวลาทำการ:</strong><br>
-                            จันทร์ถึงศุกร์: 8:30 น. - 18:00 น.<br>
-                            หยุดทุกวันเสาร์อาทิตย์
-                        </p>
-                        <p>
-                            <strong>โทรศัพท์:</strong><br>
-                            081 615 5644<br>
-                            088 657 3099<br>
-                            082 519 2892
-                        </p>
-                        <p>
-                            <strong>WhatsApp:</strong><br>
-                            081 615 5644
-                        </p>
-                        <p>
-                            <strong>Facebook:</strong><br>
-                            Pet Journey Agency
-                        </p>
-                        <p>
-                            <strong>Email:</strong><br>
-                            petjourney.agency@gmail.com
-                        </p>
-                        <img src="https://via.placeholder.com/200" alt="Pets">
+                        <div class="contact-details-title">
+                            <p>เรายินดีรับฟังจากคุณ! หากคุณมีคำถาม ข้อเสนอแนะ หรือความคิดเห็นใด ๆ</p>
+                            <p>กรุณาติดต่อเราตามข้อมูลด้านล่าง</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <i class="fas fa-clock"></i>
+                                    เวลาทำการ:<br>
+                                    จันทร์ถึงศุกร์: 8:30 น. - 18:00 น.<br>
+                                    หยุดทุกวันเสาร์อาทิตย์
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p>
+                                    <i class="fab fa-facebook"></i>
+                                    Facebook:<br>
+                                    Pet Journey Agency<br>
+                                    นำเข้าส่งออกสัตว์เลี้ยง
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p>
+                                    <i class="fas fa-phone-alt"></i>
+                                    โทรศัพท์:<br>
+                                    081 615 5644<br>
+                                    088 657 3099<br>
+                                    082 519 2892
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p>
+                                    <i class="fas fa-envelope"></i>
+                                    Email:<br>
+                                    petjourney.agency@gmail.com
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p>
+                                    <i class="fab fa-whatsapp"></i>
+                                    WhatsApp:<br>
+                                    081 615 5644
+                                </p>
+                            </div>
+                        </div>
+                        <img src="<?= base_url('dist/img/contact_pic.png') ?>" width="300px" alt="Pets">
                     </div>
                 </div>
             </div>

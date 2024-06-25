@@ -27,6 +27,6 @@ class ContactPage extends BaseController
         $data['uri_menu'] = $this->uri_menu;
         echo view('layout/header');
         echo view('front_page/contactpage');
-        // echo view('layout/footer');
+        echo view('layout/footer');
     }
 }
