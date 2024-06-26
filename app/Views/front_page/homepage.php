@@ -66,6 +66,10 @@ $services_json = json_encode($servicesdata);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script>
+        var BASE_URL = '<?= base_url(); ?>';
+    </script>
+    <script src="<?= base_url('public/js/language.js'); ?>"></script>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
@@ -810,43 +814,43 @@ $services_json = json_encode($servicesdata);
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="name" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="name_input" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
+                        <input class="form-control" type="text" id="ph_name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="phone_input" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
+                        <input class="form-control" type="text" id="ph_phone" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
-                        <input class="form-control" type="email" id="email_input" name="email" placeholder="ระบุอีเมล">
+                        <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
-                        <input class="form-control" type="date" id="travel_date_input" name="travel-date">
+                        <input class="form-control" type="date" id="ph_travel_date" name="travel-date">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="origin-country" id="label_origin_country" class="d-flex">ประเทศต้นทาง</label>
-                        <select class="form-control" id="origin_country_input" name="origin-country">
+                        <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
+                        <select class="form-control" id="ph_origin_country" name="origin-country">
                             <option value="">เช่น ไทย (TH)</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
-                        <select class="form-control" id="destination_country_input" name="destination-country">
+                        <select class="form-control" id="ph_destination_country" name="destination-country">
                             <option value="">เช่น เกาหลี (KR)</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
-                        <select class="form-control" id="travel_type_input" name="travel-type">
+                        <select class="form-control" id="ph_travel_type" name="travel-type">
                             <option value="">เลือกประเภทการเดินทาง</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
-                        <select class="form-control" id="pet_transport_input" name="pet-transport">
+                        <select class="form-control" id="ph_pet_transport" name="pet-transport">
                             <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
                             <!-- Add more options as needed -->
                         </select>
@@ -860,23 +864,23 @@ $services_json = json_encode($servicesdata);
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
-                        <input type="text" class="form-control" id="pet_type_input" name="pet-type" placeholder="ระบุชนิดสัตว์">
+                        <input type="text" class="form-control" id="ph_pet_type" name="pet-type" placeholder="ระบุชนิดสัตว์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
-                        <input type="text" class="form-control" id="breed_input" name="breed" placeholder="ระบุสายพันธุ์">
+                        <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="age" id="label_age" class="d-flex">อายุ</label>
-                        <input type="text" class="form-control" id="age_input" name="age" placeholder="ระบุอายุ">
+                        <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
-                        <input type="text" class="form-control" id="weight_input" name="weight" placeholder="ระบุน้ำหนัก">
+                        <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
-                        <input type="text" class="form-control" id="reason_input" name="reason" placeholder="ระบุหมายเหตุ">
+                        <input type="text" class="form-control" id="ph_reason" name="reason" placeholder="ระบุหมายเหตุ">
                     </div>
                 </div>
                 <button type="button" class="btn btn-dark" id="btn_submit_quote"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>

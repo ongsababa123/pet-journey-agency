@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
-
+    <script>
+        var BASE_URL = '<?= base_url(); ?>';
+    </script>
+    <script src="<?= base_url('public/js/language.js'); ?>"></script>
     <style>
         /* general */
         * {
@@ -496,6 +499,7 @@
                 align-items: center;
                 padding: 10px 2%;
             }
+
             .header-bottom.scrolled .logo {
                 display: block;
             }
@@ -510,6 +514,10 @@
         }
     </style>
 </head>
+<script>
+    var BASE_URL = '<?= base_url(); ?>';
+</script>
+<script src="<?= base_url('public/js/language.js'); ?>"></script>
 
 <body>
     <header>
@@ -519,9 +527,9 @@
                 <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
             </div>
             <div class="contact-info">
-                <div><i class="fas fa-clock"></i> <span>Mon - Sat 9.00 - 18.00 <br> Sunday Closed</span></div>
-                <div><i class="fas fa-envelope"></i> <span>Email <br> contact@logistics.com</span></div>
-                <div><i class="fas fa-phone"></i> <span>Call Us <br> (00) 112 365 489</span></div>
+                <div><i class="fas fa-clock"></i> <span id="info_open1">Mon - Sat 9.00 - 18.00</span> <br> <span id="info_open2">Sunday Closed</span></div>
+                <div><i class="fas fa-envelope"></i> <span id="info_email1">Email</span> <br> <span id="info_email2">contact@logistics.com</span></div>
+                <div><i class="fas fa-phone"></i> <span id="info_callus1">Call Us</span> <br> <span id="info_callus2">(00) 112 365 489</span></div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -630,7 +638,40 @@
         </div>
     </header>
 
+    <!-- Script to handle language change -->
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var defaultLang = 'en';
+            updateLanguage(defaultLang);
+
+            document.getElementById('language-select').addEventListener('change', function () {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+                var flagImg = document.getElementById('flag-img');
+                if (selectedLang === 'th') {
+                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
+                } else {
+                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
+                }
+            });
+
+            document.getElementById('language-select-bottom').addEventListener('change', function () {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+                var flagImg = document.getElementById('flag-img-bottom');
+                if (selectedLang === 'th') {
+                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
+                } else {
+                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
+                }
+            });
+
+            document.getElementById('language-select-mobile').addEventListener('change', function () {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+            });
+        });
+
         function toggleMobileMenu() {
             var menu = document.getElementById('menu-mobile');
             var backdrop = document.getElementById('backdrop');
@@ -652,7 +693,6 @@
             }
         });
 
-        // Function to handle the header top visibility
         window.addEventListener('scroll', function() {
             const headerTop = document.querySelector('.header-top');
             const headerBottom = document.querySelector('.header-bottom');
@@ -665,6 +705,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
