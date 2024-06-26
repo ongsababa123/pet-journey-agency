@@ -496,7 +496,6 @@
                 align-items: center;
                 padding: 10px 2%;
             }
-
             .header-bottom.scrolled .logo {
                 display: block;
             }
@@ -543,18 +542,18 @@
                 <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
             </div>
             <div class="navbar-nav">
-                <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
-                <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/homepage">Home</a></div>
+                <div class="nav-link"><a href="#">About us</a></div>
                 <div class="nav-link">
-                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                    <a href="#">Our Service <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="#">Service 1</a>
                         <a href="#">Service 2</a>
                         <a href="#">Service 3</a>
                     </div>
                 </div>
-                <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
-                <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/reviewpage">Review</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/contactpage">Contact</a></div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="social-icons-bottom">
@@ -571,6 +570,7 @@
                     </select>
                 </div>
             </div>
+
         </div>
 
         <!-- header mobile -->
@@ -596,7 +596,7 @@
             <div>
                 <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
                 <a href="/pet-journey-agency/page/homepage"><i class="fas fa-home"></i>Home</a>
-                <a href="/pet-journey-agency/page/aboutuspage"><i class="fas fa-info-circle"></i>About us</a>
+                <a href="#about"><i class="fas fa-info-circle"></i>About</a>
                 <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
                 <a href="/pet-journey-agency/page/reviewpage"><i class="fas fa-star"></i>Review</a>
                 <a href="/pet-journey-agency/page/contactpage"><i class="fas fa-file-alt"></i>Contact</a>
@@ -643,93 +643,28 @@
             }
         }
 
-        function addLanguageChangeListener(selectorId, flagImgId) {
-            document.getElementById(selectorId).addEventListener('change', function() {
-                var flagImg = document.getElementById(flagImgId);
-                var selectedLang = this.value;
-                if (selectedLang === 'th') {
-                    flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
-                } else {
-                    flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
-                }
-                setLanguage(selectedLang);
-            });
-        }
+        document.getElementById('language-select').addEventListener('change', function() {
+            var flagImg = document.getElementById('flag-img');
+            if (this.value === 'th') {
+                flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
+            } else {
+                flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
+            }
+        });
 
-        addLanguageChangeListener('language-select', 'flag-img');
-        addLanguageChangeListener('language-select-mobile', 'flag-img-mobile');
-
+        // Function to handle the header top visibility
         window.addEventListener('scroll', function() {
             const headerTop = document.querySelector('.header-top');
             const headerBottom = document.querySelector('.header-bottom');
             if (window.scrollY > 100) {
                 headerTop.classList.add('hide');
                 headerBottom.classList.add('scrolled');
-                addLanguageChangeListener('language-select', 'flag-img');
             } else {
                 headerTop.classList.remove('hide');
                 headerBottom.classList.remove('scrolled');
-                addLanguageChangeListener('language-select', 'flag-img');
             }
         });
     </script>
-    <script>
-        async function setLanguage(lang) {
-            try {
-                const response = await fetch('<?= base_url('public/data/language/header_locale.json'); ?>');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const data = await response.json();
-
-                // Update text content for multiple elements
-                document.getElementById('info_open1').textContent = data[lang].info_open1;
-                document.getElementById('info_open2').textContent = data[lang].info_open2;
-                document.getElementById('info_email1').textContent = data[lang].info_email1;
-                document.getElementById('info_email2').textContent = data[lang].info_email2;
-                document.getElementById('info_callus1').textContent = data[lang].info_callus1;
-                document.getElementById('info_callus2').textContent = data[lang].info_callus2;
-
-                document.getElementById('menu_home').textContent = data[lang].menu_home;
-                document.getElementById('menu_about_us').textContent = data[lang].menu_about_us;
-                document.getElementById('menu_service').textContent = data[lang].menu_service;
-                document.getElementById('menu_review').textContent = data[lang].menu_review;
-                document.getElementById('menu_contact').textContent = data[lang].menu_contact;
-
-                // Update language selectors
-                document.getElementById('language-select').value = lang;
-                document.getElementById('language-select-bottom').value = lang;
-                document.getElementById('language-select-mobile').value = lang;
-
-                // Update flag images
-                var flagImgSrc = lang === 'th' ? '<?= base_url('dist/img/flagth.png') ?>' : '<?= base_url('dist/img/flagen.png') ?>';
-                document.getElementById('flag-img').src = flagImgSrc;
-                document.getElementById('flag-img-bottom').src = flagImgSrc;
-            } catch (error) {
-                console.error('Error loading translations:', error);
-            }
-        }
-
-        // Event listeners for language change
-        document.getElementById('language-select').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-bottom').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-mobile').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        // Set default language
-        setLanguage('en');
-    </script>
-
 </body>
 
 </html>
