@@ -20,6 +20,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 
 // Default route
+
 $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
@@ -28,6 +29,7 @@ $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function (
 
 // Grouped routes with a common namespace
 $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    $routes->get('dashboardhome', 'HomeDashboardController::index');
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('review', 'ReviewDataController::index'); //index review
     $routes->get('review/getdata', 'ReviewDataController::getData_review'); //getdata review
@@ -72,7 +74,6 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('performanceteam', 'PerformanceTeamController::index'); //index performance team
     $routes->post('performanceteam/update/(:num)/(:segment)', 'PerformanceTeamController::update_performance/$1/$2'); //update performance
-
 });
 
 $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage'], function ($routes) {

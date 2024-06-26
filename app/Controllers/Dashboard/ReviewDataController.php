@@ -76,6 +76,7 @@ class ReviewDataController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->ReviewDataModel->groupStart()
@@ -83,7 +84,7 @@ class ReviewDataController extends BaseController
                 ->like('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->ReviewDataModel->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->ReviewDataModel->countAllResults() : $this->ReviewDataModel->where('status', $select_status)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
@@ -92,7 +93,8 @@ class ReviewDataController extends BaseController
                 ->like('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->ReviewDataModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->ReviewDataModel->findAll($limit, $start) : $this->ReviewDataModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),

@@ -84,6 +84,7 @@ class QuotationDataController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->QuotationModel->groupStart()
@@ -93,6 +94,7 @@ class QuotationDataController extends BaseController
                 ->groupEnd();
         }
         $totalRecords = $this->QuotationModel->countAllResults();
+        $totalRecords = ($select_status == 'all') ? $this->QuotationModel->countAllResults() : $this->QuotationModel->where('status', $select_status)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
@@ -102,7 +104,7 @@ class QuotationDataController extends BaseController
                 ->like('phone_number', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->QuotationModel->findAll($limit, $start);
+        $data = ($select_status == 'all') ? $this->QuotationModel->findAll($limit, $start) : $this->QuotationModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),

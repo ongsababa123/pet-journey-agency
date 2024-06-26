@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 11:55 AM
+-- Generation Time: Jun 26, 2024 at 11:54 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -121,10 +121,11 @@ INSERT INTO `cover_page_data` (`id_cover`, `name_image`, `path_image`, `status`,
 
 CREATE TABLE `more_about_pet` (
   `id_more_about_pet` int(11) NOT NULL,
-  `topic_name` varchar(255) NOT NULL,
-  `detail` varchar(255) NOT NULL,
+  `topic_name_th` varchar(255) NOT NULL,
+  `topic_name_en` varchar(255) NOT NULL,
+  `detail_th` text NOT NULL,
+  `detail_en` text NOT NULL,
   `image_path` varchar(100) NOT NULL,
-  `language` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -132,8 +133,8 @@ CREATE TABLE `more_about_pet` (
 -- Dumping data for table `more_about_pet`
 --
 
-INSERT INTO `more_about_pet` (`id_more_about_pet`, `topic_name`, `detail`, `image_path`, `language`, `status`) VALUES
-(2, 'ความรักที่ไม่ต้องการคำพูด', 'แมวตัวน้อยที่บ้านไม่เคยพูดอะไรแต่การนั่งเฝ้าข้างๆ เวลาฉันรู้สึกเศร้าก็เพียงพอแล้วที่จะทำให้ใจอุ่นขึ้น  ความรักจากแมวนั้นไม่ต้องการคำพูด แค่การสัมผัส นุ่มนวลและการมองตาเราด้วยสายตาที่เต็มไปด้วย ความหวังดีก็เพียงพอแล้วที่จะรู้สึกว่ามีใครสักคน อยู่เคียงข้างเ', 'golden_.jpg', 'th', 1);
+INSERT INTO `more_about_pet` (`id_more_about_pet`, `topic_name_th`, `topic_name_en`, `detail_th`, `detail_en`, `image_path`, `status`) VALUES
+(2, 'ความรักที่ไม่ต้องการคำพูด', 'A love that doesn\'t need words', 'แมวตัวน้อยที่บ้านไม่เคยพูดอะไรแต่การนั่งเฝ้าข้างๆ เวลาฉันรู้สึกเศร้าก็เพียงพอแล้วที่จะทำให้ใจอุ่นขึ้น  ความรักจากแมวนั้นไม่ต้องการคำพูด แค่การสัมผัส นุ่มนวลและการมองตาเราด้วยสายตาที่เต็มไปด้วย ความหวังดีก็เพียงพอแล้วที่จะรู้สึกว่ามีใครสักคน อยู่เคียงข้างเสมอ', 'The little cat at home never said anything but just sat and watched. When I feel sad it\'s enough to warm my heart. Cat love doesn\'t require words, just a gentle touch and a full look into our eyes. Good wishes are enough to feel like you have someone. always by your side', 'golden_.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -220,6 +221,16 @@ CREATE TABLE `quotation` (
   `note` varchar(255) NOT NULL COMMENT 'หมายเหตุ',
   `status` int(11) NOT NULL COMMENT 'สถานะ \r\n1-อ่านแล้ว\r\n0- ยังไม่ได้อ่าน'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`id_quotation`, `name_last`, `email`, `phone_number`, `travel_date`, `country_of_origin`, `destination_country`, `travel_type`, `transport_format`, `service`, `animal_type`, `breed`, `age`, `weight`, `note`, `status`) VALUES
+(2, 'ฟหกฟห', 'กฟหกฟหก', 'กฟหกหฟกฟห', '2024-06-27', 'AL', 'AD', '1', '2', '1,2', '', 'กฟหกฟห', 'กฟหก', 'กฟหก', 'ฟหกหฟ', 2),
+(3, 'sadsa', 'dasdsadasd', 'dasdsa', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 1),
+(4, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0),
+(5, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -337,7 +348,8 @@ CREATE TABLE `veterinary_team` (
 --
 
 INSERT INTO `veterinary_team` (`id_team`, `name_last_name_th`, `name_last_name_en`, `position_th`, `position_en`, `image_path`, `status`) VALUES
-(1, 'หมออนุชา ตรีวิจิตร', 'Dr. Anucha Triwijit', 'สัตวแพทย์ทั่วไป', 'General veterinarian', 'avatar5.png', 0);
+(1, 'หมออนุชา ตรีวิจิตร', 'Dr. Anucha Triwijit', 'สัตวแพทย์ทั่วไป', 'General veterinarian', 'avatar5.png', 0),
+(3, 'ฟหกฟหก', 'asdasd', 'ฟหกฟหก', 'asdasd', 'avatar3.png', 0);
 
 --
 -- Indexes for dumped tables
@@ -471,7 +483,7 @@ ALTER TABLE `performance_team_data`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=2;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `review_data`
@@ -501,7 +513,7 @@ ALTER TABLE `service_header`
 -- AUTO_INCREMENT for table `veterinary_team`
 --
 ALTER TABLE `veterinary_team`
-  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

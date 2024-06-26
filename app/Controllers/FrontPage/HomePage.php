@@ -25,7 +25,7 @@ class HomePage extends BaseController
     public function index()
     {
         $data['uri_menu'] = $this->uri_menu;
-        echo view('layout/header');
+        echo view('layout/header' , $data);
         echo view('front_page/homepage');
         echo view('layout/footer');
     }

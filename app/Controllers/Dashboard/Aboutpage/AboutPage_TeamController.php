@@ -39,28 +39,31 @@ class AboutPage_TeamController extends BaseController
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
+        $select_status = $this->request->getVar('select_status');
         $searchValue = $this->request->getVar('search')['value'];
 
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
                 ->like('name_last_name_th', $searchValue)
-                ->like('position_th', $searchValue)
-                ->like('name_last_name_en', $searchValue)
-                ->like('position_en', $searchValue)
+                ->orLike('name_last_name_en', $searchValue)
+                ->orLike('position_th', $searchValue)
+                ->orLike('position_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->TeamModel->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->TeamModel->countAllResults() : $this->TeamModel->where('status', $select_status)->countAllResults();
+
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
                 ->like('name_last_name_th', $searchValue)
-                ->like('position_th', $searchValue)
-                ->like('name_last_name_en', $searchValue)
-                ->like('position_en', $searchValue)
+                ->orLike('name_last_name_en', $searchValue)
+                ->orLike('position_th', $searchValue)
+                ->orLike('position_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->TeamModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->TeamModel->findAll($limit, $start) : $this->TeamModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),

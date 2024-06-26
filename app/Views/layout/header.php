@@ -496,6 +496,7 @@
                 align-items: center;
                 padding: 10px 2%;
             }
+
             .header-bottom.scrolled .logo {
                 display: block;
             }
@@ -664,6 +665,11 @@
                 headerBottom.classList.remove('scrolled');
             }
         });
+    </script>
+
+    <script>
+        var uri_menu = <?php echo json_encode($uri_menu); ?>;
+        console.log(uri_menu);
     </script>
 </body>
 

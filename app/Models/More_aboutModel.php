@@ -10,5 +10,5 @@ class More_aboutModel extends Model
     protected $primaryKey = 'id_more_about_pet';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['topic_name', 'detail', 'image_path', 'language', 'status'];
+    protected $allowedFields = ['topic_name_th', 'topic_name_en', 'detail_th', 'detail_en', 'image_path', 'status'];
 }

@@ -281,7 +281,7 @@ function check_menu_state($uri_menu, $input, $type)
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-header">หน้าหลัก</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= base_url('dashboard/dashboardhome') ?>" class="nav-link <?= check_menu_state($uri_menu, 'dashboardhome', 'active_display') ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard

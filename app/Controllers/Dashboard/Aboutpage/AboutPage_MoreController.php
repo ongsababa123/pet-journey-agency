@@ -41,21 +41,25 @@ class AboutPage_MoreController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->More_aboutModel->groupStart()
-                ->like('topic_name', $searchValue)
+                ->like('topic_name_th', $searchValue)
+                ->orLike('topic_name_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->More_aboutModel->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->More_aboutModel->countAllResults() : $this->More_aboutModel->where('status', $select_status)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->More_aboutModel->groupStart()
-                ->like('topic_name', $searchValue)
+                ->like('topic_name_th', $searchValue)
+                ->orLike('topic_name_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->More_aboutModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->More_aboutModel->findAll($limit, $start) : $this->More_aboutModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -83,11 +87,12 @@ class AboutPage_MoreController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_team = [
-                'topic_name' => $this->request->getVar('topic_name'),
-                'detail' => $this->request->getVar('detail'),
+                'topic_name_th' => $this->request->getVar('topic_name_th'),
+                'topic_name_en' => $this->request->getVar('topic_name_en'),
+                'detail_th' => $this->request->getVar('detail_th'),
+                'detail_en' => $this->request->getVar('detail_en'),
                 'image_path' => $imageName,
                 'status' => 0,
-                'language' => $this->request->getVar('select_language'),
             ];
 
             $this->More_aboutModel->insert((object) $data_team);
@@ -111,9 +116,10 @@ class AboutPage_MoreController extends BaseController
     public function update_about_more($id_more_about_pet, $path_image_old)
     {
         $data_more = [
-            'topic_name' => $this->request->getVar('topic_name'),
-            'detail' => $this->request->getVar('detail'),
-            'language' => $this->request->getVar('select_language'),
+            'topic_name_th' => $this->request->getVar('topic_name_th'),
+            'topic_name_en' => $this->request->getVar('topic_name_en'),
+            'detail_th' => $this->request->getVar('detail_th'),
+            'detail_en' => $this->request->getVar('detail_en'),
         ];
 
         $target_dir = ROOTPATH . 'dist/img/about-more/';

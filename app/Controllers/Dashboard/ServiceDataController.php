@@ -52,6 +52,7 @@ class ServiceDataController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->ServiceHeaderModel->groupStart()
@@ -59,7 +60,8 @@ class ServiceDataController extends BaseController
                 ->like('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->ServiceHeaderModel->countAllResults();
+
+        $totalRecords = ($select_status == 2) ? $this->ServiceHeaderModel->countAllResults() : $this->ServiceHeaderModel->where('status', $select_status)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
@@ -68,7 +70,8 @@ class ServiceDataController extends BaseController
                 ->like('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->ServiceHeaderModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->ServiceHeaderModel->findAll($limit, $start) : $this->ServiceHeaderModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
