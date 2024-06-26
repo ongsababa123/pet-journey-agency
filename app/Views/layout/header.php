@@ -511,6 +511,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <!-- header normal -->
@@ -519,9 +520,9 @@
                 <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
             </div>
             <div class="contact-info">
-                <div><i class="fas fa-clock"></i> <span id="info_open1">Mon - Sat 9.00 - 18.00</span> <br> <span id="info_open2">Sunday Closed</span></div>
-                <div><i class="fas fa-envelope"></i> <span id="info_email1">Email</span> <br> <span id="info_email2">contact@logistics.com</span></div>
-                <div><i class="fas fa-phone"></i> <span id="info_callus1">Call Us</span> <br> <span id="info_callus2">(00) 112 365 489</span></div>
+                <div><i class="fas fa-clock"></i> <span>Mon - Sat 9.00 - 18.00 <br> Sunday Closed</span></div>
+                <div><i class="fas fa-envelope"></i> <span>Email <br> contact@logistics.com</span></div>
+                <div><i class="fas fa-phone"></i> <span>Call Us <br> (00) 112 365 489</span></div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -563,14 +564,13 @@
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
                 </div>
                 <div class="language-selector">
-                    <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-                    <select id="language-select-bottom">
+                    <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                    <select id="language-select">
                         <option value="en">English</option>
                         <option value="th">Thai</option>
                     </select>
                 </div>
             </div>
-
         </div>
 
         <!-- header mobile -->
@@ -657,8 +657,7 @@
         }
 
         addLanguageChangeListener('language-select', 'flag-img');
-        addLanguageChangeListener('language-select-bottom', 'flag-img-bottom');
-        addLanguageChangeListener('language-select-mobile', 'flag-img');
+        addLanguageChangeListener('language-select-mobile', 'flag-img-mobile');
 
         window.addEventListener('scroll', function() {
             const headerTop = document.querySelector('.header-top');
@@ -666,13 +665,14 @@
             if (window.scrollY > 100) {
                 headerTop.classList.add('hide');
                 headerBottom.classList.add('scrolled');
+                addLanguageChangeListener('language-select', 'flag-img');
             } else {
                 headerTop.classList.remove('hide');
                 headerBottom.classList.remove('scrolled');
+                addLanguageChangeListener('language-select', 'flag-img');
             }
         });
     </script>
-
     <script>
         async function setLanguage(lang) {
             try {
@@ -682,6 +682,7 @@
                 }
                 const data = await response.json();
 
+                // Update text content for multiple elements
                 document.getElementById('info_open1').textContent = data[lang].info_open1;
                 document.getElementById('info_open2').textContent = data[lang].info_open2;
                 document.getElementById('info_email1').textContent = data[lang].info_email1;
@@ -695,10 +696,12 @@
                 document.getElementById('menu_review').textContent = data[lang].menu_review;
                 document.getElementById('menu_contact').textContent = data[lang].menu_contact;
 
+                // Update language selectors
                 document.getElementById('language-select').value = lang;
                 document.getElementById('language-select-bottom').value = lang;
                 document.getElementById('language-select-mobile').value = lang;
 
+                // Update flag images
                 var flagImgSrc = lang === 'th' ? '<?= base_url('dist/img/flagth.png') ?>' : '<?= base_url('dist/img/flagen.png') ?>';
                 document.getElementById('flag-img').src = flagImgSrc;
                 document.getElementById('flag-img-bottom').src = flagImgSrc;
@@ -707,6 +710,7 @@
             }
         }
 
+        // Event listeners for language change
         document.getElementById('language-select').addEventListener('change', function() {
             var selectedLang = this.value;
             setLanguage(selectedLang);
@@ -725,7 +729,6 @@
         // Set default language
         setLanguage('en');
     </script>
-
 
 </body>
 
