@@ -37,12 +37,8 @@ $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function (
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
+    $routes->get('aboutuspage', 'AboutUsPage::index');
 });
-
-
-
-
-
 
 // Another group with a different namespace
 // $routes->group('api', ['namespace' => 'App\Controllers\Api'], function($routes) {
