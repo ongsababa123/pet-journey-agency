@@ -10,5 +10,5 @@ class TeamModel extends Model
     protected $primaryKey = 'id_team';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['name_last_name', 'position', 'image_path', 'language', 'status'];
+    protected $allowedFields = ['name_last_name_th', 'name_last_name_en', 'position_th', 'position_en', 'image_path', 'status'];
 }

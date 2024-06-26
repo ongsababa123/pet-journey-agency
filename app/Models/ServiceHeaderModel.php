@@ -10,5 +10,5 @@ class ServiceHeaderModel extends Model
     protected $primaryKey = 'id_service_header';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['header_service_name', 'image_path', 'status', 'language'];
+    protected $allowedFields = ['header_service_name_th', 'header_service_name_en', 'image_path', 'status'];
 }

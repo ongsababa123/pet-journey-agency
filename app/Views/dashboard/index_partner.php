@@ -52,6 +52,21 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_status_1">สถานะ</label>
+                                        <select id="select_status_1" name="select_status_1" class="form-control select2" style="width: 100%;" onchange="getdata_table_1()">
+                                            <option value="2" selected>ทั้งหมด</option>
+                                            <option value="1">เปิดใช้งาน</option>
+                                            <option value="0">ปิดใช้งาน</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                </div>
+                            </div>
+                            <hr>
                             <table id="example1" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
@@ -66,6 +81,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->
+                        <div class="overlay dark" id="overlay_1">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -82,13 +100,28 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', '2')">
                                     <i class="fas fa-plus"></i> เพิ่มข้อมูลพาร์ทเนอร์ Pet Friendly Hotel
                                 </button>
-                                <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse" onclick="getdata_table2()">
+                                <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse" onclick="getdata_table_2()">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_status_2">สถานะ</label>
+                                        <select id="select_status_2" name="select_status_2" class="form-control select2" style="width: 100%;" onchange="getdata_table_2(true)">
+                                            <option value="2" selected>ทั้งหมด</option>
+                                            <option value="1">เปิดใช้งาน</option>
+                                            <option value="0">ปิดใช้งาน</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                </div>
+                            </div>
+                            <hr>
                             <table id="example2" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
@@ -103,6 +136,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->
+                        <div class="overlay dark" id="overlay_2">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -119,13 +155,28 @@
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg" title="เพิ่มหน้าปก" onclick="load_modal('Create', '3')">
                                     <i class="fas fa-plus"></i> เพิ่มข้อมูลพาร์ทเนอร์ Pet Hotel
                                 </button>
-                                <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse" onclick="getdata_table3()">
+                                <button type="button" class="btn btn-tool" style="color: white;" data-card-widget="collapse" onclick="getdata_table_3()">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_status_3">สถานะ</label>
+                                        <select id="select_status_3" name="select_status_3" class="form-control select2" style="width: 100%;" onchange="getdata_table_3(true)">
+                                            <option value="2" selected>ทั้งหมด</option>
+                                            <option value="1">เปิดใช้งาน</option>
+                                            <option value="0">ปิดใช้งาน</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                </div>
+                            </div>
+                            <hr>
                             <table id="example3" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
@@ -140,6 +191,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->
+                        <div class="overlay dark" id="overlay_3">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -226,108 +280,133 @@
 <!-- table data 1 -->
 <script>
     $(document).ready(function() {
-        $(function() {
-            $('#example1').DataTable({
-                'serverSide': true,
-                'ajax': {
-                    'url': "<?php echo site_url('dashboard/partner/getdata/1'); ?>",
-                    'type': 'GET',
-                    'dataSrc': 'data',
+        getdata_table_1();
+        $('#overlay_2').hide();
+        $('#overlay_3').hide();
+    });
+
+    function getdata_table_1() {
+        var select_status = document.getElementById('select_status_1');
+        if ($.fn.DataTable.isDataTable('#example1')) {
+            $('#example1').DataTable().destroy();
+        }
+
+        $('#overlay_1').show();
+        $('#example1').DataTable({
+            'serverSide': true,
+            'ajax': {
+                'url': "<?php echo site_url('dashboard/partner/getdata/1'); ?>",
+                'type': 'GET',
+                'dataSrc': 'data',
+                'data': {
+                    'select_status': select_status.value
+                }
+            },
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "oLanguage": {
+                sEmptyTable: "ไม่มีข้อมูลในตาราง",
+                sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
+                sInfoPostFix: "",
+                sInfoThousands: ",",
+                sSearch: "ค้นหา ชื่อพาร์ทเนอร์: ",
+                oPaginate: {
+                    sFirst: "หน้าแรก",
+                    sPrevious: "ก่อนหน้า",
+                    sNext: "ถัดไป",
+                    sLast: "หน้าสุดท้าย"
                 },
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "oLanguage": {
-                    sEmptyTable: "ไม่มีข้อมูลในตาราง",
-                    sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-                    sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
-                    sInfoPostFix: "",
-                    sInfoThousands: ",",
-                    sLoadingRecords: "กำลังโหลดข้อมูล...",
-                    sProcessing: "กำลังดำเนินการ...",
-                    sSearch: "ค้นหา ชื่อพาร์ทเนอร์: ",
-                    oPaginate: {
-                        sFirst: "หน้าแรก",
-                        sPrevious: "ก่อนหน้า",
-                        sNext: "ถัดไป",
-                        sLast: "หน้าสุดท้าย"
-                    },
-                    sLengthMenu: "แสดง _MENU_ แถว",
-                },
-                "drawCallback": function(settings) {
-                    var daData = settings.json.data;
-                    if (daData.length == 0) {
-                        $('#example1 tbody').html(`
+                sLengthMenu: "แสดง _MENU_ แถว",
+            },
+            "drawCallback": function(settings) {
+                var daData = settings.json.data;
+                if (daData.length == 0) {
+                    $('#example1 tbody').html(`
                         <tr>
                             <td colspan="5" class="text-center">
                             ไม่พบข้อมูล
                             </td>
                         </tr>`);
+                }
+                $('#overlay_1').hide();
+            },
+
+            'columns': [{
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                'columns': [{
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/partner/') ?>${data.logo_partner_path}" data-toggle="lightbox" data-title="" data-gallery="gallery">
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return `<a href="<?= base_url('dist/img/partner/') ?>${data.logo_partner_path}" data-toggle="lightbox" data-title="" data-gallery="gallery">
                                         <img src="<?= base_url('dist/img/partner/') ?>${data.logo_partner_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
+                    }
+                },
+                {
+                    'data': 'name_partner',
+                    'class': 'text-center',
+                },
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        if (data.status == 0) {
+                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                        } else {
+                            return '<span class="badge bg-success">ใช้งาน</span>';
                         }
-                    },
-                    {
-                        'data': 'name_partner',
-                        'class': 'text-center',
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            if (data.status == 0) {
-                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
-                            } else {
-                                return '<span class="badge bg-success">ใช้งาน</span>';
-                            }
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            const encodedRowData = encodeURIComponent(JSON.stringify(row));
-                            return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
+                    }
+                },
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        const encodedRowData = encodeURIComponent(JSON.stringify(row));
+                        return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/partner/changestatus/${data.id_partner}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}/${data.logo_partner_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
-                        }
-                    },
-                ],
-            });
+                    }
+                },
+            ],
         });
-    });
+    }
 </script>
 <!-- table data 2 -->
 <script>
     var count_table2 = 0
-    function getdata_table2() {
+
+    function getdata_table_2(check) {
+        if (check) {
+            count_table2 = 0;
+        }
         if (count_table2 == 0) {
             count_table2 = 1
             $(function() {
+                var select_status = document.getElementById('select_status_2');
+                if ($.fn.DataTable.isDataTable('#example2')) {
+                    $('#example2').DataTable().destroy();
+                }
+                $('#overlay_2').show();
                 $('#example2').DataTable({
                     'serverSide': true,
                     'ajax': {
                         'url': "<?php echo site_url('dashboard/partner/getdata/2'); ?>",
                         'type': 'GET',
                         'dataSrc': 'data',
+                        'data': {
+                            'select_status': select_status.value
+                        }
                     },
                     "paging": true,
                     "lengthChange": false,
@@ -363,6 +442,7 @@
                             </td>
                         </tr>`);
                         }
+                        $('#overlay_2').hide();
                     },
                     'columns': [{
                             'data': null,
@@ -411,19 +491,32 @@
         }
     }
 </script>
-<!-- table data 2 -->
+<!-- table data 3 -->
 <script>
     var count_table3 = 0
-    function getdata_table3() {
+
+    function getdata_table_3(check) {
+        if (check) {
+            count_table3 = 0;
+        }
         if (count_table3 == 0) {
             count_table3 = 1
             $(function() {
+                var select_status = document.getElementById('select_status_3');
+                if ($.fn.DataTable.isDataTable('#example3')) {
+                    $('#example3').DataTable().destroy();
+                }
+
+                $('#overlay_3').show();
                 $('#example3').DataTable({
                     'serverSide': true,
                     'ajax': {
                         'url': "<?php echo site_url('dashboard/partner/getdata/3'); ?>",
                         'type': 'GET',
                         'dataSrc': 'data',
+                        'data': {
+                            'select_status': select_status.value
+                        }
                     },
                     "paging": true,
                     "lengthChange": false,
@@ -459,6 +552,7 @@
                             </td>
                         </tr>`);
                         }
+                        $('#overlay_3').hide();
                     },
                     'columns': [{
                             'data': null,

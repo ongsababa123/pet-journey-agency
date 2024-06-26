@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2024 at 12:10 PM
+-- Generation Time: Jun 26, 2024 at 11:54 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -60,7 +60,7 @@ CREATE TABLE `about_page` (
 --
 
 INSERT INTO `about_page` (`id_about_page`, `detail_page`, `image_page_path`, `language`) VALUES
-(1, '<div>Pet journey agency เราเล็งเห็นความสำคัญในความรัก ความผูกพันธ์ระหว่างสัตว์เลี้ยงกับเจ้าของ ซึ่งปัจจุบันนี้สัตว์เลี้ยง ก็เปรียบเสมือนสมาชิก ลูกหลานในครอบครัวของหลายๆท่าน</div><div>ทีมเราจึงจัดตั้ง Pet Journey Agency ขึ้นมาเพื่อทำให้เป็นเรื่อง ที่ง่ายและสะดวก มากขึ้นในการนำเข้า-ส่งออกน้องหมาน้องแมว ไปยังต่างประเทศ และนำกลับมาที่ประเทศไทยสำหรับคนที่ต้องการ พาน้องๆเดินทางไปด้วย หรือย้ายบ้านเพื่อให้น้องๆได้ไปอยู่ กับเจ้าของ ที่น้องๆรัก</div><div>เรายังมีบริการที่ครูบวงจร ตั้งแต่การตรวจเลือดแบบครอบคลุม การเดินทางทั่วโลกจัดเตรียมเอกสารทั้งขาออกและขาเข้าประเทศไทย หรือเอกสารขาเข้าประเทศอื่นๆอีกทั้งยังมีเล่มพาสปอร์ตหรือ หนังสือเดินทางสัตว์เลี้ยงที่เจ้าของเห็นแล้วต้องยิ้มตามและเรายังมี พาทเนอร์มืออาชีพในส่วนต่างๆ อาทิ</div><div>โรงพยาบาล/คลินิกสัตวแพทย์ : ซื่อคลินิก ABC</div><div>โรงแรม Pet Friendly : ซื่อ ABC</div><div>โรงแรมสำหรับสัตว์เลี้ยง : ชื่อ ABC</div><div>ทั้งหมดนี้พร้อมให้บริการทุกท่านทั่วกรุงเทพและปริมณฑล</div>', 'download.png', 'th'),
+(1, '<div style=\"text-align: center;\"><span style=\"font-size: 1rem;\">ฟasdasdsadasd<font color=\"#000000\"><span style=\"background-color: rgb(255, 255, 0);\">asdasdasdasd</span></font>ฟกหฟก<b>ฟหกหฟ</b></span></div>', 'download.png', 'th'),
 (2, '<div>Pet Journey Agency recognizes the importance of the bond and love between pets and their owners. In today\'s world, pets are akin to family members or even children for many people. Our team established Pet Journey Agency to make it easier and more convenient to import and export dogs and cats internationally, and to bring them back to Thailand for those who wish to travel with their beloved pets or relocate them.</div><div><br></div><div>We offer a range of comprehensive services, including blood tests, global travel preparations with documentation for both export and import into Thailand, as well as other countries. We provide pet passports or travel documents that bring smiles to owners\' faces when they see them. Additionally, we collaborate with professionals in various fields:</div><div><br></div><div>- Veterinary hospitals/clinics: Such as the reputable ABC Clinic</div><div>- Pet-friendly hotels: Such as ABC Hotel</div><div>- Accommodations specifically for pets: Named ABC</div><div><br></div><div>All of these services are available throughout Bangkok and its suburbs to serve everyone\'s needs.</div>', 'Screenshot 2024-05-28 102400.png', 'en');
 
 -- --------------------------------------------------------
@@ -121,10 +121,11 @@ INSERT INTO `cover_page_data` (`id_cover`, `name_image`, `path_image`, `status`,
 
 CREATE TABLE `more_about_pet` (
   `id_more_about_pet` int(11) NOT NULL,
-  `topic_name` varchar(255) NOT NULL,
-  `detail` varchar(255) NOT NULL,
+  `topic_name_th` varchar(255) NOT NULL,
+  `topic_name_en` varchar(255) NOT NULL,
+  `detail_th` text NOT NULL,
+  `detail_en` text NOT NULL,
   `image_path` varchar(100) NOT NULL,
-  `language` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -132,8 +133,8 @@ CREATE TABLE `more_about_pet` (
 -- Dumping data for table `more_about_pet`
 --
 
-INSERT INTO `more_about_pet` (`id_more_about_pet`, `topic_name`, `detail`, `image_path`, `language`, `status`) VALUES
-(2, 'ความรักที่ไม่ต้องการคำพูด', 'แมวตัวน้อยที่บ้านไม่เคยพูดอะไรแต่การนั่งเฝ้าข้างๆ เวลาฉันรู้สึกเศร้าก็เพียงพอแล้วที่จะทำให้ใจอุ่นขึ้น  ความรักจากแมวนั้นไม่ต้องการคำพูด แค่การสัมผัส นุ่มนวลและการมองตาเราด้วยสายตาที่เต็มไปด้วย ความหวังดีก็เพียงพอแล้วที่จะรู้สึกว่ามีใครสักคน อยู่เคียงข้างเ', 'golden_.jpg', 'th', 1);
+INSERT INTO `more_about_pet` (`id_more_about_pet`, `topic_name_th`, `topic_name_en`, `detail_th`, `detail_en`, `image_path`, `status`) VALUES
+(2, 'ความรักที่ไม่ต้องการคำพูด', 'A love that doesn\'t need words', 'แมวตัวน้อยที่บ้านไม่เคยพูดอะไรแต่การนั่งเฝ้าข้างๆ เวลาฉันรู้สึกเศร้าก็เพียงพอแล้วที่จะทำให้ใจอุ่นขึ้น  ความรักจากแมวนั้นไม่ต้องการคำพูด แค่การสัมผัส นุ่มนวลและการมองตาเราด้วยสายตาที่เต็มไปด้วย ความหวังดีก็เพียงพอแล้วที่จะรู้สึกว่ามีใครสักคน อยู่เคียงข้างเสมอ', 'The little cat at home never said anything but just sat and watched. When I feel sad it\'s enough to warm my heart. Cat love doesn\'t require words, just a gentle touch and a full look into our eyes. Good wishes are enough to feel like you have someone. always by your side', 'golden_.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -161,6 +162,44 @@ INSERT INTO `partner_data` (`id_partner`, `name_partner`, `type_partner`, `logo_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `performance_team_data`
+--
+
+CREATE TABLE `performance_team_data` (
+  `id_team` int(11) NOT NULL,
+  `image_path` varchar(100) NOT NULL,
+  `color_bg` varchar(100) NOT NULL,
+  `color_text` varchar(100) NOT NULL,
+  `detail_th` varchar(100) NOT NULL,
+  `detail_en` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
+  `type_show` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `performance_team_data`
+--
+
+INSERT INTO `performance_team_data` (`id_team`, `image_path`, `color_bg`, `color_text`, `detail_th`, `detail_en`, `status`, `type_show`) VALUES
+(1, 'footer.png', '#ffb629', '#ffffff', 'ปปปปปปปปปป', 'asdasdasdasdasd', 1, 3),
+(2, 'contact_pic.png', '#3b3935', '#bb0c0c', 'ไไไไไไฟหกฟหกฟหกฟหกฟห', 'xxxxฟหกฟหกฟหกฟหก', 1, 3),
+(3, 'pexels-christian-heitz-842711.jpg', '#ffb629', '#ffffff', 'asdasd', 'sadasd', 1, 1),
+(4, '1719306250_62e95d2521e30f4fecea.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(5, 'paypal2.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(6, '3bb43251e9f3f81e96cfa0d2aabb1564.jpg', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(7, 'golden_.jpg', '#FFB629', '#ffffff', 'ฟหก', 'asdasd', 1, 1),
+(8, 'photo2.png', '#FFB629', '#ffffff', 'ผปแปผแ', 'asdasd', 1, 1),
+(9, 'logo-pet.png', '#FFB629', '#ffffff', 'ๆไำไๆำ', 'asdasd', 1, 1),
+(10, 'boxed-bg.png', '#FFB629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(11, 'dog1.png', '#FFB629', '#ffffff', 'ปผแผปแผปแผป', 'asdasd', 1, 1),
+(12, 'bfb9c2b7-da69-4203-87ac-a85bfe1d90bd.jpg', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(13, 'download.png', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
+(14, 'mastercard.png', '#ffb629', '#ffffff', 'หฟกฟหก', 'asdasd', 1, 1),
+(15, 'final-1.jpg', '#ffb629', '#ffffff', 'asdasฟหกฟหกหฟ', 'asdasd', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quotation`
 --
 
@@ -183,6 +222,16 @@ CREATE TABLE `quotation` (
   `status` int(11) NOT NULL COMMENT 'สถานะ \r\n1-อ่านแล้ว\r\n0- ยังไม่ได้อ่าน'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`id_quotation`, `name_last`, `email`, `phone_number`, `travel_date`, `country_of_origin`, `destination_country`, `travel_type`, `transport_format`, `service`, `animal_type`, `breed`, `age`, `weight`, `note`, `status`) VALUES
+(2, 'ฟหกฟห', 'กฟหกฟหก', 'กฟหกหฟกฟห', '2024-06-27', 'AL', 'AD', '1', '2', '1,2', '', 'กฟหกฟห', 'กฟหก', 'กฟหก', 'ฟหกหฟ', 2),
+(3, 'sadsa', 'dasdsadasd', 'dasdsa', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 1),
+(4, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0),
+(5, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -192,17 +241,39 @@ CREATE TABLE `quotation` (
 CREATE TABLE `review_data` (
   `id_review` int(11) NOT NULL,
   `image_path` varchar(255) NOT NULL,
-  `detail_comment` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
-  `language` varchar(10) NOT NULL
+  `detail_comment_th` varchar(255) NOT NULL,
+  `detail_comment_en` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `review_data`
 --
 
-INSERT INTO `review_data` (`id_review`, `image_path`, `detail_comment`, `status`, `language`) VALUES
-(2, 'golden_.jpg', 'asdasdasasdasdasdasdasdasdas', 1, 'en');
+INSERT INTO `review_data` (`id_review`, `image_path`, `detail_comment_th`, `detail_comment_en`, `status`) VALUES
+(2, 'golden_.jpg', 'asdasdasasdasdasdasdasdasdas', 'ฟหกฟหกฟหกฟห', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_content`
+--
+
+CREATE TABLE `service_content` (
+  `id_service_content` int(11) NOT NULL,
+  `id_service_header` int(11) NOT NULL,
+  `content` longtext NOT NULL,
+  `language` varchar(10) NOT NULL,
+  `id_partner` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `service_content`
+--
+
+INSERT INTO `service_content` (`id_service_content`, `id_service_header`, `content`, `language`, `id_partner`) VALUES
+(1, 2, 'ฟหกฟหกหฟกหฟ', 'th', 1),
+(2, 2, 'asdsadasdasdsad', 'en', 0);
 
 -- --------------------------------------------------------
 
@@ -220,12 +291,19 @@ CREATE TABLE `service_content_buy_sale` (
   `age` varchar(100) NOT NULL COMMENT 'อายุ',
   `color` varchar(100) NOT NULL COMMENT 'สีขน',
   `characteristics` varchar(100) NOT NULL COMMENT 'ลักษณะนิสัย',
-  `vaccination_history` varchar(100) NOT NULL COMMENT 'ประวัติการฉีดวัคซีน',
+  `vaccination_history` varchar(255) NOT NULL COMMENT 'ประวัติการฉีดวัคซีน',
   `price` varchar(100) NOT NULL COMMENT 'ราคา',
   `status` int(11) NOT NULL COMMENT 'สถานะ',
   `language` varchar(10) NOT NULL COMMENT 'ประเภทภาษา',
   `create_date` date NOT NULL COMMENT 'วันที่ลง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `service_content_buy_sale`
+--
+
+INSERT INTO `service_content_buy_sale` (`id_service_content_buy_sale`, `id_service_header`, `image_path`, `name_pet`, `breed`, `gender`, `age`, `color`, `characteristics`, `vaccination_history`, `price`, `status`, `language`, `create_date`) VALUES
+(3, 1, 'avatar.png', 'sadasd', 'asdsad', 'male', 'sadsad', 'sadsad', 'sadsad', 'asdsada', '1', 1, 'th', '2024-06-22');
 
 -- --------------------------------------------------------
 
@@ -235,20 +313,19 @@ CREATE TABLE `service_content_buy_sale` (
 
 CREATE TABLE `service_header` (
   `id_service_header` int(11) NOT NULL,
-  `header_service_name` varchar(100) NOT NULL,
+  `header_service_name_th` varchar(100) NOT NULL,
+  `header_service_name_en` varchar(100) NOT NULL,
   `image_path` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL,
-  `language` varchar(10) NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `service_header`
 --
 
-INSERT INTO `service_header` (`id_service_header`, `header_service_name`, `image_path`, `status`, `language`) VALUES
-(1, 'นำเข้าและส่งออกสัตว์เลี้ยง', 'avatar.png', 1, 'th'),
-(2, 'Pet import and export', 'avatar5.png', 0, 'en'),
-(3, 'บริการตรวจเลือดสัตว์เลี้ยง', 'avatar6.png', 0, 'th');
+INSERT INTO `service_header` (`id_service_header`, `header_service_name_th`, `header_service_name_en`, `image_path`, `status`) VALUES
+(1, 'นำเข้าและส่งออกสัตว์เลี้ยง', 'Import and export of pets', 'avatar4.png', 1),
+(2, 'บริการตรวจเลือดสัตว์เลี้ยง', 'Pet blood testing service', '1719211120_ce667b790b7aa9794325.png', 1);
 
 -- --------------------------------------------------------
 
@@ -258,10 +335,11 @@ INSERT INTO `service_header` (`id_service_header`, `header_service_name`, `image
 
 CREATE TABLE `veterinary_team` (
   `id_team` int(11) NOT NULL,
-  `name_last_name` varchar(255) NOT NULL,
-  `position` varchar(255) NOT NULL,
+  `name_last_name_th` varchar(255) NOT NULL,
+  `name_last_name_en` varchar(255) NOT NULL,
+  `position_th` varchar(255) NOT NULL,
+  `position_en` varchar(255) NOT NULL,
   `image_path` varchar(255) NOT NULL,
-  `language` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -269,8 +347,9 @@ CREATE TABLE `veterinary_team` (
 -- Dumping data for table `veterinary_team`
 --
 
-INSERT INTO `veterinary_team` (`id_team`, `name_last_name`, `position`, `image_path`, `language`, `status`) VALUES
-(1, 'หมออนุชา ตรีวิจิตร', 'สัตวแพทย์ทั่วไป', 'avatar5.png', 'th', 0);
+INSERT INTO `veterinary_team` (`id_team`, `name_last_name_th`, `name_last_name_en`, `position_th`, `position_en`, `image_path`, `status`) VALUES
+(1, 'หมออนุชา ตรีวิจิตร', 'Dr. Anucha Triwijit', 'สัตวแพทย์ทั่วไป', 'General veterinarian', 'avatar5.png', 0),
+(3, 'ฟหกฟหก', 'asdasd', 'ฟหกฟหก', 'asdasd', 'avatar3.png', 0);
 
 --
 -- Indexes for dumped tables
@@ -313,6 +392,12 @@ ALTER TABLE `partner_data`
   ADD PRIMARY KEY (`id_partner`);
 
 --
+-- Indexes for table `performance_team_data`
+--
+ALTER TABLE `performance_team_data`
+  ADD PRIMARY KEY (`id_team`);
+
+--
 -- Indexes for table `quotation`
 --
 ALTER TABLE `quotation`
@@ -323,6 +408,12 @@ ALTER TABLE `quotation`
 --
 ALTER TABLE `review_data`
   ADD PRIMARY KEY (`id_review`);
+
+--
+-- Indexes for table `service_content`
+--
+ALTER TABLE `service_content`
+  ADD PRIMARY KEY (`id_service_content`);
 
 --
 -- Indexes for table `service_content_buy_sale`
@@ -383,10 +474,16 @@ ALTER TABLE `partner_data`
   MODIFY `id_partner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `performance_team_data`
+--
+ALTER TABLE `performance_team_data`
+  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี';
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `review_data`
@@ -395,22 +492,28 @@ ALTER TABLE `review_data`
   MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `service_content`
+--
+ALTER TABLE `service_content`
+  MODIFY `id_service_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `service_content_buy_sale`
 --
 ALTER TABLE `service_content_buy_sale`
-  MODIFY `id_service_content_buy_sale` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสคอนเท้นเซอร์วิส';
+  MODIFY `id_service_content_buy_sale` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสคอนเท้นเซอร์วิส', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `service_header`
 --
 ALTER TABLE `service_header`
-  MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `veterinary_team`
 --
 ALTER TABLE `veterinary_team`
-  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

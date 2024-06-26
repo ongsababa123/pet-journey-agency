@@ -39,24 +39,31 @@ class AboutPage_TeamController extends BaseController
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
+        $select_status = $this->request->getVar('select_status');
         $searchValue = $this->request->getVar('search')['value'];
 
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
-                ->like('name_last_name', $searchValue)
-                ->like('position', $searchValue)
+                ->like('name_last_name_th', $searchValue)
+                ->orLike('name_last_name_en', $searchValue)
+                ->orLike('position_th', $searchValue)
+                ->orLike('position_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->TeamModel->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->TeamModel->countAllResults() : $this->TeamModel->where('status', $select_status)->countAllResults();
+
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->TeamModel->groupStart()
-                ->like('name_last_name', $searchValue)
-                ->like('position', $searchValue)
+                ->like('name_last_name_th', $searchValue)
+                ->orLike('name_last_name_en', $searchValue)
+                ->orLike('position_th', $searchValue)
+                ->orLike('position_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->TeamModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->TeamModel->findAll($limit, $start) : $this->TeamModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -84,11 +91,12 @@ class AboutPage_TeamController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_team = [
-                'name_last_name' => $this->request->getVar('name_last_name'),
-                'position' => $this->request->getVar('position'),
+                'name_last_name_th' => $this->request->getVar('name_last_name_th'),
+                'position_th' => $this->request->getVar('position_th'),
+                'name_last_name_en' => $this->request->getVar('name_last_name_en'),
+                'position_en' => $this->request->getVar('position_en'),
                 'image_path' => $imageName,
                 'status' => 0,
-                'language' => $this->request->getVar('select_language'),
             ];
 
             $this->TeamModel->insert((object) $data_team);
@@ -112,9 +120,10 @@ class AboutPage_TeamController extends BaseController
     public function update_about_team($id_team, $path_image_old)
     {
         $data_team = [
-            'name_last_name' => $this->request->getVar('name_last_name'),
-            'position' => $this->request->getVar('position'),
-            'language' => $this->request->getVar('select_language'),
+            'name_last_name_th' => $this->request->getVar('name_last_name_th'),
+            'position_th' => $this->request->getVar('position_th'),
+            'name_last_name_en' => $this->request->getVar('name_last_name_en'),
+            'position_en' => $this->request->getVar('position_en'),
         ];
 
         $target_dir = ROOTPATH . 'dist/img/team/';

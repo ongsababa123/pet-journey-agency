@@ -17,12 +17,12 @@
                         <div class="card-header" style="border-bottom: none">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <h1 class="m-0"><strong><?= $data_service['header_service_name'] ?></strong></h1>
+                                    <h1 class="m-0"><strong><?= $data_service['header_service_name_th']  . ' ' . $data_service['language'] ?></strong></h1>
                                 </div><!-- /.col -->
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name'] ?></li>
+                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name_th'] . ' ' . $data_service['language'] ?></li>
                                         <li class="breadcrumb-item active">ข้อมูลสัตว์เลี้ยง</li>
                                     </ol>
                                 </div><!-- /.col -->
@@ -88,7 +88,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="mb-3" id="form_service" action="javascript:void(0)" method="post" enctype="multipart/form-data">
+            <form class="mb-3" id="form_service_animal" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="file-upload">
                         <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">เพิ่มรูปภาพ</button>
@@ -149,13 +149,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-10">
                             <div class="form-group">
                                 <label for="vaccination_history">ประวัติการฉีดวัคซีน</label>
-                                <input type="text" id="vaccination_history" name="vaccination_history" class="form-control" required>
+                                <textarea name="vaccination_history" id="vaccination_history" class="form-control" rows="5"></textarea>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="price">ราคา</label>
                                 <input type="text" id="price" name="price" class="form-control" required>
@@ -164,6 +164,7 @@
                     </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
+                <input type="text" id="select_language" name="select_language" hidden value="<?= $data_service['language'] ?>">
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -189,19 +190,25 @@
         $('#characteristics').val('');
         $('#vaccination_history').val('');
         $('#price').val('');
-        $('#price').val('');
         removeUpload();
         switch (action) {
             case 'Create':
                 $("#modal-title").text('เพิ่มข้อมูลสัตว์เลี้ยง');
-                $('#url_route').val('dashboard/service/create');
+                $('#url_route').val('dashboard/animal/create/' + <?= $data_service['id_service_header'] ?>);
                 check_action = 'Create';
                 break;
             case 'Update':
-                $("#modal-title").text('ข้อมูลเซอร์วิส');
+                $("#modal-title").text('แก้ไขข้อมูลสัตว์เลี้ยง');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#header_service_name').val(data.header_service_name);
-                $('#url_route').val('dashboard/service/update/' + data.id_service_header + '/' + data.image_path);
+                $('#name_pet').val(data.name_pet);
+                $('#breed').val(data.breed);
+                $('#gender').val(data.gender);
+                $('#age').val(data.age);
+                $('#color').val(data.color);
+                $('#characteristics').val(data.characteristics);
+                $('#vaccination_history').val(data.vaccination_history);
+                $('#price').val(data.price);
+                $('#url_route').val('dashboard/animal/update/' + data.id_service_content_buy_sale + '/' + data.image_path);
                 check_action = 'Update';
                 break;
             default:
@@ -216,7 +223,7 @@
             $('#example2').DataTable({
                 'serverSide': true,
                 'ajax': {
-                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header']); ?>",
+                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header'] . '/' . $data_service['language']); ?>",
                     'type': 'GET',
                     'dataSrc': 'data',
                 },
@@ -257,36 +264,50 @@
                     }
                 },
                 'columns': [{
-                    'data': null,
-                    'class': 'text-center',
-                    'render': function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    'data': null,
-                    'class': 'text-center',
-                    'render': function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    'data': null,
-                    'class': 'text-center',
-                    'render': function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    'data': null,
-                    'class': 'text-center',
-                    'render': function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    'data': null,
-                    'class': 'text-center',
-                    'render': function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, ],
+                        'data': null,
+                        'class': 'text-center',
+                        'render': function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }, {
+                        'data': null,
+                        'class': 'text-center',
+                        'render': function(data, type, row, meta) {
+                            return `<a href="<?= base_url('dist/img/animal/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_pet}" data-gallery="gallery">
+                                <img src="<?= base_url('dist/img/animal/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
+                                </a>`;
+                        }
+                    }, {
+                        'data': 'name_pet',
+                        'class': 'text-center',
+                    },
+                    {
+                        'data': 'create_date',
+                        'class': 'text-center',
+                    }, {
+                        'data': null,
+                        'class': 'text-center',
+                        'render': function(data, type, row, meta) {
+                            if (data.status == 0) {
+                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                            }
+                            if (data.status == 1) {
+                                return '<span class="badge bg-success">ใช้งาน</span>';
+                            } else {
+                                return '<span class="badge bg-warning">ขายแล้ว</span>';
+                            }
+                        }
+                    }, {
+                        'data': null,
+                        'class': 'text-center',
+                        'render': function(data, type, row, meta) {
+                            const encodedRowData = encodeURIComponent(JSON.stringify(row));
+                            return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
+                            <a href="javascript:alert_change_status('dashboard/animal/changestatus/${data.id_service_content_buy_sale}/')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/animal/delete/${data.id_service_content_buy_sale}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                        }
+                    },
+                ],
             });
         });
     });
@@ -334,7 +355,7 @@
 </script>
 <!-- form submit -->
 <script>
-    $("#form_service").on('submit', function(event) {
+    $("#form_service_animal").on('submit', function(event) {
         event.preventDefault();
         const value_image = document.getElementById('upload_image').value;
         const urlRouteInput = document.getElementById("url_route").value;
@@ -347,8 +368,64 @@
                     showConfirmButton: true,
                 });
             } else {
-                action_(urlRouteInput, 'form_service');
+                action_(urlRouteInput, 'form_service_animal');
             }
         }
     });
+</script>
+<!-- alert change status -->
+<script>
+    function alert_change_status(url) {
+        Swal.fire({
+            title: "เปลี่ยนสถานะ",
+            input: "select",
+            inputOptions: {
+                "0": "ไม่ใช้งาน",
+                "1": "ใช้งาน",
+                "2": "ขายแล้ว",
+            },
+            inputPlaceholder: "",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            confirmButtonText: "ตกลง",
+            cancelButtonText: "ยกเลิก",
+            cancelButtonColor: "#dc3545",
+            inputValidator: (value) => {
+                console.log(value);
+                return $.ajax({
+                    url: '<?= base_url() ?>' + url + value,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    beforeSend: function() {
+                        Swal.fire({
+                            title: 'Loading...',
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                        });
+                    },
+                }).then(function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: response.message,
+                            icon: 'success',
+                            showConfirmButton: false
+                        });
+                        setTimeout(() => {
+                            if (response.reload) {
+                                window.location.reload();
+                            }
+                        }, 2000);
+                    } else {
+                        Swal.fire({
+                            title: response.message,
+                            icon: 'error',
+                            showConfirmButton: true
+                        });
+                    }
+                });
+            }
+        });
+    }
 </script>

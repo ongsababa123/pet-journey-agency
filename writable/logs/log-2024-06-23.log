@@ -1,0 +1,14 @@
+CRITICAL - 2024-06-23 17:00:11 --> ErrorException: Undefined variable $reviews
+[Method: GET, Route: page/contactpage]
+in APPPATH\Views\front_page\contactpage.php on line 36.
+ 1 APPPATH\Views\front_page\contactpage.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $reviews', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\contactpage.php', 36)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\contactpage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('front_page/contactpage', [], true)
+ 5 APPPATH\Controllers\FrontPage\ContactPage.php(29): view('front_page/contactpage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FrontPage\ContactPage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FrontPage\ContactPage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

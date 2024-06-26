@@ -52,13 +52,28 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_status">สถานะ</label>
+                                        <select id="select_status" name="select_status" class="form-control select2" style="width: 100%;" onchange="getdata_table()">
+                                            <option value="2" selected>ทั้งหมด</option>
+                                            <option value="1">เปิดใช้งาน</option>
+                                            <option value="0">ปิดใช้งาน</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                </div>
+                            </div>
+                            <hr>
                             <table id="example2" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
                                         <th width="6%">ลําดับ</th>
                                         <th width="30%">รูปภาพ</th>
-                                        <th width="30%">คำอธิบาย</th>
-                                        <th>ประเภทภาษา</th>
+                                        <th width="25%">คำอธิบาย (ภาษาไทย)</th>
+                                        <th width="25%">คำอธิบาย (ภาษาอังกฤษ)</th>
                                         <th>สถานะ</th>
                                         <th width="10%">การจัดการ</th>
                                     </tr>
@@ -67,6 +82,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->
+                        <div class="overlay dark" id="overlay_1">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -106,17 +124,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="input_detail_comment">คำอธิบาย</label>
-                                <textarea type="text" id="input_detail_comment" name="input_detail_comment" class="form-control" rows="4"></textarea>
+                                <label for="detail_comment_th">คำอธิบาย (ภาษาไทย)</label>
+                                <textarea type="text" id="detail_comment_th" name="detail_comment_th" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="select_language">ประเภทภาษา</label>
-                                <select class="form-control" id="select_language" name="select_language" required>
-                                    <option value="th">ไทย</option>
-                                    <option value="en">อังกฤษ</option>
-                                </select>
+                                <label for="detail_comment_en">คำอธิบาย (ภาษาอังกฤษ)</label>
+                                <textarea type="text" id="detail_comment_en" name="detail_comment_en" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
                     </div>
@@ -139,8 +154,8 @@
 
     function load_modal(action, data_encode) {
         $('#input_image').val('');
-        $('#input_detail_comment').val('');
-        $('#select_language').val('th');
+        $('#detail_comment_th').val('');
+        $('#detail_comment_en').val('');
         removeUpload();
         switch (action) {
             case 'Create':
@@ -151,7 +166,8 @@
             case 'Update':
                 $("#modal-title").text('แก้ไขรีวิว');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#input_detail_comment').val(data.detail_comment);
+                $('#detail_comment_th').val(data.detail_comment_th);
+                $('#detail_comment_en').val(data.detail_comment_en);
                 $('#select_language').val(data.language);
                 $('#url_route').val('dashboard/review/update/' + data.id_review + '/' + data.image_path);
                 check_action = 'Update';
@@ -164,100 +180,110 @@
 <!-- table data -->
 <script>
     $(document).ready(function() {
-        $(function() {
-            $('#example2').DataTable({
-                'serverSide': true,
-                'ajax': {
-                    'url': "<?php echo site_url('dashboard/review/getdata'); ?>",
-                    'type': 'GET',
-                    'dataSrc': 'data',
+        getdata_table();
+    });
+
+    function getdata_table() {
+        var select_status = document.getElementById('select_status');
+
+        if ($.fn.DataTable.isDataTable('#example2')) {
+            $('#example2').DataTable().destroy();
+        }
+        $('#overlay_1').show();
+        $('#example2').DataTable({
+            'serverSide': true,
+            'ajax': {
+                'url': "<?php echo site_url('dashboard/review/getdata'); ?>",
+                'type': 'GET',
+                'dataSrc': 'data',
+                'data': {
+                    'select_status': select_status.value
+                }
+            },
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "oLanguage": {
+                sEmptyTable: "ไม่มีข้อมูลในตาราง",
+                sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
+                sInfoPostFix: "",
+                sInfoThousands: ",",
+                sLoadingRecords: "กำลังโหลดข้อมูล...",
+                sProcessing: "กำลังดำเนินการ...",
+                sSearch: "ค้นหา คำอธิบายรีวิว: ",
+                oPaginate: {
+                    sFirst: "หน้าแรก",
+                    sPrevious: "ก่อนหน้า",
+                    sNext: "ถัดไป",
+                    sLast: "หน้าสุดท้าย"
                 },
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "oLanguage": {
-                    sEmptyTable: "ไม่มีข้อมูลในตาราง",
-                    sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-                    sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
-                    sInfoPostFix: "",
-                    sInfoThousands: ",",
-                    sLoadingRecords: "กำลังโหลดข้อมูล...",
-                    sProcessing: "กำลังดำเนินการ...",
-                    sSearch: "ค้นหา คำอธิบายรีวิว: ",
-                    oPaginate: {
-                        sFirst: "หน้าแรก",
-                        sPrevious: "ก่อนหน้า",
-                        sNext: "ถัดไป",
-                        sLast: "หน้าสุดท้าย"
-                    },
-                    sLengthMenu: "แสดง _MENU_ แถว",
-                },
-                "drawCallback": function(settings) {
-                    var daData = settings.json.data;
-                    $('#carousel-indicators').empty();
-                    $('#carousel').empty();
-                    if (daData.length == 0) {
-                        $('#example2 tbody').html(`
+                sLengthMenu: "แสดง _MENU_ แถว",
+            },
+            "drawCallback": function(settings) {
+                var daData = settings.json.data;
+                if (daData.length == 0) {
+                    $('#example2 tbody').html(`
                         <tr>
                             <td colspan="6" class="text-center">
                             ไม่พบข้อมูล
                             </td>
                         </tr>`);
+                }
+                $('#overlay_1').hide();
+            },
+            'columns': [{
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                'columns': [{
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/review/') ?>${data.image_path}" data-toggle="lightbox" data-title="" data-gallery="gallery">
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return `<a href="<?= base_url('dist/img/review/') ?>${data.image_path}" data-toggle="lightbox" data-title="" data-gallery="gallery">
                                         <img src="<?= base_url('dist/img/review/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
+                    }
+                },
+                {
+                    'data': 'detail_comment_th',
+                    'class': 'text-center',
+                },
+                {
+                    'data': 'detail_comment_en',
+                    'class': 'text-center',
+                },
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        if (data.status == 0) {
+                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                        } else {
+                            return '<span class="badge bg-success">ใช้งาน</span>';
                         }
-                    },
-                    {
-                        'data': 'detail_comment',
-                        'class': 'text-center',
-                    },
-                    {
-                        'data': 'language',
-                        'class': 'text-center',
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            if (data.status == 0) {
-                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
-                            } else {
-                                return '<span class="badge bg-success">ใช้งาน</span>';
-                            }
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            const encodedRowData = encodeURIComponent(JSON.stringify(row));
-                            return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
+                    }
+                },
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        const encodedRowData = encodeURIComponent(JSON.stringify(row));
+                        return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/review/changestatus/${data.id_review}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/review/delete/${data.id_review}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
-                        }
-                    },
-                ],
-            });
+                    }
+                },
+            ],
         });
-    });
+    }
 </script>
 <!-- script open image -->
 <script>

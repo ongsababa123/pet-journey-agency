@@ -40,13 +40,14 @@ class PartnerDataController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->PartnerModel->groupStart()
                 ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->PartnerModel->where('type_partner', $type_partner)->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->PartnerModel->where('type_partner', $type_partner)->countAllResults() : $this->PartnerModel->where('status', $select_status)->where('type_partner', $type_partner)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
@@ -54,7 +55,8 @@ class PartnerDataController extends BaseController
                 ->like('name_partner', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->PartnerModel->where('type_partner', $type_partner)->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->PartnerModel->where('type_partner', $type_partner)->findAll($limit, $start) : $this->PartnerModel->where('status', $select_status)->where('type_partner', $type_partner)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),

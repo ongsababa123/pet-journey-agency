@@ -496,6 +496,7 @@
                 align-items: center;
                 padding: 10px 2%;
             }
+
             .header-bottom.scrolled .logo {
                 display: block;
             }
@@ -542,7 +543,7 @@
                 <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
             </div>
             <div class="navbar-nav">
-                <div class="nav-link"><a href="#">Home</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/homepage">Home</a></div>
                 <div class="nav-link"><a href="#">About</a></div>
                 <div class="nav-link">
                     <a href="#">Our Service <i class="fas fa-chevron-down"></i></a>
@@ -552,8 +553,8 @@
                         <a href="#">Service 3</a>
                     </div>
                 </div>
-                <div class="nav-link"><a href="#">Review</a></div>
-                <div class="nav-link"><a href="#">Contact</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/reviewpage">Review</a></div>
+                <div class="nav-link"><a href="/pet-journey-agency/page/contactpage">Contact</a></div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="social-icons-bottom">
@@ -595,11 +596,11 @@
             <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
             <div>
                 <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                <a href="#home"><i class="fas fa-home"></i>Home</a>
+                <a href="/pet-journey-agency/page/homepage"><i class="fas fa-home"></i>Home</a>
                 <a href="#about"><i class="fas fa-info-circle"></i>About</a>
                 <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
-                <a href="#review"><i class="fas fa-star"></i>Review</a>
-                <a href="#content"><i class="fas fa-file-alt"></i>Content</a>
+                <a href="/pet-journey-agency/page/reviewpage"><i class="fas fa-star"></i>Review</a>
+                <a href="/pet-journey-agency/page/contactpage"><i class="fas fa-file-alt"></i>Contact</a>
             </div>
             <div class="contact">
                 <p style="font-size: larger;">Contact</p>
@@ -664,6 +665,11 @@
                 headerBottom.classList.remove('scrolled');
             }
         });
+    </script>
+
+    <script>
+        var uri_menu = <?php echo json_encode($uri_menu); ?>;
+        console.log(uri_menu);
     </script>
 </body>
 

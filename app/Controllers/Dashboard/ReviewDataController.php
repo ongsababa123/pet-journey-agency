@@ -47,10 +47,10 @@ class ReviewDataController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_cover = [
-                'detail_comment' => $this->request->getVar('input_detail_comment'),
+                'detail_comment_th' => $this->request->getVar('detail_comment_th'),
+                'detail_comment_en' => $this->request->getVar('detail_comment_en'),
                 'image_path' => $imageName,
                 'status' => 0,
-                'language' => $this->request->getVar('select_language'),
             ];
 
             $this->ReviewDataModel->insert((object) $data_cover);
@@ -76,21 +76,25 @@ class ReviewDataController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
 
         if (!empty($searchValue)) {
             $this->ReviewDataModel->groupStart()
-                ->like('detail_comment', $searchValue)
+                ->like('detail_comment_th', $searchValue)
+                ->like('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->ReviewDataModel->countAllResults();
+        $totalRecords = ($select_status == 2) ? $this->ReviewDataModel->countAllResults() : $this->ReviewDataModel->where('status', $select_status)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->ReviewDataModel->groupStart()
-                ->like('detail_comment', $searchValue)
+                ->like('detail_comment_th', $searchValue)
+                ->like('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->ReviewDataModel->findAll($limit, $start);
+        
+        $data = ($select_status == 2) ? $this->ReviewDataModel->findAll($limit, $start) : $this->ReviewDataModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -133,8 +137,8 @@ class ReviewDataController extends BaseController
     public function update_review($id_review, $path_image_old)
     {
         $data_cover = [
-            'detail_comment' => $this->request->getVar('input_detail_comment'),
-            'language' => $this->request->getVar('select_language'),
+            'detail_comment_th' => $this->request->getVar('detail_comment_th'),
+            'detail_comment_en' => $this->request->getVar('detail_comment_en'),
         ];
 
         $target_dir = ROOTPATH . 'dist/img/review/';
@@ -144,7 +148,7 @@ class ReviewDataController extends BaseController
             if (file_exists($target_dir . $imageName)) {
                 $imageName = $image->getRandomName();
             }
-            
+
             $image->move($target_dir, $imageName);
             $data_cover['image_path'] = $imageName;
 
