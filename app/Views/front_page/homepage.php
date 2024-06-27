@@ -752,7 +752,7 @@ $services_json = json_encode($servicesdata);
     <!-- sec review -->
     <section class="review-section">
         <div class="review-title">
-            <h2 id="title_review" style="margin-left: 50px;">REVIEW</h2>
+            <h2 id="title_review" style="margin-left: 10%;">REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <?php include 'app\Views\front_page\reviewhomepage.php'; ?>

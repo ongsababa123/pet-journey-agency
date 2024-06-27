@@ -1,0 +1,34 @@
+{
+  "en": {
+    "contact_us": "Contact Us",
+    "contact_us_desc": "Please fill out the form below so we can respond to you accurately and promptly",
+    "contact_name_placeholder": "Your name*",
+    "contact_surname_placeholder": "Your last name*",
+    "contact_email_placeholder": "Email*",
+    "contact_phone_placeholder": "Phone Number*",
+    "contact_message_placeholder": "Message*",
+    "contact_greeting": "We are happy to hear from you! If you have any questions, suggestions, or comments please contact us using the information below",
+    "contact_footer_desc": "please contact us using the information below",
+    "contact_opening_hours": "Opening Hours:",
+    "contact_weekdays_hours": "Monday to Friday: 8:30 AM - 6:00 PM",
+    "contact_closed_sundays": "Closed every Sunday",
+    "contact_phone": "Phone:",
+    "contact_email": "Email:"
+  },
+  "th": {
+    "contact_us": "ติดต่อเรา",
+    "contact_us_desc": "โปรดกรอกข้อมูลด้านล่างเพื่อให้เราสามารถตอบกลับคุณได้อย่างถูกต้องและรวดเร็ว",
+    "contact_name_placeholder": "ระบุชื่อผู้ติดต่อ",
+    "contact_surname_placeholder": "ระบุนามสกุล",
+    "contact_email_placeholder": "ระบุอีเมล",
+    "contact_phone_placeholder": "ระบุเบอร์โทร",
+    "contact_message_placeholder": "ระบุข้อความ",
+    "contact_greeting": "เรายินดีรับฟังจากคุณ! หากคุณมีคำถาม ข้อเสนอแนะ หรือความคิดเห็นใด ๆ กรุณาติดต่อเราตามข้อมูลด้านล่าง",
+    "contact_footer_desc": "",
+    "contact_opening_hours": "เวลาทำการ:",
+    "contact_weekdays_hours": "จันทร์ถึงศุกร์: 8:30 น. - 18:00 น.",
+    "contact_closed_sundays": "หยุดทุกวันอาทิตย์",
+    "contact_phone": "โทรศัพท์:",
+    "contact_email": "Email:"
+  }
+}
