@@ -177,6 +177,30 @@
             flex-wrap: wrap;
         }
 
+        .header-top .info-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin: 10px 20px;
+        }
+
+        .header-top .info-item i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #00A4E4;
+            border-radius: 50%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .header-top .info-item div {
+            display: flex;
+            flex-direction: column;
+        }
+
         .header-top .contact-info>div {
             display: flex;
             align-items: center;
@@ -527,9 +551,27 @@
                 <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
             </div>
             <div class="contact-info">
-                <div><i class="fas fa-clock"></i> <span id="info_open1">Mon - Sat 9.00 - 18.00</span> <br> <span id="info_open2">Sunday Closed</span></div>
-                <div><i class="fas fa-envelope"></i> <span id="info_email1">Email</span> <br> <span id="info_email2">contact@logistics.com</span></div>
-                <div><i class="fas fa-phone"></i> <span id="info_callus1">Call Us</span> <br> <span id="info_callus2">(00) 112 365 489</span></div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span id="info_open1">Mon - Sat 9.00 - 18.00</span>
+                        <span id="info_open2">Sunday Closed</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span id="info_email1">Email</span>
+                        <span id="info_email2">contact@logistics.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <span id="info_callus1">Call Us</span>
+                        <span id="info_callus2">(00) 112 365 489</span>
+                    </div>
+                </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -546,40 +588,40 @@
             </div>
         </div>
         <div class="header-bottom">
-            <div class="logo">
-                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+    <div class="logo">
+        <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+    </div>
+    <div class="navbar-nav">
+        <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
+        <div class="nav-link"><a id="menu_about_us" href="#">About us</a></div>
+        <div class="nav-link">
+            <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+                <a id="dropdown_service1" href="#">Service 1</a>
+                <a id="dropdown_service2" href="#">Service 2</a>
+                <a id="dropdown_service3" href="#">Service 3</a>
             </div>
-            <div class="navbar-nav">
-                <div class="nav-link"><a href="/pet-journey-agency/page/homepage">Home</a></div>
-                <div class="nav-link"><a href="#">About us</a></div>
-                <div class="nav-link">
-                    <a href="#">Our Service <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#">Service 1</a>
-                        <a href="#">Service 2</a>
-                        <a href="#">Service 3</a>
-                    </div>
-                </div>
-                <div class="nav-link"><a href="/pet-journey-agency/page/reviewpage">Review</a></div>
-                <div class="nav-link"><a href="/pet-journey-agency/page/contactpage">Contact</a></div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="social-icons-bottom">
-                    <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
-                </div>
-                <div class="language-selector">
-                    <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="th">Thai</option>
-                    </select>
-                </div>
-            </div>
-
         </div>
+        <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
+        <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+    </div>
+    <div class="d-flex align-items-center">
+        <div class="social-icons-bottom">
+            <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
+        </div>
+        <div class="language-selector">
+            <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+            <select id="language-select-bottom">
+                <option value="en">English</option>
+                <option value="th">Thai</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 
         <!-- header mobile -->
         <div class="header-top-mobile">
@@ -640,11 +682,11 @@
 
     <!-- Script to handle language change -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var defaultLang = 'en';
             updateLanguage(defaultLang);
 
-            document.getElementById('language-select').addEventListener('change', function () {
+            document.getElementById('language-select').addEventListener('change', function() {
                 var selectedLang = this.value;
                 updateLanguage(selectedLang);
                 var flagImg = document.getElementById('flag-img');
@@ -655,7 +697,7 @@
                 }
             });
 
-            document.getElementById('language-select-bottom').addEventListener('change', function () {
+            document.getElementById('language-select-bottom').addEventListener('change', function() {
                 var selectedLang = this.value;
                 updateLanguage(selectedLang);
                 var flagImg = document.getElementById('flag-img-bottom');
@@ -666,7 +708,7 @@
                 }
             });
 
-            document.getElementById('language-select-mobile').addEventListener('change', function () {
+            document.getElementById('language-select-mobile').addEventListener('change', function() {
                 var selectedLang = this.value;
                 updateLanguage(selectedLang);
             });

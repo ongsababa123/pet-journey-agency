@@ -66,6 +66,10 @@ $services_json = json_encode($servicesdata);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
@@ -509,7 +513,7 @@ $services_json = json_encode($servicesdata);
 
         .feetpet-icon1 {
             position: absolute;
-            top: 600px;
+            top: 650px;
             left: 37px;
             z-index: 1;
             width: 100px;
@@ -650,6 +654,23 @@ $services_json = json_encode($servicesdata);
                 font-size: 2.0rem;
             }
         }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+            line-height: 34px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+            height: 34px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 38px;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -714,23 +735,24 @@ $services_json = json_encode($servicesdata);
                 </h2>
             </div>
             <div class="row">
-                <?php foreach ($services as $service) { ?>
+                <?php foreach ($services as $index => $service) { ?>
                     <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <div class="service-item fade-in">
                             <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
                             <h3 class="p-2"><?php echo $service->title; ?></h3>
-                            <span class="badge badge-pill badge-primary btn_view_more2">View More</span>
+                            <span id="<?php echo $index; ?>" class="badge badge-pill badge-primary btn_view_more2">View More</span>
                         </div>
                     </div>
                 <?php } ?>
             </div>
+
         </div>
     </section>
 
     <!-- sec review -->
     <section class="review-section">
         <div class="review-title">
-            <h2 id="title_review">REVIEW</h2>
+            <h2 id="title_review" style="margin-left: 50px;">REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <?php include 'app\Views\front_page\reviewhomepage.php'; ?>
@@ -826,38 +848,47 @@ $services_json = json_encode($servicesdata);
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
-                        <input class="form-control" type="date" id="ph_travel_date" name="travel-date">
+                        <input class="form-control" type="date" id="ph_date" name="travel-date">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
-                        <select class="form-control" id="ph_origin_country" name="origin-country">
-                            <option value="">เช่น ไทย (TH)</option>
-                            <!-- Add more options as needed -->
+                        <select class="form-control select2" id="ph_origin_country" name="origin-country">
+                            <option id="option_origin_country" value="origin_country"></option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
+                        <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
+                        <select class="form-control select2" id="ph_origin_airport" name="origin-airport">
+                            
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 coltest"></div>
+                    <div class="form-group col-md-4">
                         <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
-                        <select class="form-control" id="ph_destination_country" name="destination-country">
-                            <option value="">เช่น เกาหลี (KR)</option>
+                        <select class="form-control select2" id="ph_destination_country" name="destination-country">
+                            
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
+                        <select class="form-control select2" id="ph_destination_airport" name="destination-airport">
+                            <option id="option_destination_airport" value="destination_airport"></option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
                         <select class="form-control" id="ph_travel_type" name="travel-type">
-                            <option value="">เลือกประเภทการเดินทาง</option>
-                            <!-- Add more options as needed -->
+                            
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
                         <select class="form-control" id="ph_pet_transport" name="pet-transport">
-                            <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
-                            <!-- Add more options as needed -->
                         </select>
                     </div>
                 </div>
                 <div class="form-group text-left">
-                    <label for="services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
+                    <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
                     <div id="services-container"></div>
                 </div>
                 <hr>
@@ -883,8 +914,9 @@ $services_json = json_encode($servicesdata);
                         <input type="text" class="form-control" id="ph_reason" name="reason" placeholder="ระบุหมายเหตุ">
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark" id="btn_submit_quote"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>
+                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
             </div>
+
         </div>
     </section>
     <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
@@ -897,6 +929,17 @@ $services_json = json_encode($servicesdata);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
@@ -1002,35 +1045,6 @@ $services_json = json_encode($servicesdata);
 
         document.getElementById('prev-btn').style.visibility = 'hidden';
         updatePageIndicators();
-    </script>
-
-    <!-- ดึงข้อมูลแต่ละประเทศ -->
-    <script>
-        async function fetchCountries() {
-            const response = await fetch('<?= base_url('public/data/countries.json'); ?>');
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            const countries = await response.json();
-            return countries;
-        }
-
-        function populateSelect(elementId, countries, language) {
-            const select = document.getElementById(elementId);
-            countries.forEach(country => {
-                const option = document.createElement('option');
-                option.value = country.code;
-                option.text = language === 'en' ? `${country.name_en} (${country.code})` : `${country.name_th} (${country.code})`;
-                select.appendChild(option);
-            });
-        }
-
-        fetchCountries().then(countries => {
-            populateSelect('origin-country', countries, 'th');
-            populateSelect('destination-country', countries, 'th');
-        }).catch(error => {
-            console.error('Failed to fetch countries:', error);
-        });
     </script>
 </body>
 
