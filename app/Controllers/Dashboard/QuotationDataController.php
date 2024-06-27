@@ -56,7 +56,9 @@ class QuotationDataController extends BaseController
             'phone_number' => $this->request->getVar('phone_number'),
             'travel_date' => $this->request->getVar('travel_date'),
             'country_of_origin' => $this->request->getVar('country_of_origin'),
+            'airport_of_origin' => $this->request->getVar('airport_of_origin'),
             'destination_country' => $this->request->getVar('destination_country'),
+            'destination_airport' => $this->request->getVar('destination_airport'),
             'travel_type' => $this->request->getVar('travel_type'),
             'transport_format' => $this->request->getVar('transport_format'),
             'service' => $data_service_string,
@@ -66,6 +68,7 @@ class QuotationDataController extends BaseController
             'weight' => $this->request->getVar('weight'),
             'note' => $this->request->getVar('note'),
             'status' => 0,
+            'craete_date' => date('Y-m-d'),
         ];
 
         $this->QuotationModel->insert((object) $data_quotation);
@@ -89,8 +92,7 @@ class QuotationDataController extends BaseController
         if (!empty($searchValue)) {
             $this->QuotationModel->groupStart()
                 ->like('name_last', $searchValue)
-                ->like('email', $searchValue)
-                ->like('phone_number', $searchValue)
+                ->orLike('email', $searchValue)
                 ->groupEnd();
         }
         $totalRecords = $this->QuotationModel->countAllResults();
@@ -100,8 +102,7 @@ class QuotationDataController extends BaseController
         if (!empty($searchValue)) {
             $this->QuotationModel->groupStart()
                 ->like('name_last', $searchValue)
-                ->like('email', $searchValue)
-                ->like('phone_number', $searchValue)
+                ->orLike('email', $searchValue)
                 ->groupEnd();
         }
         $data = ($select_status == 'all') ? $this->QuotationModel->findAll($limit, $start) : $this->QuotationModel->where('status', $select_status)->findAll($limit, $start);
@@ -135,7 +136,9 @@ class QuotationDataController extends BaseController
             'phone_number' => $this->request->getVar('phone_number'),
             'travel_date' => $this->request->getVar('travel_date'),
             'country_of_origin' => $this->request->getVar('country_of_origin'),
+            'airport_of_origin' => $this->request->getVar('airport_of_origin'),
             'destination_country' => $this->request->getVar('destination_country'),
+            'destination_airport' => $this->request->getVar('destination_airport'),
             'travel_type' => $this->request->getVar('travel_type'),
             'transport_format' => $this->request->getVar('transport_format'),
             'service' => $data_service_string,

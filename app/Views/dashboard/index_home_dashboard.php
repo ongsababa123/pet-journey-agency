@@ -29,7 +29,7 @@
                     <!-- small box -->
                     <div class="small-box bg-maroon">
                         <div class="inner">
-                            <h3><?= $quotation_all ?></h3>
+                            <h3 id="quotation_all"></h3>
 
                             <p>จำนวนใบเสนอราคาทั้งหมด</p>
                         </div>
@@ -44,7 +44,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><?= $quotation_success ?></h3>
+                            <h3 id="quotation_success"></h3>
 
                             <p>จำนวนใบเสนอราคา ดำเนินการเสร็จสิ้น</p>
                         </div>
@@ -59,7 +59,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3><?= $quotation_progress ?></h3>
+                            <h3 id="quotation_process"></h3>
 
                             <p>จำนวนใบเสนอราคา กำลังดำเนินการ</p>
                         </div>
@@ -74,7 +74,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?= $quotation_notread ?></h3>
+                            <h3 id="quotation_wait"></h3>
 
                             <p>จำนวนใบเสนอราคา ยังไม่ดำเนินการ</p>
                         </div>
@@ -89,7 +89,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3><?= $quotation_cancel ?></h3>
+                            <h3 id="quotation_cancel"></h3>
 
                             <p>จำนวนใบเสนอราคา ยกเลิก</p>
                         </div>
@@ -103,22 +103,49 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
+                <section class="col-lg-12 connectedSortable">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Browser Usage</h3>
+                        <div class="card-header bg-orange">
+                            <h3 class="card-title mt-2" style="color: white">สถิติการใช้บริการแต่ละบริการ</h3>
 
-                            <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </ul>
+                            <div class="card-tools" style="color: white; display: flex; align-items: center;">
+                                <select id="year_service" name="year_service" class="form-control" style="margin-right: 10px;" oninput="BarChart()">
+                                    <?php
+                                    // หาปีปัจจุบัน
+                                    $current_year = date("Y");
 
+                                    // สร้างตัวเลือกปีโดยใช้ลูป
+                                    for ($year = $current_year; $year >= $current_year - 10; $year--) {
+                                        $selected = ($year == $current_year) ? 'selected' : '';
+                                        echo "<option value=\"$year\" $selected>$year</option>";
+                                    }
+                                    ?>
+                                </select>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" style="color: white;">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="chart">
+                                <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Left col -->
+                <section class="col-lg-6 connectedSortable">
+                    <div class="card">
+                        <div class="card-header bg-info">
+                            <h3 class="card-title">สถิติการใช้บริการแต่ละบริการ</h3>
+                            <div class="card-tools" style="color: white;">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" style="color: white;">
+                                    <i class="fas fa-minus"></i>
+                                </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -133,166 +160,213 @@
                                 <!-- /.col -->
                                 <div class="col-md-4">
                                     <ul class="chart-legend clearfix">
-                                        <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                        <li><i class="far fa-circle text-success"></i> IE</li>
-                                        <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                        <li><i class="far fa-circle text-info"></i> Safari</li>
-                                        <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                        <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+                                        <?php foreach ($service_header as $key => $value) { ?>
+                                            <li><i class="fas fa-circle" id="chart_service_<?= $key ?>"></i> <?= $value['header_service_name_th'] ?></li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer p-0">
-                            <ul class="nav nav-pills flex-column">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        United States of America
-                                        <span class="float-right text-danger">
-                                            <i class="fas fa-arrow-down text-sm"></i>
-                                            12%</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        India
-                                        <span class="float-right text-success">
-                                            <i class="fas fa-arrow-up text-sm"></i> 4%
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        China
-                                        <span class="float-right text-warning">
-                                            <i class="fas fa-arrow-left text-sm"></i> 0%
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.footer -->
                     </div>
                     <!-- /.card -->
                 </section>
 
-                <section class="col-lg-5 connectedSortable">
+                <!-- right col -->
+                <section class="col-lg-6 connectedSortable">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Browser Usage</h3>
-
+                            <h3 class="card-title">รีวิว</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
                                 </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="chart-responsive">
-                                        <canvas id="pieChart" height="150"></canvas>
-                                    </div>
-                                    <!-- ./chart-responsive -->
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-md-4">
-                                    <ul class="chart-legend clearfix">
-                                        <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                                        <li><i class="far fa-circle text-success"></i> IE</li>
-                                        <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                                        <li><i class="far fa-circle text-info"></i> Safari</li>
-                                        <li><i class="far fa-circle text-primary"></i> Opera</li>
-                                        <li><i class="far fa-circle text-secondary"></i> Navigator</li>
-                                    </ul>
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
+                            <div class="elfsight-app-1636610a-59c7-4af4-a012-d1571f251c26" data-elfsight-app-lazy></div>
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer p-0">
-                            <ul class="nav nav-pills flex-column">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        United States of America
-                                        <span class="float-right text-danger">
-                                            <i class="fas fa-arrow-down text-sm"></i>
-                                            12%</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        India
-                                        <span class="float-right text-success">
-                                            <i class="fas fa-arrow-up text-sm"></i> 4%
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        China
-                                        <span class="float-right text-warning">
-                                            <i class="fas fa-arrow-left text-sm"></i> 0%
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.footer -->
                     </div>
                 </section>
-                <!-- right col -->
             </div>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 </div>
+
+
 <!-- ChartJS -->
 <script src="<?= base_url('plugins/chart.js/Chart.min.js') ?>"></script>
+<script src="https://static.elfsight.com/platform/platform.js"></script>
+
+<!-- Convert data php to js -->
 <script>
-    window.onload = function() {
-        var ctx = document.getElementById('pieChart').getContext('2d');
-        var pieChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-    };
+    const quotation_data = <?= json_encode($quotation_data) ?>;
+    const service_header = <?= json_encode($service_header) ?>;
+
+    var quotation_all = 0;
+    var quotation_process = 0;
+    var quotation_success = 0;
+    var quotation_wait = 0;
+    var quotation_cancel = 0;
+
+    quotation_data.forEach(element_quotation => {
+        if (element_quotation.status == '0') {
+            quotation_wait += 1;
+        } else if (element_quotation.status == '1') {
+            quotation_process += 1;
+        } else if (element_quotation.status == '2') {
+            quotation_success += 1;
+        } else if (element_quotation.status == '3') {
+            quotation_cancel += 1;
+        }
+        quotation_all += 1;
+    });
+
+    $('#quotation_all').text(quotation_all);
+    $('#quotation_process').text(quotation_process);
+    $('#quotation_success').text(quotation_success);
+    $('#quotation_wait').text(quotation_wait);
+    $('#quotation_cancel').text(quotation_cancel);
+
+    $(document).ready(function() {
+        PieChart();
+        BarChart();
+    });
 </script>
+
+<!-- random color -->
+<script>
+    const baseColors = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'];
+
+    function randomColor(baseColor) {
+        let color = baseColor.slice(1);
+        let rgb = parseInt(color, 16);
+        let r = (rgb >> 16) & 0xff;
+        let g = (rgb >> 8) & 0xff;
+        let b = (rgb >> 0) & 0xff;
+
+        r = Math.min(255, Math.max(0, r + Math.floor((Math.random() - 0.5) * 50)));
+        g = Math.min(255, Math.max(0, g + Math.floor((Math.random() - 0.5) * 50)));
+        b = Math.min(255, Math.max(0, b + Math.floor((Math.random() - 0.5) * 50)));
+
+        // ใช้ padding สีให้ได้ 2 หลักเสมอ
+        const toHex = (n) => n.toString(16).padStart(2, '0');
+
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+</script>
+
+<!-- Pie Chart -->
+<script>
+    function PieChart() {
+        const labels_service = [];
+        const data_service = [];
+        const color_service = [];
+
+        service_header.forEach((element_service, index) => {
+            var count_service = 0;
+            labels_service.push(element_service.header_service_name_th);
+            var baseColor = baseColors[Math.floor(Math.random() * baseColors.length)];
+            var newColor = randomColor(baseColor);
+            $('#chart_service_' + index).css('color', newColor);
+            color_service.push(newColor);
+            quotation_data.forEach((element_quotation, index) => {
+                var dataService = element_quotation.service.split(',');
+                dataService.forEach((element_quotation, index) => {
+                    if (element_quotation == element_service.id_service_header) {
+                        count_service += 1;
+                    }
+                });
+
+            });
+            data_service.push(count_service);
+        });
+
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieData = {
+            labels: labels_service,
+            datasets: [{
+                data: data_service,
+                backgroundColor: color_service
+            }]
+        }
+        var pieOptions = {
+            legend: {
+                display: false
+            }
+        }
+        var pieChart = new Chart(pieChartCanvas, {
+            type: 'doughnut',
+            data: pieData,
+            options: pieOptions
+        })
+    }
+</script>
+
+<!-- Bar Chart -->
+<script>
+    //-------------
+    //- Bar CHART -
+    //--------------
+    function BarChart() {
+        var value_year = document.getElementById("year_service").value; // ปีที่เลือก
+        var count_by_year_month = {};
+
+        quotation_data.forEach(function(element) {
+            if (element.craete_date.substring(0, 4) === value_year.toString()) {
+                var createDate = new Date(element.craete_date);
+                var year = createDate.getFullYear();
+                var month = createDate.getMonth() + 1;
+
+                if (!count_by_year_month[month]) {
+                    count_by_year_month[month] = 0;
+                }
+            }
+
+            count_by_year_month[month]++;
+        });
+
+        var areaChartData = {
+            labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+            datasets: [{
+                label: 'จำนวนใบเสนอราคา',
+                backgroundColor: 'rgba(60,141,188,0.9)',
+                borderColor: 'rgba(60,141,188,0.8)',
+                pointRadius: false,
+                pointColor: '#3b8bba',
+                pointStrokeColor: 'rgba(60,141,188,1)',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(60,141,188,1)',
+                data: Array.from({
+                    length: 12
+                }, (_, idx) => count_by_year_month[idx + 1] || 0)
+            }]
+        };
+        //-------------
+        //- BAR CHART -
+        //-------------
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = $.extend(true, {}, areaChartData)
+        var temp0 = areaChartData.datasets[0]
+        barChartData.datasets[0] = temp0
+
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        }
+
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        })
+    }
+</script>
+<!-- move tab function -->
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({

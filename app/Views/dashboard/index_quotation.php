@@ -371,7 +371,7 @@
                 sInfoThousands: ",",
                 sLoadingRecords: "กำลังโหลดข้อมูล...",
                 sProcessing: "กำลังดำเนินการ...",
-                sSearch: "ค้นหา คำอธิบายรีวิว: ",
+                sSearch: "ค้นหา ชื่อ-นามสกุล , อีเมล์",
                 oPaginate: {
                     sFirst: "หน้าแรก",
                     sPrevious: "ก่อนหน้า",

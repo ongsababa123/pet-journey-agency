@@ -57,7 +57,7 @@ class ServiceDataController extends BaseController
         if (!empty($searchValue)) {
             $this->ServiceHeaderModel->groupStart()
                 ->like('header_service_name_th', $searchValue)
-                ->like('header_service_name_en', $searchValue)
+                ->orLike('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
 
@@ -67,7 +67,7 @@ class ServiceDataController extends BaseController
         if (!empty($searchValue)) {
             $this->ServiceHeaderModel->groupStart()
                 ->like('header_service_name_th', $searchValue)
-                ->like('header_service_name_en', $searchValue)
+                ->orLike('header_service_name_en', $searchValue)
                 ->groupEnd();
         }
         

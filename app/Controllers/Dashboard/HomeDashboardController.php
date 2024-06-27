@@ -37,8 +37,9 @@ class HomeDashboardController extends BaseController
         $data_page['quotation_progress'] = $this->QuotationModel->where('status', '1')->countAllResults();
         $data_page['quotation_success'] = $this->QuotationModel->where('status', '2')->countAllResults();
         $data_page['quotation_cancel'] = $this->QuotationModel->where('status', '3')->countAllResults();
-
+        $data_page['quotation_data'] = $this->QuotationModel->findAll();
         $data_page['service_header'] = $this->ServiceHeaderModel->findAll();
+        
         echo view('dashboard/layout/header', $data);
         echo view('dashboard/index_home_dashboard' , $data_page);
         echo view('dashboard/layout/footer');

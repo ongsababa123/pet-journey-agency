@@ -81,7 +81,7 @@ class ReviewDataController extends BaseController
         if (!empty($searchValue)) {
             $this->ReviewDataModel->groupStart()
                 ->like('detail_comment_th', $searchValue)
-                ->like('detail_comment_en', $searchValue)
+                ->orLike('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
         $totalRecords = ($select_status == 2) ? $this->ReviewDataModel->countAllResults() : $this->ReviewDataModel->where('status', $select_status)->countAllResults();
@@ -90,7 +90,7 @@ class ReviewDataController extends BaseController
         if (!empty($searchValue)) {
             $this->ReviewDataModel->groupStart()
                 ->like('detail_comment_th', $searchValue)
-                ->like('detail_comment_en', $searchValue)
+                ->orLike('detail_comment_en', $searchValue)
                 ->groupEnd();
         }
         

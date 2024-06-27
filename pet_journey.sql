@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 11:54 AM
+-- Generation Time: Jun 27, 2024 at 09:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -205,32 +205,36 @@ INSERT INTO `performance_team_data` (`id_team`, `image_path`, `color_bg`, `color
 
 CREATE TABLE `quotation` (
   `id_quotation` int(11) NOT NULL COMMENT 'รหัสไอดี',
-  `name_last` varchar(255) NOT NULL COMMENT 'ชื่อ - นามสกุล',
-  `email` varchar(255) NOT NULL COMMENT 'อีเมล์',
-  `phone_number` varchar(100) NOT NULL COMMENT 'เบอร์โทรศัพท์',
-  `travel_date` date NOT NULL COMMENT 'วันเดินทาง',
-  `country_of_origin` varchar(100) NOT NULL COMMENT 'ประเทศต้นทาง',
-  `destination_country` varchar(100) NOT NULL COMMENT 'ประเทศปลายทาง',
-  `travel_type` varchar(100) NOT NULL COMMENT 'ประเภทการเดินทาง',
-  `transport_format` varchar(100) NOT NULL COMMENT 'รูปแบบขนส่งสัตว์เลี้ยง',
-  `service` varchar(100) NOT NULL COMMENT 'ประเภทการเดินทาง array ,',
-  `animal_type` varchar(100) NOT NULL COMMENT 'ชนิดสัตว์',
-  `breed` varchar(100) NOT NULL COMMENT 'สายพันธุ์',
-  `age` varchar(100) NOT NULL COMMENT 'อายุ',
-  `weight` varchar(100) NOT NULL COMMENT 'น้ำหนัก',
-  `note` varchar(255) NOT NULL COMMENT 'หมายเหตุ',
-  `status` int(11) NOT NULL COMMENT 'สถานะ \r\n1-อ่านแล้ว\r\n0- ยังไม่ได้อ่าน'
+  `name_last` varchar(255) DEFAULT NULL COMMENT 'ชื่อ - นามสกุล',
+  `email` varchar(255) DEFAULT NULL COMMENT 'อีเมล์',
+  `phone_number` varchar(100) DEFAULT NULL COMMENT 'เบอร์โทรศัพท์',
+  `travel_date` date DEFAULT NULL COMMENT 'วันเดินทาง',
+  `country_of_origin` varchar(100) DEFAULT NULL COMMENT 'ประเทศต้นทาง',
+  `airport_of_origin` varchar(100) DEFAULT NULL,
+  `destination_country` varchar(100) DEFAULT NULL COMMENT 'ประเทศปลายทาง',
+  `destination_airport` varchar(100) DEFAULT NULL,
+  `travel_type` varchar(100) DEFAULT NULL COMMENT 'ประเภทการเดินทาง',
+  `transport_format` varchar(100) DEFAULT NULL COMMENT 'รูปแบบขนส่งสัตว์เลี้ยง',
+  `service` varchar(100) DEFAULT NULL COMMENT 'ประเภทการเดินทาง array ,',
+  `animal_type` varchar(100) DEFAULT NULL COMMENT 'ชนิดสัตว์',
+  `breed` varchar(100) DEFAULT NULL COMMENT 'สายพันธุ์',
+  `age` varchar(100) DEFAULT NULL COMMENT 'อายุ',
+  `weight` varchar(100) DEFAULT NULL COMMENT 'น้ำหนัก',
+  `note` varchar(255) DEFAULT NULL COMMENT 'หมายเหตุ',
+  `status` int(11) DEFAULT NULL COMMENT 'สถานะ \r\n1-อ่านแล้ว\r\n0- ยังไม่ได้อ่าน',
+  `craete_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `quotation`
 --
 
-INSERT INTO `quotation` (`id_quotation`, `name_last`, `email`, `phone_number`, `travel_date`, `country_of_origin`, `destination_country`, `travel_type`, `transport_format`, `service`, `animal_type`, `breed`, `age`, `weight`, `note`, `status`) VALUES
-(2, 'ฟหกฟห', 'กฟหกฟหก', 'กฟหกหฟกฟห', '2024-06-27', 'AL', 'AD', '1', '2', '1,2', '', 'กฟหกฟห', 'กฟหก', 'กฟหก', 'ฟหกหฟ', 2),
-(3, 'sadsa', 'dasdsadasd', 'dasdsa', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 1),
-(4, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0),
-(5, '', '', '', '0000-00-00', '0', '0', '0', '0', '', '', '', '', '', '', 0);
+INSERT INTO `quotation` (`id_quotation`, `name_last`, `email`, `phone_number`, `travel_date`, `country_of_origin`, `airport_of_origin`, `destination_country`, `destination_airport`, `travel_type`, `transport_format`, `service`, `animal_type`, `breed`, `age`, `weight`, `note`, `status`, `craete_date`) VALUES
+(2, 'ฟหกฟห', 'กฟหกฟหก', 'กฟหกหฟกฟห', '2024-06-27', 'AL', NULL, 'AD', '', '1', '2', '1,2', '', 'กฟหกฟห', 'กฟหก', 'กฟหก', 'ฟหกหฟ', 2, '2024-02-11'),
+(3, 'sadsa', 'dasdsadasd', 'dasdsa', '0000-00-00', 'AL', '0', 'AF', '0', '2', '2', '1,2,3,4,5,6,7,8', '', 'asdas', 'dasd', 'asdasd', 'asd', 1, '2024-03-11'),
+(4, 'adzxzxczxc', 'czxc', 'zxcxz', '0000-00-00', 'AF', 'Bost Airport', 'AF', 'Faizabad Airport', '2', '2', '2', '', 'zxczx', 'czxc', 'xczx', 'czxz', 0, '2024-05-13'),
+(5, 'zxcz', 'xzczxc', 'czxc', '0000-00-00', 'AL', 'Kucove Air Base', 'DZ', 'El Abiodh Sidi Cheikh Airport', '2', '2', '1,2', '', 'xzxc', 'zxcz', 'zxczxc', 'xczcx', 0, '2024-06-17'),
+(6, 'asdas', 'asdas', 'dsad', '2024-06-06', 'AF', 'Bamiyan Airport', 'DZ', 'Hamaguir Airport', '3', '3', '1,3,7', NULL, 'dasd', 'sadasd', 'das', 'asdsa', 3, '2024-06-27');
 
 -- --------------------------------------------------------
 
@@ -325,7 +329,13 @@ CREATE TABLE `service_header` (
 
 INSERT INTO `service_header` (`id_service_header`, `header_service_name_th`, `header_service_name_en`, `image_path`, `status`) VALUES
 (1, 'นำเข้าและส่งออกสัตว์เลี้ยง', 'Import and export of pets', 'avatar4.png', 1),
-(2, 'บริการตรวจเลือดสัตว์เลี้ยง', 'Pet blood testing service', '1719211120_ce667b790b7aa9794325.png', 1);
+(2, 'บริการตรวจเลือดสัตว์เลี้ยง', 'Pet blood testing service', '1719211120_ce667b790b7aa9794325.png', 1),
+(3, 'บริการด้านสัตวแพทย์', 'Veterinary services', 'avatar2.png', 1),
+(4, 'บริการทำวัคซีนสัตว์เลี้ยง', 'Pet vaccination service', 'avatar3.png', 1),
+(5, 'บริการจองตั๋วเครื่องบิน', 'Airline ticket booking service', '1719459066_db3b1e2a833e580a4ed3.png', 1),
+(6, 'โรงแรมสำหรับสัตว์เลี้ยง', 'pet friendly hotel', 'contact_pic.png', 1),
+(7, 'โรงแรม Pet Friendly', 'Pet Friendly Hotel', 'pet_quote.png', 1),
+(8, 'ซื้อขายสัตว์เลี้ยงจากต่างประเทศ', 'Buying and selling pets from abroad', 'service4.png', 1);
 
 -- --------------------------------------------------------
 
@@ -483,7 +493,7 @@ ALTER TABLE `performance_team_data`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=6;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `review_data`
@@ -507,7 +517,7 @@ ALTER TABLE `service_content_buy_sale`
 -- AUTO_INCREMENT for table `service_header`
 --
 ALTER TABLE `service_header`
-  MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `veterinary_team`
