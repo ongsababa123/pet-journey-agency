@@ -27,8 +27,14 @@ $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function (
     $routes->get('contactpage', 'ContactPage::index');
 });
 
+$routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('login', 'UserAdminController::index_login'); //index login
+    $routes->post('login/auth', 'UserAdminController::auth'); //auth
+    $routes->get('logout', 'UserAdminController::logout'); //logout
+});
 // Grouped routes with a common namespace
-$routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard' , 'filter' => 'AuthGuard'], function ($routes) {
+$routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard', 'filter' => 'AuthGuard'], function ($routes) {
     $routes->get('dashboardhome', 'HomeDashboardController::index');
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('review', 'ReviewDataController::index'); //index review
@@ -81,13 +87,9 @@ $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard' , 'fil
     $routes->get('useradmin/delete/(:num)', 'UserAdminController::delete_useradmin/$1'); //delete useradmin
     $routes->post('useradmin/create', 'UserAdminController::create_useradmin'); //create useradmin
     $routes->post('useradmin/update/(:num)', 'UserAdminController::update_useradmin/$1'); //update useradmin
-    //------------------------------------------------------------------------------------------------------------------------------------//
-    $routes->get('login', 'UserAdminController::index_login'); //index login
-    $routes->post('login/auth', 'UserAdminController::auth'); //auth
-    $routes->get('logout', 'UserAdminController::logout'); //logout
 });
 
-$routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage' , 'filter' => 'AuthGuard'], function ($routes) {
+$routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage', 'filter' => 'AuthGuard'], function ($routes) {
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('cover', 'HomePage_ConverController::index'); //index cover
     $routes->get('cover/getdata', 'HomePage_ConverController::getData_cover'); //getdata cover
