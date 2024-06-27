@@ -270,19 +270,15 @@ function check_menu_state($uri_menu, $input, $type)
                             <img class="img-circle" src="<?= base_url('dist/img/avatar3.png'); ?>" alt="User Image">
                             <span class="username" style="color: white !important;">
                                 <?php echo session()->get('name_last_admin'); ?> 
-                                <span class="description" style="color: white !important;">
-                                    <?php echo session()->get('email_admin'); ?>
-                                </span>
+                            </span>
+                            <span class="description" style="color: white !important;">
+                                <?php echo session()->get('email_admin'); ?>
                             </span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: #FFC107 !important;border-radius: 10px !important;">
                             <!-- Dropdown items go here -->
-                            <a class="dropdown-item" href="<?= base_url('/profile'); ?>" style="color: black !important;"> <i class="fas fa-id-card"></i>
-                                Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= base_url('/dashboard/logout'); ?>" style="color: black !important;"> <i class="fas fa-sign-out-alt"></i>
-                                Logout
+                                ลงชื่อออก
                             </a>
                         </div>
                     </div>
