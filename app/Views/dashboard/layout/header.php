@@ -262,6 +262,34 @@ function check_menu_state($uri_menu, $input, $type)
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white !important;"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <div class="user-block">
+                        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-circle" src="<?= base_url('dist/img/avatar3.png'); ?>" alt="User Image">
+                            <span class="username" style="color: white !important;">
+                                <?php echo session()->get('name_last_admin'); ?>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: #FFC107 !important;border-radius: 10px !important;">
+                            <!-- Dropdown items go here -->
+                            <a class="dropdown-item" href="<?= base_url('/profile'); ?>" style="color: black !important;"> <i class="fas fa-id-card"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?= base_url('/dashboard/logout'); ?>" style="color: black !important;"> <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white !important;">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- /.navbar -->
 
@@ -270,7 +298,6 @@ function check_menu_state($uri_menu, $input, $type)
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
-
             </a>
 
             <!-- Sidebar -->
@@ -390,6 +417,18 @@ function check_menu_state($uri_menu, $input, $type)
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
                                     ข้อมูลเสนอราคา
+                                </p>
+                            </a>
+                        </li>
+                        <div>
+                            <hr>
+                        </div>
+                        <li class="nav-header">จัดการข้อมูลแอดมิน</li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/useradmin') ?>" class="nav-link <?= check_menu_state($uri_menu, 'useradmin', 'active_display') ?>">
+                                <i class="nav-icon fas fa-user-shield"></i>
+                                <p>
+                                    ข้อมูลผู้ใช้แอดมิน
                                 </p>
                             </a>
                         </li>

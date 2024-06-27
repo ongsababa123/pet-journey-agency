@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2024 at 09:41 AM
+-- Generation Time: Jun 27, 2024 at 12:29 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -340,6 +340,28 @@ INSERT INTO `service_header` (`id_service_header`, `header_service_name_th`, `he
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_admin`
+--
+
+CREATE TABLE `user_admin` (
+  `id_user_admin` int(11) NOT NULL,
+  `email_admin` varchar(255) NOT NULL,
+  `name_last_admin` varchar(255) NOT NULL,
+  `password_admin` longtext NOT NULL,
+  `time_stamp_login` datetime NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_admin`
+--
+
+INSERT INTO `user_admin` (`id_user_admin`, `email_admin`, `name_last_admin`, `password_admin`, `time_stamp_login`, `status`) VALUES
+(2, 'jailyootbandit@gmail.com', 'จิลายุทธ บัณฑิต', '$2y$10$aNnIFoxpnnjbpv.4vJswL.BrLRt8XjP02HRhfzXvH0tdohKPsHCtK', '2024-06-27 17:17:58', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `veterinary_team`
 --
 
@@ -438,6 +460,12 @@ ALTER TABLE `service_header`
   ADD PRIMARY KEY (`id_service_header`);
 
 --
+-- Indexes for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  ADD PRIMARY KEY (`id_user_admin`);
+
+--
 -- Indexes for table `veterinary_team`
 --
 ALTER TABLE `veterinary_team`
@@ -518,6 +546,12 @@ ALTER TABLE `service_content_buy_sale`
 --
 ALTER TABLE `service_header`
   MODIFY `id_service_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  MODIFY `id_user_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `veterinary_team`

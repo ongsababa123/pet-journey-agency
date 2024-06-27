@@ -28,7 +28,7 @@ $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function (
 });
 
 // Grouped routes with a common namespace
-$routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+$routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard' , 'filter' => 'AuthGuard'], function ($routes) {
     $routes->get('dashboardhome', 'HomeDashboardController::index');
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('review', 'ReviewDataController::index'); //index review
@@ -74,9 +74,20 @@ $routes->group('dashboard/', ['namespace' => 'App\Controllers\Dashboard'], funct
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('performanceteam', 'PerformanceTeamController::index'); //index performance team
     $routes->post('performanceteam/update/(:num)/(:segment)', 'PerformanceTeamController::update_performance/$1/$2'); //update performance
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('useradmin', 'UserAdminController::index'); //index useradmin
+    $routes->get('useradmin/getdata', 'UserAdminController::getData_useradmin'); //getdata useradmin
+    $routes->get('useradmin/changestatus/(:num)/(:num)', 'UserAdminController::change_status_useradmin/$1/$2'); //change status useradmin
+    $routes->get('useradmin/delete/(:num)', 'UserAdminController::delete_useradmin/$1'); //delete useradmin
+    $routes->post('useradmin/create', 'UserAdminController::create_useradmin'); //create useradmin
+    $routes->post('useradmin/update/(:num)', 'UserAdminController::update_useradmin/$1'); //update useradmin
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('login', 'UserAdminController::index_login'); //index login
+    $routes->post('login/auth', 'UserAdminController::auth'); //auth
+    $routes->get('logout', 'UserAdminController::logout'); //logout
 });
 
-$routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage'], function ($routes) {
+$routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage' , 'filter' => 'AuthGuard'], function ($routes) {
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('cover', 'HomePage_ConverController::index'); //index cover
     $routes->get('cover/getdata', 'HomePage_ConverController::getData_cover'); //getdata cover

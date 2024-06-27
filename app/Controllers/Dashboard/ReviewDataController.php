@@ -107,9 +107,9 @@ class ReviewDataController extends BaseController
         return $this->response->setJSON($response);
     }
     //-- change status review --//
-    public function change_status_review($id_cover, $status)
+    public function change_status_review($id_review, $status)
     {
-        $this->ReviewDataModel->update($id_cover, (object)[
+        $this->ReviewDataModel->update($id_review, (object)[
             'status' => $status == 1 ? 0 : 1
         ]);
         $response = [
