@@ -538,11 +538,6 @@
         }
     </style>
 </head>
-<script>
-    var BASE_URL = '<?= base_url(); ?>';
-</script>
-<script src="<?= base_url('public/js/language.js'); ?>"></script>
-
 <body>
     <header>
         <!-- header normal -->
@@ -593,7 +588,7 @@
     </div>
     <div class="navbar-nav">
         <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
-        <div class="nav-link"><a id="menu_about_us" href="#">About us</a></div>
+        <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
         <div class="nav-link">
             <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu">
@@ -646,7 +641,7 @@
             <div>
                 <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
                 <a href="/pet-journey-agency/page/homepage"><i class="fas fa-home"></i>Home</a>
-                <a href="#about"><i class="fas fa-info-circle"></i>About</a>
+                <a href="/pet-journey-agency/page/aboutuspage"><i class="fas fa-info-circle"></i>About us</a>
                 <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
                 <a href="/pet-journey-agency/page/reviewpage"><i class="fas fa-star"></i>Review</a>
                 <a href="/pet-journey-agency/page/contactpage"><i class="fas fa-file-alt"></i>Contact</a>
