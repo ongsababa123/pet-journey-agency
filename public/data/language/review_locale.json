@@ -1,0 +1,18 @@
+{
+    "en": {
+        "rv_title_review1": "Customer",
+        "rv_title_review2": "Reviews",
+        "rv_btn_view_more_reviews": "View More Reviews",
+        "rv_btn_view_more_on_facebook": "View More on Facebook",
+        "rv_team_work_results1": "TeamWork",
+        "rv_team_work_results2": "Results"
+    },
+    "th": {
+        "rv_title_review1": "รีวิว",
+        "rv_title_review2": "จากลูกค้าของเรา",
+        "rv_btn_view_more_reviews": "รีวิวเพิ่มเติม",
+        "rv_btn_view_more_on_facebook": "รีวิวเพิ่มเติมบน Facebook",
+        "rv_team_work_results1": "ผลงาน",
+        "rv_team_work_results2": "การทำงานของทีม"
+    }
+}

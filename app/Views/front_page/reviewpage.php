@@ -656,8 +656,8 @@ $data = [
     <section>
         <div class="container mt-5">
             <h3 class="d-flex p-2" style="color: #23456B; font-weight: 600;">
-                <div style="color: #FFB629;">รีวิว</div>
-                จากลูกค้าของเรา
+                <div id="rv_title_review1" style="color: #FFB629;">รีวิว</div>
+                <div id="rv_title_review2">จากลูกค้าของเรา</div>
             </h3>
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
@@ -673,9 +673,13 @@ $data = [
                 <?php endforeach; ?>
             </div>
             <div class="mt-3 review-buttons">
-                <button id="load-more" type="button" class="btn btn-warning" style="margin-right: 10px;"><i class="fas fa-search"></i>&nbsp; &nbsp; รีวิวเพิ่มเติม</button>
+                <button id="load-more" type="button" class="btn btn-warning" style="margin-right: 10px;">
+                    <i class="fas fa-search"></i>&nbsp; &nbsp;
+                    <span id="rv_btn_view_more_reviews">รีวิวเพิ่มเติม</span>
+                </button>
                 <a href="https://www.facebook.com/petjourney.agency" class="btn btn-primary">
-                    <i class="fab fa-facebook"></i>&nbsp; &nbsp; รีวิวเพิ่มเติมบน Facebook
+                    <i class="fab fa-facebook"></i>&nbsp; &nbsp;
+                    <span id="rv_btn_view_more_on_facebook">รีวิวเพิ่มเติมบน Facebook</span>
                 </a>
             </div>
             <!-- review-grid-mobile -->
@@ -706,8 +710,8 @@ $data = [
     <section>
         <div class="container mt-5">
             <h3 class="d-flex p-2" style="color: #23456B; font-weight: 600;">
-                <div style="color: #0198B4;">ผลงาน</div>
-                การทำงานของทีม
+                <div id="rv_team_work_results1" style="color: #0198B4;">ผลงาน</div>
+                <div id="rv_team_work_results2">การทำงานของทีม</div>
             </h3>
             <div class="layout-grid">
                 <div class="layout-box box1" id="box-1"></div>

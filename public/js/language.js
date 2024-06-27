@@ -1,5 +1,6 @@
 async function updateLanguage(lang) {
   try {
+    // section header
     const response = await fetch(
       BASE_URL + "public/data/language/header_locale.json"
     );
@@ -36,6 +37,7 @@ async function updateLanguage(lang) {
       }
     });
 
+    // section homepage
     const homepageResponse = await fetch(
       BASE_URL + "public/data/language/homepage_locale.json"
     );
@@ -110,6 +112,12 @@ async function updateLanguage(lang) {
       }
     }
 
+    const viewMoreButtons = document.querySelectorAll(".btn_view_more2");
+    viewMoreButtons.forEach((button) => {
+      button.textContent = homepageData[lang]["btn_view_more2"];
+    });
+
+    // section footer
     const footerResponse = await fetch(
       BASE_URL + "public/data/language/footer_local.json"
     );
@@ -136,10 +144,32 @@ async function updateLanguage(lang) {
       }
     }
 
-    const viewMoreButtons = document.querySelectorAll(".btn_view_more2");
-    viewMoreButtons.forEach((button) => {
-      button.textContent = homepageData[lang]["btn_view_more2"];
-    });
+    // section review
+    const reviewResponse = await fetch(
+      BASE_URL + "public/data/language/review_locale.json"
+    );
+    if (!reviewResponse.ok) {
+      throw new Error(
+        "Network response was not ok " + reviewResponse.statusText
+      );
+    }
+    const reviewData = await reviewResponse.json();
+
+    const reviewElements = {
+      rv_title_review1: "rv_title_review1",
+      rv_title_review2: "rv_title_review2",
+      rv_btn_view_more_reviews: "rv_btn_view_more_reviews",
+      rv_btn_view_more_on_facebook: "rv_btn_view_more_on_facebook",
+      rv_team_work_results1: "rv_team_work_results1",
+      rv_team_work_results2: "rv_team_work_results2",
+    };
+
+    for (const [id, key] of Object.entries(reviewElements)) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = reviewData[lang][key];
+      }
+    }
   } catch (error) {
     console.error("Failed to fetch content: ", error);
   }
