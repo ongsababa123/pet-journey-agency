@@ -54,12 +54,37 @@
         }
 
         /* contact-info */
+        /* contact-info */
         .contact-info {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-grow: 1;
             flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin: 10px 20px;
+        }
+
+        .info-item i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #00A4E4;
+            border-radius: 50%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .info-item div {
+            display: flex;
+            flex-direction: column;
         }
 
         .contact-info>div {
@@ -80,7 +105,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         @media (max-width: 1200px) {
             .contact-info {
                 display: none;
@@ -130,10 +155,28 @@
             <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Logo">
         </div>
         <div class="contact-info">
-            <div><i class="fas fa-clock"></i> <span>Mon - Sat 9.00 - 18.00 <br> Sunday Closed</span></div>
-            <div><i class="fas fa-envelope"></i> <span>Email <br> contact@logistics.com</span></div>
-            <div><i class="fas fa-phone"></i> <span>Call Us <br> (00) 112 365 489</span></div>
-        </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span id="ft_open1">Mon - Sat 9.00 - 18.00</span>
+                        <span id="ft_open2">Sunday Closed</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span id="ft_email1">Email</span>
+                        <span id="ft_email2">contact@logistics.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <span id="ft_callus1">Call Us</span>
+                        <span id="ft_callus2">(00) 112 365 489</span>
+                    </div>
+                </div>
+            </div>
         <div class="social-icons">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-facebook"></i></a>

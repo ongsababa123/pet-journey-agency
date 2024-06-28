@@ -66,6 +66,14 @@ $services_json = json_encode($servicesdata);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <script>
+        var BASE_URL = '<?= base_url(); ?>';
+    </script>
+    <script src="<?= base_url('public/js/language.js'); ?>"></script>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
@@ -505,7 +513,7 @@ $services_json = json_encode($servicesdata);
 
         .feetpet-icon1 {
             position: absolute;
-            top: 600px;
+            top: 650px;
             left: 37px;
             z-index: 1;
             width: 100px;
@@ -646,6 +654,23 @@ $services_json = json_encode($servicesdata);
                 font-size: 2.0rem;
             }
         }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+            line-height: 34px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+            height: 34px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 38px;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -710,23 +735,24 @@ $services_json = json_encode($servicesdata);
                 </h2>
             </div>
             <div class="row">
-                <?php foreach ($services as $service) { ?>
+                <?php foreach ($services as $index => $service) { ?>
                     <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <div class="service-item fade-in">
                             <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
                             <h3 class="p-2"><?php echo $service->title; ?></h3>
-                            <span class="badge badge-pill badge-primary btn_view_more2">View More</span>
+                            <span id="<?php echo $index; ?>" class="badge badge-pill badge-primary btn_view_more2">View More</span>
                         </div>
                     </div>
                 <?php } ?>
             </div>
+
         </div>
     </section>
 
     <!-- sec review -->
     <section class="review-section">
         <div class="review-title">
-            <h2 id="title_review">REVIEW</h2>
+            <h2 id="title_review" style="margin-left: 10%;">REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <?php include 'app\Views\front_page\reviewhomepage.php'; ?>
@@ -810,77 +836,87 @@ $services_json = json_encode($servicesdata);
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="name" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="name_input" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
+                        <input class="form-control" type="text" id="ph_name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="phone_input" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
+                        <input class="form-control" type="text" id="ph_phone" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
-                        <input class="form-control" type="email" id="email_input" name="email" placeholder="ระบุอีเมล">
+                        <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
-                        <input class="form-control" type="date" id="travel_date_input" name="travel-date">
+                        <input class="form-control" type="date" id="ph_date" name="travel-date">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="origin-country" id="label_origin_country" class="d-flex">ประเทศต้นทาง</label>
-                        <select class="form-control" id="origin_country_input" name="origin-country">
-                            <option value="">เช่น ไทย (TH)</option>
-                            <!-- Add more options as needed -->
+                        <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
+                        <select class="form-control select2" id="ph_origin_country" name="origin-country">
+                            <option id="option_origin_country" value="origin_country"></option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
+                        <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
+                        <select class="form-control select2" id="ph_origin_airport" name="origin-airport">
+                            
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 coltest"></div>
+                    <div class="form-group col-md-4">
                         <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
-                        <select class="form-control" id="destination_country_input" name="destination-country">
-                            <option value="">เช่น เกาหลี (KR)</option>
+                        <select class="form-control select2" id="ph_destination_country" name="destination-country">
+                            
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
+                        <select class="form-control select2" id="ph_destination_airport" name="destination-airport">
+                            <option id="option_destination_airport" value="destination_airport"></option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
-                        <select class="form-control" id="travel_type_input" name="travel-type">
-                            <option value="">เลือกประเภทการเดินทาง</option>
-                            <!-- Add more options as needed -->
+                        <select class="form-control" id="ph_travel_type" name="travel-type">
+                            
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
-                        <select class="form-control" id="pet_transport_input" name="pet-transport">
-                            <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
-                            <!-- Add more options as needed -->
+                        <select class="form-control" id="ph_pet_transport" name="pet-transport">
                         </select>
                     </div>
                 </div>
                 <div class="form-group text-left">
-                    <label for="services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
+                    <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
                     <div id="services-container"></div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
-                        <input type="text" class="form-control" id="pet_type_input" name="pet-type" placeholder="ระบุชนิดสัตว์">
+                        <input type="text" class="form-control" id="ph_pet_type" name="pet-type" placeholder="ระบุชนิดสัตว์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
-                        <input type="text" class="form-control" id="breed_input" name="breed" placeholder="ระบุสายพันธุ์">
+                        <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="age" id="label_age" class="d-flex">อายุ</label>
-                        <input type="text" class="form-control" id="age_input" name="age" placeholder="ระบุอายุ">
+                        <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
-                        <input type="text" class="form-control" id="weight_input" name="weight" placeholder="ระบุน้ำหนัก">
+                        <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
-                        <input type="text" class="form-control" id="reason_input" name="reason" placeholder="ระบุหมายเหตุ">
+                        <input type="text" class="form-control" id="ph_reason" name="reason" placeholder="ระบุหมายเหตุ">
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark" id="btn_submit_quote"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>
+                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
             </div>
+
         </div>
     </section>
     <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
@@ -893,6 +929,17 @@ $services_json = json_encode($servicesdata);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
@@ -998,109 +1045,6 @@ $services_json = json_encode($servicesdata);
 
         document.getElementById('prev-btn').style.visibility = 'hidden';
         updatePageIndicators();
-    </script>
-
-    <!-- ดึงข้อมูลแต่ละประเทศ -->
-    <script>
-        async function fetchCountries() {
-            const response = await fetch('<?= base_url('public/data/countries.json'); ?>');
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            const countries = await response.json();
-            return countries;
-        }
-
-        function populateSelect(elementId, countries, language) {
-            const select = document.getElementById(elementId);
-            countries.forEach(country => {
-                const option = document.createElement('option');
-                option.value = country.code;
-                option.text = language === 'en' ? `${country.name_en} (${country.code})` : `${country.name_th} (${country.code})`;
-                select.appendChild(option);
-            });
-        }
-
-        fetchCountries().then(countries => {
-            populateSelect('origin-country', countries, 'th');
-            populateSelect('destination-country', countries, 'th');
-        }).catch(error => {
-            console.error('Failed to fetch countries:', error);
-        });
-    </script>
-
-    <!-- language -->
-    <script>
-        async function setLanguage(lang) {
-            try {
-                const response = await fetch('<?= base_url('public/data/language/homepage_locale.json'); ?>');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const data = await response.json();
-
-                document.getElementById('title_about_us').textContent = data[lang].title_about_us;
-                document.getElementById('btn_view_more1').textContent = data[lang].btn_view_more1;
-                document.querySelectorAll('.btn_view_more2').forEach(button => {
-                    button.textContent = data[lang].btn_view_more2;
-                });
-                document.getElementById('title_our_service_part1').textContent = data[lang].title_our_service_part1;
-                document.getElementById('title_our_service_part2').textContent = data[lang].title_our_service_part2;
-                document.getElementById('title_review').textContent = data[lang].title_review;
-                document.getElementById('title_partner').textContent = data[lang].title_partner;
-                document.getElementById('sub_title_animal_clinic').textContent = data[lang].sub_title_animal_clinic;
-                document.getElementById('sub_title_pet_friendly').textContent = data[lang].sub_title_pet_friendly;
-                document.getElementById('sub_title_pet_hotel').textContent = data[lang].sub_title_pet_hotel;
-                document.getElementById('title_quote_part1').textContent = data[lang].title_quote1;
-                document.getElementById('title_quote_part2').textContent = data[lang].title_quote2;
-                document.getElementById('title_quote_part3').textContent = data[lang].title_quote3;
-
-                document.getElementById('label_name').textContent = data[lang].name;
-                document.getElementById('name_input').placeholder = data[lang].ph_name;
-                document.getElementById('label_phone').textContent = data[lang].phone;
-                document.getElementById('phone_input').placeholder = data[lang].ph_phone;
-                document.getElementById('label_email').textContent = data[lang].email;
-                document.getElementById('email_input').placeholder = data[lang].ph_email;
-                document.getElementById('label_date').textContent = data[lang].date;
-                document.getElementById('travel_date_input').placeholder = data[lang].ph_date;
-                document.getElementById('label_origin_country').textContent = data[lang].country;
-                document.getElementById('origin_country_input').placeholder = data[lang].ph_country;
-                document.getElementById('label_destination_country').textContent = data[lang].destination_country;
-                document.getElementById('destination_country_input').placeholder = data[lang].ph_destination_country;
-                document.getElementById('label_travel_type').textContent = data[lang].travel_type;
-                document.getElementById('travel_type_input').placeholder = data[lang].ph_travel_type;
-                document.getElementById('label_pet_transport').textContent = data[lang].pet_transport;
-                document.getElementById('pet_transport_input').placeholder = data[lang].ph_pet_transport;
-
-                document.getElementById('label_pet_type').textContent = data[lang].pet_type;
-                document.getElementById('pet_type_input').placeholder = data[lang].ph_pet_type;
-                document.getElementById('label_breed').textContent = data[lang].breed;
-                document.getElementById('breed_input').placeholder = data[lang].ph_breed;
-                document.getElementById('label_age').textContent = data[lang].age;
-                document.getElementById('age_input').placeholder = data[lang].ph_age;
-                document.getElementById('label_weight').textContent = data[lang].weight;
-                document.getElementById('weight_input').placeholder = data[lang].ph_weight;
-                document.getElementById('label_reason').textContent = data[lang].reason;
-                document.getElementById('reason_input').placeholder = data[lang].ph_reason;
-
-                document.getElementById('btn_submit_quote').textContent = data[lang].btn_submit_quote;
-            } catch (error) {
-                console.error('Error loading translations:', error);
-            }
-        }
-
-        document.getElementById('language-select').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-mobile').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        // Set default language
-        setLanguage('en');
     </script>
 </body>
 

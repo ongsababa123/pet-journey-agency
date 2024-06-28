@@ -1,0 +1,42 @@
+CRITICAL - 2024-06-27 02:42:23 --> ErrorException: Undefined variable $lang
+[Method: GET, Route: page/homepage]
+in APPPATH\Views\front_page\homepage.php on line 722.
+ 1 APPPATH\Views\front_page\homepage.php(722): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lang', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php', 722)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('front_page/homepage', [], true)
+ 5 APPPATH\Controllers\FrontPage\HomePage.php(29): view('front_page/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FrontPage\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FrontPage\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-27 02:42:59 --> ErrorException: Undefined variable $lang
+[Method: GET, Route: page/homepage]
+in APPPATH\Views\front_page\homepage.php on line 722.
+ 1 APPPATH\Views\front_page\homepage.php(722): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lang', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php', 722)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('front_page/homepage', [], true)
+ 5 APPPATH\Controllers\FrontPage\HomePage.php(29): view('front_page/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FrontPage\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FrontPage\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-06-27 02:43:00 --> ErrorException: Undefined variable $lang
+[Method: GET, Route: page/homepage]
+in APPPATH\Views\front_page\homepage.php on line 722.
+ 1 APPPATH\Views\front_page\homepage.php(722): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lang', 'D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php', 722)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\xampp\\htdocs\\pet-journey-agency\\app\\Views\\front_page\\homepage.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('front_page/homepage', [], true)
+ 5 APPPATH\Controllers\FrontPage\HomePage.php(29): view('front_page/homepage')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FrontPage\HomePage->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FrontPage\HomePage))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

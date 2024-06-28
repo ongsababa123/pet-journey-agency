@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
-
+    <script>
+        var BASE_URL = '<?= base_url(); ?>';
+    </script>
+    <script src="<?= base_url('public/js/language.js'); ?>"></script>
     <style>
         /* general */
         * {
@@ -172,6 +175,30 @@
             justify-content: center;
             flex-grow: 1;
             flex-wrap: wrap;
+        }
+
+        .header-top .info-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin: 10px 20px;
+        }
+
+        .header-top .info-item i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #00A4E4;
+            border-radius: 50%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .header-top .info-item div {
+            display: flex;
+            flex-direction: column;
         }
 
         .header-top .contact-info>div {
@@ -511,7 +538,6 @@
         }
     </style>
 </head>
-
 <body>
     <header>
         <!-- header normal -->
@@ -520,9 +546,27 @@
                 <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
             </div>
             <div class="contact-info">
-                <div><i class="fas fa-clock"></i> <span>Mon - Sat 9.00 - 18.00 <br> Sunday Closed</span></div>
-                <div><i class="fas fa-envelope"></i> <span>Email <br> contact@logistics.com</span></div>
-                <div><i class="fas fa-phone"></i> <span>Call Us <br> (00) 112 365 489</span></div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span id="info_open1">Mon - Sat 9.00 - 18.00</span>
+                        <span id="info_open2">Sunday Closed</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span id="info_email1">Email</span>
+                        <span id="info_email2">contact@logistics.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <span id="info_callus1">Call Us</span>
+                        <span id="info_callus2">(00) 112 365 489</span>
+                    </div>
+                </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -539,39 +583,40 @@
             </div>
         </div>
         <div class="header-bottom">
-            <div class="logo">
-                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
-            </div>
-            <div class="navbar-nav">
-                <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
-                <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
-                <div class="nav-link">
-                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#">Service 1</a>
-                        <a href="#">Service 2</a>
-                        <a href="#">Service 3</a>
-                    </div>
-                </div>
-                <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
-                <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="social-icons-bottom">
-                    <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
-                </div>
-                <div class="language-selector">
-                    <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="th">Thai</option>
-                    </select>
-                </div>
+    <div class="logo">
+        <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+    </div>
+    <div class="navbar-nav">
+        <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
+        <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
+        <div class="nav-link">
+            <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+                <a id="dropdown_service1" href="#">Service 1</a>
+                <a id="dropdown_service2" href="#">Service 2</a>
+                <a id="dropdown_service3" href="#">Service 3</a>
             </div>
         </div>
+        <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
+        <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+    </div>
+    <div class="d-flex align-items-center">
+        <div class="social-icons-bottom">
+            <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
+        </div>
+        <div class="language-selector">
+            <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+            <select id="language-select-bottom">
+                <option value="en">English</option>
+                <option value="th">Thai</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 
         <!-- header mobile -->
         <div class="header-top-mobile">
@@ -630,7 +675,40 @@
         </div>
     </header>
 
+    <!-- Script to handle language change -->
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var defaultLang = 'en';
+            updateLanguage(defaultLang);
+
+            document.getElementById('language-select').addEventListener('change', function() {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+                var flagImg = document.getElementById('flag-img');
+                if (selectedLang === 'th') {
+                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
+                } else {
+                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
+                }
+            });
+
+            document.getElementById('language-select-bottom').addEventListener('change', function() {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+                var flagImg = document.getElementById('flag-img-bottom');
+                if (selectedLang === 'th') {
+                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
+                } else {
+                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
+                }
+            });
+
+            document.getElementById('language-select-mobile').addEventListener('change', function() {
+                var selectedLang = this.value;
+                updateLanguage(selectedLang);
+            });
+        });
+
         function toggleMobileMenu() {
             var menu = document.getElementById('menu-mobile');
             var backdrop = document.getElementById('backdrop');
@@ -643,21 +721,14 @@
             }
         }
 
-        function addLanguageChangeListener(selectorId, flagImgId) {
-            document.getElementById(selectorId).addEventListener('change', function() {
-                var flagImg = document.getElementById(flagImgId);
-                var selectedLang = this.value;
-                if (selectedLang === 'th') {
-                    flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
-                } else {
-                    flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
-                }
-                setLanguage(selectedLang);
-            });
-        }
-
-        addLanguageChangeListener('language-select', 'flag-img');
-        addLanguageChangeListener('language-select-mobile', 'flag-img-mobile');
+        document.getElementById('language-select').addEventListener('change', function() {
+            var flagImg = document.getElementById('flag-img');
+            if (this.value === 'th') {
+                flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
+            } else {
+                flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
+            }
+        });
 
         window.addEventListener('scroll', function() {
             const headerTop = document.querySelector('.header-top');
@@ -665,69 +736,11 @@
             if (window.scrollY > 100) {
                 headerTop.classList.add('hide');
                 headerBottom.classList.add('scrolled');
-                addLanguageChangeListener('language-select', 'flag-img');
             } else {
                 headerTop.classList.remove('hide');
                 headerBottom.classList.remove('scrolled');
-                addLanguageChangeListener('language-select', 'flag-img');
             }
         });
-    </script>
-    <script>
-        async function setLanguage(lang) {
-            try {
-                const response = await fetch('<?= base_url('public/data/language/header_locale.json'); ?>');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const data = await response.json();
-
-                // Update text content for multiple elements
-                document.getElementById('info_open1').textContent = data[lang].info_open1;
-                document.getElementById('info_open2').textContent = data[lang].info_open2;
-                document.getElementById('info_email1').textContent = data[lang].info_email1;
-                document.getElementById('info_email2').textContent = data[lang].info_email2;
-                document.getElementById('info_callus1').textContent = data[lang].info_callus1;
-                document.getElementById('info_callus2').textContent = data[lang].info_callus2;
-
-                document.getElementById('menu_home').textContent = data[lang].menu_home;
-                document.getElementById('menu_about_us').textContent = data[lang].menu_about_us;
-                document.getElementById('menu_service').textContent = data[lang].menu_service;
-                document.getElementById('menu_review').textContent = data[lang].menu_review;
-                document.getElementById('menu_contact').textContent = data[lang].menu_contact;
-
-                // Update language selectors
-                document.getElementById('language-select').value = lang;
-                document.getElementById('language-select-bottom').value = lang;
-                document.getElementById('language-select-mobile').value = lang;
-
-                // Update flag images
-                var flagImgSrc = lang === 'th' ? '<?= base_url('dist/img/flagth.png') ?>' : '<?= base_url('dist/img/flagen.png') ?>';
-                document.getElementById('flag-img').src = flagImgSrc;
-                document.getElementById('flag-img-bottom').src = flagImgSrc;
-            } catch (error) {
-                console.error('Error loading translations:', error);
-            }
-        }
-
-        // Event listeners for language change
-        document.getElementById('language-select').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-bottom').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-mobile').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        // Set default language
-        setLanguage('en');
     </script>
 
 </body>
