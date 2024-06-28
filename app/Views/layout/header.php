@@ -22,6 +22,7 @@
         var BASE_URL = '<?= base_url(); ?>';
     </script>
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
+
     <style>
         /* general */
         * {
@@ -537,7 +538,12 @@
             }
         }
     </style>
+
+    <?php
+    $cut_url = explode('/', $uri_menu);
+    ?>
 </head>
+
 <body>
     <header>
         <!-- header normal -->
@@ -549,73 +555,77 @@
                 <div class="info-item">
                     <i class="fas fa-clock"></i>
                     <div>
-                        <span id="info_open1">Mon - Sat 9.00 - 18.00</span>
-                        <span id="info_open2">Sunday Closed</span>
+                        <span id="info_open1"><?= $contact_data['open_time'] ?></span>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
                         <span id="info_email1">Email</span>
-                        <span id="info_email2">contact@logistics.com</span>
+                        <span><?= $contact_data['email'] ?></span>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
                     <div>
                         <span id="info_callus1">Call Us</span>
-                        <span id="info_callus2">(00) 112 365 489</span>
+                        <span><?= $contact_data['phone_number'] ?></span>
                     </div>
                 </div>
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <?php if (!empty($contact_data['facebook_link'])) : ?>
+                    <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($contact_data['instragram_link'])) : ?>
+                    <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
+                <?php endif; ?>
                 <div class="language-selector">
                     <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
                     <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="th">Thai</option>
+                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
+                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="header-bottom">
-    <div class="logo">
-        <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
-    </div>
-    <div class="navbar-nav">
-        <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
-        <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
-        <div class="nav-link">
-            <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
-            <div class="dropdown-menu">
-                <a id="dropdown_service1" href="#">Service 1</a>
-                <a id="dropdown_service2" href="#">Service 2</a>
-                <a id="dropdown_service3" href="#">Service 3</a>
+            <div class="logo">
+                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
+                <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
+                <div class="nav-link">
+                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <?php foreach ($service_header as $service) : ?>
+                            <a href="<?= base_url($cut_url[0] .'/servicepage/' . $service['id_service_header']) ?>"><?php if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
+                                        else echo $service['header_service_name_en']; ?></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
+                <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="social-icons-bottom">
+                    <?php if (!empty($contact_data['facebook_link'])) : ?>
+                        <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+                    <?php endif; ?>
+                    <?php if (!empty($contact_data['instragram_link'])) : ?>
+                        <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+                    <?php endif; ?>
+                </div>
+                <div class="language-selector">
+                    <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                    <select id="language-select-bottom">
+                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
+                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
-        <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
-    </div>
-    <div class="d-flex align-items-center">
-        <div class="social-icons-bottom">
-            <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
-        </div>
-        <div class="language-selector">
-            <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-            <select id="language-select-bottom">
-                <option value="en">English</option>
-                <option value="th">Thai</option>
-            </select>
-        </div>
-    </div>
-</div>
 
 
         <!-- header mobile -->
@@ -629,8 +639,8 @@
             <div class="lang">
                 <div class="language-selector">
                     <select id="language-select-mobile">
-                        <option value="en">EN</option>
-                        <option value="th">TH</option>
+                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
+                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
                     </select>
                 </div>
             </div>
@@ -648,11 +658,12 @@
             </div>
             <div class="contact">
                 <p style="font-size: larger;">Contact</p>
-                <div>
-                    <i class="fab fa-facebook"></i>
-                    <p>&nbsp;Pet Journey Agency</p>
-                </div>
-                <p>&nbsp;นำเข้าส่งออกสัตว์เลี้ยง</p>
+                <?php if (!empty($contact_data['facebook_name'])) : ?>
+                    <div>
+                        <i class="fab fa-facebook"></i>
+                        <p>&nbsp;<?= $contact_data['facebook_name'] ?></p>
+                    </div>
+                <?php endif; ?>
                 <div>
                     <i class="fas fa-phone-alt"></i>
                     <p>&nbsp;081 615 5644</p>
@@ -667,67 +678,56 @@
                 </div>
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <?php if (!empty($contact_data['facebook_name'])) : ?>
+                    <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($contact_data['instragram_name'])) : ?>
+                    <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Script to handle language change -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var defaultLang = 'en';
+        $(document).ready(function() {
+            var defaultLang = '<?= $cut_url[0] ?>';
             updateLanguage(defaultLang);
-
-            document.getElementById('language-select').addEventListener('change', function() {
-                var selectedLang = this.value;
-                updateLanguage(selectedLang);
-                var flagImg = document.getElementById('flag-img');
-                if (selectedLang === 'th') {
-                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
-                } else {
-                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
-                }
-            });
-
-            document.getElementById('language-select-bottom').addEventListener('change', function() {
-                var selectedLang = this.value;
-                updateLanguage(selectedLang);
-                var flagImg = document.getElementById('flag-img-bottom');
-                if (selectedLang === 'th') {
-                    flagImg.src = BASE_URL + 'dist/img/flagth.png';
-                } else {
-                    flagImg.src = BASE_URL + 'dist/img/flagen.png';
-                }
-            });
-
-            document.getElementById('language-select-mobile').addEventListener('change', function() {
-                var selectedLang = this.value;
-                updateLanguage(selectedLang);
-            });
+            var flagImg = document.getElementById('flag-img');
+            if (defaultLang === 'th') {
+                flagImg.src = BASE_URL + 'dist/img/flagth.png';
+            } else {
+                flagImg.src = BASE_URL + 'dist/img/flagen.png';
+            }
+            var url_ = '<?= $uri_menu ?>';
         });
 
-        function toggleMobileMenu() {
-            var menu = document.getElementById('menu-mobile');
-            var backdrop = document.getElementById('backdrop');
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                backdrop.classList.remove('show');
-            } else {
-                menu.classList.add('show');
-                backdrop.classList.add('show');
+        function load_language(value_language) {
+            var url = window.location.href;
+            if (url.includes('/th/')) {
+                url = url.replace('/th/', '/' + value_language + '/');
+            } else if (url.includes('/en/')) {
+                url = url.replace('/en/', '/' + value_language + '/');
             }
+            window.location.href = url;
         }
 
         document.getElementById('language-select').addEventListener('change', function() {
-            var flagImg = document.getElementById('flag-img');
-            if (this.value === 'th') {
-                flagImg.src = '<?= base_url('dist/img/flagth.png') ?>';
-            } else {
-                flagImg.src = '<?= base_url('dist/img/flagen.png') ?>';
-            }
+            load_language(this.value);
+        });
+
+        document.getElementById('language-select-bottom').addEventListener('change', function() {
+            load_language(this.value);
+        });
+
+        document.getElementById('language-select-mobile').addEventListener('change', function() {
+            load_language(this.value);
+        });
+
+
+        document.getElementById('language-select').addEventListener('change', function() {
+            load_language(this.value);
         });
 
         window.addEventListener('scroll', function() {
@@ -741,6 +741,18 @@
                 headerBottom.classList.remove('scrolled');
             }
         });
+
+        function toggleMobileMenu() {
+            var menu = document.getElementById('menu-mobile');
+            var backdrop = document.getElementById('backdrop');
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                backdrop.classList.remove('show');
+            } else {
+                menu.classList.add('show');
+                backdrop.classList.add('show');
+            }
+        }
     </script>
 
 </body>

@@ -1,60 +1,5 @@
 <?php
-class Service
-{
-    public $image;
-    public $title;
-    public $description;
-
-    public function __construct($image, $title, $description)
-    {
-        $this->image = $image;
-        $this->title = $title;
-        $this->description = $description;
-    }
-}
-
-$services = [
-    new Service("dist/img/service1.png", "Pet import and export", "Support for importing and exporting pets"),
-    new Service("dist/img/service2.png", "Pet blood test services", "Medical boarding services for pets"),
-    new Service("dist/img/service3.png", "Veterinary services", "Professional pet grooming"),
-    new Service("dist/img/service4.png", "Pet vaccination services", "Expert pet training"),
-    new Service("dist/img/service5.png", "Airline ticket booking services", "Safe and fun pet daycare"),
-    new Service("dist/img/service6.png", "Pet hotels", "Find the perfect pet accommodation"),
-    new Service("dist/img/service7.png", "Pet-friendly hotels", "Regular pet walking services"),
-    new Service("dist/img/service8.png", "International pet trading", "Reliable pet sitting services")
-];
-
-$partners = [
-    "animal_clinic" => [
-        "dist/img/logopartner.png",
-        "dist/img/logopartner.png",
-        "dist/img/logopartner.png",
-        "dist/img/logopartner.png"
-    ],
-    "pet_friendly_hotel" => [
-        "dist/img/logopartner.png",
-        "dist/img/logopartner.png",
-    ],
-    "pet_hotel" => [
-        "dist/img/logopartner.png",
-        "dist/img/logopartner.png",
-    ]
-];
-
-$servicesdata = [
-    "service1" => "บริการนำเข้าและส่งออกสัตว์เลี้ยง",
-    "service2" => "บริการตรวจเลือดสัตว์เลี้ยง",
-    "service3" => "บริการด้านสัตวแพทย์",
-    "service4" => "บริการรับส่งสัตว์เลี้ยง",
-    "service5" => "บริการจองตั๋วเครื่องบินสำหรับสัตว์เลี้ยง",
-    "service6" => "โรงแรมสำหรับสัตว์เลี้ยง",
-    "service7" => "โรงแรมที่เป็นมิตรกับสัตว์เลี้ยง (Pet Friendly)",
-    "service8" => "บริการซื้อขายสัตว์เลี้ยงจากต่างประเทศ",
-    "service9" => "อื่น ๆ"
-];
-
-$services_json = json_encode($servicesdata);
-
+$cut_url = explode('/', $uri_menu);
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -679,20 +624,37 @@ $services_json = json_encode($servicesdata);
     <section>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <?php
+                $count_cover = 0;
+                foreach ($cover_page as $key => $value) {
+                    if ($value['language'] == $cut_url[0]) {
+                        if ($count_cover == 0) {
+                            $count_cover = $count_cover + 1;
+                            echo '<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>';
+                        } else {
+                            echo '<li data-target="#carouselExampleIndicators" data-slide-to="' . $key . '"></li>';
+                        }
+                    }
+                }
+                ?>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<?= base_url('dist/img/slide_home_page/1.png') ?>" class="d-block w-100" alt="Slide 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('dist/img/slide_home_page/2.png') ?>" class="d-block w-100" alt="Slide 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('dist/img/slide_home_page/3.png') ?>" class="d-block w-100" alt="Slide 3">
-                </div>
+                <?php
+                $count_cover_image = 0;
+                foreach ($cover_page as $key => $value) {
+                    if ($value['language'] == $cut_url[0]) {
+                        var_dump($value);
+                        if ($count_cover_image == 0) {
+                            $count_cover_image = $count_cover_image + 1;
+                            echo '<div class="carousel-item active">';
+                        } else {
+                            echo '<div class="carousel-item">';
+                        }
+                        echo '<img src="' . base_url('dist/img/cover/' . $value['path_image']) . '" class="d-block w-100" alt="Slide ' . $key . '">';
+                        echo '</div>';
+                    }
+                }
+                ?>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -711,13 +673,18 @@ $services_json = json_encode($servicesdata);
             <div class="container">
                 <div class="about-us-content">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/Yovlj-mSGrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <video width="500" controls id="video_about">
+                            <source src="<?php
+                                            if ($cut_url['0'] == 'th') echo base_url('dist/video/about_video/') . $about_home[0]['path_video'];
+                                            else echo base_url('dist/video/about_video/') . $about_home[1]['path_video']; ?>" type="video/mp4">
+                        </video>
                     </div>
                     <div class="text-wrapper">
                         <h2 id="title_about_us">ABOUT US</h2>
-                        <p>เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเปรียบเสมือนสมาชิกในครอบครัว ด้วยเหตุนี้ผู้เชี่ยวชาญของเราจึงก่อตั้ง Pet Journey Agency ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่ายและสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยังต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการใหสัตว์เลี้ยงเดินทางไปด้วย</p>
+                        <p><?php if ($cut_url['0'] == 'th') echo $about_home[0]['detail'];
+                            else echo $about_home[1]['detail']; ?></p>
                         <div class="about-us-button">
-                            <a id="btn_view_more1" href="#">View More</a>
+                            <a id="btn_view_more1" href="<?= base_url($cut_url[0] . '/about') ?>">View More</a>
                         </div>
                     </div>
                 </div>
@@ -735,12 +702,15 @@ $services_json = json_encode($servicesdata);
                 </h2>
             </div>
             <div class="row">
-                <?php foreach ($services as $index => $service) { ?>
+                <?php foreach ($service_header as $index => $service) { ?>
                     <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <div class="service-item fade-in">
-                            <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
-                            <h3 class="p-2"><?php echo $service->title; ?></h3>
-                            <span id="<?php echo $index; ?>" class="badge badge-pill badge-primary btn_view_more2">View More</span>
+                            <img src="<?php echo base_url('dist/img/service/' . $service['image_path']); ?>">
+                            <h3 class="p-2"><?php
+                                            if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
+                                            else echo $service['header_service_name_en'];
+                                            ?></h3>
+                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . $service['id_service_header']) ?>" class="badge badge-pill badge-primary btn_view_more2"></a>
                         </div>
                     </div>
                 <?php } ?>
@@ -755,7 +725,9 @@ $services_json = json_encode($servicesdata);
             <h2 id="title_review" style="margin-left: 10%;">REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
-        <?php include 'app\Views\front_page\reviewhomepage.php'; ?>
+        <?php
+        include 'app/Views/front_page/reviewhomepage.php';
+        ?>
     </section>
 
     <!-- sec partner -->
@@ -781,10 +753,12 @@ $services_json = json_encode($servicesdata);
                     <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
                 </div>
                 <div class="partner-logos">
-                    <?php foreach ($partners['animal_clinic'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
+                    <?php foreach ($partner_data as $partner_element) { ?>
+                        <?php if ($partner_element['type_partner'] == 1) : ?>
+                            <div class="partner-logo">
+                                <img src="<?= base_url('dist/img/partner/' . $partner_element['logo_partner_path']) ?>" alt="partnerlogo">
+                            </div>
+                        <?php endif; ?>
                     <?php } ?>
                 </div>
             </div>
@@ -796,10 +770,12 @@ $services_json = json_encode($servicesdata);
                     <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
                 </div>
                 <div class="partner-logos">
-                    <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
+                    <?php foreach ($partner_data as $partner_element) { ?>
+                        <?php if ($partner_element['type_partner'] == 2) : ?>
+                            <div class="partner-logo">
+                                <img src="<?= base_url('dist/img/partner/' . $partner_element['logo_partner_path']) ?>" alt="partnerlogo">
+                            </div>
+                        <?php endif; ?>
                     <?php } ?>
                 </div>
             </div>
@@ -811,10 +787,12 @@ $services_json = json_encode($servicesdata);
                     <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
                 </div>
                 <div class="partner-logos">
-                    <?php foreach ($partners['pet_hotel'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
+                    <?php foreach ($partner_data as $partner_element) { ?>
+                        <?php if ($partner_element['type_partner'] == 3) : ?>
+                            <div class="partner-logo">
+                                <img src="<?= base_url('dist/img/partner/' . $partner_element['logo_partner_path']) ?>" alt="partnerlogo">
+                            </div>
+                        <?php endif; ?>
                     <?php } ?>
                 </div>
             </div>
@@ -832,93 +810,109 @@ $services_json = json_encode($servicesdata);
                 <div class="text-success mx-2" id="title_quote_part2">ฟรี</div>
                 <span id="title_quote_part3">ไม่มีค่าใช้จ่าย!</span>
             </h3>
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="name" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="ph_name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="ph_phone" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
-                        <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
-                        <input class="form-control" type="date" id="ph_date" name="travel-date">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
-                        <select class="form-control select2" id="ph_origin_country" name="origin-country">
-                            <option id="option_origin_country" value="origin_country"></option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
-                        <select class="form-control select2" id="ph_origin_airport" name="origin-airport">
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4 coltest"></div>
-                    <div class="form-group col-md-4">
-                        <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
-                        <select class="form-control select2" id="ph_destination_country" name="destination-country">
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
-                        <select class="form-control select2" id="ph_destination_airport" name="destination-airport">
-                            <option id="option_destination_airport" value="destination_airport"></option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
-                        <select class="form-control" id="ph_travel_type" name="travel-type">
-                            
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
-                        <select class="form-control" id="ph_pet_transport" name="pet-transport">
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group text-left">
-                    <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
-                    <div id="services-container"></div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
-                        <input type="text" class="form-control" id="ph_pet_type" name="pet-type" placeholder="ระบุชนิดสัตว์">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
-                        <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="age" id="label_age" class="d-flex">อายุ</label>
-                        <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
-                        <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
-                        <input type="text" class="form-control" id="ph_reason" name="reason" placeholder="ระบุหมายเหตุ">
-                    </div>
-                </div>
-                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
-            </div>
+            <form class="mb-3" id="form_quotation" action="javascript:void(0)" method="post" enctype="multipart/form-data">
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="name_last" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
+                            <input class="form-control" type="text" id="ph_name" name="name_last" placeholder="ระบุชื่อผู้ติดต่อ">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
+                            <input class="form-control" type="text" id="ph_phone" name="phone_number" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
+                            <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
+                            <input class="form-control" type="date" id="ph_date" name="travel_date">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
+                            <select class="form-control select2" id="ph_origin_country" name="country_of_origin" oninput="get_airport_of_origin(this.value)">
+                                <option value="null" selected>
+                                    <?php if ($cut_url['0'] == 'th') echo 'เลือกประเทศต้นทาง';
+                                    else echo 'Choose origin country'; ?>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
+                            <select class="form-control select2" id="ph_origin_airport" name="airport_of_origin">
 
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 coltest"></div>
+                        <div class="form-group col-md-4">
+                            <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
+                            <select class="form-control select2" id="ph_destination_country" name="destination_country" oninput="get_airport_of_destination(this.value)">
+                                <option value="null" selected>
+                                    <?php if ($cut_url['0'] == 'th') echo 'เลือกประเทศปลายทาง';
+                                    else echo 'Choose destination country'; ?>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
+                            <select class="form-control select2" id="ph_destination_airport" name="destination_airport">
+                                <option id="option_destination_airport" value="destination_airport"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
+                            <select class="form-control" id="ph_travel_type" name="travel_type">
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
+                            <select class="form-control" id="ph_pet_transport" name="transport_format">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
+                        <div id="services-container">
+                            <?php foreach ($service_header as $key => $value) : ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="service_<?= $key ?>" name="service_<?= $key ?>" value="<?= $value['id_service_header'] ?>">
+                                    <label class="form-check-label" for="service1"> <?php if ($cut_url['0'] == 'th') echo $value['header_service_name_th'];
+                                                                                    else echo $value['header_service_name_en']; ?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
+                            <input type="text" class="form-control" id="ph_pet_type" name="animal_type" placeholder="ระบุชนิดสัตว์">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
+                            <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="age" id="label_age" class="d-flex">อายุ</label>
+                            <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
+                            <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
+                            <input type="text" class="form-control" id="ph_reason" name="note" placeholder="ระบุหมายเหตุ">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
+                </div>
+            </form>
         </div>
     </section>
+    <br>
     <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
     <img class="feetpet-icon2" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
     <img class="feetpet-icon3" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
@@ -933,6 +927,7 @@ $services_json = json_encode($servicesdata);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2({
@@ -978,42 +973,6 @@ $services_json = json_encode($servicesdata);
             });
         });
     </script>
-    <!-- service -->
-    <script>
-        const servicesData = <?php echo $services_json; ?>;
-
-        const services = Object.keys(servicesData).map((key, index) => ({
-            id: key,
-            value: key.replace('service', 'value'),
-            label: servicesData[key]
-        }));
-
-        function generateCheckboxes() {
-            const container = document.getElementById('services-container');
-            services.forEach(service => {
-                const div = document.createElement('div');
-                div.className = 'form-check';
-
-                const input = document.createElement('input');
-                input.className = 'form-check-input';
-                input.type = 'checkbox';
-                input.id = service.id;
-                input.name = 'services';
-                input.value = service.value;
-
-                const label = document.createElement('label');
-                label.className = 'form-check-label';
-                label.htmlFor = service.id;
-                label.textContent = service.label;
-
-                div.appendChild(input);
-                div.appendChild(label);
-                container.appendChild(div);
-            });
-        }
-
-        generateCheckboxes();
-    </script>
 
     <script>
         let currentPagePoint = 1;
@@ -1038,13 +997,137 @@ $services_json = json_encode($servicesdata);
             document.getElementById('prev-btn').style.visibility = currentPagePoint === 1 ? 'hidden' : 'visible';
             document.getElementById('next-btn').style.visibility = currentPagePoint === totalPages ? 'hidden' : 'visible';
 
-            console.log('หน้าปัจจุบัน:', currentPagePoint);
-
             updatePageIndicators();
         }
 
         document.getElementById('prev-btn').style.visibility = 'hidden';
         updatePageIndicators();
+    </script>
+
+    <!-- ดึงข้อมูลแต่ละประเทศ -->
+    <script>
+        fetchCountries();
+        // ดึงข้อมูลประเทศ
+        async function fetchCountries() {
+            const response_countries = await fetch('<?= base_url('public/data/countries.json'); ?>');
+            if (!response_countries.ok) {
+                throw new Error('Network response_countries was not ok ' + response_countries.statusText);
+            }
+            const countries = await response_countries.json();
+
+            countries.forEach(element => {
+                $("#ph_origin_country").append('<option value="' + element.code + '">' + element.name_en + ' (' + element.code + ')</option>');
+                $("#ph_destination_country").append('<option value="' + element.code + '">' + element.name_en + ' (' + element.code + ')</option>');
+            });
+        }
+    </script>
+
+    <!-- get_airport_of_origin // get_airport_of_destination -->
+    <script>
+        async function get_airport_of_origin(country) {
+            const response_airport = await fetch('<?= base_url('public/data/airports.json'); ?>');
+            if (!response_airport.ok) {
+                throw new Error('Network response_airport was not ok ' + response_airport.statusText);
+            }
+            const airports = await response_airport.json();
+            $("#ph_origin_airport").empty();
+            $("#ph_origin_airport").append('<option selected="selected" value="0">' +
+                <?php echo ($cut_url['0'] == 'th') ? '"กรุณาเลือกสนามบินต้นทาง"' : '"Choose origin airport"'; ?> +
+                '</option>');
+
+            for (const key in airports) {
+                if (airports.hasOwnProperty(key)) {
+                    const element = airports[key];
+                    if (element.country === country) {
+                        $("#ph_origin_airport").append('<option value="' + element.name + '">' + element.name + ' (' + element.state + ')</option>');
+                    }
+                }
+            }
+        }
+
+        async function get_airport_of_destination(country) {
+            const response_airport = await fetch('<?= base_url('public/data/airports.json'); ?>');
+            if (!response_airport.ok) {
+                throw new Error('Network response_airport was not ok ' + response_airport.statusText);
+            }
+            const airports = await response_airport.json();
+            $("#ph_destination_airport").empty();
+            $("#ph_destination_airport").append('<option selected="selected" value="0">' +
+                <?php if ($cut_url['0'] == 'th') echo '"กรุณาเลือกสนามบินต้นทาง"';
+                else echo '"Choose origin airport"'; ?> +
+                '</option>');
+
+            for (const key in airports) {
+                if (airports.hasOwnProperty(key)) {
+                    const element = airports[key];
+                    if (element.country === country) {
+                        $("#ph_destination_airport").append('<option value="' + element.name + '">' + element.name + ' (' + element.state + ')</option>');
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        $("#form_quotation").on('submit', function(event) {
+            event.preventDefault();
+
+            action_('dashboard/quotation/create/<?= count($service_header) ?>', 'form_quotation');
+        });
+    </script>
+    <!-- function action ajax request -->
+    <script>
+        function action_(url, form) {
+            var formData = new FormData(document.getElementById(form));
+            $.ajax({
+                url: '<?= base_url() ?>' + url,
+                type: "POST",
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: "JSON",
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'กําลังดําเนินการ...',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                    });
+                },
+                success: function(response) {
+                    Swal.close();
+                    console.log(response);
+                    if (response.success) {
+                        Swal.fire({
+                            title: response.message,
+                            icon: 'success',
+                            allowOutsideClick: false,
+                        });
+                        if (response.reload) {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
+                        }
+                    } else {
+                        Swal.fire({
+                            title: response.message,
+                            icon: 'error',
+                            showConfirmButton: true,
+                            confirmButtonText: 'ตกลง',
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        title: "เกิดข้อผิดพลาด",
+                        icon: 'error',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ตกลง',
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

@@ -360,12 +360,12 @@ $reviews = [
         <div class="container mt-5">
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
-                <?php foreach ($reviews as $index => $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?> review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                <?php foreach ($review_data as $index => $review) : ?>
+                    <div class="review-box review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
+                        <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?php echo $review->text; ?>
+                            <?= $review['detail_comment_th']; ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>
@@ -378,12 +378,12 @@ $reviews = [
 
             <!-- review-mobile -->
             <div id="review-grid-mobile" class="review-grid-mobile">
-                <?php foreach ($reviews as $index => $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                <?php foreach ($review_data as $index => $review) : ?>
+                    <div class="review-box review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
+                        <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?php echo $review->text; ?>
+                            <?= $review['detail_comment_th']; ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>
@@ -393,6 +393,7 @@ $reviews = [
                 <i class="fas fa-chevron-circle-left btn-left-mobile"></i>
                 <i class="fas fa-chevron-circle-right btn-right-mobile"></i>
             </div>
+        </div>
     </section>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

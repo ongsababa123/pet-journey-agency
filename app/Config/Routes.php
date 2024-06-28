@@ -21,7 +21,12 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 
 // Default route
 
-$routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
+$routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
+    $routes->get('homepage', 'HomePage::index');
+    $routes->get('reviewpage', 'ReviewPage::index');
+    $routes->get('contactpage', 'ContactPage::index');
+});
+$routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
