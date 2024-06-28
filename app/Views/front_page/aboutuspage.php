@@ -56,15 +56,14 @@
         }
 
         .slides {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            display: flex;
             transition: transform 0.5s ease-in-out;
         }
 
         .slide {
             box-sizing: border-box;
             padding: 10px;
+            flex: 0 0 25%;
         }
 
         .slide img {
@@ -77,7 +76,7 @@
         }
 
         .position {
-            color: #00ffcc;
+            color: #0198B4;
         }
 
         .prev,
@@ -85,25 +84,41 @@
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+            margin-top: -20px;
             color: white;
             font-weight: bold;
             font-size: 18px;
             transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
             user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .prev {
+            left: 10px;
+            border-radius: 50%;
+            z-index: 10;
         }
 
         .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
+            right: 10px;
+            border-radius: 50%;
+            z-index: 10;
         }
 
         .prev:hover,
         .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev i,
+        .next i {
+            font-size: 18px;
         }
     </style>
 </head>
@@ -149,11 +164,12 @@
     <section class="veterinary-team-section">
         <h2>Veterinary <span>Team</span></h2>
         <div class="slider">
-            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
             <div class="slides" id="slides-container"></div>
-            <button class="next" onclick="nextSlide()">&#10095;</button>
+            <button class="next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -163,54 +179,43 @@
     <script>
         const base_url = '<?= base_url('') ?>';
 
-        const doctors = [
-            {
-                name: 'หมอสมชาย นามวงศ์',
+        const doctors = [{
+                name: 'หมอสมชาย นามวงศ์1',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมอศศิธร พงษ์สุวรรณ',
+                name: 'หมอศศิธร พงษ์สุวรรณ2',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมออนุชา ตรีวิจิตร',
+                name: 'หมออนุชา ตรีวิจิตร3',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมอวาสนา ทองประเสริฐ',
+                name: 'หมอวาสนา ทองประเสริฐ4',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมอสมชาย นามวงศ์',
+                name: 'หมอสมชาย นามวงศ์5',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมอศศิธร พงษ์สุวรรณ',
+                name: 'หมอศศิธร พงษ์สุวรรณ6',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมออนุชา ตรีวิจิตร',
+                name: 'หมออนุชา ตรีวิจิตร7',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             },
             {
-                name: 'หมอวาสนา ทองประเสริฐ',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมออนุชา ตรีวิจิตร',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอวาสนา ทองประเสริฐ',
+                name: 'หมอวาสนา ทองประเสริฐ8',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
             }

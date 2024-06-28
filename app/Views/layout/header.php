@@ -376,7 +376,7 @@
         .menu-mobile a:hover {
             background-color: #FFF792;
             color: #23456B;
-            border-radius: 13px;
+            border-radius: 8px;
         }
 
         .close-btn {
@@ -570,7 +570,7 @@
         }
 
         .nav-treeview .nav-item {
-            padding-left: 10px;
+            padding-left: 15px;
             font-size: 1.2em;
         }
 
