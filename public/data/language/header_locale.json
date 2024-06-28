@@ -12,7 +12,13 @@
         "menu_about_us": "About us",
         "menu_service": "Our Service",
         "menu_review": "Review",
-        "menu_contact": "Contact"
+        "menu_contact": "Contact",
+        "mb_menu_home": "Home",
+        "mb_menu_about_us": "About us",
+        "mb_menu_service": "Our Service",
+        "mb_menu_review": "Review",
+        "mb_menu_contact1": "Contact Us",
+        "mb_menu_contact2": "Contact"
     },
     "th": {
         "info_open1": "จันทร์ - เสาร์ 9.00 - 18.00",
@@ -27,6 +33,12 @@
         "menu_about_us": "เกี่ยวกับเรา",
         "menu_service": "บริการของเรา",
         "menu_review": "รีวิว",
-        "menu_contact": "ติดต่อ"
+        "menu_contact": "ติดต่อ",
+        "mb_menu_home": "หน้าแรก",
+        "mb_menu_about_us": "เกี่ยวกับเรา",
+        "mb_menu_service": "บริการของเรา",
+        "mb_menu_review": "รีวิว",
+        "mb_menu_contact1": "ติดต่อเรา",
+        "mb_menu_contact2": "ติดต่อ"
     }
 }

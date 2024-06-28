@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
@@ -536,8 +540,47 @@
                 display: block;
             }
         }
+
+        .nav .nav-item {
+            font-size: 1.2em;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            cursor: pointer;
+        }
+
+        .nav-treeview {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.5s, max-height 0.5s;
+        }
+
+        .nav-treeview.show {
+            display: block;
+            opacity: 1;
+            max-height: 1000px;
+        }
+
+        .nav-treeview .nav-item {
+            padding-left: 10px;
+            font-size: 1.2em;
+        }
+
+        .rotate {
+            transform: rotate(90deg);
+        }
+
     </style>
 </head>
+
 <body>
     <header>
         <!-- header normal -->
@@ -583,39 +626,39 @@
             </div>
         </div>
         <div class="header-bottom">
-    <div class="logo">
-        <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
-    </div>
-    <div class="navbar-nav">
-        <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
-        <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
-        <div class="nav-link">
-            <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
-            <div class="dropdown-menu">
-                <a id="dropdown_service1" href="#">Service 1</a>
-                <a id="dropdown_service2" href="#">Service 2</a>
-                <a id="dropdown_service3" href="#">Service 3</a>
+            <div class="logo">
+                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
+                <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
+                <div class="nav-link">
+                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a id="dropdown_service1" href="#">Service 1</a>
+                        <a id="dropdown_service2" href="#">Service 2</a>
+                        <a id="dropdown_service3" href="#">Service 3</a>
+                    </div>
+                </div>
+                <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
+                <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="social-icons-bottom">
+                    <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
+                </div>
+                <div class="language-selector">
+                    <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                    <select id="language-select-bottom">
+                        <option value="en">English</option>
+                        <option value="th">Thai</option>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
-        <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
-    </div>
-    <div class="d-flex align-items-center">
-        <div class="social-icons-bottom">
-            <a href="#"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-twitter"></i></a>&nbsp; &nbsp;
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>&nbsp; &nbsp;
-        </div>
-        <div class="language-selector">
-            <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-            <select id="language-select-bottom">
-                <option value="en">English</option>
-                <option value="th">Thai</option>
-            </select>
-        </div>
-    </div>
-</div>
 
 
         <!-- header mobile -->
@@ -636,18 +679,53 @@
             </div>
         </div>
         <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
+        
         <div class="menu-mobile" id="menu-mobile">
             <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
-            <div>
-                <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                <a href="/pet-journey-agency/page/homepage"><i class="fas fa-home"></i>Home</a>
-                <a href="/pet-journey-agency/page/aboutuspage"><i class="fas fa-info-circle"></i>About us</a>
-                <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
-                <a href="/pet-journey-agency/page/reviewpage"><i class="fas fa-star"></i>Review</a>
-                <a href="/pet-journey-agency/page/contactpage"><i class="fas fa-file-alt"></i>Contact</a>
-            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
+                </li>
+                <li class="nav-item">
+                    <a id="mb_menu_home" class="nav-link" href="/pet-journey-agency/page/homepage">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="mb_menu_about_us" class="nav-link" href="/pet-journey-agency/page/aboutuspage">
+                        <i class="fas fa-info-circle"></i> About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="toggleServices" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span id="mb_menu_service"><i class="fas fa-concierge-bell"></i> Our Service</span>
+                    <i class="fas fa-chevron-right" id="arrowIcon" style="font-size: small;"></i>
+                </a>
+                    <ul class="nav nav-treeview" id="servicesMenu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service1">Service 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service2">Service 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service3">Service 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a id="mb_menu_review" class="nav-link" href="/pet-journey-agency/page/reviewpage">
+                        <i class="fas fa-star"></i> Review
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="mb_menu_contact1" class="nav-link" href="/pet-journey-agency/page/contactpage">
+                        <i class="fas fa-file-alt"></i> Contact
+                    </a>
+                </li>
+            </ul>
             <div class="contact">
-                <p style="font-size: larger;">Contact</p>
+                <p id="mb_menu_contact2" style="font-size: larger;">Contact</p>
                 <div>
                     <i class="fab fa-facebook"></i>
                     <p>&nbsp;Pet Journey Agency</p>
@@ -674,6 +752,12 @@
             </div>
         </div>
     </header>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
     <!-- Script to handle language change -->
     <script>
@@ -742,7 +826,19 @@
             }
         });
     </script>
-
+    <script>
+        document.getElementById('toggleServices').addEventListener('click', function () {
+            var servicesMenu = document.getElementById('servicesMenu');
+            var arrowIcon = document.getElementById('arrowIcon');
+            if (servicesMenu.classList.contains('show')) {
+                servicesMenu.classList.remove('show');
+                arrowIcon.classList.remove('rotate');
+            } else {
+                servicesMenu.classList.add('show');
+                arrowIcon.classList.add('rotate');
+            }
+        });
+    </script>
 </body>
 
 </html>

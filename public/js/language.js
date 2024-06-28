@@ -28,6 +28,12 @@ async function updateLanguage(lang) {
       "sub_title_animal_clinic",
       "sub_title_pet_friendly",
       "sub_title_pet_hotel",
+      "mb_menu_home",
+      "mb_menu_about_us",
+      "mb_menu_service",
+      "mb_menu_review",
+      "mb_menu_contact1",
+      "mb_menu_contact2"
     ];
 
     elements.forEach((id) => {

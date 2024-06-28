@@ -16,7 +16,6 @@
             box-sizing: border-box;
         }
 
-        /* About Us Section */
         .about-us-section {
             padding: 50px 0;
             position: relative;
@@ -112,7 +111,7 @@
 <body>
     <!-- sec slide page -->
     <section>
-        <?php include 'app\Views\layout\slide.php'; ?>
+        <?php include 'app/Views/layout/slide.php'; ?>
     </section>
 
     <!-- sec about us -->
@@ -162,25 +161,58 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        const doctors = [{
+        const base_url = '<?= base_url('') ?>';
+
+        const doctors = [
+            {
                 name: 'หมอสมชาย นามวงศ์',
                 position: 'สัตวแพทย์ทั่วไป',
-                image: 'doctor1.jpg'
+                image: 'dist/img/pic_profile_about_us.png'
             },
             {
                 name: 'หมอศศิธร พงษ์สุวรรณ',
                 position: 'สัตวแพทย์ทั่วไป',
-                image: 'doctor2.jpg'
+                image: 'dist/img/pic_profile_about_us.png'
             },
             {
                 name: 'หมออนุชา ตรีวิจิตร',
                 position: 'สัตวแพทย์ทั่วไป',
-                image: 'doctor3.jpg'
+                image: 'dist/img/pic_profile_about_us.png'
             },
             {
                 name: 'หมอวาสนา ทองประเสริฐ',
                 position: 'สัตวแพทย์ทั่วไป',
-                image: 'doctor4.jpg'
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอสมชาย นามวงศ์',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
             }
         ];
 
@@ -190,20 +222,21 @@
             const slide = document.createElement('div');
             slide.classList.add('slide');
             slide.innerHTML = `
-        <img src="${doctor.image}" alt="${doctor.name}">
-        <p>${doctor.name}</p>
-        <p class="position">${doctor.position}</p>
-    `;
+                <img src="${base_url}${doctor.image}" alt="${doctor.name}">
+                <p>${doctor.name}</p>
+                <p class="position">${doctor.position}</p>
+            `;
             slidesContainer.appendChild(slide);
         });
 
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
         const totalSlides = doctors.length;
+        const slidesPerView = 4;
 
         function nextSlide() {
-            if (slideIndex < totalSlides - 4) {
-                slideIndex += 4;
+            if (slideIndex < totalSlides - slidesPerView) {
+                slideIndex += slidesPerView;
             } else {
                 slideIndex = 0;
             }
@@ -212,15 +245,15 @@
 
         function prevSlide() {
             if (slideIndex > 0) {
-                slideIndex -= 4;
+                slideIndex -= slidesPerView;
             } else {
-                slideIndex = totalSlides - 4;
+                slideIndex = totalSlides - slidesPerView;
             }
             updateSlidePosition();
         }
 
         function updateSlidePosition() {
-            slides.style.transform = 'translateX(' + (-slideIndex * 100 / 4) + '%)';
+            slides.style.transform = 'translateX(' + (-slideIndex * 100 / slidesPerView) + '%)';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
