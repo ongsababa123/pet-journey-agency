@@ -32,6 +32,80 @@
             font-size: 18px;
             line-height: 1.6;
         }
+
+        .veterinary-team-section {
+            text-align: center;
+            background-color: #0c2d6e;
+            padding: 20px;
+            color: white;
+        }
+
+        .veterinary-team-section h2 {
+            color: #fff;
+            font-size: 2em;
+        }
+
+        .veterinary-team-section h2 span {
+            color: #fcd20f;
+        }
+
+        .slider {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .slide p {
+            margin: 10px 0 0;
+        }
+
+        .position {
+            color: #00ffcc;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 
@@ -64,11 +138,21 @@
                     All of these services are available throughout Bangkok and its suburbs to serve everyone's needs.
                 </p>
             </div>
-            <div class="col-5 d-flex align-items-center">
+            <div class="col-5 d-flex align-items-center" style="padding: 5%;">
                 <div>
-                    <img src="<?= base_url('dist/img/contact_pic.png') ?>" width="300px" alt="Pets">
+                    <img src="<?= base_url('dist/img/pic_about_us.png') ?>" width="100%" alt="Pets">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- sec veterinary team -->
+    <section class="veterinary-team-section">
+        <h2>Veterinary <span>Team</span></h2>
+        <div class="slider">
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <div class="slides" id="slides-container"></div>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
         </div>
     </section>
 
@@ -77,6 +161,72 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const doctors = [{
+                name: 'หมอสมชาย นามวงศ์',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'doctor1.jpg'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'doctor2.jpg'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'doctor3.jpg'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'doctor4.jpg'
+            }
+        ];
+
+        const slidesContainer = document.getElementById('slides-container');
+
+        doctors.forEach(doctor => {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+            slide.innerHTML = `
+        <img src="${doctor.image}" alt="${doctor.name}">
+        <p>${doctor.name}</p>
+        <p class="position">${doctor.position}</p>
+    `;
+            slidesContainer.appendChild(slide);
+        });
+
+        let slideIndex = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = doctors.length;
+
+        function nextSlide() {
+            if (slideIndex < totalSlides - 4) {
+                slideIndex += 4;
+            } else {
+                slideIndex = 0;
+            }
+            updateSlidePosition();
+        }
+
+        function prevSlide() {
+            if (slideIndex > 0) {
+                slideIndex -= 4;
+            } else {
+                slideIndex = totalSlides - 4;
+            }
+            updateSlidePosition();
+        }
+
+        function updateSlidePosition() {
+            slides.style.transform = 'translateX(' + (-slideIndex * 100 / 4) + '%)';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSlidePosition();
+        });
+    </script>
 </body>
 
 </html>
