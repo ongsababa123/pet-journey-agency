@@ -423,6 +423,7 @@ $services_json = json_encode($servicesdata);
         }
 
         .title-animalclinic {
+            font-size: 18px;
             color: #fff;
             position: absolute;
             top: -23px;
@@ -689,10 +690,10 @@ $services_json = json_encode($servicesdata);
                         <iframe src="https://www.youtube.com/embed/Yovlj-mSGrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="text-wrapper">
-                        <h2 id="title_about_us">ABOUT US</h2>
+                        <h2>ABOUT US</h2>
                         <p>เราเข้าใจถึงความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของ ซึ่งในปัจจุบันสัตว์เลี้ยงเปรียบเสมือนสมาชิกในครอบครัว ด้วยเหตุนี้ผู้เชี่ยวชาญของเราจึงก่อตั้ง Pet Journey Agency ขึ้นมา เพื่อทำให้การนำเข้า-ส่งออกสัตว์เลี้ยงเป็นเรื่องง่ายและสะดวกมากขึ้น ไม่ว่าจะเป็นการพาน้องหมาน้องแมวไปยังต่างประเทศหรือกลับมาประเทศไทยสำหรับเจ้าของที่ต้องการใหสัตว์เลี้ยงเดินทางไปด้วย</p>
                         <div class="about-us-button">
-                            <a id="btn_view_more1" href="#">View More</a>
+                            <a href="#">View More</a>
                         </div>
                     </div>
                 </div>
@@ -704,10 +705,7 @@ $services_json = json_encode($servicesdata);
     <section class="our-service-section">
         <div class="container fade-in">
             <div class="our-service-title">
-                <h2>
-                    <span id="title_our_service_part1" style="color: #57d0ff;">OUR</span>
-                    <span id="title_our_service_part2" style="color: #FFD700;">SERVICE</span>
-                </h2>
+                <h2>OUR <span>SERVICE</span></h2>
             </div>
             <div class="row">
                 <?php foreach ($services as $service) { ?>
@@ -715,7 +713,7 @@ $services_json = json_encode($servicesdata);
                         <div class="service-item fade-in">
                             <img src="<?php echo base_url($service->image); ?>" alt="<?php echo $service->title; ?>">
                             <h3 class="p-2"><?php echo $service->title; ?></h3>
-                            <span class="badge badge-pill badge-primary btn_view_more2">View More</span>
+                            <span class="badge badge-pill badge-primary">View More</span>
                         </div>
                     </div>
                 <?php } ?>
@@ -726,7 +724,7 @@ $services_json = json_encode($servicesdata);
     <!-- sec review -->
     <section class="review-section">
         <div class="review-title">
-            <h2 id="title_review">REVIEW</h2>
+            <h2>REVIEW</h2>
             <img class="img_pic_title" src="<?php echo base_url('dist/img/review_title.png'); ?>" alt="Review Image">
         </div>
         <?php include 'app\Views\front_page\reviewhomepage.php'; ?>
@@ -737,23 +735,19 @@ $services_json = json_encode($servicesdata);
         <div class="line-partner"></div>
         <div class="container">
             <div class="partner-title" style="text-align: center; margin-bottom: 30px;">
-                <div style="display: flex; align-items: center; justify-content: flex-start;">
-                    <h2 id="title_partner" style="font-size: 50px; font-weight: 700; color: #23456B; display: flex; align-items: center; justify-content: flex-start;">
-                        OUR PARTNER
-                    </h2>
+                <h2 style="font-size: 50px; font-weight: 700; color: #23456B; display: flex; align-items: center; justify-content: flex-start;">
+                    OUR PARTNER
                     <img class="icontitle_partner" src="<?= base_url('dist/svg/icontitle_partner.svg') ?>" width="80" height="80" style="margin-left: 7px;">
-                </div>
+                </h2>
                 <span style="font-size: 15pt; color: #424141;">
                     Pet Journey Agency เข้าใจถึงความสำคัญของความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของเสมือนสมาชิกครอบครัว ดังนั้น เราได้รวบรวมพันธมิตรที่มีความเชี่ยวชาญและมืออาชีพเพื่อให้บริการที่ดีที่สุดแก่ลูกค้าของเรา
                 </span>
             </div>
             <div class="partner-category">
-                <div class="title-animalclinic">
-                    <span id="sub_title_animal_clinic" style="font-size: 12pt;">
-                        Animal clinic
-                    </span>
+                <h3 class="title-animalclinic">
+                    Animal clinic
                     <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
-                </div>
+                </h3>
                 <div class="partner-logos">
                     <?php foreach ($partners['animal_clinic'] as $partner) { ?>
                         <div class="partner-logo">
@@ -763,12 +757,10 @@ $services_json = json_encode($servicesdata);
                 </div>
             </div>
             <div class="partner-category">
-                <div class="title-petfriendly">
-                    <span id="sub_title_pet_friendly" style="font-size: 12pt;">
-                        Pet friendly hotel
-                    </span>
+                <h3 class="title-petfriendly">
+                    Pet friendly hotel
                     <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
-                </div>
+                </h3>
                 <div class="partner-logos">
                     <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
                         <div class="partner-logo">
@@ -778,12 +770,10 @@ $services_json = json_encode($servicesdata);
                 </div>
             </div>
             <div class="partner-category">
-                <div class="title-pethotel">
-                    <span id="sub_title_pet_hotel" style="font-size: 12pt;">
-                        Pet hotel
-                    </span>
+                <h3 class="title-pethotel">
+                    Pet hotel
                     <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
-                </div>
+                </h3>
                 <div class="partner-logos">
                     <?php foreach ($partners['pet_hotel'] as $partner) { ?>
                         <div class="partner-logo">
@@ -802,51 +792,54 @@ $services_json = json_encode($servicesdata);
         </div>
         <div class="quote-content">
             <h3 class="d-flex justify-content-center flex-wrap p-2">
-                <span id="title_quote_part1">รับใบเสนอราคาของคุณได้ที่นี่</span>
-                <div class="text-success mx-2" id="title_quote_part2">ฟรี</div>
-                <span id="title_quote_part3">ไม่มีค่าใช้จ่าย!</span>
+                รับใบเสนอราคาของคุณได้ที่นี่
+                <div class="text-success mx-2">ฟรี</div>
+                ไม่มีค่าใช้จ่าย!
             </h3>
             <div class="container mt-3">
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="name" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="name_input" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
+                        <div class="d-flex">ชื่อ<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="text" id="name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
-                        <input class="form-control" type="text" id="phone_input" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
+                        <div class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="text" id="phone" name="phone" placeholder="ระบุชื่อผู้ติดต่อหมายเลขโทรศัพท์">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
-                        <input class="form-control" type="email" id="email_input" name="email" placeholder="ระบุอีเมล">
+                        <div class="d-flex">อีเมล<div style="color: red;">*</div>
+                        </div>
+                        <input class="form-control" type="email" id="email" name="email" placeholder="ระบุอีเมล">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
-                        <input class="form-control" type="date" id="travel_date_input" name="travel-date">
+                        <div class="d-flex">วันเดินทาง</div>
+                        <input class="form-control" type="date" id="travel-date" name="travel-date">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="origin-country" id="label_origin_country" class="d-flex">ประเทศต้นทาง</label>
-                        <select class="form-control" id="origin_country_input" name="origin-country">
+                        <div class="d-flex">ประเทศต้นทาง</div>
+                        <select class="form-control" id="origin-country" name="origin-country">
                             <option value="">เช่น ไทย (TH)</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
-                        <select class="form-control" id="destination_country_input" name="destination-country">
+                        <div class="d-flex">ประเทศปลายทาง</div>
+                        <select class="form-control" id="destination-country" name="destination-country">
                             <option value="">เช่น เกาหลี (KR)</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
-                        <select class="form-control" id="travel_type_input" name="travel-type">
+                        <div class="d-flex">ประเภทการเดินทาง</div>
+                        <select class="form-control" id="travel-type" name="travel-type">
                             <option value="">เลือกประเภทการเดินทาง</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
-                        <select class="form-control" id="pet_transport_input" name="pet-transport">
+                        <div class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</div>
+                        <select class="form-control" id="pet-transport" name="pet-transport">
                             <option value="">เลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
                             <!-- Add more options as needed -->
                         </select>
@@ -859,28 +852,29 @@ $services_json = json_encode($servicesdata);
                 <hr>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
-                        <input type="text" class="form-control" id="pet_type_input" name="pet-type" placeholder="ระบุชนิดสัตว์">
+                        <div class="d-flex">ชนิดสัตว์</div>
+                        <input type="text" class="form-control" id="pet-type" name="pet-type" placeholder="ระบุชนิดสัตว์">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
-                        <input type="text" class="form-control" id="breed_input" name="breed" placeholder="ระบุสายพันธุ์">
+                        <div class="d-flex">สายพันธุ์</div>
+                        <input type="text" class="form-control" id="breed" name="breed" placeholder="ระบุสายพันธุ์">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="age" id="label_age" class="d-flex">อายุ</label>
-                        <input type="text" class="form-control" id="age_input" name="age" placeholder="ระบุอายุ">
+                        <div class="d-flex">อายุ</div>
+                        <input type="text" class="form-control" id="age" name="age" placeholder="ระบุอายุ">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
-                        <input type="text" class="form-control" id="weight_input" name="weight" placeholder="ระบุน้ำหนัก">
+                        <div class="d-flex">น้ำหนัก</div>
+                        <input type="text" class="form-control" id="weight" name="weight" placeholder="ระบุน้ำหนัก">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
-                        <input type="text" class="form-control" id="reason_input" name="reason" placeholder="ระบุหมายเหตุ">
+                        <div class="d-flex">หมายเหตุ</div>
+                        <input type="text" class="form-control" id="reason" name="reason" placeholder="ระบุหมายเหตุ">
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark" id="btn_submit_quote"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>
+                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</button>
             </div>
+        </div>
         </div>
     </section>
     <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
@@ -1027,80 +1021,6 @@ $services_json = json_encode($servicesdata);
         }).catch(error => {
             console.error('Failed to fetch countries:', error);
         });
-    </script>
-
-    <!-- language -->
-    <script>
-        async function setLanguage(lang) {
-            try {
-                const response = await fetch('<?= base_url('public/data/language/homepage_locale.json'); ?>');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const data = await response.json();
-
-                document.getElementById('title_about_us').textContent = data[lang].title_about_us;
-                document.getElementById('btn_view_more1').textContent = data[lang].btn_view_more1;
-                document.querySelectorAll('.btn_view_more2').forEach(button => {
-                    button.textContent = data[lang].btn_view_more2;
-                });
-                document.getElementById('title_our_service_part1').textContent = data[lang].title_our_service_part1;
-                document.getElementById('title_our_service_part2').textContent = data[lang].title_our_service_part2;
-                document.getElementById('title_review').textContent = data[lang].title_review;
-                document.getElementById('title_partner').textContent = data[lang].title_partner;
-                document.getElementById('sub_title_animal_clinic').textContent = data[lang].sub_title_animal_clinic;
-                document.getElementById('sub_title_pet_friendly').textContent = data[lang].sub_title_pet_friendly;
-                document.getElementById('sub_title_pet_hotel').textContent = data[lang].sub_title_pet_hotel;
-                document.getElementById('title_quote_part1').textContent = data[lang].title_quote1;
-                document.getElementById('title_quote_part2').textContent = data[lang].title_quote2;
-                document.getElementById('title_quote_part3').textContent = data[lang].title_quote3;
-
-                document.getElementById('label_name').textContent = data[lang].name;
-                document.getElementById('name_input').placeholder = data[lang].ph_name;
-                document.getElementById('label_phone').textContent = data[lang].phone;
-                document.getElementById('phone_input').placeholder = data[lang].ph_phone;
-                document.getElementById('label_email').textContent = data[lang].email;
-                document.getElementById('email_input').placeholder = data[lang].ph_email;
-                document.getElementById('label_date').textContent = data[lang].date;
-                document.getElementById('travel_date_input').placeholder = data[lang].ph_date;
-                document.getElementById('label_origin_country').textContent = data[lang].country;
-                document.getElementById('origin_country_input').placeholder = data[lang].ph_country;
-                document.getElementById('label_destination_country').textContent = data[lang].destination_country;
-                document.getElementById('destination_country_input').placeholder = data[lang].ph_destination_country;
-                document.getElementById('label_travel_type').textContent = data[lang].travel_type;
-                document.getElementById('travel_type_input').placeholder = data[lang].ph_travel_type;
-                document.getElementById('label_pet_transport').textContent = data[lang].pet_transport;
-                document.getElementById('pet_transport_input').placeholder = data[lang].ph_pet_transport;
-
-                document.getElementById('label_pet_type').textContent = data[lang].pet_type;
-                document.getElementById('pet_type_input').placeholder = data[lang].ph_pet_type;
-                document.getElementById('label_breed').textContent = data[lang].breed;
-                document.getElementById('breed_input').placeholder = data[lang].ph_breed;
-                document.getElementById('label_age').textContent = data[lang].age;
-                document.getElementById('age_input').placeholder = data[lang].ph_age;
-                document.getElementById('label_weight').textContent = data[lang].weight;
-                document.getElementById('weight_input').placeholder = data[lang].ph_weight;
-                document.getElementById('label_reason').textContent = data[lang].reason;
-                document.getElementById('reason_input').placeholder = data[lang].ph_reason;
-
-                document.getElementById('btn_submit_quote').textContent = data[lang].btn_submit_quote;
-            } catch (error) {
-                console.error('Error loading translations:', error);
-            }
-        }
-
-        document.getElementById('language-select').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        document.getElementById('language-select-mobile').addEventListener('change', function() {
-            var selectedLang = this.value;
-            setLanguage(selectedLang);
-        });
-
-        // Set default language
-        setLanguage('en');
     </script>
 </body>
 
