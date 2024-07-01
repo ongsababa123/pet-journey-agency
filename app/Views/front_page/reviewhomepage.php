@@ -45,6 +45,7 @@ $reviews = [
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         * {
             font-family: 'Kanit', sans-serif;
@@ -359,7 +360,7 @@ $reviews = [
     <section>
         <div class="container mt-5">
             <!-- review-grid -->
-            <div id="review-grid" class="review-grid">
+            <div id="review-grid" class="review-grid" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">
                 <?php foreach ($reviews as $index => $review) : ?>
                     <div class="review-box <?php echo $review->bgColor; ?> review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
                         <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
@@ -399,62 +400,112 @@ $reviews = [
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        $(document).ready(function() {
-            var currentStartIndexDesktop = 0;
-            var itemsPerPageDesktop = 8;
-            var totalItemsDesktop = $(".review-item-desktop").length;
+        AOS.init();
+    </script>
+    <script>
+        const base_url = '<?= base_url('') ?>';
 
-            function updateGridDesktop() {
-                $(".review-item-desktop").hide();
-                for (var i = currentStartIndexDesktop; i < currentStartIndexDesktop + itemsPerPageDesktop; i++) {
-                    $(".review-item-desktop").eq(i).show();
-                }
+        const doctors = [{
+                name: 'หมอสมชาย นามวงศ์1',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ2',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร3',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ4',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอสมชาย นามวงศ์5',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ6',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร7',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ8',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ9',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร10',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ11',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
             }
+        ];
 
-            $(".btn-right").click(function() {
-                if (currentStartIndexDesktop + itemsPerPageDesktop < totalItemsDesktop) {
-                    currentStartIndexDesktop += itemsPerPageDesktop;
-                    updateGridDesktop();
-                }
-            });
+        const slidesContainer = document.getElementById('slides-container');
 
-            $(".btn-left").click(function() {
-                if (currentStartIndexDesktop - itemsPerPageDesktop >= 0) {
-                    currentStartIndexDesktop -= itemsPerPageDesktop;
-                    updateGridDesktop();
-                }
-            });
+        doctors.forEach(doctor => {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+            slide.innerHTML = `
+        <img src="${base_url}${doctor.image}" alt="${doctor.name}">
+        <p class="name">${doctor.name}</p>
+        <p class="position">${doctor.position}</p>
+    `;
+            slidesContainer.appendChild(slide);
+        });
 
-            updateGridDesktop();
+        let slideIndex = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = doctors.length;
+        const slidesPerView = 4;
 
-            // Mobile
-            var currentStartIndexMobile = 0;
-            var itemsPerPageMobile = 6;
-            var totalItemsMobile = $(".review-item-mobile").length;
-
-            function updateGridMobile() {
-                $(".review-item-mobile").hide();
-                for (var i = currentStartIndexMobile; i < currentStartIndexMobile + itemsPerPageMobile; i++) {
-                    $(".review-item-mobile").eq(i).show();
-                }
+        function nextSlide() {
+            if (slideIndex < totalSlides - slidesPerView) {
+                slideIndex++;
+            } else {
+                slideIndex = 0;
             }
+            updateSlidePosition();
+        }
 
-            $(".btn-right-mobile").click(function() {
-                if (currentStartIndexMobile + itemsPerPageMobile < totalItemsMobile) {
-                    currentStartIndexMobile += itemsPerPageMobile;
-                    updateGridMobile();
-                }
-            });
+        function prevSlide() {
+            if (slideIndex > 0) {
+                slideIndex--;
+            } else {
+                slideIndex = totalSlides - slidesPerView;
+            }
+            updateSlidePosition();
+        }
 
-            $(".btn-left-mobile").click(function() {
-                if (currentStartIndexMobile - itemsPerPageMobile >= 0) {
-                    currentStartIndexMobile -= itemsPerPageMobile;
-                    updateGridMobile();
-                }
-            });
+        function updateSlidePosition() {
+            slides.style.transform = 'translateX(' + (-slideIndex * 100 / slidesPerView) + '%)';
+        }
 
-            updateGridMobile();
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSlidePosition();
         });
     </script>
 </body>

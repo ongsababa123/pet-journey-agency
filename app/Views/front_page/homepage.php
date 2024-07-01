@@ -70,6 +70,7 @@ $services_json = json_encode($servicesdata);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
@@ -709,7 +710,7 @@ $services_json = json_encode($servicesdata);
     <section>
         <div class="about-us-section">
             <div class="container">
-                <div class="about-us-content">
+                <div class="about-us-content" data-aos="zoom-in">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/Yovlj-mSGrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
@@ -773,51 +774,54 @@ $services_json = json_encode($servicesdata);
                     Pet Journey Agency เข้าใจถึงความสำคัญของความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของเสมือนสมาชิกครอบครัว ดังนั้น เราได้รวบรวมพันธมิตรที่มีความเชี่ยวชาญและมืออาชีพเพื่อให้บริการที่ดีที่สุดแก่ลูกค้าของเรา
                 </span>
             </div>
-            <div class="partner-category">
-                <div class="title-animalclinic">
-                    <span id="sub_title_animal_clinic" style="font-size: 12pt;">
-                        Animal clinic
-                    </span>
-                    <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+            <div data-aos="fade-up">
+                <div class="partner-category">
+                    <div class="title-animalclinic">
+                        <span id="sub_title_animal_clinic" style="font-size: 12pt;">
+                            Animal clinic
+                        </span>
+                        <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                    </div>
+                    <div class="partner-logos">
+                        <?php foreach ($partners['animal_clinic'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
-                <div class="partner-logos">
-                    <?php foreach ($partners['animal_clinic'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
-                    <?php } ?>
+                <div class="partner-category">
+                    <div class="title-petfriendly">
+                        <span id="sub_title_pet_friendly" style="font-size: 12pt;">
+                            Pet friendly hotel
+                        </span>
+                        <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                    </div>
+                    <div class="partner-logos">
+                        <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="partner-category">
+                    <div class="title-pethotel">
+                        <span id="sub_title_pet_hotel" style="font-size: 12pt;">
+                            Pet hotel
+                        </span>
+                        <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                    </div>
+                    <div class="partner-logos">
+                        <?php foreach ($partners['pet_hotel'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-            <div class="partner-category">
-                <div class="title-petfriendly">
-                    <span id="sub_title_pet_friendly" style="font-size: 12pt;">
-                        Pet friendly hotel
-                    </span>
-                    <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
-                </div>
-                <div class="partner-logos">
-                    <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="partner-category">
-                <div class="title-pethotel">
-                    <span id="sub_title_pet_hotel" style="font-size: 12pt;">
-                        Pet hotel
-                    </span>
-                    <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
-                </div>
-                <div class="partner-logos">
-                    <?php foreach ($partners['pet_hotel'] as $partner) { ?>
-                        <div class="partner-logo">
-                            <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -859,14 +863,14 @@ $services_json = json_encode($servicesdata);
                     <div class="form-group col-md-4">
                         <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
                         <select class="form-control select2" id="ph_origin_airport" name="origin-airport">
-                            
+
                         </select>
                     </div>
                     <div class="form-group col-md-4 coltest"></div>
                     <div class="form-group col-md-4">
                         <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
                         <select class="form-control select2" id="ph_destination_country" name="destination-country">
-                            
+
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -878,7 +882,7 @@ $services_json = json_encode($servicesdata);
                     <div class="form-group col-md-4">
                         <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
                         <select class="form-control" id="ph_travel_type" name="travel-type">
-                            
+
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -933,6 +937,10 @@ $services_json = json_encode($servicesdata);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script>
         $(document).ready(function() {
             $('.select2').select2({

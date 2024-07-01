@@ -78,6 +78,7 @@ $data = [
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         * {
             font-family: 'Kanit', sans-serif;
@@ -660,7 +661,7 @@ $data = [
                 <div id="rv_title_review2">จากลูกค้าของเรา</div>
             </h3>
             <!-- review-grid -->
-            <div id="review-grid" class="review-grid">
+            <div id="review-grid" class="review-grid" data-aos="fade-up" data-aos-duration="3000">
                 <?php foreach ($reviews as $index => $review) : ?>
                     <div class="review-box <?php echo $review->bgColor; ?> review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
                         <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
@@ -683,7 +684,7 @@ $data = [
                 </a>
             </div>
             <!-- review-grid-mobile -->
-            <div id="review-grid-mobile" class="review-grid-mobile">
+            <div id="review-grid-mobile" class="review-grid-mobile" data-aos="fade-up" data-aos-duration="3000">
                 <?php foreach ($reviews as $index => $review) : ?>
                     <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
                         <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
@@ -714,22 +715,22 @@ $data = [
                 <div id="rv_team_work_results2">การทำงานของทีม</div>
             </h3>
             <div class="layout-grid">
-                <div class="layout-box box1" id="box-1"></div>
-                <div class="layout-box box2" id="box-2"></div>
-                <div class="layout-box box3" id="box-3"></div>
-                <div class="layout-box box4" id="box-4"></div>
-                <div class="layout-box box5" id="box-5"></div>
-                <div class="layout-box box6" id="box-6"></div>
-                <div class="layout-box box7" id="box-7"></div>
-                <div class="layout-box box8" id="box-8"></div>
-                <div class="layout-box box9" id="box-9"></div>
-                <div class="layout-box box10" id="box-10"></div>
-                <div class="layout-box box11" id="box-11"></div>
-                <div class="layout-box box12" id="box-12"></div>
-                <div class="layout-box box13" id="box-13"></div>
-                <div class="layout-box box14" id="box-14"></div>
-                <div class="layout-box box15" id="box-15"></div>
-                <div class="layout-box box16" id="box-16"></div>
+                <div class="layout-box box1" id="box-1" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box2" id="box-2" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box3" id="box-3" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box4" id="box-4" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box5" id="box-5" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box6" id="box-6" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box7" id="box-7" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box8" id="box-8" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box9" id="box-9" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box10" id="box-10" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box11" id="box-11" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box12" id="box-12" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box13" id="box-13" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box14" id="box-14" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box15" id="box-15" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
+                <div class="layout-box box16" id="box-16" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0"></div>
 
             </div>
         </div>
@@ -743,6 +744,10 @@ $data = [
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <!-- reviews our customers -->
     <script>
         $(document).ready(function() {

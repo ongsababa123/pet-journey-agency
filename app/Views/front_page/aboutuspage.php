@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         * {
             font-family: 'Kanit', sans-serif;
@@ -33,6 +34,7 @@
         }
 
         .veterinary-team-section {
+            position: relative;
             text-align: center;
             background-color: #0c2d6e;
             padding: 20px;
@@ -50,7 +52,7 @@
 
         .slider {
             position: relative;
-            width: 80%;
+            width: 70%;
             margin: auto;
             overflow: hidden;
         }
@@ -58,12 +60,16 @@
         .slides {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            gap: 30px;
         }
 
         .slide {
+            background-color: #fff;
             box-sizing: border-box;
             padding: 10px;
-            flex: 0 0 25%;
+            border-radius: 10px;
+            text-align: center;
+            min-width: calc(25% - 30px);
         }
 
         .slide img {
@@ -79,6 +85,11 @@
             color: #0198B4;
         }
 
+        .name {
+            color: #0c2d6e;
+            font-weight: 500;
+        }
+
         .prev,
         .next {
             cursor: pointer;
@@ -88,37 +99,79 @@
             height: 40px;
             padding: 10px;
             margin-top: -20px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
+            color: #0c2d6e;
             transition: 0.6s ease;
             user-select: none;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 50%;
+            z-index: 10;
         }
 
         .prev {
-            left: 10px;
-            border-radius: 50%;
-            z-index: 10;
+            left: 5%;
         }
 
         .next {
-            right: 10px;
-            border-radius: 50%;
-            z-index: 10;
+            right: 5%;
         }
 
         .prev:hover,
         .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #fcd20f;
         }
 
         .prev i,
         .next i {
             font-size: 18px;
+        }
+
+        .pet-story-section {
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .petstorypic {
+            width: 100px;
+        }
+
+        .content-container .section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-container .section img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        .content-container .section .content {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .content-container .section:nth-child(even) .content {
+            order: -1;
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        .content-container .section h3 {
+            color: #333;
+        }
+
+        .content-container .section p {
+            color: #4A4A4A;
+            font-size: 16px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -164,18 +217,32 @@
     <section class="veterinary-team-section">
         <h2>Veterinary <span>Team</span></h2>
         <div class="slider">
-            <button class="prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
             <div class="slides" id="slides-container"></div>
-            <button class="next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
         </div>
+        <button class="prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+        <button class="next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
     </section>
 
+    <!-- sec pet story -->
+    <section class="pet-story-section">
+        <div class="row d-flex align-items-center justify-content-center">
+            <img class="petstorypic" src="<?= base_url('dist/img/about_us_cat_dog.png') ?>" alt="PetStory">
+            <h1 style="color: #4A4A4A;"><span style="color: #fcd20f;">สร้างความสุข</span>สบายให้กับเพื่อนสัตว์ของคุณ</h1>
+        </div>
+        <div class="container" id="content-container">
+            <!-- Sections will be added here by JavaScript -->
+        </div>
+    </section>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script>
         const base_url = '<?= base_url('') ?>';
 
@@ -218,17 +285,32 @@
                 name: 'หมอวาสนา ทองประเสริฐ8',
                 position: 'สัตวแพทย์ทั่วไป',
                 image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอศศิธร พงษ์สุวรรณ9',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมออนุชา ตรีวิจิตร10',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
+            },
+            {
+                name: 'หมอวาสนา ทองประเสริฐ11',
+                position: 'สัตวแพทย์ทั่วไป',
+                image: 'dist/img/pic_profile_about_us.png'
             }
         ];
 
         const slidesContainer = document.getElementById('slides-container');
 
-        doctors.forEach(doctor => {
+        doctors.forEach((doctor) => {
             const slide = document.createElement('div');
             slide.classList.add('slide');
             slide.innerHTML = `
                 <img src="${base_url}${doctor.image}" alt="${doctor.name}">
-                <p>${doctor.name}</p>
+                <p class="name">${doctor.name}</p>
                 <p class="position">${doctor.position}</p>
             `;
             slidesContainer.appendChild(slide);
@@ -236,12 +318,11 @@
 
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
-        const totalSlides = doctors.length;
-        const slidesPerView = 4;
+        const totalSlides = Math.ceil(doctors.length / 4);
 
         function nextSlide() {
-            if (slideIndex < totalSlides - slidesPerView) {
-                slideIndex += slidesPerView;
+            if (slideIndex < totalSlides - 1) {
+                slideIndex++;
             } else {
                 slideIndex = 0;
             }
@@ -250,19 +331,70 @@
 
         function prevSlide() {
             if (slideIndex > 0) {
-                slideIndex -= slidesPerView;
+                slideIndex--;
             } else {
-                slideIndex = totalSlides - slidesPerView;
+                slideIndex = totalSlides - 1;
             }
             updateSlidePosition();
         }
 
         function updateSlidePosition() {
-            slides.style.transform = 'translateX(' + (-slideIndex * 100 / slidesPerView) + '%)';
+            slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             updateSlidePosition();
+        });
+    </script>
+    <script>
+        const data = [{
+                image: 'image1.png',
+                title: 'ความรักที่ไม่ต้องการคำพูด',
+                text: 'แมวตัวน้อยไม่จำเป็นต้องพูดอะไร แต่การนั่งข้างๆ เวลามีเจ้าของรู้สึกพอใจคือสัญญาณที่ทำให้รู้ว่าเป็นความรัก ความอบอุ่นในใจพวกเขา แต่การเล่นกับแมวและการดูแลเป็นสิ่งที่ทำให้รู้ว่าคุณรักเขามากแค่ไหน แมวจะมีการสัมผัสและรับรู้รู้สึกที่เจ้าของอยู่ด้วยตลอดเวลา'
+            },
+            {
+                image: 'image2.png',
+                title: 'การดูแลอย่างใส่ใจ',
+                text: 'การดูแลแมวไม่ใช่แค่การให้อาหารที่ดี ความสะอาดแต่เป็นการให้การดูแลทุกๆ รายละเอียด ตั้งแต่การเลือกอาหารที่มีคุณค่าทางโภชนาการ การจัดการการดูแลฟัน และการตรวจสุขภาพอย่างสม่ำเสมอ ทั้งนี้เพื่อสุขภาพและความสุขที่ดีต่อแมวตัวน้อยของคุณ'
+            },
+            {
+                image: 'image3.png',
+                title: 'สุขภาพและความสุขเพื่อนสัตว์เลี้ยง',
+                text: 'การดูแลสุขภาพสัตว์เลี้ยงเป็นสิ่งสำคัญที่คุณต้องทำเป็นประจำ สำคัญมากคือการพาไปพบสัตวแพทย์อย่างสม่ำเสมอเพื่อการตรวจร่างกายและการฉีดวัคซีน นอกจากนี้การเล่นและการออกกำลังกายกับสัตว์เลี้ยงก็เป็นสิ่งที่ทำให้พวกเขามีความสุข'
+            }
+        ];
+
+        const container = document.getElementById('content-container');
+
+        data.forEach((item, index) => {
+            const section = document.createElement('div');
+            section.className = 'section';
+
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.title;
+
+            const content = document.createElement('div');
+            content.className = 'content';
+
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+
+            const text = document.createElement('p');
+            text.textContent = item.text;
+
+            content.appendChild(title);
+            content.appendChild(text);
+
+            if (index % 2 === 0) {
+                section.appendChild(img);
+                section.appendChild(content);
+            } else {
+                section.appendChild(content);
+                section.appendChild(img);
+            }
+
+            container.appendChild(section);
         });
     </script>
 </body>
