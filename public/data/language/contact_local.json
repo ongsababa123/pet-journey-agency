@@ -9,9 +9,7 @@
     "contact_message_placeholder": "Message*",
     "contact_greeting": "We are happy to hear from you! If you have any questions, suggestions, or comments please contact us using the information below",
     "contact_footer_desc": "please contact us using the information below",
-    "contact_opening_hours": "Opening Hours:",
-    "contact_weekdays_hours": "Monday to Friday: 8:30 AM - 6:00 PM",
-    "contact_closed_sundays": "Closed every Sunday",
+    "contact_opening_hours": "Opening:",
     "contact_phone": "Phone:",
     "contact_email": "Email:"
   },
@@ -24,10 +22,7 @@
     "contact_phone_placeholder": "ระบุเบอร์โทร",
     "contact_message_placeholder": "ระบุข้อความ",
     "contact_greeting": "เรายินดีรับฟังจากคุณ! หากคุณมีคำถาม ข้อเสนอแนะ หรือความคิดเห็นใด ๆ กรุณาติดต่อเราตามข้อมูลด้านล่าง",
-    "contact_footer_desc": "",
     "contact_opening_hours": "เวลาทำการ:",
-    "contact_weekdays_hours": "จันทร์ถึงศุกร์: 8:30 น. - 18:00 น.",
-    "contact_closed_sundays": "หยุดทุกวันอาทิตย์",
     "contact_phone": "โทรศัพท์:",
     "contact_email": "Email:"
   }

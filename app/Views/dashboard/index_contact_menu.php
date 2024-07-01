@@ -69,7 +69,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="input_opentime">วันเวลาทำการ</label>
+                                            <label for="input_opentime">วันเวลาทำการ (ไทย)</label>
                                             <input type="text" class="form-control" id="input_opentime" name="input_opentime" placeholder="กรอก วันเวลาทำการ" value="<?= $data_contact['open_time'] ?>">
                                         </div>
                                     </div>
@@ -91,8 +91,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="input_email">อีเมล์</label>
-                                            <input type="text" class="form-control" id="input_email" name="input_email" placeholder="กรอก อีเมล์" value="<?= $data_contact['email'] ?>">
+                                            <label for="input_opentime_en">วันเวลาทำการ (อังกฤษ)</label>
+                                            <input type="text" class="form-control" id="input_opentime_en" name="input_opentime_en" placeholder="กรอก วันเวลาทำการ" value="<?= $data_contact['open_time_en'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -113,8 +113,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="input_phone_number">เบอร์โทรศัพท์</label>
-                                            <input type="text" class="form-control" id="input_phone_number" name="input_phone_number" placeholder="กรอก เบอร์โทรศัพท์" value="<?= $data_contact['phone_number'] ?>">
+                                            <label for="input_email">อีเมล์</label>
+                                            <input type="text" class="form-control" id="input_email" name="input_email" placeholder="กรอก อีเมล์" value="<?= $data_contact['email'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -134,6 +134,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="input_phone_number">เบอร์โทรศัพท์</label>
+                                            <input type="text" class="form-control" id="input_phone_number" name="input_phone_number" placeholder="กรอก เบอร์โทรศัพท์" value="<?= $data_contact['phone_number'] ?>">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">

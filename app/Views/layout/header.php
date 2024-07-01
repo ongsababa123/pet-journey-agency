@@ -555,20 +555,22 @@
                 <div class="info-item">
                     <i class="fas fa-clock"></i>
                     <div>
-                        <span id="info_open1"><?= $contact_data['open_time'] ?></span>
+                        <span id="info_open1"></span>
+                        <?php if ($cut_url['0'] == 'th') echo $contact_data['open_time'];
+                        else echo $contact_data['open_time_en']; ?>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <span id="info_email1">Email</span>
+                        <span id="info_email1"></span>
                         <span><?= $contact_data['email'] ?></span>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
                     <div>
-                        <span id="info_callus1">Call Us</span>
+                        <span id="info_callus1"></span>
                         <span><?= $contact_data['phone_number'] ?></span>
                     </div>
                 </div>
@@ -594,19 +596,19 @@
                 <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
             </div>
             <div class="navbar-nav">
-                <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
+                <div class="nav-link"><a id="menu_home" href="<?= base_url($cut_url[0] . '/homepage') ?>">Home</a></div>
                 <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
                 <div class="nav-link">
                     <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <?php foreach ($service_header as $service) : ?>
-                            <a href="<?= base_url($cut_url[0] .'/servicepage/' . $service['id_service_header']) ?>"><?php if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
-                                        else echo $service['header_service_name_en']; ?></a>
+                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . $service['id_service_header']) ?>"><?php if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
+                                                                                                                        else echo $service['header_service_name_en']; ?></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
-                <div class="nav-link"><a id="menu_contact" href="/pet-journey-agency/page/contactpage">Contact</a></div>
+                <div class="nav-link"><a id="menu_review" href="<?= base_url($cut_url[0] . '/reviewpage') ?>">Review</a></div>
+                <div class="nav-link"><a id="menu_contact" href="<?= base_url($cut_url[0] . '/contactpage') ?>">Contact</a></div>
             </div>
             <div class="d-flex align-items-center">
                 <div class="social-icons-bottom">

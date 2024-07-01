@@ -419,6 +419,14 @@ function check_menu_state($uri_menu, $input, $type)
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('dashboard/message_contact') ?>" class="nav-link <?= check_menu_state($uri_menu, 'message_contact', 'active_display') ?>">
+                                <i class="nav-icon fas fa-file-signature"></i>
+                                <p>
+                                    ข้อมูลการติดต่อ
+                                </p>
+                            </a>
+                        </li>
                         <div>
                             <hr>
                         </div>

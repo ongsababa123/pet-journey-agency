@@ -147,7 +147,9 @@
         }
     </style>
 </head>
-
+<?php
+    $cut_url = explode('/', $uri_menu);
+    ?>
 <body>
     <footer class="footer">
         <img class="pic-footer" src="<?= base_url('dist/img/footerpic.png') ?>" alt="Logo">
@@ -158,21 +160,22 @@
             <div class="info-item">
                 <i class="fas fa-clock"></i>
                 <div>
-                    <span id="ft_open1">Mon - Sat 9.00 - 18.00</span>
-                    <span><?= $contact_data['open_time'] ?></span>
+                    <span id="ft_open1"></span>
+                    <?php if ($cut_url['0'] == 'th') echo $contact_data['open_time'];
+                    else echo $contact_data['open_time_en']; ?>
                 </div>
             </div>
             <div class="info-item">
                 <i class="fas fa-envelope"></i>
                 <div>
-                    <span id="ft_email1">Email</span>
+                    <span id="ft_email1"></span>
                     <span><?= $contact_data['email'] ?></span>
                 </div>
             </div>
             <div class="info-item">
                 <i class="fas fa-phone"></i>
                 <div>
-                    <span id="ft_callus1">Call Us</span>
+                    <span id="ft_callus1"></span>
                     <span><?= $contact_data['phone_number'] ?></span>
                 </div>
             </div>

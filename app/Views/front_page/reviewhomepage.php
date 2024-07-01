@@ -1,40 +1,3 @@
-<?php
-class Review
-{
-    public $image;
-    public $text;
-    public $bgColor;
-
-    public function __construct($image, $text)
-    {
-        $this->image = $image;
-        $this->text = $text;
-    }
-}
-
-$reviews = [
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet1, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet2, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet3, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet4, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet5, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet6, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet7, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet8, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet9, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet10, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet11, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet12, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet13, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet14, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet15, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet16, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet17, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet18, consectetur adipiscing elit."),
-    new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet19, consectetur adipiscing elit.")
-];
-?>
-
 <!DOCTYPE html>
 <html lang="th">
 
@@ -365,7 +328,8 @@ $reviews = [
                         <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?= $review['detail_comment_th']; ?>
+                            <?php if ($cut_url['0'] == 'th') echo $review['detail_comment_th'];
+                            else echo $review['detail_comment_en'] ?> 
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>
@@ -383,7 +347,8 @@ $reviews = [
                         <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?= $review['detail_comment_th']; ?>
+                            <?php if ($cut_url['0'] == 'th') echo $review['detail_comment_th'];
+                            else echo $review['detail_comment_en'] ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>

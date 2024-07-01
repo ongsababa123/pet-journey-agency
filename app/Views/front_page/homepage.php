@@ -1072,9 +1072,10 @@ $cut_url = explode('/', $uri_menu);
         $("#form_quotation").on('submit', function(event) {
             event.preventDefault();
 
-            action_('dashboard/quotation/create/<?= count($service_header) ?>', 'form_quotation');
+            action_('dashboard/quotation/create/withuser/<?= count($service_header) ?>', 'form_quotation');
         });
     </script>
+    
     <!-- function action ajax request -->
     <script>
         function action_(url, form) {

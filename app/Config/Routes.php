@@ -32,11 +32,18 @@ $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
     $routes->get('contactpage', 'ContactPage::index');
 });
 
+
 $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    $routes->get('send-email',  'EmailController::sendEmail'); // ตั้งค่าเส้นทางให้เรียกฟังก์ชัน sendEmail ใน EmailController
+
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('login', 'UserAdminController::index_login'); //index login
     $routes->post('login/auth', 'UserAdminController::auth'); //auth
     $routes->get('logout', 'UserAdminController::logout'); //logout
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->post('quotation/create/withuser/(:num)', 'QuotationDataController::create_quotation/$1'); // create a new Quotation with user
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->post('message_contact/create', 'MessageContactController::create_message_contact'); //create message contact
 });
 // Grouped routes with a common namespace
 $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard', 'filter' => 'AuthGuard'], function ($routes) {
@@ -92,6 +99,14 @@ $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard', 'filt
     $routes->get('useradmin/delete/(:num)', 'UserAdminController::delete_useradmin/$1'); //delete useradmin
     $routes->post('useradmin/create', 'UserAdminController::create_useradmin'); //create useradmin
     $routes->post('useradmin/update/(:num)', 'UserAdminController::update_useradmin/$1'); //update useradmin
+    //------------------------------------------------------------------------------------------------------------------------------------//
+    $routes->get('message_contact', 'MessageContactController::index'); // index message contact
+    $routes->get('message_contact/getdata', 'MessageContactController::getData_message'); // getdata message contact
+    $routes->get('message_contact/changestatus/(:num)/(:num)', 'MessageContactController::change_status_message/$1/$2'); //change status message contact
+    $routes->get('message_contact/delete/(:num)', 'MessageContactController::delete_message/$1'); //delete message contact
+    $routes->post('message_contact/create', 'MessageContactController::create_message_contact'); //create message contact
+    $routes->post('message_contact/update/(:num)', 'MessageContactController::update_message_contact/$1'); //update message contact
+
 });
 
 $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard\Homepage', 'filter' => 'AuthGuard'], function ($routes) {
@@ -108,7 +123,7 @@ $routes->group('dashboard/homepage/', ['namespace' => 'App\Controllers\Dashboard
     //------------------------------------------------------------------------------------------------------------------------------------//
 });
 
-$routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboard\Aboutpage'], function ($routes) {
+$routes->group('dashboard/aboutpage/', ['namespace' => 'App\Controllers\Dashboard\Aboutpage', 'filter' => 'AuthGuard'], function ($routes) {
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('abouthead', 'AboutPage_HeadController::index'); //index about head
     $routes->post('abouthead/update/(:num)/(:segment)', 'AboutPage_HeadController::update_about_head/$1/$2'); //update about head

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2024 at 12:29 PM
+-- Generation Time: Jul 01, 2024 at 12:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,6 +72,7 @@ INSERT INTO `about_page` (`id_about_page`, `detail_page`, `image_page_path`, `la
 CREATE TABLE `contact` (
   `id_contact` int(11) NOT NULL,
   `open_time` varchar(255) DEFAULT NULL,
+  `open_time_en` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(100) DEFAULT NULL,
   `facebook_link` varchar(255) DEFAULT NULL,
@@ -88,8 +89,8 @@ CREATE TABLE `contact` (
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`id_contact`, `open_time`, `email`, `phone_number`, `facebook_link`, `facebook_name`, `instragram_link`, `instragram_name`, `line_link`, `line_name`, `whatsapp`, `logo_image_path`) VALUES
-(1, 'จันทร์ถึงเสาร์ 8:30 - 18:00 หยุดทุกวันอาทิตย์', 'petjourney.agency@gmail.com', ' 088-657-3909', 'https://www.facebook.com/petjourney.agency', 'Pet Journey Agency - นำเข้าส่งออกสัตว์เลี้ยง', '', '', 'https://page.line.me/petjourney', '@petjourney', '0816155644', 'logo_pet_journey.png');
+INSERT INTO `contact` (`id_contact`, `open_time`, `open_time_en`, `email`, `phone_number`, `facebook_link`, `facebook_name`, `instragram_link`, `instragram_name`, `line_link`, `line_name`, `whatsapp`, `logo_image_path`) VALUES
+(1, 'จันทร์ถึงเสาร์ 8:30 - 18:00 หยุดทุกวันอาทิตย์', 'Monday to Saturday 8:30 - 18:00, closed every Sunday.', 'petjourney.agency@gmail.com', ' 088-657-3909', 'https://www.facebook.com/petjourney.agency', 'Pet Journey Agency - นำเข้าส่งออกสัตว์เลี้ยง', '', '', 'https://page.line.me/petjourney', '@petjourney', '0816155644', 'logo_pet_journey.png');
 
 -- --------------------------------------------------------
 
@@ -110,8 +111,34 @@ CREATE TABLE `cover_page_data` (
 --
 
 INSERT INTO `cover_page_data` (`id_cover`, `name_image`, `path_image`, `status`, `language`) VALUES
-(1, 'test', '1718852655_a63efd68162eb44ab452.jpg', 0, 'en'),
-(3, 'sadasd', 'download.png', 1, 'en');
+(1, 'test', '1718852655_a63efd68162eb44ab452.jpg', 1, 'en'),
+(3, 'sadasd', 'download.png', 1, 'en'),
+(5, 'หกฟหก', 'golden_.jpg', 1, 'th'),
+(6, 'ฟหกฟหกฟ', 'photo3.jpg', 1, 'th');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_contact`
+--
+
+CREATE TABLE `message_contact` (
+  `id_message_contact` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(100) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `date_time` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `message_contact`
+--
+
+INSERT INTO `message_contact` (`id_message_contact`, `name`, `lastname`, `email`, `phone_number`, `message`, `date_time`, `status`) VALUES
+(2, '', '', '', '', '', '2024-07-01 14:19:45', 0);
 
 -- --------------------------------------------------------
 
@@ -156,8 +183,8 @@ CREATE TABLE `partner_data` (
 
 INSERT INTO `partner_data` (`id_partner`, `name_partner`, `type_partner`, `logo_partner_path`, `status`) VALUES
 (2, 'xxxxx', 1, 'avatar3.png', 1),
-(3, 'etert', 2, 'avatar6.png', 0),
-(4, 'xxxxx', 3, 'avatar4.png', 0);
+(3, 'etert', 2, 'avatar6.png', 1),
+(4, 'xxxxx', 3, 'avatar4.png', 1);
 
 -- --------------------------------------------------------
 
@@ -184,7 +211,7 @@ INSERT INTO `performance_team_data` (`id_team`, `image_path`, `color_bg`, `color
 (1, 'footer.png', '#ffb629', '#ffffff', 'ปปปปปปปปปป', 'asdasdasdasdasd', 1, 3),
 (2, 'contact_pic.png', '#3b3935', '#bb0c0c', 'ไไไไไไฟหกฟหกฟหกฟหกฟห', 'xxxxฟหกฟหกฟหกฟหก', 1, 3),
 (3, 'pexels-christian-heitz-842711.jpg', '#ffb629', '#ffffff', 'asdasd', 'sadasd', 1, 1),
-(4, '1719306250_62e95d2521e30f4fecea.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
+(4, '1719306250_62e95d2521e30f4fecea.png', '#201f1d', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 3),
 (5, 'paypal2.png', '#ffb629', '#ffffff', 'ฟหกหฟก', 'asdasd', 1, 1),
 (6, '3bb43251e9f3f81e96cfa0d2aabb1564.jpg', '#ffb629', '#ffffff', 'ฟหกหฟกหฟ', 'asdasd', 1, 1),
 (7, 'golden_.jpg', '#FFB629', '#ffffff', 'ฟหก', 'asdasd', 1, 1),
@@ -234,7 +261,11 @@ INSERT INTO `quotation` (`id_quotation`, `name_last`, `email`, `phone_number`, `
 (3, 'sadsa', 'dasdsadasd', 'dasdsa', '0000-00-00', 'AL', '0', 'AF', '0', '2', '2', '1,2,3,4,5,6,7,8', '', 'asdas', 'dasd', 'asdasd', 'asd', 1, '2024-03-11'),
 (4, 'adzxzxczxc', 'czxc', 'zxcxz', '0000-00-00', 'AF', 'Bost Airport', 'AF', 'Faizabad Airport', '2', '2', '2', '', 'zxczx', 'czxc', 'xczx', 'czxz', 0, '2024-05-13'),
 (5, 'zxcz', 'xzczxc', 'czxc', '0000-00-00', 'AL', 'Kucove Air Base', 'DZ', 'El Abiodh Sidi Cheikh Airport', '2', '2', '1,2', '', 'xzxc', 'zxcz', 'zxczxc', 'xczcx', 0, '2024-06-17'),
-(6, 'asdas', 'asdas', 'dsad', '2024-06-06', 'AF', 'Bamiyan Airport', 'DZ', 'Hamaguir Airport', '3', '3', '1,3,7', NULL, 'dasd', 'sadasd', 'das', 'asdsa', 3, '2024-06-27');
+(6, 'asdas', 'asdas', 'dsad', '2024-06-06', 'AF', 'Bamiyan Airport', 'DZ', 'Hamaguir Airport', '3', '3', '1,3,7', NULL, 'dasd', 'sadasd', 'das', 'asdsa', 3, '2024-06-27'),
+(7, '', '', '', '0000-00-00', 'AL', '0', 'AF', 'Chakcharan Airport', NULL, NULL, '', NULL, '', '', '', '', 0, '2024-06-28'),
+(8, '', '', '', '0000-00-00', 'null', NULL, 'null', 'destination_airport', NULL, NULL, '', NULL, '', '', '', '', 0, '2024-07-01'),
+(9, '', '', '', '0000-00-00', 'null', NULL, 'null', 'destination_airport', NULL, NULL, '', NULL, '', '', '', '', 0, '2024-07-01'),
+(10, '', '', '', '0000-00-00', 'null', NULL, 'null', 'destination_airport', NULL, NULL, '', NULL, '', '', '', '', 0, '2024-07-01');
 
 -- --------------------------------------------------------
 
@@ -255,7 +286,8 @@ CREATE TABLE `review_data` (
 --
 
 INSERT INTO `review_data` (`id_review`, `image_path`, `detail_comment_th`, `detail_comment_en`, `status`) VALUES
-(2, 'golden_.jpg', 'asdasdasasdasdasdasdasdasdas', 'ฟหกฟหกฟหกฟห', 0);
+(2, 'golden_.jpg', 'ฟหกฟหกฟหก', 'asdasdasd', 1),
+(3, 'avatar5.png', 'ฟหกฟหก', 'sadasd', 1);
 
 -- --------------------------------------------------------
 
@@ -357,7 +389,7 @@ CREATE TABLE `user_admin` (
 --
 
 INSERT INTO `user_admin` (`id_user_admin`, `email_admin`, `name_last_admin`, `password_admin`, `time_stamp_login`, `status`) VALUES
-(2, 'jailyootbandit@gmail.com', 'จิลายุทธ บัณฑิต', '$2y$10$aNnIFoxpnnjbpv.4vJswL.BrLRt8XjP02HRhfzXvH0tdohKPsHCtK', '2024-06-27 17:17:58', 1);
+(2, 'jailyootbandit@gmail.com', 'จิลายุทธ บัณฑิต', '$2y$10$aNnIFoxpnnjbpv.4vJswL.BrLRt8XjP02HRhfzXvH0tdohKPsHCtK', '2024-07-01 17:00:32', 1);
 
 -- --------------------------------------------------------
 
@@ -410,6 +442,12 @@ ALTER TABLE `contact`
 --
 ALTER TABLE `cover_page_data`
   ADD PRIMARY KEY (`id_cover`);
+
+--
+-- Indexes for table `message_contact`
+--
+ALTER TABLE `message_contact`
+  ADD PRIMARY KEY (`id_message_contact`);
 
 --
 -- Indexes for table `more_about_pet`
@@ -497,7 +535,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `cover_page_data`
 --
 ALTER TABLE `cover_page_data`
-  MODIFY `id_cover` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cover` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `message_contact`
+--
+ALTER TABLE `message_contact`
+  MODIFY `id_message_contact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `more_about_pet`
@@ -521,13 +565,13 @@ ALTER TABLE `performance_team_data`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=7;
+  MODIFY `id_quotation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสไอดี', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `review_data`
 --
 ALTER TABLE `review_data`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `service_content`

@@ -1,30 +1,26 @@
 {
     "en": {
-        "info_open1": "Mon - Sat 9.00 - 18.00",
-        "info_open2": "Sunday Closed",
-        "info_email1": "Email",
-        "info_callus1": "Call Us",
-        "info_callus2": "(00) 112 365 489",
         "lang_en": "English",
         "lang_th": "Thai",
         "menu_home": "Home",
         "menu_about_us": "About us",
         "menu_service": "Our Service",
         "menu_review": "Review",
-        "menu_contact": "Contact"
+        "menu_contact": "Contact",
+        "info_open1": "Opening",
+        "info_email1": "Email",
+        "info_callus1": "Call Us"
     },
     "th": {
-        "info_open1": "จันทร์ - เสาร์ 9.00 - 18.00",
-        "info_open2": "ปิดวันอาทิตย์",
-        "info_email1": "อีเมล",
-        "info_callus1": "ติดต่อเรา",
-        "info_callus2": "(00) 112 365 489",
         "lang_en": "ภาษาอังกฤษ",
         "lang_th": "ภาษาไทย",
         "menu_home": "หน้าแรก",
         "menu_about_us": "เกี่ยวกับเรา",
         "menu_service": "บริการของเรา",
         "menu_review": "รีวิว",
-        "menu_contact": "ติดต่อ"
+        "menu_contact": "ติดต่อ",
+        "info_open1": "เวลาทําการ",
+        "info_email1": "อีเมล์",
+        "info_callus1": "ติดต่อเรา"
     }
 }

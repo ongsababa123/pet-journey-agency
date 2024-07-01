@@ -645,6 +645,9 @@ $data = [
         }
     </style>
 </head>
+<?php
+$cut_url = explode('/', $uri_menu);
+?>
 
 <body>
     <!-- sec slide page -->
@@ -661,12 +664,13 @@ $data = [
             </h3>
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
-                <?php foreach ($reviews as $index => $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?> review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                <?php foreach ($review_data as $index => $review) : ?>
+                    <div class="review-box review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
+                        <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?php echo $review->text; ?>
+                            <?php if ($cut_url['0'] == 'th') echo $review['detail_comment_th'];
+                            else echo $review['detail_comment_en'] ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>
@@ -684,12 +688,13 @@ $data = [
             </div>
             <!-- review-grid-mobile -->
             <div id="review-grid-mobile" class="review-grid-mobile">
-                <?php foreach ($reviews as $index => $review) : ?>
-                    <div class="review-box <?php echo $review->bgColor; ?> review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
-                        <img src="<?php echo base_url($review->image); ?>" alt="Review Image">
+                <?php foreach ($review_data as $index => $review) : ?>
+                    <div class="review-box review-item-mobile" style="display: <?php echo $index < 6 ? 'block' : 'none'; ?>;">
+                        <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
-                            <?php echo $review->text; ?>
+                            <?php if ($cut_url['0'] == 'th') echo $review['detail_comment_th'];
+                            else echo $review['detail_comment_en'] ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>
@@ -747,7 +752,7 @@ $data = [
     <script>
         $(document).ready(function() {
             const reviewsPerClick = 4;
-
+            view_the_performance('<?= $cut_url['0'] ?>');
             $('#load-more').click(function() {
                 console.log('load more')
                 let totalReviews = $('#review-grid .review-item').length;
@@ -781,71 +786,56 @@ $data = [
     </script>
 
     <script>
-        const base_url = '<?= base_url(); ?>';
-        const data = [{
-                box: 1,
-                text: "บริการตรวจสัตว์เลี้ยง",
-                image: base_url + "dist/img/review_work1.png",
-                textColor: "#ffffff",
-            },
-            {
-                box: 2,
-                text: "ทำวัคซีนอย่างมืออาชีพ",
-                image: "",
-                textColor: "#ffffff",
-                backgroundColor: "#FFB629"
-            },
-            {
-                box: 3,
-                text: "",
-                image: base_url + "dist/img/review_work3.png"
-            },
-            {
-                box: 4,
-                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
-                image: base_url + "dist/img/review_work3.png",
-                textColor: "#ffffff",
-            },
-            {
-                box: 5,
-                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
-                image: base_url + "dist/img/review_work3.png",
-                textColor: "#ffffff",
-            },
-            {
-                box: 6,
-                text: "เบื่อแล้วน้ำพริกลงเรือ อยากดื่มน้ำเกลือโรงพยาบาล",
-                image: base_url + "dist/img/review_work3.png",
-                textColor: "#ffffff",
-            }
-        ];
-        data.forEach(item => {
-            const box = document.getElementById(`box-${item.box}`);
+        var performance_team = <?php echo json_encode($performance_team); ?>;
 
-            if (item.image) {
+        function view_the_performance(language) {
+            console.log(language);
+            performance_team.forEach(item => {
+                const box = document.getElementById(`box-${item.id_team}`);
+                $('#box-' + item.id_team).empty();
+
                 const img = document.createElement('img');
-                img.src = item.image;
-                box.appendChild(img);
-                box.classList.add('has-image');
-            }
+                if (item.image_path) {
+                    img.src = '<?= base_url('dist/img/performance/') ?>' + item.image_path;
+                    img.id = 'box-' + item.id_team + '-img';
+                } else {
+                    img.src = '<?= base_url('dist/img/gray-color.png') ?>';
+                    img.id = 'box-' + item.id_team + '-img';
+                    img.style.display = 'none';
+                }
 
-            const textClass = item.image ? 'text-content-img' : 'text-content';
-            if (item.text) {
                 const text = document.createElement('div');
-                text.classList.add(textClass);
-                text.textContent = `“${item.text}”`;
-
-                if (item.textColor) {
-                    text.style.color = item.textColor;
+                text.id = 'box-' + item.id_team + '-text';
+                if (['th', 'en'].includes(language)) {
+                    const detailKey = `detail_${language}`;
+                    if (item[detailKey]) {
+                        text.textContent = `“${item[detailKey]}”`;
+                    } else {
+                        text.textContent = '“”';
+                    }
                 }
 
-                if (item.backgroundColor) {
-                    text.style.backgroundColor = item.backgroundColor;
+
+                if (item.type_show == '1') {
+                    img.style.display = 'block';
+                    box.classList.add('has-image');
+                    text.classList.add('text-content-img');
+                } else if (item.type_show == '2') {
+                    img.style.display = 'block';
+                    text.style.display = 'none';
+                    text.classList.add('text-content');
+                } else if (item.type_show == '3') {
+                    img.style.display = 'none';
+                    text.classList.add('text-content');
+                    text.style.color = item.color_text;
+                    text.style.backgroundColor = item.color_bg;
                 }
 
+                box.appendChild(img);
                 box.appendChild(text);
-            }
-        });
+
+            });
+        }
     </script>
 </body>
 

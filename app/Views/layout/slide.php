@@ -151,20 +151,37 @@
     <section>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <?php
+                $count_cover = 0;
+                foreach ($cover_page as $key => $value) {
+                    if ($value['language'] == $cut_url[0]) {
+                        if ($count_cover == 0) {
+                            $count_cover = $count_cover + 1;
+                            echo '<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>';
+                        } else {
+                            echo '<li data-target="#carouselExampleIndicators" data-slide-to="' . $key . '"></li>';
+                        }
+                    }
+                }
+                ?>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<?= base_url('dist/img/slide_home_page/1.png') ?>" class="d-block w-100" alt="Slide 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('dist/img/slide_home_page/2.png') ?>" class="d-block w-100" alt="Slide 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('dist/img/slide_home_page/3.png') ?>" class="d-block w-100" alt="Slide 3">
-                </div>
+                <?php
+                $count_cover_image = 0;
+                foreach ($cover_page as $key => $value) {
+                    if ($value['language'] == $cut_url[0]) {
+                        var_dump($value);
+                        if ($count_cover_image == 0) {
+                            $count_cover_image = $count_cover_image + 1;
+                            echo '<div class="carousel-item active">';
+                        } else {
+                            echo '<div class="carousel-item">';
+                        }
+                        echo '<img src="' . base_url('dist/img/cover/' . $value['path_image']) . '" class="d-block w-100" alt="Slide ' . $key . '">';
+                        echo '</div>';
+                    }
+                }
+                ?>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
