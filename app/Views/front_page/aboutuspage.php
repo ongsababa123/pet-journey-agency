@@ -23,6 +23,16 @@
             overflow: hidden;
         }
 
+        .about-us {
+            padding: 20px 150px 0 150px;
+        }
+
+        .aboutus-pic {
+            max-width: 100%;
+            display: flex;
+            align-items: flex-start;
+        }
+
         .aboutus-title {
             font-weight: 600;
         }
@@ -50,20 +60,20 @@
             color: #fcd20f;
         }
 
-        .slider {
+        .slideboxr {
             position: relative;
             width: 70%;
             margin: auto;
             overflow: hidden;
         }
 
-        .slides {
+        .slideboxs {
             display: flex;
             transition: transform 0.5s ease-in-out;
             gap: 30px;
         }
 
-        .slide {
+        .slidebox {
             background-color: #fff;
             box-sizing: border-box;
             padding: 10px;
@@ -72,12 +82,12 @@
             min-width: calc(25% - 30px);
         }
 
-        .slide img {
+        .slidebox img {
             width: 100%;
             border-radius: 10px;
         }
 
-        .slide p {
+        .slidebox p {
             margin: 10px 0 0;
         }
 
@@ -128,6 +138,35 @@
             font-size: 18px;
         }
 
+        @media (max-width: 1300px) {
+            .name {
+                font-size: 10pt;
+            }
+
+            .position {
+                font-size: 8pt;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .slidebox {
+                min-width: calc(33.5% - 30px);
+            }
+        }
+
+        @media (max-width: 780px) {
+            .name {
+                font-size: 8pt;
+            }
+
+            .position {
+                font-size: 7pt;
+            }
+        }
+
+
+
+        /* pet-story-section */
         .pet-story-section {
             padding: 50px 0;
             position: relative;
@@ -173,19 +212,52 @@
             font-size: 16px;
             line-height: 1.6;
         }
+
+        .title-pet-story {
+            font-size: 30pt;
+            font-weight: 500;
+        }
+
+        @media (max-width: 780px) {
+            .title-pet-story {
+                font-size: 20pt;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .title-pet-story {
+                font-size: 15pt;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .title-pet-story {
+                font-size: 12pt;
+            }
+            .content-container .section h3 {
+                color: #002157;
+                font-size: 10pt;
+            }
+
+            .content-container .section p {
+                color: #4A4A4A;
+                font-size: 18px;
+                line-height: 1.6;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- sec slide page -->
     <section>
-        <?php include 'app/Views/layout/slide.php'; ?>
+        <?php include 'app\Views\layout\slide.php'; ?>
     </section>
 
     <!-- sec about us -->
     <section class="about-us-section">
-        <div class="row">
-            <div class="col-7" style="padding: 5%;">
+        <div class="row about-us">
+            <div class="col-lg-7">
                 <h1 class="aboutus-title d-flex">
                     <div>About</div>&nbsp;
                     <div style="color: #FAD046;">Us</div>
@@ -205,7 +277,7 @@
                     All of these services are available throughout Bangkok and its suburbs to serve everyone's needs.
                 </p>
             </div>
-            <div class="col-5 d-flex align-items-center" style="padding: 5%;">
+            <div class="col-lg-5 aboutus-pic">
                 <div>
                     <img src="<?= base_url('dist/img/pic_about_us.png') ?>" width="100%" alt="Pets">
                 </div>
@@ -216,8 +288,8 @@
     <!-- sec veterinary team -->
     <section class="veterinary-team-section">
         <h2>Veterinary <span>Team</span></h2>
-        <div class="slider">
-            <div class="slides" id="slides-container"></div>
+        <div class="slideboxr">
+            <div class="slideboxs" id="slideboxs-container"></div>
         </div>
         <button class="prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
         <button class="next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
@@ -225,9 +297,9 @@
 
     <!-- sec pet story -->
     <section class="pet-story-section">
-        <div class="row d-flex align-items-center justify-content-center">
+        <div class="row d-flex align-items-center justify-content-center mb-4">
             <img class="petstorypic" src="<?= base_url('dist/img/about_us_cat_dog.png') ?>" alt="PetStory">
-            <h1 style="color: #4A4A4A;"><span style="color: #fcd20f;">สร้างความสุข</span>สบายให้กับเพื่อนสัตว์ของคุณ</h1>
+            <span class="title-pet-story" style="color: #4A4A4A;"><span style="color: #fcd20f;">สร้างความสุข</span>สบายให้กับเพื่อนสัตว์ของคุณ</spa>
         </div>
         <div class="container" id="content-container">
             <!-- Sections will be added here by JavaScript -->
@@ -246,6 +318,7 @@
     <script>
         const base_url = '<?= base_url('') ?>';
 
+        // Veterinary Team Data
         const doctors = [{
                 name: 'หมอสมชาย นามวงศ์1',
                 position: 'สัตวแพทย์ทั่วไป',
@@ -303,43 +376,43 @@
             }
         ];
 
-        const slidesContainer = document.getElementById('slides-container');
+        const slideboxsContainer = document.getElementById('slideboxs-container');
 
         doctors.forEach((doctor) => {
-            const slide = document.createElement('div');
-            slide.classList.add('slide');
-            slide.innerHTML = `
-                <img src="${base_url}${doctor.image}" alt="${doctor.name}">
-                <p class="name">${doctor.name}</p>
-                <p class="position">${doctor.position}</p>
-            `;
-            slidesContainer.appendChild(slide);
+            const slidebox = document.createElement('div');
+            slidebox.classList.add('slidebox');
+            slidebox.innerHTML = `
+            <img src="${base_url}/${doctor.image}" alt="${doctor.name}">
+            <p class="name">${doctor.name}</p>
+            <p class="position">${doctor.position}</p>
+        `;
+            slideboxsContainer.appendChild(slidebox);
         });
 
-        let slideIndex = 0;
-        const slides = document.querySelector('.slides');
+        let slideboxIndex = 0;
+        const slideboxs = document.querySelector('.slideboxs');
         const totalSlides = Math.ceil(doctors.length / 4);
 
         function nextSlide() {
-            if (slideIndex < totalSlides - 1) {
-                slideIndex++;
+            if (slideboxIndex < totalSlides - 1) {
+                slideboxIndex++;
             } else {
-                slideIndex = 0;
+                slideboxIndex = 0;
             }
             updateSlidePosition();
         }
 
         function prevSlide() {
-            if (slideIndex > 0) {
-                slideIndex--;
+            if (slideboxIndex > 0) {
+                slideboxIndex--;
             } else {
-                slideIndex = totalSlides - 1;
+                slideboxIndex = totalSlides - 1;
             }
             updateSlidePosition();
         }
 
         function updateSlidePosition() {
-            slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+            slideboxs.style.transform = 'translateX(' + (-slideboxIndex * 100) + '%)';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -348,17 +421,17 @@
     </script>
     <script>
         const data = [{
-                image: 'image1.png',
+                image: 'dist/img/storypet1.png',
                 title: 'ความรักที่ไม่ต้องการคำพูด',
                 text: 'แมวตัวน้อยไม่จำเป็นต้องพูดอะไร แต่การนั่งข้างๆ เวลามีเจ้าของรู้สึกพอใจคือสัญญาณที่ทำให้รู้ว่าเป็นความรัก ความอบอุ่นในใจพวกเขา แต่การเล่นกับแมวและการดูแลเป็นสิ่งที่ทำให้รู้ว่าคุณรักเขามากแค่ไหน แมวจะมีการสัมผัสและรับรู้รู้สึกที่เจ้าของอยู่ด้วยตลอดเวลา'
             },
             {
-                image: 'image2.png',
+                image: 'dist/img/storypet2.png',
                 title: 'การดูแลอย่างใส่ใจ',
                 text: 'การดูแลแมวไม่ใช่แค่การให้อาหารที่ดี ความสะอาดแต่เป็นการให้การดูแลทุกๆ รายละเอียด ตั้งแต่การเลือกอาหารที่มีคุณค่าทางโภชนาการ การจัดการการดูแลฟัน และการตรวจสุขภาพอย่างสม่ำเสมอ ทั้งนี้เพื่อสุขภาพและความสุขที่ดีต่อแมวตัวน้อยของคุณ'
             },
             {
-                image: 'image3.png',
+                image: 'dist/img/storypet3.png',
                 title: 'สุขภาพและความสุขเพื่อนสัตว์เลี้ยง',
                 text: 'การดูแลสุขภาพสัตว์เลี้ยงเป็นสิ่งสำคัญที่คุณต้องทำเป็นประจำ สำคัญมากคือการพาไปพบสัตวแพทย์อย่างสม่ำเสมอเพื่อการตรวจร่างกายและการฉีดวัคซีน นอกจากนี้การเล่นและการออกกำลังกายกับสัตว์เลี้ยงก็เป็นสิ่งที่ทำให้พวกเขามีความสุข'
             }
@@ -368,30 +441,35 @@
 
         data.forEach((item, index) => {
             const section = document.createElement('div');
-            section.className = 'section';
+            section.className = 'section row align-items-start mb-4';
 
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'col-6';
             const img = document.createElement('img');
-            img.src = item.image;
+            img.src = `${base_url}/${item.image}`;
             img.alt = item.title;
+            img.style.maxWidth = '100%';
+            imgContainer.appendChild(img);
 
             const content = document.createElement('div');
-            content.className = 'content';
+            content.className = 'content col-6 text-start';
 
-            const title = document.createElement('h3');
+            const title = document.createElement('h4');
             title.textContent = item.title;
+            title.style.color = '#002157';
 
             const text = document.createElement('p');
             text.textContent = item.text;
-
+            text.style.fontSize = '16px';
             content.appendChild(title);
             content.appendChild(text);
 
             if (index % 2 === 0) {
-                section.appendChild(img);
+                section.appendChild(imgContainer);
                 section.appendChild(content);
             } else {
                 section.appendChild(content);
-                section.appendChild(img);
+                section.appendChild(imgContainer);
             }
 
             container.appendChild(section);
