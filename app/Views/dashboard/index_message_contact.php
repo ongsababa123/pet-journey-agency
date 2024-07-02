@@ -321,6 +321,7 @@
             cancelButtonText: "ยกเลิก",
             cancelButtonColor: "#dc3545",
             inputValidator: (value) => {
+                console.log(value);
                 return $.ajax({
                     url: '<?= base_url() ?>' + url + value,
                     headers: {
