@@ -33,7 +33,7 @@ async function updateLanguage(lang) {
       "mb_menu_service",
       "mb_menu_review",
       "mb_menu_contact1",
-      "mb_menu_contact2"
+      "mb_menu_contact2",
     ];
 
     elements.forEach((id) => {
@@ -178,44 +178,75 @@ async function updateLanguage(lang) {
     }
 
     // section contact
-    const contactResponse = await fetch(BASE_URL + "public/data/language/contact_local.json");
+    const contactResponse = await fetch(
+      BASE_URL + "public/data/language/contact_local.json"
+    );
     if (!contactResponse.ok) {
-        throw new Error("Network response was not ok " + contactResponse.statusText);
+      throw new Error(
+        "Network response was not ok " + contactResponse.statusText
+      );
     }
     const contactData = await contactResponse.json();
 
     const contactElements = {
-        contact_us: "contact_us",
-        contact_us_desc: "contact_us_desc",
-        contact_greeting: "contact_greeting",
-        contact_footer_desc: "contact_footer_desc",
-        contact_opening_hours: "contact_opening_hours",
-        contact_weekdays_hours: "contact_weekdays_hours",
-        contact_closed_sundays: "contact_closed_sundays",
-        contact_phone: "contact_phone",
-        contact_email: "contact_email",
+      contact_us: "contact_us",
+      contact_us_desc: "contact_us_desc",
+      contact_greeting: "contact_greeting",
+      contact_footer_desc: "contact_footer_desc",
+      contact_opening_hours: "contact_opening_hours",
+      contact_weekdays_hours: "contact_weekdays_hours",
+      contact_closed_sundays: "contact_closed_sundays",
+      contact_phone: "contact_phone",
+      contact_email: "contact_email",
     };
 
     const contactPlaceholders = {
-        ph_contact_name: "contact_name_placeholder",
-        ph_contact_surname: "contact_surname_placeholder",
-        ph_contact_email: "contact_email_placeholder",
-        ph_contact_phone: "contact_phone_placeholder",
-        ph_contact_message: "contact_message_placeholder",
+      ph_contact_name: "contact_name_placeholder",
+      ph_contact_surname: "contact_surname_placeholder",
+      ph_contact_email: "contact_email_placeholder",
+      ph_contact_phone: "contact_phone_placeholder",
+      ph_contact_message: "contact_message_placeholder",
     };
 
     for (const [id, key] of Object.entries(contactElements)) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = contactData[lang][key];
-        }
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = contactData[lang][key];
+      }
     }
 
     for (const [id, key] of Object.entries(contactPlaceholders)) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.placeholder = contactData[lang][key];
-        }
+      const element = document.getElementById(id);
+      if (element) {
+        element.placeholder = contactData[lang][key];
+      }
+    }
+
+    // section aboutus
+    const aboutusResponse = await fetch(
+      BASE_URL + "public/data/language/aboutus_local.json"
+    );
+    if (!aboutusResponse.ok) {
+      throw new Error(
+        "Network response was not ok " + aboutusResponse.statusText
+      );
+    }
+    const aboutusData = await aboutusResponse.json();
+
+    const aboutusElements = {
+      ab_title1: "ab_title1",
+      ab_title2: "ab_title2",
+      ab_title_team1: "ab_title_team1",
+      ab_title_team2: "ab_title_team2",
+      ab_title_story1: "ab_title_story1",
+      ab_title_story2: "ab_title_story2",
+    };
+
+    for (const [id, key] of Object.entries(aboutusElements)) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = aboutusData[lang][key];
+      }
     }
   } catch (error) {
     console.error("Failed to fetch content: ", error);

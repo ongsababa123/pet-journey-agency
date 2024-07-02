@@ -51,15 +51,6 @@
             color: white;
         }
 
-        .veterinary-team-section h2 {
-            color: #fff;
-            font-size: 2em;
-        }
-
-        .veterinary-team-section h2 span {
-            color: #fcd20f;
-        }
-
         .slideboxr {
             position: relative;
             width: 70%;
@@ -149,8 +140,12 @@
         }
 
         @media (max-width: 1000px) {
+            .slideboxs {
+                gap: 20px;
+            }
+
             .slidebox {
-                min-width: calc(33.5% - 30px);
+                min-width: calc(33.5% - 20px);
             }
         }
 
@@ -161,6 +156,77 @@
 
             .position {
                 font-size: 7pt;
+            }
+
+            .about-us {
+                padding: 20px 100px 0 100px;
+            }
+
+            .aboutus-text {
+                font-size: 13pt;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .slideboxs {
+                gap: 10px;
+            }
+
+            .slidebox {
+                min-width: calc(50% - 10px);
+                border-radius: 7px;
+            }
+
+            .prev,
+            .next {
+                width: 20px;
+                height: 20px;
+            }
+
+            .prev i,
+            .next i {
+                font-size: 10pt;
+            }
+        }
+
+
+        @media (max-width: 450px) {
+            .veterinary-team-section h2 {
+                font-size: 15pt;
+            }
+
+            .name {
+                font-size: 7pt;
+            }
+
+            .position {
+                font-size: 6pt;
+            }
+
+            .about-us {
+                padding: 20px 50px 0 50px;
+            }
+
+            .aboutus-title {
+                font-size: 20pt;
+            }
+
+            .aboutus-text {
+                font-size: 10pt;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .name {
+                font-size: 5pt;
+            }
+
+            .position {
+                font-size: 5pt;
+            }
+
+            .slidebox {
+                border-radius: 5px;
             }
         }
 
@@ -228,21 +294,27 @@
             .title-pet-story {
                 font-size: 15pt;
             }
+
+            .title-story-pet-box {
+                font-size: 13pt;
+            }
+
+            .text-story-pet-box {
+                font-size: 10pt;
+            }
         }
 
         @media (max-width: 450px) {
             .title-pet-story {
                 font-size: 12pt;
             }
-            .content-container .section h3 {
-                color: #002157;
+
+            .title-story-pet-box {
                 font-size: 10pt;
             }
 
-            .content-container .section p {
-                color: #4A4A4A;
-                font-size: 18px;
-                line-height: 1.6;
+            .text-story-pet-box {
+                font-size: 8pt;
             }
         }
     </style>
@@ -256,11 +328,11 @@
 
     <!-- sec about us -->
     <section class="about-us-section">
-        <div class="row about-us">
+        <div class="row about-us" data-aos="fade-up" data-aos-duration="500">
             <div class="col-lg-7">
                 <h1 class="aboutus-title d-flex">
-                    <div>About</div>&nbsp;
-                    <div style="color: #FAD046;">Us</div>
+                    <div id="ab_title1">About</div>&nbsp;
+                    <div id="ab_title2" style="color: #FAD046;">Us</div>
                 </h1>
                 <p class="aboutus-text">
                     Pet Journey Agency recognizes the importance of the bond and love between pets and their owners. In today's world, pets are akin to family members or even children for many people. Our team established Pet Journey Agency to make it easier and more convenient to import and export dogs and cats internationally, and to bring them back to Thailand for those who wish to travel with their beloved pets or relocate them.
@@ -284,7 +356,10 @@
 
     <!-- sec veterinary team -->
     <section class="veterinary-team-section">
-        <h2>Veterinary <span>Team</span></h2>
+        <div class="d-flex justify-content-center mb-4">
+            <h2 id="ab_title_team1" style="color: #ffffff;">Veterinary</h2>
+            <h2 id="ab_title_team2" style="color: #FAD046;">Team</h2>
+        </div>
         <div class="slideboxr">
             <div class="slideboxs" id="slideboxs-container"></div>
         </div>
@@ -296,7 +371,8 @@
     <section class="pet-story-section">
         <div class="row d-flex align-items-center justify-content-center mb-4">
             <img class="petstorypic" src="<?= base_url('dist/img/about_us_cat_dog.png') ?>" alt="PetStory">
-            <span class="title-pet-story" style="color: #4A4A4A;"><span style="color: #fcd20f;">สร้างความสุข</span>สบายให้กับเพื่อนสัตว์ของคุณ</spa>
+            <span id="ab_title_story1" class="title-pet-story" style="color: #fcd20f;">สร้างความสุข</span>
+            <span id="ab_title_story2" class="title-pet-story" style="color: #4A4A4A;">สบายให้กับเพื่อนสัตว์ของคุณ</spa>
         </div>
         <div class="container" id="content-container">
             <!-- Sections will be added here by JavaScript -->
@@ -454,19 +530,26 @@
             const title = document.createElement('h4');
             title.textContent = item.title;
             title.style.color = '#002157';
+            title.className = 'title-story-pet-box';
 
             const text = document.createElement('p');
             text.textContent = item.text;
-            text.style.fontSize = '16px';
+            text.className = 'text-story-pet-box';
+
             content.appendChild(title);
             content.appendChild(text);
 
             if (index % 2 === 0) {
                 section.appendChild(imgContainer);
                 section.appendChild(content);
+                section.setAttribute('data-aos', 'fade-right');
+                section.setAttribute('data-aos-duration', '1500');
+
             } else {
                 section.appendChild(content);
                 section.appendChild(imgContainer);
+                section.setAttribute('data-aos', 'fade-left');
+                section.setAttribute('data-aos-duration', '1500');
             }
 
             container.appendChild(section);
