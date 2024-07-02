@@ -108,9 +108,6 @@
         }
     </style>
 </head>
-<?php
-$cut_url = explode('/', $uri_menu);
-?>
 
 <body>
     <!-- sec slide page -->

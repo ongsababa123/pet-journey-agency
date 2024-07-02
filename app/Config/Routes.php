@@ -25,13 +25,11 @@ $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
-    $routes->get('aboutuspage', 'AboutUsPage::index');
 });
 $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
-    $routes->get('aboutuspage', 'AboutUsPage::index');
 });
 
 
