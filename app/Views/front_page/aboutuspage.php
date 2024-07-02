@@ -134,6 +134,9 @@
                     <li>Pet-friendly hotels: Such as ABC Hotel</li>
                     <li>Accommodations specifically for pets: Named ABC</li>
                 </ul>
+                <p class="aboutus-text">
+                    All of these services are available throughout Bangkok and its suburbs to serve everyone's needs.
+                </p>
             </div>
             <div class="col-5 d-flex align-items-center" style="padding: 5%;">
                 <div>
