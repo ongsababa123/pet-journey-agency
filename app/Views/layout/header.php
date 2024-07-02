@@ -570,6 +570,7 @@
         }
 
         .nav-treeview .nav-item {
+            color: #000;
             padding-left: 15px;
             font-size: 1.2em;
         }
@@ -577,7 +578,6 @@
         .rotate {
             transform: rotate(90deg);
         }
-
     </style>
 </head>
 
@@ -633,11 +633,11 @@
                 <div class="nav-link"><a id="menu_home" href="/pet-journey-agency/page/homepage">Home</a></div>
                 <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
                 <div class="nav-link">
-                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                    <a id="menu_service" href="#">Our Service</a><i class="fas fa-chevron-down"></i>
                     <div class="dropdown-menu">
-                        <a id="dropdown_service1" href="#">Service 1</a>
-                        <a id="dropdown_service2" href="#">Service 2</a>
-                        <a id="dropdown_service3" href="#">Service 3</a>
+                        <a href="/pet-journey-agency/page/servicepage">Service 1</a>
+                        <a href="/pet-journey-agency/page/servicepage">Service 2</a>
+                        <a href="/pet-journey-agency/page/servicepage">Service 3</a>
                     </div>
                 </div>
                 <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>
@@ -679,7 +679,7 @@
             </div>
         </div>
         <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
-        
+
         <div class="menu-mobile" id="menu-mobile">
             <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
             <ul class="nav flex-column">
@@ -697,10 +697,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="toggleServices" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span id="mb_menu_service"><i class="fas fa-concierge-bell"></i> Our Service</span>
-                    <i class="fas fa-chevron-right" id="arrowIcon" style="font-size: small;"></i>
-                </a>
+                    <a class="nav-link" id="toggleServices" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="mb_menu_service"><i class="fas fa-concierge-bell"></i> Our Service</span>
+                        <i class="fas fa-chevron-right" id="arrowIcon" style="font-size: small;"></i>
+                    </a>
                     <ul class="nav nav-treeview" id="servicesMenu">
                         <li class="nav-item">
                             <a class="nav-link" href="#service1">Service 1</a>
@@ -827,7 +827,7 @@
         });
     </script>
     <script>
-        document.getElementById('toggleServices').addEventListener('click', function () {
+        document.getElementById('toggleServices').addEventListener('click', function() {
             var servicesMenu = document.getElementById('servicesMenu');
             var arrowIcon = document.getElementById('arrowIcon');
             if (servicesMenu.classList.contains('show')) {

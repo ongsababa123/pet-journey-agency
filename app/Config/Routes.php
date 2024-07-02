@@ -38,6 +38,7 @@ $routes->group('page/', ['namespace' => 'App\Controllers\FrontPage'], function (
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
     $routes->get('aboutuspage', 'AboutUsPage::index');
+    $routes->get('servicepage', 'ServicePage::index');
 });
 
 // Another group with a different namespace
