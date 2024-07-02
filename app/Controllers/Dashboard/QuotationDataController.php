@@ -3,7 +3,6 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
-use App\Controllers\Dashboard\EmailController;
 use App\Models\QuotationModel;
 use App\Models\ServiceHeaderModel;
 
@@ -12,14 +11,13 @@ class QuotationDataController extends BaseController
     protected $uri_menu;
     protected $QuotationModel;
     protected $ServiceHeaderModel;
-    protected $EmailController;
+
 
     public function __construct()
     {
         helper(['form', 'file']);
         $this->QuotationModel = new QuotationModel();
         $this->ServiceHeaderModel = new ServiceHeaderModel();
-        $this->EmailController = new EmailController();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -44,13 +42,11 @@ class QuotationDataController extends BaseController
     public function create_quotation($length_service_header)
     {
         $data_service = [];
-        $data_service_full = [];
         for ($i = 0; $i < $length_service_header; $i++) {
             $value = $this->request->getVar('service_' . $i);
             // If the checkbox is checked (value is not null), add it to the array
             if ($value !== null) {
                 $data_service[] = $value;
-                $data_service_full[] = $this->ServiceHeaderModel->select('header_service_name_th')->find($value);
             }
             $data_service_string = implode(',', $data_service);
         }
@@ -76,39 +72,11 @@ class QuotationDataController extends BaseController
         ];
 
         $this->QuotationModel->insert((object) $data_quotation);
-        $data_quotation['data_service_full'] = $data_service_full;
-
-        $filePath = base_url('public/data/countries.json');
-        // Read the file contents
-        $jsonContent = file_get_contents($filePath);
-
-        // Decode the JSON data
-        $data = json_decode($jsonContent, true);
-        
-        foreach ($data as $key => $element) {
-            if ($element['code'] == $data_quotation['destination_country']) {
-                $data_quotation['destination_country_name'] = $element['name_en'] .' (' . $element['code'] . ')';
-            }
-            if ($element['code'] == $data_quotation['country_of_origin']) {
-                $data_quotation['country_of_origin_name'] = $element['name_en'] .' (' . $element['code'] . ')';
-            }
-        }
-
-        if ($this->EmailController->sendEmail_quotation($data_quotation)) {
-            $response = [
-                'success' => true,
-                'message' => 'สร้างใบเสนอราคาสําเร็จ',
-                'reload' => false,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'สร้างใบเสนอราคาไม่สําเร็จ',
-                'reload' => false,
-            ];
-        }
-
-
+        $response = [
+            'success' => true,
+            'message' => 'สร้างใบเสนอราคาสําเร็จ',
+            'reload' => true,
+        ];
         return $this->response->setJSON($response);
     }
 
