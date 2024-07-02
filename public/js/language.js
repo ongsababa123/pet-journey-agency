@@ -34,6 +34,7 @@ async function updateLanguage(lang) {
       "mb_menu_review",
       "mb_menu_contact1",
       "mb_menu_contact2",
+      "ab_title1",
     ];
 
     elements.forEach((id) => {
