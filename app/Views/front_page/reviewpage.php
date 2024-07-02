@@ -29,7 +29,8 @@ $reviews = [
     new Review("dist/img/review_pic.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 ];
 
-$data = [
+$data = 
+[
     [
         "box" => 1,
         "text" => "บริการตรวจสัตว์เลี้ยง",
@@ -706,7 +707,9 @@ $data = [
             <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" width="200px" style="margin-left: 7px;">
         </div>
     </section>
+
     <hr class="custom-hr">
+
     <!-- sec team's work -->
     <section>
         <div class="container mt-5">
@@ -745,9 +748,12 @@ $data = [
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Animate On Scroll -->
     <script>
         AOS.init();
     </script>
+
     <!-- reviews our customers -->
     <script>
         $(document).ready(function() {
@@ -785,6 +791,7 @@ $data = [
         });
     </script>
 
+    <!-- reviews team work -->
     <script>
         const base_url = '<?= base_url(); ?>';
         const data = [{
