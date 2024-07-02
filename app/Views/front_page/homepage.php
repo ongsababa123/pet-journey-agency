@@ -16,6 +16,9 @@ $cut_url = explode('/', $uri_menu);
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script>
+        var BASE_URL = '<?= base_url(); ?>';
+    </script>
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -751,16 +754,23 @@ $cut_url = explode('/', $uri_menu);
                         </span>
                         <img src="<?= base_url('dist/svg/partnericon1.svg') ?>" width="20" height="20" style="margin-left: 7px;">
                     </div>
-
                     <div class="partner-logos">
-                        <?php foreach ($partner_data as $partner_element) { ?>
-                            <?php if ($partner_element['type_partner'] == 1) : ?>
-                                <div class="partner-logo">
-                                    <img src="<?= base_url('dist/img/partner/' . $partner_element['logo_partner_path']) ?>" alt="partnerlogo">
-                                </div>
-                            <?php endif; ?>
+                        <?php foreach ($partners['animal_clinic'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
                         <?php } ?>
                     </div>
+                </div>
+<<<<<<< HEAD
+                <div class="partner-logos">
+                    <?php foreach ($partner_data as $partner_element) { ?>
+                        <?php if ($partner_element['type_partner'] == 1) : ?>
+                            <div class="partner-logo">
+                                <img src="<?= base_url('dist/img/partner/' . $partner_element['logo_partner_path']) ?>" alt="partnerlogo">
+                            </div>
+                        <?php endif; ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="partner-category">
@@ -795,8 +805,40 @@ $cut_url = explode('/', $uri_menu);
                             </div>
                         <?php endif; ?>
                     <?php } ?>
+=======
+                <div class="partner-category">
+                    <div class="title-petfriendly">
+                        <span id="sub_title_pet_friendly" style="font-size: 12pt;">
+                            Pet friendly hotel
+                        </span>
+                        <img src="<?= base_url('dist/svg/partnericon2.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                    </div>
+                    <div class="partner-logos">
+                        <?php foreach ($partners['pet_friendly_hotel'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="partner-category">
+                    <div class="title-pethotel">
+                        <span id="sub_title_pet_hotel" style="font-size: 12pt;">
+                            Pet hotel
+                        </span>
+                        <img src="<?= base_url('dist/svg/partnericon3.svg') ?>" width="20" height="20" style="margin-left: 7px;">
+                    </div>
+                    <div class="partner-logos">
+                        <?php foreach ($partners['pet_hotel'] as $partner) { ?>
+                            <div class="partner-logo">
+                                <img src="<?php echo base_url($partner); ?>" alt="partnerlogo">
+                            </div>
+                        <?php } ?>
+                    </div>
+>>>>>>> origin/dear2
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -811,6 +853,7 @@ $cut_url = explode('/', $uri_menu);
                 <div class="text-success mx-2" id="title_quote_part2">ฟรี</div>
                 <span id="title_quote_part3">ไม่มีค่าใช้จ่าย!</span>
             </h3>
+<<<<<<< HEAD
             <form class="mb-3" id="form_quotation" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="container mt-3">
                     <div class="row">
@@ -842,6 +885,93 @@ $cut_url = explode('/', $uri_menu);
                         <div class="form-group col-md-4">
                             <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
                             <select class="form-control select2" id="ph_origin_airport" name="airport_of_origin">
+=======
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="name" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
+                        <input class="form-control" type="text" id="ph_name" name="name" placeholder="ระบุชื่อผู้ติดต่อ">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
+                        <input class="form-control" type="text" id="ph_phone" name="phone" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
+                        <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
+                        <input class="form-control" type="date" id="ph_date" name="travel-date">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
+                        <select class="form-control select2" id="ph_origin_country" name="origin-country">
+                            <option id="option_origin_country" value="origin_country"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
+                        <select class="form-control select2" id="ph_origin_airport" name="origin-airport">
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 coltest"></div>
+                    <div class="form-group col-md-4">
+                        <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
+                        <select class="form-control select2" id="ph_destination_country" name="destination-country">
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
+                        <select class="form-control select2" id="ph_destination_airport" name="destination-airport">
+                            <option id="option_destination_airport" value="destination_airport"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
+                        <select class="form-control" id="ph_travel_type" name="travel-type">
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
+                        <select class="form-control" id="ph_pet_transport" name="pet-transport">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group text-left">
+                    <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
+                    <div id="services-container"></div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
+                        <input type="text" class="form-control" id="ph_pet_type" name="pet-type" placeholder="ระบุชนิดสัตว์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
+                        <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="age" id="label_age" class="d-flex">อายุ</label>
+                        <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
+                        <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
+                        <input type="text" class="form-control" id="ph_reason" name="reason" placeholder="ระบุหมายเหตุ">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
+            </div>
+>>>>>>> origin/dear2
+
                             </select>
                         </div>
                         <div class="form-group col-md-4 coltest"></div>
@@ -927,10 +1057,15 @@ $cut_url = explode('/', $uri_menu);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+=======
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+>>>>>>> origin/dear2
+    <script>
         $(document).ready(function() {
             $('.select2').select2({
                 theme: 'bootstrap'
@@ -1077,7 +1212,7 @@ $cut_url = explode('/', $uri_menu);
             action_('dashboard/quotation/create/withuser/<?= count($service_header) ?>', 'form_quotation');
         });
     </script>
-
+    
     <!-- function action ajax request -->
     <script>
         function action_(url, form) {
