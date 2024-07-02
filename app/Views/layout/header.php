@@ -597,7 +597,7 @@
             </div>
             <div class="navbar-nav">
                 <div class="nav-link"><a id="menu_home" href="<?= base_url($cut_url[0] . '/homepage') ?>">Home</a></div>
-                <div class="nav-link"><a id="menu_about_us" href="/pet-journey-agency/page/aboutuspage">About us</a></div>
+                <div class="nav-link"><a id="menu_about_us" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">About us</a></div>
                 <div class="nav-link">
                     <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
