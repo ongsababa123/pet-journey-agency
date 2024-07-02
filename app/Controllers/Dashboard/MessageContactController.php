@@ -3,16 +3,20 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
+use App\Controllers\Dashboard\EmailController;
 use App\Models\Message_ContactModel;
 
 class MessageContactController extends BaseController
 {
     protected $uri_menu;
     protected $Message_ContactModel;
+    protected $EmailController;
+
     public function __construct()
     {
         helper(['form', 'file']);
         $this->Message_ContactModel = new Message_ContactModel();
+        $this->EmailController = new EmailController();
         $current_url = current_url();
 
         // ตัดเหลือเฉพาะพาร์ทที่ต้องการ
@@ -47,11 +51,21 @@ class MessageContactController extends BaseController
         ];
 
         $this->Message_ContactModel->insert((object) $data_message_contact);
-        $response = [
-            'success' => true,
-            'message' => 'ส่งข้อมูลเรียบร้อยแล้ว',
-            'reload' => true,
-        ];
+
+        if ($this->EmailController->sendEmail_message_contact($data_message_contact)) {
+            $response = [
+                'success' => true,
+                'message' => 'ส่งข้อมูลเรียบร้อยแล้ว',
+                'reload' => false,
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'ส่งข้อมูลไม่สําเร็จ',
+                'reload' => false,
+            ];
+        }
+
         return $this->response->setJSON($response);
     }
 
@@ -96,7 +110,7 @@ class MessageContactController extends BaseController
     }
 
     //-- update_message_contact --//
-    public function update_message_contact($id_message_contact, $length_service_header)
+    public function update_message_contact($id_message_contact)
     {
         $data_message_contact = [
             'name' => $this->request->getVar('name'),

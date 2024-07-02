@@ -191,9 +191,9 @@
                                 <label for="name_last">ประเภทการเดินทาง</label>
                                 <select name="travel_type" id="travel_type" class="form-control">
                                     <option value="0">กรุณาเลือกประเภทการเดินทาง</option>
-                                    <option value="1">เดินทางเอง</option>
-                                    <option value="2">เดินทางกับสัตว์เลี้ยง</option>
-                                    <option value="3">ใช้บริการจากเรา</option>
+                                    <option value="เดินทางเอง">เดินทางเอง</option>
+                                    <option value="เดินทางกับสัตว์เลี้ยง">เดินทางกับสัตว์เลี้ยง</option>
+                                    <option value="ใช้บริการจากเรา">ใช้บริการจากเรา</option>
                                 </select>
                             </div>
                         </div>
@@ -202,9 +202,9 @@
                                 <label for="name_last">รูปแบบขนส่งสัตว์เลี้ยง</label>
                                 <select name="transport_format" id="transport_format" class="form-control">
                                     <option value="0">กรุณาเลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
-                                    <option value="1">เครื่องบิน</option>
-                                    <option value="2">รถไฟ</option>
-                                    <option value="3">เรือ</option>
+                                    <option value="การขนส่งทางรถยนต์">การขนส่งทางรถยนต์</option>
+                                    <option value="การขนส่งทางเครื่องบิน">การขนส่งทางเครื่องบิน</option>
+                                    <option value="บริการขนส่งสัตว์เลี้ยงเฉพาะทาง">บริการขนส่งสัตว์เลี้ยงเฉพาะทาง</option>
                                 </select>
                             </div>
                         </div>
