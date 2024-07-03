@@ -16,7 +16,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 0px;
             margin-top: 280px;
+            z-index: 10;
         }
 
         .footer img {
@@ -105,7 +107,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         @media (max-width: 1200px) {
             .contact-info {
                 display: none;
@@ -155,28 +157,28 @@
             <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Logo">
         </div>
         <div class="contact-info">
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <span id="ft_open1">Mon - Sat 9.00 - 18.00</span>
-                        <span id="ft_open2">Sunday Closed</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <span id="ft_email1">Email</span>
-                        <span id="ft_email2">contact@logistics.com</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <span id="ft_callus1">Call Us</span>
-                        <span id="ft_callus2">(00) 112 365 489</span>
-                    </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <span id="ft_open1">Mon - Sat 9.00 - 18.00</span>
+                    <span id="ft_open2">Sunday Closed</span>
                 </div>
             </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <span id="ft_email1">Email</span>
+                    <span id="ft_email2">contact@logistics.com</span>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <span id="ft_callus1">Call Us</span>
+                    <span id="ft_callus2">(00) 112 365 489</span>
+                </div>
+            </div>
+        </div>
         <div class="social-icons">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -184,6 +186,19 @@
             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const footer = document.querySelector("footer");
+            const currentUrl = window.location.href;
+
+            if (currentUrl.includes("/pet-journey-agency/page/servicepage")) {
+                footer.style.marginTop = "0px";
+            } else {
+                footer.style.marginTop = "280px";
+            }
+        });
+    </script>
 </body>
 
 </html>

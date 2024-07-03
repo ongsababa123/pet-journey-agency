@@ -19,6 +19,8 @@
 
         body {
             background-color: #f8f9fa;
+            position: relative;
+            z-index: 1;
         }
 
         .flex-container {
@@ -27,11 +29,15 @@
             justify-content: center;
             padding: 0 120px;
             margin: 0;
+            position: relative;
+            z-index: 1;
+
         }
 
         .service-detail {
             background-color: #F5F5F5;
             flex: 2;
+            padding-bottom: 500px;
         }
 
         .service-list {
@@ -187,6 +193,9 @@
                 margin: 10px;
             }
 
+            .service-detail {
+                padding-bottom: 300px;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -196,6 +205,10 @@
 
             .price-request span {
                 font-size: 10pt;
+            }
+
+            .service-detail {
+                padding-bottom: 200px;
             }
         }
 
@@ -257,6 +270,10 @@
 
             .partner-img {
                 width: 160px;
+            }
+
+            .flex-container {
+                margin-bottom: 300px;
             }
         }
     </style>
