@@ -115,6 +115,13 @@
             background-color: #fff;
             border-radius: 15px;
             border-bottom: none;
+            cursor: pointer;
+        }
+
+        .service-list-active {
+            background-color: #fff;
+            border-radius: 15px;
+            border-bottom: none;
         }
 
         .price-request {
@@ -278,6 +285,9 @@
         }
     </style>
 </head>
+<?php
+$cut_url = explode('/', $uri_menu);
+?>
 
 <body>
     <!-- sec slide page -->
@@ -290,7 +300,13 @@
         <div class="flex-container">
             <div class="service-detail" data-aos="fade-in" data-aos-easing="linear" data-aos-duration="1500">
                 <div class="service-header d-flex align-items-center">
-                    <h4 id="service_header_title">บริการนำเข้าและส่งออก สัตว์เลี้ยงระหว่างประเทศ</h4>
+                    <h4 id="service_header_title">
+                        <?php foreach ($service_header as $key => $value) {
+                            if ($value['id_service_header'] == $id_service_header) {
+                                echo $cut_url[0] == 'th' ? $value['header_service_name_th'] : $value['header_service_name_en'];
+                            }
+                        } ?>
+                    </h4>
                 </div>
                 <div class="service-main-content">
                     <div class="service-main-content-img">
@@ -338,7 +354,8 @@
     </script>
     <script>
         const base_url = '<?= base_url(); ?>';
-
+        const service_header = <?php echo json_encode($service_header); ?>;
+        const id_service_header = <?php echo json_encode($id_service_header); ?>;
         const partners = [{
                 src: `${base_url}/dist/img/logo_mobile.png`,
                 alt: 'Partner 1'
@@ -370,6 +387,7 @@
         ];
 
         const partnerLogosContainer = document.getElementById('partner-logos');
+
         partners.forEach(partner => {
             const img = document.createElement('img');
             img.src = partner.src;
@@ -377,21 +395,26 @@
             partnerLogosContainer.appendChild(img);
         });
 
-        const services = [
-            'นำเข้าและส่งออกสัตว์เลี้ยง',
-            'บริการตรวจสัตว์เลี้ยง',
-            'บริการขึ้นทะเบียนสัตว์เลี้ยง',
-            'บริการจองตั๋วเครื่องบิน',
-            'บริการจัดทำเอกสาร',
-            'โรงแรมสำหรับสัตว์เลี้ยง',
-            'โรงแรม Pet Friendly',
-            'จำหน่ายสัตว์เลี้ยงต่างประเทศ'
-        ];
-
         const serviceListContainer = document.getElementById('service-list-item');
-        services.forEach(service => {
+        service_header.forEach(service => {
             const li = document.createElement('li');
-            li.textContent = service;
+            <?php if ($cut_url[0] == 'th') : ?>
+                li.textContent = service.header_service_name_th;
+            <?php else : ?>
+                li.textContent = service.header_service_name_en;
+            <?php endif; ?>
+
+            if (service.id_service_header == id_service_header) {
+                li.classList.add('service-list-active'); // Ensure this adds the class as intended
+            }
+
+            li.addEventListener('click', () => {
+                if (service.id_service_header == 1) {
+                    window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/buysale/${service.id_service_header}`;
+                }else{
+                    window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/${service.id_service_header}`;
+                }
+            });
             serviceListContainer.appendChild(li);
         });
     </script>

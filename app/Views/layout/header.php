@@ -602,8 +602,14 @@
                     <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <?php foreach ($service_header as $service) : ?>
-                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . $service['id_service_header']) ?>"><?php if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
-                                                                                                                        else echo $service['header_service_name_en']; ?></a>
+                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>">
+                                <?php
+                                if ($cut_url[0] == 'th') {
+                                    echo $service['header_service_name_th'];
+                                } else {
+                                    echo $service['header_service_name_en'];
+                                } ?>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>

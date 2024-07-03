@@ -30,14 +30,16 @@ $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
     $routes->get('aboutuspage', 'AboutUsPage::index');
-    $routes->get('servicepage', 'ServicePage::index');
-    $routes->get('servicesellpage', 'ServiceSellPage::index');
+    $routes->get('servicepage/(:num)', 'ServicePage::index/$1');
+    $routes->get('servicepage/buysale/(:num)', 'ServiceSellPage::index/$1');
 });
 $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
     $routes->get('contactpage', 'ContactPage::index');
     $routes->get('aboutuspage', 'AboutUsPage::index');
+    $routes->get('servicepage/(:num)', 'ServicePage::index/$1');
+    $routes->get('servicepage/buysale/(:num)', 'ServiceSellPage::index/$1');
 });
 
 
