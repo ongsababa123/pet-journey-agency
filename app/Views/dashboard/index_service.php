@@ -123,6 +123,7 @@
                                 <button type="button" onclick="removeUpload()" class="remove-image">ลบรูปภาพ <span class="image-title">Uploaded Image</span></button>
                             </div>
                         </div>
+                        <p class="text-right text-gray text-sm mt-2">* ขนาดรูปภาพแนะนำ 540 x 560 px</p>
                     </div>
                     <div class="row">
                         <div class="col-6">

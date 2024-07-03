@@ -121,6 +121,7 @@
                                 <button type="button" onclick="removeUpload()" class="remove-image">ลบรูปภาพ <span class="image-title">Uploaded Image</span></button>
                             </div>
                         </div>
+                        <p class="text-right text-gray text-sm mt-2">* ขนาดรูปภาพแนะนำ 900 x 600 px</p>
                     </div>
                     <div class="row">
                         <div class="col-6">
@@ -293,7 +294,9 @@
                     'data': null,
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
-                        const encodedRowData = encodeURIComponent(JSON.stringify(row));
+                        const RowData = JSON.stringify(row).replace(/'/g, "\\'"); // Escape single quotes
+
+                        const encodedRowData = encodeURIComponent(RowData);
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/aboutpage/aboutmore/changestatus/${data.id_more_about_pet}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutmore/delete/${data.id_more_about_pet}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;

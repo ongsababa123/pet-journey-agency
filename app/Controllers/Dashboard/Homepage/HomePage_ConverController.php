@@ -41,32 +41,57 @@ class HomePage_ConverController extends BaseController
         $start = $this->request->getVar('start');
         $draw = $this->request->getVar('draw');
         $searchValue = $this->request->getVar('search')['value'];
+        $select_status = $this->request->getVar('select_status');
+        $select_lang = $this->request->getVar('select_lang');
 
+        // Start building query
+        $this->CoverPageModel->select('*');
+
+        // Apply search filter
         if (!empty($searchValue)) {
-            $this->CoverPageModel->groupStart()
-                ->like('name_image', $searchValue)
-                ->groupEnd();
+            $this->CoverPageModel->like('name_image', $searchValue);
         }
+
+        // Apply language filter
+        if ($select_lang !== 'all') {
+            $this->CoverPageModel->where('language', $select_lang);
+        }
+
+        // Apply status filter
+        if ($select_status !== '2') {
+            $this->CoverPageModel->where('status', $select_status);
+        }
+
+        // Count total records
         $totalRecords = $this->CoverPageModel->countAllResults();
 
-        $recordsFiltered = $totalRecords;
+        // Apply filters again for filtered count
         if (!empty($searchValue)) {
-            $this->CoverPageModel->groupStart()
-                ->like('name_image', $searchValue)
-                ->groupEnd();
+            $this->CoverPageModel->like('name_image', $searchValue);
         }
+        if ($select_lang !== 'all') {
+            $this->CoverPageModel->where('language', $select_lang);
+        }
+        if ($select_status !== '2') {
+            $this->CoverPageModel->where('status', $select_status);
+        }
+
+        // Get filtered records with limit and start
         $data = $this->CoverPageModel->findAll($limit, $start);
 
+        // Prepare response
         $response = [
             'draw' => intval($draw),
             'recordsTotal' => $totalRecords,
-            'recordsFiltered' => $recordsFiltered,
+            'recordsFiltered' => count($data),
             'data' => $data,
             'searchValue' => $searchValue,
         ];
 
+        // Return JSON response
         return $this->response->setJSON($response);
     }
+
 
     //-- create image cover --//
     public function create_cover()
@@ -121,7 +146,7 @@ class HomePage_ConverController extends BaseController
     }
 
     //- edit image cover --//
-    public function update_about_team($id_cover, $path_image_old)
+    public function update_cover($id_cover, $path_image_old)
     {
         $data_cover = [
             'name_image' => $this->request->getVar('inputName_cover'),

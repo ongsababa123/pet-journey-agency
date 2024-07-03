@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-right" style="color: #C2C2C2; margin-right: 180px">*image</p>
+                        <p class="text-right text-warning text-sm mt-2" style="margin-right: 180px">*รูปภาพอย่างเดียว ขนาดรูปภาพแนะนำ 1400 x 800 px</p>
                     </div>
                 </div>
                 <div class="row">

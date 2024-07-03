@@ -323,6 +323,7 @@
 <?php
 $cut_url = explode('/', $uri_menu);
 ?>
+
 <body>
     <!-- sec slide page -->
     <section>
@@ -338,20 +339,12 @@ $cut_url = explode('/', $uri_menu);
                     <div id="ab_title2" style="color: #FAD046;">Us</div>
                 </h1>
                 <p class="aboutus-text">
-                    Pet Journey Agency recognizes the importance of the bond and love between pets and their owners. In today's world, pets are akin to family members or even children for many people. Our team established Pet Journey Agency to make it easier and more convenient to import and export dogs and cats internationally, and to bring them back to Thailand for those who wish to travel with their beloved pets or relocate them.
+                    <?= $cut_url[0] == 'th' ? $about_page[0]['detail_page'] : $about_page[1]['detail_page']; ?>
                 </p>
-                <p class="aboutus-text">
-                    We offer a range of comprehensive services, including blood tests, global travel preparations with documentation for both export and import into Thailand, as well as other countries. We provide pet passports or travel documents that bring smiles to owners' faces when they see them. Additionally, we collaborate with professionals in various fields:
-                </p>
-                <ul class="aboutus-text" style="padding-left: 20px;">
-                    <li>Veterinary hospitals/clinics: Such as the reputable ABC Clinic</li>
-                    <li>Pet-friendly hotels: Such as ABC Hotel</li>
-                    <li>Accommodations specifically for pets: Named ABC</li>
-                </ul>
             </div>
             <div class="col-lg-5 aboutus-pic">
                 <div>
-                    <img src="<?= base_url('dist/img/pic_about_us.png') ?>" width="100%" alt="Pets">
+                    <img src="<?= base_url('dist/img/about-team/') . ($cut_url[0] == 'th' ? $about_page[0]['image_page_path'] : $about_page[1]['image_page_path']); ?>" width="100%" alt="Pets">
                 </div>
             </div>
         </div>
@@ -393,81 +386,29 @@ $cut_url = explode('/', $uri_menu);
     </script>
     <script>
         const base_url = '<?= base_url('') ?>';
-
-        // Veterinary Team Data
-        const doctors = [{
-                name: 'หมอสมชาย นามวงศ์1',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอศศิธร พงษ์สุวรรณ2',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมออนุชา ตรีวิจิตร3',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอวาสนา ทองประเสริฐ4',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอสมชาย นามวงศ์5',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอศศิธร พงษ์สุวรรณ6',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมออนุชา ตรีวิจิตร7',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอวาสนา ทองประเสริฐ8',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอศศิธร พงษ์สุวรรณ9',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมออนุชา ตรีวิจิตร10',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            },
-            {
-                name: 'หมอวาสนา ทองประเสริฐ11',
-                position: 'สัตวแพทย์ทั่วไป',
-                image: 'dist/img/pic_profile_about_us.png'
-            }
-        ];
+        var team_data = <?php echo json_encode($team); ?>;
 
         const slideboxsContainer = document.getElementById('slideboxs-container');
 
-        doctors.forEach((doctor) => {
+        team_data.forEach((doctor) => {
             const slidebox = document.createElement('div');
             slidebox.classList.add('slidebox');
             slidebox.innerHTML = `
-            <img src="${base_url}/${doctor.image}" alt="${doctor.name}">
-            <p class="name">${doctor.name}</p>
-            <p class="position">${doctor.position}</p>
+            <img src="${base_url}/dist/img/team/${doctor.image_path}">
+            <?php if ($cut_url[0] == 'th') : ?>
+            <p class="name">${doctor.name_last_name_th}</p>
+            <p class="position">${doctor.position_th}</p>
+            <?php else : ?>
+            <p class="name">${doctor.name_last_name_en}</p>
+            <p class="position">${doctor.position_en}</p>
+            <?php endif; ?>
         `;
             slideboxsContainer.appendChild(slidebox);
         });
 
         let slideboxIndex = 0;
         const slideboxs = document.querySelector('.slideboxs');
-        const totalSlides = Math.ceil(doctors.length / 4);
+        const totalSlides = Math.ceil(team_data.length / 4);
 
         function nextSlide() {
             if (slideboxIndex < totalSlides - 1) {
@@ -496,34 +437,16 @@ $cut_url = explode('/', $uri_menu);
         });
     </script>
     <script>
-        const data = [{
-                image: 'dist/img/storypet1.png',
-                title: 'ความรักที่ไม่ต้องการคำพูด',
-                text: 'แมวตัวน้อยไม่จำเป็นต้องพูดอะไร แต่การนั่งข้างๆ เวลามีเจ้าของรู้สึกพอใจคือสัญญาณที่ทำให้รู้ว่าเป็นความรัก ความอบอุ่นในใจพวกเขา แต่การเล่นกับแมวและการดูแลเป็นสิ่งที่ทำให้รู้ว่าคุณรักเขามากแค่ไหน แมวจะมีการสัมผัสและรับรู้รู้สึกที่เจ้าของอยู่ด้วยตลอดเวลา'
-            },
-            {
-                image: 'dist/img/storypet2.png',
-                title: 'การดูแลอย่างใส่ใจ',
-                text: 'การดูแลแมวไม่ใช่แค่การให้อาหารที่ดี ความสะอาดแต่เป็นการให้การดูแลทุกๆ รายละเอียด ตั้งแต่การเลือกอาหารที่มีคุณค่าทางโภชนาการ การจัดการการดูแลฟัน และการตรวจสุขภาพอย่างสม่ำเสมอ ทั้งนี้เพื่อสุขภาพและความสุขที่ดีต่อแมวตัวน้อยของคุณ'
-            },
-            {
-                image: 'dist/img/storypet3.png',
-                title: 'สุขภาพและความสุขเพื่อนสัตว์เลี้ยง',
-                text: 'การดูแลสุขภาพสัตว์เลี้ยงเป็นสิ่งสำคัญที่คุณต้องทำเป็นประจำ สำคัญมากคือการพาไปพบสัตวแพทย์อย่างสม่ำเสมอเพื่อการตรวจร่างกายและการฉีดวัคซีน นอกจากนี้การเล่นและการออกกำลังกายกับสัตว์เลี้ยงก็เป็นสิ่งที่ทำให้พวกเขามีความสุข'
-            }
-        ];
-
+        var more_about = <?php echo json_encode($more_about); ?>;
         const container = document.getElementById('content-container');
-
-        data.forEach((item, index) => {
+        more_about.forEach((item, index) => {
             const section = document.createElement('div');
             section.className = 'section row align-items-start mb-4';
 
             const imgContainer = document.createElement('div');
             imgContainer.className = 'col-6';
             const img = document.createElement('img');
-            img.src = `${base_url}/${item.image}`;
-            img.alt = item.title;
+            img.src = `${base_url}/dist/img/about-more/${item.image_path}`;
             img.style.maxWidth = '100%';
             imgContainer.appendChild(img);
 
@@ -531,12 +454,20 @@ $cut_url = explode('/', $uri_menu);
             content.className = 'content col-6 text-start';
 
             const title = document.createElement('h4');
-            title.textContent = item.title;
+            <?php if ($cut_url[0] == 'th') : ?>
+                title.textContent = item.topic_name_th;
+            <?php else : ?>
+                title.textContent = item.topic_name_en;
+            <?php endif ?>
             title.style.color = '#002157';
             title.className = 'title-story-pet-box';
 
             const text = document.createElement('p');
-            text.textContent = item.text;
+            <?php if ($cut_url[0] == 'th') : ?>
+                text.textContent = item.detail_th;
+            <?php else : ?>
+                text.textContent = item.detail_en;
+            <?php endif ?>
             text.className = 'text-story-pet-box';
 
             content.appendChild(title);

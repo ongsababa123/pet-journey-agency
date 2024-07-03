@@ -77,6 +77,31 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_status">สถานะ</label>
+                                        <select id="select_status" name="select_status" class="form-control select2" style="width: 100%;" onchange="getdata_table_1()">
+                                            <option value="2" selected>ทั้งหมด</option>
+                                            <option value="1">เปิดใช้งาน</option>
+                                            <option value="0">ปิดใช้งาน</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="select_lang">ประเภทภาษา</label>
+                                        <select id="select_lang" name="select_lang" class="form-control select2" style="width: 100%;" onchange="getdata_table_1()">
+                                            <option value="all" selected>ทั้งหมด</option>
+                                            <option value="th">ไทย</option>
+                                            <option value="en">อังกฤษ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                </div>
+                            </div>
+                            <hr>
                             <table id="example2" class="table table-hover table-bordered text-center">
                                 <thead style="background-color: #ECF0F3;">
                                     <tr>
@@ -92,6 +117,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->
+                        <div class="overlay dark" id="overlay_1">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -127,6 +155,7 @@
                                 <button type="button" onclick="removeUpload()" class="remove-image">ลบรูปภาพ <span class="image-title">Uploaded Image</span></button>
                             </div>
                         </div>
+                        <p class="text-right text-gray text-sm mt-2">* ขนาดรูปภาพแนะนำ 1400 x 400 px</p>
                     </div>
                     <div class="row">
                         <div class="col-6">
@@ -189,114 +218,128 @@
 <!-- table data -->
 <script>
     $(document).ready(function() {
-        $(function() {
-            $('#example2').DataTable({
-                'serverSide': true,
-                'ajax': {
-                    'url': "<?php echo site_url('dashboard/homepage/cover/getdata'); ?>",
-                    'type': 'GET',
-                    'dataSrc': 'data',
+        getdata_table_1();
+    });
+
+    function getdata_table_1() {
+        var select_status = document.getElementById('select_status');
+        var select_lang = document.getElementById('select_lang');
+        if ($.fn.DataTable.isDataTable('#example2')) {
+            $('#example2').DataTable().destroy();
+        }
+        $('#overlay_1').show();
+        $('#example2').DataTable({
+            'serverSide': true,
+            'ajax': {
+                'url': "<?php echo site_url('dashboard/homepage/cover/getdata'); ?>",
+                'type': 'GET',
+                'dataSrc': 'data',
+                'data': {
+                    'select_status': select_status.value,
+                    'select_lang': select_lang.value
+                }
+            },
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "oLanguage": {
+                sEmptyTable: "ไม่มีข้อมูลในตาราง",
+                sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
+                sInfoPostFix: "",
+                sInfoThousands: ",",
+                sLoadingRecords: "กำลังโหลดข้อมูล...",
+                sProcessing: "กำลังดำเนินการ...",
+                sSearch: "ค้นหา ชื่อรูปภาพ: ",
+                oPaginate: {
+                    sFirst: "หน้าแรก",
+                    sPrevious: "ก่อนหน้า",
+                    sNext: "ถัดไป",
+                    sLast: "หน้าสุดท้าย"
                 },
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "oLanguage": {
-                    sEmptyTable: "ไม่มีข้อมูลในตาราง",
-                    sInfo: "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-                    sInfoEmpty: "แสดง 0 ถึง 0 จาก 0 แถว",
-                    sInfoPostFix: "",
-                    sInfoThousands: ",",
-                    sLoadingRecords: "กำลังโหลดข้อมูล...",
-                    sProcessing: "กำลังดำเนินการ...",
-                    sSearch: "ค้นหา ชื่อรูปภาพ: ",
-                    oPaginate: {
-                        sFirst: "หน้าแรก",
-                        sPrevious: "ก่อนหน้า",
-                        sNext: "ถัดไป",
-                        sLast: "หน้าสุดท้าย"
-                    },
-                },
-                "drawCallback": function(settings) {
-                    var daData = settings.json.data;
-                    $('#carousel-indicators').empty();
-                    $('#carousel').empty();
-                    if (daData.length == 0) {
-                        $('#example2 tbody').html(`
+            },
+            "drawCallback": function(settings) {
+                var daData = settings.json.data;
+                $('#carousel-indicators').empty();
+                $('#carousel').empty();
+
+                $('#overlay_1').hide();
+                if (daData.length == 0) {
+                    $('#example2 tbody').html(`
                         <tr>
                             <td colspan="6" class="text-center">
                             ไม่พบข้อมูล
                             </td>
                         </tr>`);
-                    } else {
-                        var count_carousel = 0;
-                        daData.forEach(element => {
-                            if (element.status == 1) {
-                                var carousel_html = `<div class="carousel-item ${count_carousel == 0 ? 'active' : ''}">
+                } else {
+                    var count_carousel = 0;
+                    daData.forEach(element => {
+                        if (element.status == 1) {
+                            var carousel_html = `<div class="carousel-item ${count_carousel == 0 ? 'active' : ''}">
                                                     <img class="d-block w-100" src="<?= base_url('dist/img/cover/') ?>${element.path_image}">
                                                 </div> `;
-                                var carousel_indicators = `<li data-target="#carouselExampleIndicators" data-slide-to="${count_carousel}" class="${count_carousel == 0 ? 'active' : ''}"></li>`;
-                                count_carousel++;
-                                $('#carousel-indicators').append(carousel_indicators);
-                                $('#carousel').append(carousel_html);
-                            }
-                        });
-                    }
-                },
-                'columns': [{
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
+                            var carousel_indicators = `<li data-target="#carouselExampleIndicators" data-slide-to="${count_carousel}" class="${count_carousel == 0 ? 'active' : ''}"></li>`;
+                            count_carousel++;
+                            $('#carousel-indicators').append(carousel_indicators);
+                            $('#carousel').append(carousel_html);
                         }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/cover/') ?>${data.path_image}" data-toggle="lightbox" data-title="${data.name_image}" data-gallery="gallery">
+                    });
+                }
+            },
+            'columns': [{
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return `<a href="<?= base_url('dist/img/cover/') ?>${data.path_image}" data-toggle="lightbox" data-title="${data.name_image}" data-gallery="gallery">
                                         <img src="<?= base_url('dist/img/cover/') ?>${data.path_image}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return data.name_image;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        return data.language;
+                    }
+                }, {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        if (data.status == 0) {
+                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                        } else {
+                            return '<span class="badge bg-success">ใช้งาน</span>';
                         }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.name_image;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            return data.language;
-                        }
-                    }, {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            if (data.status == 0) {
-                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
-                            } else {
-                                return '<span class="badge bg-success">ใช้งาน</span>';
-                            }
-                        }
-                    },
-                    {
-                        'data': null,
-                        'class': 'text-center',
-                        'render': function(data, type, row, meta) {
-                            const encodedRowData = encodeURIComponent(JSON.stringify(row));
-                            return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
+                    }
+                },
+                {
+                    'data': null,
+                    'class': 'text-center',
+                    'render': function(data, type, row, meta) {
+                        const encodedRowData = encodeURIComponent(JSON.stringify(row));
+                        return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/homepage/cover/changestatus/${data.id_cover}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/homepage/cover/delete/${data.id_cover}/${data.path_image}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
-                        }
-                    },
-                ],
-            });
+                    }
+                },
+            ],
         });
-    });
+    }
 </script>
 <!-- script open image -->
 <script>

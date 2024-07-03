@@ -78,6 +78,7 @@ class PerformanceTeamController extends BaseController
                     unlink($target_dir . $image_path_old);
                 }
             }
+            $data_update['type_show'] = $type_show;
         } else if ($type_show === '3') {
             $data_update['detail_th'] = $this->request->getVar('detail_th');
             $data_update['detail_en'] = $this->request->getVar('detail_en');
