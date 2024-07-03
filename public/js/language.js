@@ -248,6 +248,33 @@ async function updateLanguage(lang) {
         element.textContent = aboutusData[lang][key];
       }
     }
+
+    // section partner price request
+    const partnerResponse = await fetch(
+      BASE_URL + "public/data/language/service1_local.json"
+    );
+    if (!partnerResponse.ok) {
+      throw new Error(
+        "Network response was not ok " + partnerResponse.statusText
+      );
+    }
+    const partnerData = await partnerResponse.json();
+
+    const partnerElements = {
+      title_partner1: "title_partner1",
+      title_partner2: "title_partner2",
+      title_price_request: "title_price_request",
+      detail_price_request: "detail_price_request",
+      btn_price_request: "btn_price_request",
+      service_list_title: "service_list_title"
+    };
+
+    for (const [id, key] of Object.entries(partnerElements)) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = partnerData[lang][key];
+      }
+    }
   } catch (error) {
     console.error("Failed to fetch content: ", error);
   }

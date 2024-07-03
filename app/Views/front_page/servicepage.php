@@ -273,17 +273,17 @@
         <div class="flex-container">
             <div class="service-detail">
                 <div class="service-header d-flex align-items-center">
-                    <h4>บริการนำเข้าและส่งออก สัตว์เลี้ยงระหว่างประเทศ</h4>
+                    <h4 id="service_header_title">บริการนำเข้าและส่งออก สัตว์เลี้ยงระหว่างประเทศ</h4>
                 </div>
                 <div class="service-main-content">
                     <div class="service-main-content-img">
                         <img src="<?= base_url('dist/img/pic_service_content.png') ?>" alt="Pet Service">
                     </div>
-                    <p>บริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ เรามีเจ้าหน้าที่ดูแลการส่งสัตว์เลี้ยงเดินทางไปต่างประเทศหรือรับสัตว์เลี้ยงเดินทางเข้ามาในประเทศ เป็นสัตว์เลี้ยงทุกชนิด เช่น สุนัข แมว กระต่าย นก เป็นต้น ทางเรามี เจ้าหน้าที่ดูแลการจองตั๋วเครื่องบิน จัดทำเอกสาร นำสัตว์เลี้ยงไปขึ้นเครื่องที่สนามบิน ติดป้ายไว้ที่กรงของสัตว์เลี้ยงจนสัตว์เลี้ยงเดินทางถึงมือผู้รับ เจ้าของไม่ต้องเสียเวลา เราบริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ ด้วยความรักสัตว์ เหมือนสัตว์เลี้ยงเป็นหนึ่งในสมาชิกของครอบครัวของเรา</p>
+                    <p id="service_main_content">บริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ เรามีเจ้าหน้าที่ดูแลการส่งสัตว์เลี้ยงเดินทางไปต่างประเทศหรือรับสัตว์เลี้ยงเดินทางเข้ามาในประเทศ เป็นสัตว์เลี้ยงทุกชนิด เช่น สุนัข แมว กระต่าย นก เป็นต้น ทางเรามี เจ้าหน้าที่ดูแลการจองตั๋วเครื่องบิน จัดทำเอกสาร นำสัตว์เลี้ยงไปขึ้นเครื่องที่สนามบิน ติดป้ายไว้ที่กรงของสัตว์เลี้ยงจนสัตว์เลี้ยงเดินทางถึงมือผู้รับ เจ้าของไม่ต้องเสียเวลา เราบริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ ด้วยความรักสัตว์ เหมือนสัตว์เลี้ยงเป็นหนึ่งในสมาชิกของครอบครัวของเรา</p>
                 </div>
                 <div class="service-header-partner d-flex align-items-center">
-                    <h3 style="color: #ffcc00;">Our</h3>
-                    <h3 style="color: #ffffff;">Partner</h3>
+                    <h3 id="title_partner1" style="color: #ffcc00;">Our</h3>
+                    <h3 id="title_partner2" style="color: #ffffff;">Partner</h3>
                     <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
                 </div>
                 <div class="partner-section">
@@ -295,20 +295,20 @@
             <div class="service-list">
                 <div class="service-list-sticky">
                     <ul class="service-list-item" id="service-list-item">
-                        <span class="service-list-title">
+                        <span class="service-list-title" id="service_list_title">
                             บริการของเรา
                         </span>
                     </ul>
                     <div class="price-request">
-                        <h5>ต้องการใบเสนอราคา</h5>
-                        <span>หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
-                        <button type="button" class="btn btn-warning btn-sm mt-2">ขอใบเสนอราคา</button>
+                        <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
+                        <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
+                        <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
