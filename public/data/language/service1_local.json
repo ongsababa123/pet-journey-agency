@@ -1,0 +1,18 @@
+{
+    "en": {
+        "title_partner1": "Our",
+        "title_partner2": "Partner",
+        "title_price_request": "Request a Quote",
+        "detail_price_request": "If you would like a quote, you can click the button below!!!",
+        "btn_price_request": "Request a Quote",
+        "service_list_title": "Our Services"
+    },
+    "th": {
+        "title_partner1": "พันธมิตร",
+        "title_partner2": "ของเรา",
+        "title_price_request": "ต้องการใบเสนอราคา",
+        "detail_price_request": "หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!",
+        "btn_price_request": "ขอใบเสนอราคา",
+        "service_list_title": "บริการของเรา"
+    }
+}
