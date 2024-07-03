@@ -21,6 +21,10 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 
 // Default route
 
+
+$routes->get('/test_select', 'Test_select::index');
+$routes->post('/test_select/update/(:num)', 'Test_select::test_update/$1');
+
 $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
