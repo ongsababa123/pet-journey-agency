@@ -141,33 +141,23 @@
         }
 
         .male-icon {
-            background-image: url('path/to/male-icon.png');
-            background-size: contain;
-            width: 20px;
-            height: 20px;
-            display: inline-block;
+            color: #1894e4;
+            font-size: 30px;
         }
 
         .female-icon {
-            background-image: url('path/to/female-icon.png');
-            background-size: contain;
-            width: 20px;
-            height: 20px;
-            display: inline-block;
+            color: #fc0464;
+            font-size: 30px;
         }
 
         .service-sell-box {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
-        .card .pet-card {
-            border-radius: 15px;
-        }
-
         .pet-card {
-            border-radius: 20px;
+            background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             position: relative;
@@ -175,15 +165,18 @@
             height: 550px;
             display: flex;
             flex-direction: column;
+            border-radius: 10px;
+        }
+
+        .set-img {
+            padding: 35px 10px 0px 10px;
         }
 
         .pet-card img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            padding: 10px;
-            border-radius: 20px;
-
+            border-radius: 7px;
         }
 
         .pet-card .card-body {
@@ -217,6 +210,12 @@
         .pet-card .btn:hover {
             background-color: #FFC107;
         }
+
+        .pet-card-icon {
+            position: absolute;
+            top: 50%;
+            right: 7%;
+        } 
 
         .date-posted {
             position: absolute;
@@ -422,7 +421,7 @@
                 weight: "3 กิโล",
                 price: "12000 บาท",
                 image: "dist/img/pic_service_3.png",
-                gender: "female"
+                gender: "male"
             },
             {
                 title: "text title",
@@ -431,7 +430,7 @@
                 weight: "3 กิโล",
                 price: "12000 บาท",
                 image: "dist/img/pic_service_4.png",
-                gender: "female"
+                gender: "male"
             },
             {
                 title: "text title",
@@ -457,8 +456,10 @@
 
         pets.forEach(pet => {
             const petCard = `
-        <div class="card pet-card">
-            <img src="${base_url}/${pet.image}" class="card-img-top" alt="${pet.title}">
+        <div class="pet-card">
+            <div class="set-img">
+              <img src="${base_url}/${pet.image}" alt="${pet.title}">
+            </div>            
             <div class="card-body">
                 <div class="date-posted">Date Posted: 11 May 2022</div>
                 <h5 class="card-title">${pet.title}</h5>
@@ -466,8 +467,8 @@
                 <p class="card-text"><i class="fas fa-birthday-cake"></i> ${pet.age}</p>
                 <p class="card-text"><i class="fas fa-weight"></i> ${pet.weight}</p>
                 <p class="card-text"><strong>ราคา: ${pet.price}</strong></p>
-                <a href="#" class="btn btn-warning">view more</a>
-                <span class="${pet.gender === 'male' ? 'male-icon' : 'female-icon'}"></span>
+                <button href="#" class="btn btn-warning">view more</button>
+                <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
             </div>
         </div>
     `;
