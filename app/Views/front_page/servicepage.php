@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Page</title>
+    <title>Service Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -21,7 +21,6 @@
             background-color: #f8f9fa;
         }
 
-
         .flex-container {
             display: flex;
             flex-wrap: wrap;
@@ -32,18 +31,20 @@
 
         .service-detail {
             background-color: #F5F5F5;
+            flex: 2;
         }
 
         .service-list {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+            flex: 1;
+            max-width: 300px;
+            margin-left: 40px;
         }
 
         .service-header {
             background-color: #003366;
             color: #ffffff;
-            padding: 10px;
-            height: 100px;
+            padding: 0 40px;
+            height: 90px;
             margin-top: 30px;
         }
 
@@ -52,15 +53,6 @@
             padding: 10px;
             height: 100px;
             margin-top: 30px;
-        }
-
-        .service-detail {
-            flex: 2;
-        }
-
-        .service-list {
-            flex: 1;
-            max-width: 300px;
         }
 
         .service-main-content {
@@ -80,16 +72,43 @@
             display: block;
         }
 
-        .service-list ul {
+        .service-list-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 80px;
+        }
+
+        .service-list-item {
+            margin-top: 30px;
             list-style: none;
-            padding: 0;
+            padding: 20px;
+            background-color: #FFDA56;
+            border-radius: 10px;
+        }
+
+        .service-list-title {
+            padding: 5px;
+            font-size: 16pt;
+            color: #1C1F35;
+            font-weight: 600;
         }
 
         .service-list li {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            padding: 5px;
+            font-size: 14px;
+            margin-top: 10px;
+            color: #003366;
+            border-bottom: 1px solid #646161;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        .service-list li:hover {
+            background-color: #fff;
+            border-radius: 15px;
+            border-bottom: none;
         }
 
         .price-request {
@@ -98,26 +117,21 @@
             padding: 20px;
             text-align: center;
             border-radius: 5px;
+            margin-top: 20px;
         }
 
-        .price-request button {
-            background-color: #ffcc00;
-            color: #003366;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+        .price-request span {
+            font-weight: 200;
         }
 
         .partner-section {
-            background-color: #ffffff;
             padding: 40px;
             text-align: center;
         }
 
         .partner-section h2 {
             color: #003366;
-            margin-bottom: 20px;
+            margin-bottom: 50%;
         }
 
         .partner-logos {
@@ -135,8 +149,115 @@
             max-width: 150px;
             margin: 10px;
             flex: 1 1 20%;
-            /* Adjust this value as needed */
             box-sizing: border-box;
+        }
+
+        .service-header-partner {
+            position: relative;
+            padding: 0 40px;
+            height: 90px;
+        }
+
+        .partner-img {
+            position: absolute;
+            max-width: 180px;
+            top: -75px;
+            right: 0;
+        }
+
+        @media (max-width: 1200px) {
+            .service-header {
+                padding: 0 20px;
+            }
+
+            .service-header h4 {
+                font-size: 15pt;
+            }
+
+            .service-main-content p {
+                font-size: 11pt;
+            }
+
+            .service-header-partner {
+                padding: 0 20px;
+            }
+
+            .partner-logos img {
+                max-width: 100px;
+                margin: 10px;
+            }
+
+        }
+
+        @media (max-width: 1024px) {
+            .price-request h5 {
+                font-size: 13pt;
+            }
+
+            .price-request span {
+                font-size: 10pt;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .flex-container {
+                padding: 0 50px;
+            }
+
+            .service-header {
+                padding: 0 18px;
+            }
+
+            .service-header h4 {
+                font-size: 13pt;
+            }
+
+            .service-main-content p {
+                font-size: 10pt;
+            }
+
+            .service-list {
+                margin-left: 20px;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .flex-container {
+                padding: 0 20px;
+            }
+
+            .service-list-item {
+                padding: 15px;
+                border-radius: 7px;
+            }
+
+            .service-list-title {
+                font-size: 13pt;
+            }
+
+            .service-list li {
+                font-size: 10pt;
+            }
+
+            .partner-logos img {
+                max-width: 80px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+            .service-detail {
+                flex: auto;
+            }
+
+            .service-list {
+                max-width: 100%;
+                margin-left: 0px;
+            }
+
+            .partner-img {
+                width: 160px;
+            }
         }
     </style>
 </head>
@@ -161,8 +282,9 @@
                     <p>บริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ เรามีเจ้าหน้าที่ดูแลการส่งสัตว์เลี้ยงเดินทางไปต่างประเทศหรือรับสัตว์เลี้ยงเดินทางเข้ามาในประเทศ เป็นสัตว์เลี้ยงทุกชนิด เช่น สุนัข แมว กระต่าย นก เป็นต้น ทางเรามี เจ้าหน้าที่ดูแลการจองตั๋วเครื่องบิน จัดทำเอกสาร นำสัตว์เลี้ยงไปขึ้นเครื่องที่สนามบิน ติดป้ายไว้ที่กรงของสัตว์เลี้ยงจนสัตว์เลี้ยงเดินทางถึงมือผู้รับ เจ้าของไม่ต้องเสียเวลา เราบริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ ด้วยความรักสัตว์ เหมือนสัตว์เลี้ยงเป็นหนึ่งในสมาชิกของครอบครัวของเรา</p>
                 </div>
                 <div class="service-header-partner d-flex align-items-center">
-                    <h4 style="color: #ffcc00;">Our</h4>
-                    <h4 style="color: #ffffff;">Partner</h4>
+                    <h3 style="color: #ffcc00;">Our</h3>
+                    <h3 style="color: #ffffff;">Partner</h3>
+                    <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
                 </div>
                 <div class="partner-section">
                     <div class="partner-logos" id="partner-logos">
@@ -171,20 +293,19 @@
                 </div>
             </div>
             <div class="service-list">
-                <ul>
-                    <li>นำเข้าและส่งออกสัตว์เลี้ยง</li>
-                    <li>บริการตรวจสัตว์เลี้ยง</li>
-                    <li>บริการขึ้นทะเบียนสัตว์เลี้ยง</li>
-                    <li>บริการจองตั๋วเครื่องบิน</li>
-                    <li>บริการจัดทำเอกสาร</li>
-                    <li>โรงแรมสำหรับสัตว์เลี้ยง</li>
-                    <li>โรงแรม Pet Friendly</li>
-                    <li>จำหน่ายสัตว์เลี้ยงต่างประเทศ</li>
-                </ul>
-                <div class="price-request">
-                    <p>ต้องการใบเสนอราคา</p>
-                    <button>ขอใบเสนอราคา</button>
+                <div class="service-list-sticky">
+                    <ul class="service-list-item" id="service-list-item">
+                        <span class="service-list-title">
+                            บริการของเรา
+                        </span>
+                    </ul>
+                    <div class="price-request">
+                        <h5>ต้องการใบเสนอราคา</h5>
+                        <span>หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
+                        <button type="button" class="btn btn-warning btn-sm mt-2">ขอใบเสนอราคา</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -196,10 +317,8 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Define base URL
         const base_url = '<?= base_url(); ?>';
 
-        // Partner logos object
         const partners = [{
                 src: `${base_url}/dist/img/logo_mobile.png`,
                 alt: 'Partner 1'
@@ -230,13 +349,30 @@
             }
         ];
 
-        // Function to insert partner logos
         const partnerLogosContainer = document.getElementById('partner-logos');
         partners.forEach(partner => {
             const img = document.createElement('img');
             img.src = partner.src;
             img.alt = partner.alt;
             partnerLogosContainer.appendChild(img);
+        });
+
+        const services = [
+            'นำเข้าและส่งออกสัตว์เลี้ยง',
+            'บริการตรวจสัตว์เลี้ยง',
+            'บริการขึ้นทะเบียนสัตว์เลี้ยง',
+            'บริการจองตั๋วเครื่องบิน',
+            'บริการจัดทำเอกสาร',
+            'โรงแรมสำหรับสัตว์เลี้ยง',
+            'โรงแรม Pet Friendly',
+            'จำหน่ายสัตว์เลี้ยงต่างประเทศ'
+        ];
+
+        const serviceListContainer = document.getElementById('service-list-item');
+        services.forEach(service => {
+            const li = document.createElement('li');
+            li.textContent = service;
+            serviceListContainer.appendChild(li);
         });
     </script>
 </body>
