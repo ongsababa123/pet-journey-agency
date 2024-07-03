@@ -288,7 +288,7 @@
     <!-- sec service page -->
     <section>
         <div class="flex-container">
-            <div class="service-detail">
+            <div class="service-detail" data-aos="fade-in" data-aos-easing="linear" data-aos-duration="1500">
                 <div class="service-header d-flex align-items-center">
                     <h4 id="service_header_title">บริการนำเข้าและส่งออก สัตว์เลี้ยงระหว่างประเทศ</h4>
                 </div>
@@ -304,7 +304,7 @@
                     <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
                 </div>
                 <div class="partner-section">
-                    <div class="partner-logos" id="partner-logos">
+                    <div class="partner-logos" id="partner-logos" data-aos="fade-up" data-aos-duration="1500">
                         <!-- Logo images will be inserted here by JavaScript -->
                     </div>
                 </div>
@@ -333,6 +333,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script>
         const base_url = '<?= base_url(); ?>';
 

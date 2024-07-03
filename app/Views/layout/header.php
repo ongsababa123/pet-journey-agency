@@ -635,9 +635,8 @@
                 <div class="nav-link">
                     <a id="menu_service" href="#">Our Service</a><i class="fas fa-chevron-down"></i>
                     <div class="dropdown-menu">
-                        <a href="/pet-journey-agency/page/servicepage">Service 1</a>
-                        <a href="/pet-journey-agency/page/servicepage">Service 2</a>
-                        <a href="/pet-journey-agency/page/servicepage">Service 3</a>
+                        <a href="/pet-journey-agency/page/servicepage">Service ปกติ</a>
+                        <a href="/pet-journey-agency/page/servicesellpage">Service ขาย</a>
                     </div>
                 </div>
                 <div class="nav-link"><a id="menu_review" href="/pet-journey-agency/page/reviewpage">Review</a></div>

@@ -192,7 +192,7 @@
             const footer = document.querySelector("footer");
             const currentUrl = window.location.href;
 
-            if (currentUrl.includes("/pet-journey-agency/page/servicepage")) {
+            if (currentUrl.includes("/pet-journey-agency/page/servicepage") && currentUrl.includes("/pet-journey-agency/page/servicesellpage")) {
                 footer.style.marginTop = "0px";
             } else {
                 footer.style.marginTop = "280px";
