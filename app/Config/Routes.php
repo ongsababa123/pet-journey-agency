@@ -22,8 +22,6 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 // Default route
 
 
-$routes->get('/test_select', 'Test_select::index');
-$routes->post('/test_select/update/(:num)', 'Test_select::test_update/$1');
 
 $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
@@ -32,6 +30,7 @@ $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
     $routes->get('aboutuspage', 'AboutUsPage::index');
     $routes->get('servicepage/(:num)', 'ServicePage::index/$1');
     $routes->get('servicepage/buysale/(:num)', 'ServiceSellPage::index/$1');
+    $routes->get('error', 'ErrorController::index');
 });
 $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
@@ -40,6 +39,7 @@ $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
     $routes->get('aboutuspage', 'AboutUsPage::index');
     $routes->get('servicepage/(:num)', 'ServicePage::index/$1');
     $routes->get('servicepage/buysale/(:num)', 'ServiceSellPage::index/$1');
+    $routes->get('error', 'ErrorController::index');
 });
 
 

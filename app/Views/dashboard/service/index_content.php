@@ -102,7 +102,7 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            height: 400, // set the height of the editor
+            height: 1000, // set the height of the editor
             toolbar: [
                 // [groupName, [list of button]]
                 ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
@@ -117,7 +117,7 @@
         <?php if (isset($data_service_content)) : ?>
             $('#summernote').summernote('code', '<?= $data_service_content['content'] ?>');
             $('#select_language').val('<?= $data_service_content['language'] ?>');
-            $('#partner').val('<?= $data_service_content['id_partner'] ?>');
+            $('#partner').val('<?= $data_service_content['type_partner'] ?>');
         <?php endif; ?>
         close_edit();
     });

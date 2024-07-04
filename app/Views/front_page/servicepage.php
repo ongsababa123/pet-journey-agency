@@ -309,21 +309,20 @@ $cut_url = explode('/', $uri_menu);
                     </h4>
                 </div>
                 <div class="service-main-content">
-                    <div class="service-main-content-img">
-                        <img src="<?= base_url('dist/img/pic_service_content.png') ?>" alt="Pet Service">
+                    <?= $service_content['content'] ?>
+                </div>
+                <?php if ($service_content['type_partner'] != 0) : ?>
+                    <div class="service-header-partner d-flex align-items-center">
+                        <h3 id="title_partner1" style="color: #ffcc00;">Our</h3>
+                        <h3 id="title_partner2" style="color: #ffffff;">Partner</h3>
+                        <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
                     </div>
-                    <p id="service_main_content">บริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ เรามีเจ้าหน้าที่ดูแลการส่งสัตว์เลี้ยงเดินทางไปต่างประเทศหรือรับสัตว์เลี้ยงเดินทางเข้ามาในประเทศ เป็นสัตว์เลี้ยงทุกชนิด เช่น สุนัข แมว กระต่าย นก เป็นต้น ทางเรามี เจ้าหน้าที่ดูแลการจองตั๋วเครื่องบิน จัดทำเอกสาร นำสัตว์เลี้ยงไปขึ้นเครื่องที่สนามบิน ติดป้ายไว้ที่กรงของสัตว์เลี้ยงจนสัตว์เลี้ยงเดินทางถึงมือผู้รับ เจ้าของไม่ต้องเสียเวลา เราบริการนำเข้า-ส่งออกสัตว์เลี้ยงระหว่างประเทศ ด้วยความรักสัตว์ เหมือนสัตว์เลี้ยงเป็นหนึ่งในสมาชิกของครอบครัวของเรา</p>
-                </div>
-                <div class="service-header-partner d-flex align-items-center">
-                    <h3 id="title_partner1" style="color: #ffcc00;">Our</h3>
-                    <h3 id="title_partner2" style="color: #ffffff;">Partner</h3>
-                    <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
-                </div>
-                <div class="partner-section">
-                    <div class="partner-logos" id="partner-logos" data-aos="fade-up" data-aos-duration="1500">
-                        <!-- Logo images will be inserted here by JavaScript -->
+                    <div class="partner-section">
+                        <div class="partner-logos" id="partner-logos" data-aos="fade-up" data-aos-duration="1500">
+                            <!-- Logo images will be inserted here by JavaScript -->
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
             <div class="service-list">
                 <div class="service-list-sticky">
@@ -335,7 +334,7 @@ $cut_url = explode('/', $uri_menu);
                     <div class="price-request">
                         <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
                         <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
-                        <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
+                        <a type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request" href="<?= base_url($cut_url[0] . '/contactpage') ?>">ขอใบเสนอราคา</a>
                     </div>
                 </div>
             </div>
@@ -356,6 +355,9 @@ $cut_url = explode('/', $uri_menu);
         const base_url = '<?= base_url(); ?>';
         const service_header = <?php echo json_encode($service_header); ?>;
         const id_service_header = <?php echo json_encode($id_service_header); ?>;
+        const service_content = <?php echo json_encode($service_content); ?>;
+        console.log(service_content);
+
         const partners = [{
                 src: `${base_url}/dist/img/logo_mobile.png`,
                 alt: 'Partner 1'
@@ -386,15 +388,17 @@ $cut_url = explode('/', $uri_menu);
             }
         ];
 
-        const partnerLogosContainer = document.getElementById('partner-logos');
+        if (service_content['type_partner'] != 0) {
+            const partnerLogosContainer = document.getElementById('partner-logos');
+            service_content['data_partners'].forEach(partner => {
+                const img = document.createElement('img');
+                img.src = '<?= base_url('dist/img/partner/'); ?>' + partner.logo_partner_path;
+                img.alt = partner.name_partner;
+                partnerLogosContainer.appendChild(img);
+            });
+        }
 
-        partners.forEach(partner => {
-            const img = document.createElement('img');
-            img.src = partner.src;
-            img.alt = partner.alt;
-            partnerLogosContainer.appendChild(img);
-        });
-
+        //services list
         const serviceListContainer = document.getElementById('service-list-item');
         service_header.forEach(service => {
             const li = document.createElement('li');
@@ -411,7 +415,7 @@ $cut_url = explode('/', $uri_menu);
             li.addEventListener('click', () => {
                 if (service.id_service_header == 1) {
                     window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/buysale/${service.id_service_header}`;
-                }else{
+                } else {
                     window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/${service.id_service_header}`;
                 }
             });

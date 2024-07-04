@@ -10,5 +10,5 @@ class Service_Content extends Model
     protected $primaryKey = 'id_service_content';    // Primary key column name
 
     // Specify which columns can be updated
-    protected $allowedFields = ['id_service_header', 'content', 'language', 'id_partner'];
+    protected $allowedFields = ['id_service_header', 'content', 'language', 'type_partner'];
 }

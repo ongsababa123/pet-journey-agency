@@ -149,7 +149,7 @@ class ServiceDataController extends BaseController
         $this->ServiceHeaderModel->update($id_service_header, (object) $data_service);
         $response = [
             'success' => true,
-            'message' => 'แก้ไขข้อมูลทีมสําเร็จ',
+            'message' => 'แก้ไขข้อมูลเซอร์วิสเรียบร้อย',
             'reload' => true,
         ];
         return $this->response->setJSON($response);
@@ -354,7 +354,7 @@ class ServiceDataController extends BaseController
             'id_service_header' => $id_service_header,
             'content' => $this->request->getVar('content'),
             'language' => $this->request->getVar('select_language'),
-            'id_partner' => $this->request->getVar('partner'),
+            'type_partner' => $this->request->getVar('partner'),
         ];
         $this->Service_Content->insert((object) $data_service_content);
         $response = [
@@ -371,7 +371,7 @@ class ServiceDataController extends BaseController
         $data_service_content = [
             'content' => $this->request->getVar('content'),
             'language' => $this->request->getVar('select_language'),
-            'id_partner' => $this->request->getVar('partner'),
+            'type_partner' => $this->request->getVar('partner'),
         ];
         $this->Service_Content->update($id_service_content, (object) $data_service_content);
         $response = [
