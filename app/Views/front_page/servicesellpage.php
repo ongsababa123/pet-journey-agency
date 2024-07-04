@@ -576,20 +576,26 @@ $pet = [
         <div class="flex-container">
             <div class="service-detail" data-aos="fade-in" data-aos-easing="linear" data-aos-duration="1500">
                 <div class="service-header d-flex align-items-center">
-                    <h4 id="service_header_title">ซื้อขายสัตว์เลี้ยงจากต่างประเทศ</h4>
+                    <h4 id="service_header_title">
+                        <?php foreach ($service_header as $key => $value) {
+                            if ($value['id_service_header'] == $id_service_header) {
+                                echo $cut_url[0] == 'th' ? $value['header_service_name_th'] : $value['header_service_name_en'];
+                            }
+                        } ?>
+                    </h4>
                 </div>
                 <div class="service-main-content">
                     <div class="service-category">
                         <div class="service-category-search">
                             <label id="search_category" for="service-search-1" class="mr-2">ค้นหาหมวดหมู่:</label>
-                            <select id="service-search" class="form-control">
-                                <option value="select_category" id="select_category"></option>
+                            <select id="service-search" class="form-control" name="service" onchange="handleCategoryChange()">
+                                <option value="select_category" id="select_category" selected></option>
                                 <option value="price_high_to_low" id="price_high_to_low">ราคาสูงไปต่ำ</option>
                                 <option value="price_low_to_high" id="price_low_to_high">ราคาต่ำไปสูง</option>
                                 <option value="latest_date" id="latest_date">วันที่เก่าสุด</option>
                                 <option value="new_date" id="new_date">วันที่ใหม่</option>
-                                <option value="dog" id="dog">สุนัข</option>
-                                <option value="cat" id="cat">แมว</option>
+                                <option value="sale_complete" id="sale_complete">ขายแล้ว</option>
+                                <option value="not_sale" id="not_sale">รอเจ้าของใหม่</option>
                             </select>
                         </div>
                     </div>
@@ -623,29 +629,29 @@ $pet = [
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center mb-3">
-                        <img class="modal-pic" src="<?= base_url('dist/img/pic_service_4.png') ?>">
+                        <img class="modal-pic" id="image_pet" src="">
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title-modal" style="font-weight: 600;"><?php echo $pet['title']; ?></h4>
-                            <p class="card-text" id="price">ราคา: <?php echo $pet['price']; ?></p>
+                            <h4 class="card-title-modal" style="font-weight: 600;" id="name_pet"></h4>
+                            <p class="card-text" id="price_pet"></p>
                             <p class="card-text" id="pet_information"><strong>ข้อมูลสัตว์เลี้ยง</strong></p>
                             <ul class="list-unstyled" style="margin-left: 10px;">
-                                <li><i class="fas fa-dog" style="color: #0198B4; margin-right: 10px;"></i><span id="breed">พันธุ์:</span> <?php echo $pet['details']['breed']; ?></li>
-                                <li><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 14px;"></i><span id="age">อายุ:</span> <?php echo $pet['details']['age']; ?></li>
-                                <li><i class="fas fa-venus-mars" style="color: #0198B4; margin-right: 10px;"></i><span id="gender">เพศ:</span> <?php echo $pet['details']['gender']; ?></li>
-                                <li><i class="fas fa-paw" style="color: #0198B4; margin-right: 13px;"></i><span id="color">สีขน:</span> <?php echo $pet['details']['color']; ?></li>
-                                <li><i class="fas fa-bone" style="color: #0198B4; margin-right: 10px;"></i><span id="characteristic">ลักษณะนิสัย:</span> <?php echo $pet['details']['temperament']; ?></li>
-                                <li><i class="fas fa-notes-medical" style="color: #0198B4; margin-right: 16px;"></i><span id="vaccination_history">ประวัติการฉีดวัคซีน:</span> <?php echo $pet['details']['vaccination']; ?></li>
+                                <li><i class="fas fa-dog" style="color: #0198B4; margin-right: 10px;"></i><span id="breed_pet"></li>
+                                <li><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 14px;"></i><span id="age_pet"></span></li>
+                                <li><i class="fas fa-venus-mars" style="color: #0198B4; margin-right: 10px;"></i><span id="gender_pet"></span></li>
+                                <li><i class="fas fa-paw" style="color: #0198B4; margin-right: 13px;"></i><span id="color_pet"></span></li>
+                                <li><i class="fas fa-bone" style="color: #0198B4; margin-right: 10px;"></i><span id="characteristic_pet"></span></li>
+                                <li><i class="fas fa-notes-medical" style="color: #0198B4; margin-right: 16px;"></i><span id="vaccination_history_pet"></span></li>
                             </ul>
-                            <p class="text-muted d-flex justify-content-end" id="sell_date">วันที่ลงขาย:</p>
+                            <p class="text-muted d-flex justify-content-end" id="sell_date"></p>
                         </div>
                     </div>
                     <div class="button-modal-container d-flex justify-content-center">
-                        <span href="#" class="button-modal button-modal-call">
+                        <a href="https://www.facebook.com/petjourney.agency" target="_blank" class="button-modal button-modal-call">
                             <i class="fas fa-phone-alt"></i>
                             <span id="contact_seller">ติดต่อผู้ขาย</span>
-                        </span>
+                        </a>
                         <span href="#" class="button-modal button-modal-close" data-dismiss="modal">
                             <i class="fas fa-times"></i>
                             <span id="close">Close</span>
@@ -663,6 +669,7 @@ $pet = [
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <script>
         AOS.init();
     </script>
@@ -699,50 +706,83 @@ $pet = [
 
     <script>
         $(document).ready(function() {
-            $('#service-search-1').select2();
-
-            $('#service-search-1').on('change', function() {
-                const selectedService = $(this).val();
-                const listItems = $('#service-list-item li');
-                listItems.each(function() {
-                    if (selectedService === '' || $(this).text() === selectedService) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
+            handleCategoryChange();
         });
     </script>
 
     <script>
-        const pets = <?php echo json_encode($service_content_buy_sale); ?>;
-        const serviceSellBox = document.querySelector('.service-sell-box');
+        function handleCategoryChange() {
+            const pets = <?php echo json_encode($service_content_buy_sale); ?>;
+            const serviceSellBox = document.querySelector('.service-sell-box');
+            const selected = document.getElementById('service-search');
+            $('.service-sell-box').empty();
 
-        pets.forEach(pet => {
-            const petCard = `
-            <div class="pet-card">
-                <div class="set-img swiper-container">
-                    <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
-                    </div>
-                </div>
+            let filteredPets = pets;
 
-                <div class="card-body">
-                    <div class="date-posted" id="sell_date${pet.id_service_content_buy_sale}"> ${pet.create_date}</div>
-                    <h5 class="card-title">${pet.name_pet}</h5>
-                    <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.species}</p>
-                    <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
-                    <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
-                    <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
-                </div>
-                <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal"><button class="small-primary-button" id="btn_view_more${pet.id_service_content_buy_sale}">view more</button></div>
-            </div>
-    `;
-            serviceSellBox.innerHTML += petCard;
-        });
+            if (selected.value == 'price_high_to_low') {
+                filteredPets.sort(function(a, b) {
+                    return b.price - a.price;
+                });
+            } else if (selected.value == 'price_low_to_high') {
+                filteredPets.sort(function(a, b) {
+                    return a.price - b.price;
+                });
+            } else if (selected.value == 'latest_date') {
+                filteredPets.sort(function(a, b) {
+                    return new Date(a.create_date) - new Date(b.create_date);
+                });
+            } else if (selected.value == 'new_date') {
+                filteredPets.sort(function(a, b) {
+                    return new Date(b.create_date) - new Date(a.create_date);
+                });
+            } else if (selected.value == 'sale_complete') {
+                filteredPets = pets.filter(function(pet) {
+                    return pet.status === '2';
+                });
+            } else if (selected.value == 'not_sale') {
+                filteredPets = pets.filter(function(pet) {
+                    return pet.status === '1';
+                });
+            }
+            filteredPets.forEach(pet => {
+                const encodedRowData = encodeURIComponent(JSON.stringify(pet));
+                const petCard = `
+                    <div class="pet-card">
+                        <div class="set-img swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="date-posted">${pet.create_date}</div>
+                            <h5 class="card-title">${pet.name_pet}</h5>
+                            <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.breed}</p>
+                            <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
+                            <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
+                            <p class="card-text"><i class="fas fa-star" style="color: #0198B4; margin-right: 10px;"></i><span id="status_pet_${pet.id_service_content_buy_sale}">สถานะ :</span> ${pet.status === '1' ? 'รอเจ้าของใหม่' : 'ขายแล้ว'}</p>
+                            <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
+                        </div>
+                        <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal" onclick="load_modal('${encodedRowData}')"><button class="small-primary-button" id="btn_view_more${pet.id_service_content_buy_sale}">view more</button></div>
+                    </div>`;
+                serviceSellBox.innerHTML += petCard;
+            });
+        }
 
 
+
+
+        function load_modal(data_pets) {
+            const data = JSON.parse(decodeURIComponent(data_pets));
+            $('#image_pet').attr('src', base_url + '/dist/img/animal/' + data.image_path);
+            $('#name_pet').text(data.name_pet);
+            $('#price_pet').text('<?php echo $cut_url[0] == 'th' ? 'ราคา: ' : 'Price: '; ?>' + data.price);
+            $('#breed_pet').text('<?php echo $cut_url[0] == 'th' ? 'พันธุ์: ' : 'Breed: '; ?>' + data.breed);
+            $('#age_pet').text('<?php echo $cut_url[0] == 'th' ? 'อายุ: ' : 'Age: '; ?>' + data.age);
+            $('#gender_pet').text('<?php echo $cut_url[0] == 'th' ? 'เพศ: ' : 'Gender: '; ?>' + data.gender);
+            $('#color_pet').text('<?php echo $cut_url[0] == 'th' ? 'สีขน: ' : 'Color: '; ?>' + data.color);
+            $('#characteristic_pet').text('<?php echo $cut_url[0] == 'th' ? 'ลักษณะนิสัย: ' : 'Characteristic: '; ?>' + data.characteristics);
+            $('#vaccination_history_pet').text('<?php echo $cut_url[0] == 'th' ? 'ประวัติการฉีดวัคซีน: ' : 'Vaccination History: '; ?>' + data.vaccination_history);
+        }
 
         // new Swiper('.swiper-container', {
         //     slidesPerView: 1,

@@ -154,7 +154,7 @@
     <footer class="footer">
         <img class="pic-footer" src="<?= base_url('dist/img/footerpic.png') ?>" alt="Logo">
         <div>
-            <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Logo">
+        <img src="<?= base_url('dist/img/logo/'). $contact_data['logo_image_path'] ?>" alt="Logo">
         </div>
         <div class="contact-info">
             <div class="info-item">

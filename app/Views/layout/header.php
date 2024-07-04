@@ -549,7 +549,7 @@
         <!-- header normal -->
         <div class="header-top">
             <div class="logo">
-                <img src="<?= base_url('dist/img/logo1.jpg') ?>" alt="Logo">
+                <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
             </div>
             <div class="contact-info">
                 <div class="info-item">
@@ -641,7 +641,7 @@
                 <i class="fas fa-bars" onclick="toggleMobileMenu()"></i>
             </div>
             <div class="logo">
-                <img src="<?= base_url('dist/img/logo_mobile.png') ?>" alt="Logo">
+                <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
             </div>
             <div class="lang">
                 <div class="language-selector">
@@ -653,7 +653,7 @@
             </div>
         </div>
         <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
-        
+
         <div class="menu-mobile" id="menu-mobile">
             <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
             <div>
@@ -764,17 +764,17 @@
     </script>
 
     <script>
-        document.getElementById('toggleServices').addEventListener('click', function() {
-            var servicesMenu = document.getElementById('servicesMenu');
-            var arrowIcon = document.getElementById('arrowIcon');
-            if (servicesMenu.classList.contains('show')) {
-                servicesMenu.classList.remove('show');
-                arrowIcon.classList.remove('rotate');
-            } else {
-                servicesMenu.classList.add('show');
-                arrowIcon.classList.add('rotate');
-            }
-        });
+        // document.getElementById('toggleServices').addEventListener('click', function() {
+        //     var servicesMenu = document.getElementById('servicesMenu');
+        //     var arrowIcon = document.getElementById('arrowIcon');
+        //     if (servicesMenu.classList.contains('show')) {
+        //         servicesMenu.classList.remove('show');
+        //         arrowIcon.classList.remove('rotate');
+        //     } else {
+        //         servicesMenu.classList.add('show');
+        //         arrowIcon.classList.add('rotate');
+        //     }
+        // });
     </script>
 </body>
 
