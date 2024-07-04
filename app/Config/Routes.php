@@ -22,7 +22,9 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 // Default route
 
 
-
+$routes->group('/', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
+    $routes->get('', 'HomePage::index_redirect');
+});
 $routes->group('th', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('homepage', 'HomePage::index');
     $routes->get('reviewpage', 'ReviewPage::index');
@@ -45,7 +47,6 @@ $routes->group('en', ['namespace' => 'App\Controllers\FrontPage'], function ($ro
 
 $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
     $routes->get('send-email',  'EmailController::sendEmail'); // ตั้งค่าเส้นทางให้เรียกฟังก์ชัน sendEmail ใน EmailController
-
     //------------------------------------------------------------------------------------------------------------------------------------//
     $routes->get('login', 'UserAdminController::index_login'); //index login
     $routes->post('login/auth', 'UserAdminController::auth'); //auth

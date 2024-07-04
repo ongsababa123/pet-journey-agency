@@ -54,4 +54,9 @@ class HomePage extends BaseController
         echo view('front_page/homepage' , $data);
         echo view('layout/footer' , $data);
     }
+
+    public function index_redirect()
+    {
+        return redirect()->to('/th/homepage');
+    }
 }
