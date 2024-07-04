@@ -356,7 +356,6 @@ $cut_url = explode('/', $uri_menu);
         const service_header = <?php echo json_encode($service_header); ?>;
         const id_service_header = <?php echo json_encode($id_service_header); ?>;
         const service_content = <?php echo json_encode($service_content); ?>;
-        console.log(service_content);
 
         const partners = [{
                 src: `${base_url}/dist/img/logo_mobile.png`,

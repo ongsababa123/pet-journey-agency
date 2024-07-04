@@ -103,6 +103,12 @@
             border-bottom: none;
         }
 
+        .service-list-active {
+            background-color: #fff;
+            border-radius: 15px;
+            border-bottom: none;
+        }
+
         .price-request {
             background-color: #003366;
             color: #ffffff;
@@ -541,6 +547,9 @@
     </style>
 </head>
 <?php
+$cut_url = explode('/', $uri_menu);
+?>
+<?php
 $pet = [
     "title" => "ลูกสุนัขที่ดูเป็นมิตร",
     "price" => "10000 บาท",
@@ -660,22 +669,30 @@ $pet = [
 
     <script>
         const base_url = '<?= base_url(); ?>';
+        const service_header = <?php echo json_encode($service_header); ?>;
+        const id_service_header = <?php echo json_encode($id_service_header); ?>;
 
-        const services = [
-            'นำเข้าและส่งออกสัตว์เลี้ยง',
-            'บริการตรวจสัตว์เลี้ยง',
-            'บริการขึ้นทะเบียนสัตว์เลี้ยง',
-            'บริการจองตั๋วเครื่องบิน',
-            'บริการจัดทำเอกสาร',
-            'โรงแรมสำหรับสัตว์เลี้ยง',
-            'โรงแรม Pet Friendly',
-            'จำหน่ายสัตว์เลี้ยงต่างประเทศ'
-        ];
-
+        //services list
         const serviceListContainer = document.getElementById('service-list-item');
-        services.forEach(service => {
+        service_header.forEach(service => {
             const li = document.createElement('li');
-            li.textContent = service;
+            <?php if ($cut_url[0] == 'th') : ?>
+                li.textContent = service.header_service_name_th;
+            <?php else : ?>
+                li.textContent = service.header_service_name_en;
+            <?php endif; ?>
+
+            if (service.id_service_header == id_service_header) {
+                li.classList.add('service-list-active'); // Ensure this adds the class as intended
+            }
+
+            li.addEventListener('click', () => {
+                if (service.id_service_header == 1) {
+                    window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/buysale/${service.id_service_header}`;
+                } else {
+                    window.location.href = `<?= base_url('' . $cut_url[0]); ?>/servicepage/${service.id_service_header}`;
+                }
+            });
             serviceListContainer.appendChild(li);
         });
     </script>
@@ -699,108 +716,7 @@ $pet = [
     </script>
 
     <script>
-        const pets = [{
-                id: 1,
-                title: "แมวสีขาวที่มีลักษณะนุ่มนวลเหมือนหิมะ แมวสีขาวที่มีลักษณะนุ่มนวลเหมือนหิมะ",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_1.png",
-                    "dist/img/pic_service_2.png",
-                    "dist/img/pic_service_3.png"
-                ],
-                gender: "male"
-            },
-            {
-                id: 2,
-                title: "ลูกสุนัขที่ดูเป็นมิตร",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_6.png",
-                    "dist/img/pic_service_5.png",
-                    "dist/img/pic_service_4.png"
-                ],
-                gender: "female"
-            },
-            {
-                id: 3,
-                title: "แมวที่มีหนวดเด่นชัดและน่ารัก",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_2.png",
-                ],
-                gender: "male"
-            },
-            {
-                id: 4,
-                title: "แมวที่มีลักษณะขนหนาและดูอบอุ่นเหมือนสวมถุงมือ",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_3.png",
-                ],
-                gender: "male"
-            },
-            {
-                id: 5,
-                title: "ลูกสุนัขที่ดูซนและกระตือรือร้น",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_5.png",
-                ],
-                gender: "female"
-            },
-            {
-                id: 6,
-                title: "แมวที่มีลักษณะสงบและดูเหมือนแสงจันทร์",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_2.png",
-                ],
-                gender: "male"
-            },
-            {
-                id: 7,
-                title: "ลูกสุนัขที่ดูแข็งแรงและเต็มไปด้วยพลัง",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_6.png",
-                ],
-                gender: "female"
-            },
-            {
-                id: 8,
-                title: "ลูกสุนัขสีน้ำตาลที่มีลักษณะคล้ายช็อกโกแลต",
-                species: "เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                images: [
-                    "dist/img/pic_service_4.png",
-                ],
-                gender: "female"
-            },
-        ];
-
+        const pets = <?php echo json_encode($service_content_buy_sale); ?>;
         const serviceSellBox = document.querySelector('.service-sell-box');
 
         pets.forEach(pet => {
@@ -808,23 +724,26 @@ $pet = [
             <div class="pet-card">
                 <div class="set-img swiper-container">
                     <div class="swiper-wrapper">
-                        ${pet.images.map(image => `<div class="swiper-slide"><img src="${base_url}/${image}" alt="${pet.title}"></div>`).join('')}
+                    <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <div class="date-posted" id="sell_date${pet.id}"> ${pet.datePosted}</div>
-                    <h5 class="card-title">${pet.title}</h5>
-                    <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id}">พันธุ์:</span> ${pet.species}</p>
-                    <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id}">อายุ:</span> ${pet.age}</p>
-                    <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id}"></span> </p>
+                    <div class="date-posted" id="sell_date${pet.id_service_content_buy_sale}"> ${pet.create_date}</div>
+                    <h5 class="card-title">${pet.name_pet}</h5>
+                    <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.species}</p>
+                    <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
+                    <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
                     <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
                 </div>
-                <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal"><button class="small-primary-button" id="btn_view_more${pet.id}">view more</button></div>
+                <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal"><button class="small-primary-button" id="btn_view_more${pet.id_service_content_buy_sale}">view more</button></div>
             </div>
     `;
             serviceSellBox.innerHTML += petCard;
         });
+
+
+
         // new Swiper('.swiper-container', {
         //     slidesPerView: 1,
         //     spaceBetween: 0,
