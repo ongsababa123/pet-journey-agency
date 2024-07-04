@@ -635,7 +635,6 @@
             </div>
         </div>
 
-
         <!-- header mobile -->
         <div class="header-top-mobile">
             <div class="menu">
@@ -654,15 +653,16 @@
             </div>
         </div>
         <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
+        
         <div class="menu-mobile" id="menu-mobile">
             <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
             <div>
                 <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                <a href="/pet-journey-agency/page/homepage"><i class="fas fa-home"></i>Home</a>
-                <a href="/pet-journey-agency/page/aboutuspage"><i class="fas fa-info-circle"></i>About us</a>
+                <a href="<?= base_url($cut_url[0] . '/homepage') ?>"><i class="fas fa-home"></i>Home</a>
+                <a href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"><i class="fas fa-info-circle"></i>About us</a>
                 <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
-                <a href="/pet-journey-agency/page/reviewpage"><i class="fas fa-star"></i>Review</a>
-                <a href="/pet-journey-agency/page/contactpage"><i class="fas fa-file-alt"></i>Contact</a>
+                <a href="<?= base_url($cut_url[0] . '/reviewpage') ?>"><i class="fas fa-star"></i>Review</a>
+                <a href="<?= base_url($cut_url[0] . '/contactpage') ?>"><i class="fas fa-file-alt"></i>Contact</a>
             </div>
             <div class="contact">
                 <p style="font-size: larger;">Contact</p>
@@ -763,6 +763,19 @@
         }
     </script>
 
+    <script>
+        document.getElementById('toggleServices').addEventListener('click', function() {
+            var servicesMenu = document.getElementById('servicesMenu');
+            var arrowIcon = document.getElementById('arrowIcon');
+            if (servicesMenu.classList.contains('show')) {
+                servicesMenu.classList.remove('show');
+                arrowIcon.classList.remove('rotate');
+            } else {
+                servicesMenu.classList.add('show');
+                arrowIcon.classList.add('rotate');
+            }
+        });
+    </script>
 </body>
 
 </html>

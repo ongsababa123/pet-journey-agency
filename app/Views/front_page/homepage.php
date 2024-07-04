@@ -1,6 +1,3 @@
-<?php
-$cut_url = explode('/', $uri_menu);
-?>
 <!DOCTYPE html>
 <html lang="th">
 
@@ -19,7 +16,8 @@ $cut_url = explode('/', $uri_menu);
         var BASE_URL = '<?= base_url(); ?>';
     </script>
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
-    <link rel="stylesheet" href="styles.css">
+
+
     <style>
         /* General Styles */
         * {
@@ -618,6 +616,9 @@ $cut_url = explode('/', $uri_menu);
         }
     </style>
 </head>
+<?php
+$cut_url = explode('/', $uri_menu);
+?>
 
 <body>
     <!-- sec slide page -->
@@ -643,7 +644,6 @@ $cut_url = explode('/', $uri_menu);
                 $count_cover_image = 0;
                 foreach ($cover_page as $key => $value) {
                     if ($value['language'] == $cut_url[0]) {
-                        var_dump($value);
                         if ($count_cover_image == 0) {
                             $count_cover_image = $count_cover_image + 1;
                             echo '<div class="carousel-item active">';
@@ -928,6 +928,7 @@ $cut_url = explode('/', $uri_menu);
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
             $('.select2').select2({
@@ -1075,7 +1076,7 @@ $cut_url = explode('/', $uri_menu);
             action_('dashboard/quotation/create/withuser/<?= count($service_header) ?>', 'form_quotation');
         });
     </script>
-    
+
     <!-- function action ajax request -->
     <script>
         function action_(url, form) {

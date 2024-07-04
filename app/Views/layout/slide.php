@@ -169,7 +169,6 @@
                 $count_cover_image = 0;
                 foreach ($cover_page as $key => $value) {
                     if ($value['language'] == $cut_url[0]) {
-                        var_dump($value);
                         if ($count_cover_image == 0) {
                             $count_cover_image = $count_cover_image + 1;
                             echo '<div class="carousel-item active">';
