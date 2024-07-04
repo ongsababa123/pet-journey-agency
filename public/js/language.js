@@ -266,7 +266,7 @@ async function updateLanguage(lang) {
       title_price_request: "title_price_request",
       detail_price_request: "detail_price_request",
       btn_price_request: "btn_price_request",
-      service_list_title: "service_list_title"
+      service_list_title: "service_list_title",
     };
 
     for (const [id, key] of Object.entries(partnerElements)) {
@@ -275,20 +275,113 @@ async function updateLanguage(lang) {
         element.textContent = partnerData[lang][key];
       }
     }
+
+    // section service2
+    const service2Response = await fetch(
+      BASE_URL + "public/data/language/service2_local.json"
+    );
+    if (!service2Response.ok) {
+      throw new Error(
+        "Network response was not ok " + service2Response.statusText
+      );
+    }
+    const service2Data = await service2Response.json();
+
+    // กำหนด element ที่ต้องการอัพเดตข้อความตามภาษา
+    const service2Elements = {
+      search_category: "search_category",
+      select_category: "select_category",
+      price_high_to_low: "price_high_to_low",
+      price_low_to_high: "price_low_to_high",
+      latest_date: "latest_date",
+      new_date: "new_date",
+      dog: "dog",
+      cat: "cat",
+      view_more: "view_more",
+      breed: "breed",
+      age: "age",
+      price: "price",
+      price_unit: "price_unit",
+      pet_information: "pet_information",
+      gender: "gender",
+      color: "color",
+      characteristic: "characteristic",
+      vaccination_history: "vaccination_history",
+      sell_date: "sell_date",
+      contact_seller: "contact_seller",
+      close: "close",
+      pet_detail: "pet_detail",
+    };
+
+    // อัพเดตข้อความของตัวเลือกทั้งหมดใน select
+    const selectElement = document.getElementById("service-search");
+    Array.from(selectElement.options).forEach((option) => {
+      if (service2Data[lang][option.value]) {
+        option.textContent = service2Data[lang][option.value];
+      } else {
+        option.textContent = option.value;
+      }
+    });
+
+    // อัพเดตข้อความของตัวเลือกแรกใน select
+    if (selectElement.options.length > 0) {
+      selectElement.options[0].textContent =
+        service2Data[lang][selectElement.options[0].value];
+    }
+
+    // ลูปผ่าน element แต่ละตัวเพื่อตั้งค่า textContent ใหม่
+    for (const [key, id] of Object.entries(service2Elements)) {
+      if (
+        [
+          "select_category",
+          "price_high_to_low",
+          "price_low_to_high",
+          "latest_date",
+          "new_date",
+          "dog",
+          "cat",
+        ].includes(key)
+      ) {
+        // เลือก element ของ option และอัพเดตข้อความ
+        const optionElement = document.querySelector(
+          `#service-search option[value='${id}']`
+        );
+        if (optionElement) {
+          optionElement.textContent = service2Data[lang][key];
+        }
+      } else {
+        // อัพเดตข้อความของ element อื่นๆ
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = service2Data[lang][key];
+        }
+      }
+    }
+
+    // อัพเดตข้อความใน pet cards (ถ้ามี)
+    document.querySelectorAll(".pet-card").forEach((petCard) => {
+      const petId = petCard
+        .querySelector(".card-body .date-posted")
+        .id.replace("sell_date", "");
+      const elements = {
+        [`sell_date${petId}`]: "sell_date",
+        [`breed${petId}`]: "breed",
+        [`age${petId}`]: "age",
+        [`price${petId}`]: "price",
+        [`price_unit_${petId}`]: "price_unit",
+        [`btn_view_more${petId}`]: "view_more",
+      };
+
+      for (const [id, key] of Object.entries(elements)) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = service2Data[lang][key];
+        }
+      }
+    });
   } catch (error) {
     console.error("Failed to fetch content: ", error);
   }
-}
-
-function setFlagImage(selectedLang) {
-  const flagImg = document.querySelectorAll("#flag-img, #flag-img-bottom");
-  flagImg.forEach((img) => {
-    if (selectedLang === "th") {
-      img.src = BASE_URL + "dist/img/flagth.png";
-    } else {
-      img.src = BASE_URL + "dist/img/flagen.png";
-    }
-  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <style>
+        /* Existing styles */
+        :root {
+            --swiper-navigation-size: 15px !important;
+        }
+
         * {
             font-family: 'Kanit', sans-serif;
             margin: 0;
@@ -141,63 +146,59 @@
         }
 
         .male-icon {
-            background-image: url('path/to/male-icon.png');
-            background-size: contain;
-            width: 20px;
-            height: 20px;
-            display: inline-block;
+            color: #1894e4;
+            font-size: 30px;
         }
 
         .female-icon {
-            background-image: url('path/to/female-icon.png');
-            background-size: contain;
-            width: 20px;
-            height: 20px;
-            display: inline-block;
+            color: #fc0464;
+            font-size: 30px;
         }
 
         .service-sell-box {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
             gap: 20px;
         }
 
-        .card .pet-card {
-            border-radius: 15px;
-        }
-
         .pet-card {
-            border-radius: 20px;
+            background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             position: relative;
             width: 260px;
-            height: 550px;
+            height: 480px;
             display: flex;
             flex-direction: column;
+            border-radius: 10px;
+        }
+
+        .set-img {
+            position: relative;
+            padding: 35px 10px 0px 10px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .pet-card img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            padding: 10px;
-            border-radius: 20px;
-
+            border-radius: 10px;
         }
 
         .pet-card .card-body {
-            padding: 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .pet-card .card-title {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
             color: #003366;
+            z-index: 2;
         }
 
         .pet-card .card-text {
@@ -205,17 +206,10 @@
             color: #646161;
         }
 
-        .pet-card .btn {
-            background-color: #FFDA56;
-            color: #003366;
-            font-weight: 700;
-            border-radius: 5px;
-            padding: 10px 20px;
-            text-transform: uppercase;
-        }
-
-        .pet-card .btn:hover {
-            background-color: #FFC107;
+        .pet-card-icon {
+            position: absolute;
+            top: 55%;
+            right: 7%;
         }
 
         .date-posted {
@@ -224,6 +218,154 @@
             right: 10px;
             font-size: 12px;
             color: #646161;
+        }
+
+        .swiper-slide {
+            width: 100% !important;
+            padding: 0px 10px 0px 10px !important;
+            box-sizing: border-box;
+        }
+
+        /* Small swiper buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            font-size: var(--swiper-navigation-size) !important;
+            color: #002157 !important;
+            position: absolute !important;
+            top: 50% !important;
+            width: 40px !important;
+            height: 40px !important;
+            margin-top: -20px;
+            z-index: 10;
+            cursor: pointer;
+            background-color: #d1d1d13d !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .swiper-button-next {
+            right: 5px;
+        }
+
+        .swiper-button-prev {
+            left: 5px;
+        }
+
+        .swiper-button-next::before,
+        .swiper-button-prev::before {
+            font-size: 14px;
+        }
+
+        .small-primary-button {
+            background-color: #FFDA56;
+            border: none;
+            color: white;
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .small-primary-button:hover {
+            background-color: #FFB629;
+        }
+
+        .btn-view-more {
+            display: flex;
+            justify-content: center;
+        }
+
+        .modal-header.bg-primary {
+            background-color: #007bff;
+        }
+
+        .modal-header.text-white {
+            color: #fff;
+        }
+
+        .close.text-white {
+            color: #fff;
+        }
+
+        .modal-pic {
+            width: 30%;
+            border-radius: 10px;
+        }
+
+        .modal-content {
+            border-radius: 15px !important;
+        }
+
+        .modal-header {
+            border-radius: 15px 15px 0px 0px !important;
+        }
+
+
+        .modal-header {
+            background-color: #0198B4;
+            height: 50px;
+            align-items: center !important;
+        }
+
+        .button-modal-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-modal {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button-modal-call {
+            background-color: #1e3a66;
+        }
+
+        .button-modal-call:hover {
+            background-color: #163152;
+        }
+
+        .button-modal-close {
+            background-color: #d0021b;
+        }
+
+        .button-modal-close:hover {
+            background-color: #a80015;
+        }
+
+        .button-modal i {
+            margin-right: 10px;
+        }
+
+        @media (min-width: 2000px) {
+            .service-sell-box {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1800px) {
+            .service-sell-box {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
         }
 
         @media (max-width: 1200px) {
@@ -279,6 +421,19 @@
             .service-sell-box {
                 grid-template-columns: 1fr;
             }
+
+            .service-sell-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-pic {
+                width: 50%;
+            }
+
+            .service-list {
+                max-width: 100%;
+                margin-left: 0px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -294,9 +449,112 @@
             .flex-container {
                 margin-bottom: 300px;
             }
+
+            .pet-card {
+                width: 200px;
+                height: 380px;
+            }
+
+            .date-posted {
+                font-size: 8pt;
+            }
+
+            .set-img {
+                padding: 27px 0px 0px 0px;
+            }
+
+            .pet-card img {
+                height: 160px;
+                border-radius: 7px;
+            }
+
+            .pet-card .card-title {
+                font-size: 10pt;
+                font-weight: 600;
+            }
+
+            .pet-card .card-text {
+                font-size: 9pt;
+                line-height: 1px;
+            }
+
+            .service-list {
+                max-width: 100%;
+                margin-left: 0px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-header {
+                height: auto;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .service-category-search {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .service-list {
+                max-width: 100%;
+                margin-left: 0px;
+            }
+
+            .service-category-search label,
+            .select2-container {
+                width: 100%;
+            }
+
+            .service-sell-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pet-card {
+                width: 200px;
+                height: 380px;
+            }
+
+            .date-posted {
+                font-size: 8pt;
+            }
+
+            .set-img {
+                padding: 27px 0px 0px 0px;
+            }
+
+            .pet-card img {
+                height: 160px;
+                border-radius: 7px;
+            }
+
+            .pet-card .card-title {
+                font-size: 9pt;
+                font-weight: 500;
+            }
+
+            .pet-card .card-text {
+                font-size: 9pt;
+                line-height: 1px;
+            }
         }
     </style>
 </head>
+<?php
+$pet = [
+    "title" => "ลูกสุนัขที่ดูเป็นมิตร",
+    "price" => "10000 บาท",
+    "details" => [
+        "breed" => "ชิสุ",
+        "age" => "3 เดือน",
+        "gender" => "ตัวเมีย",
+        "color" => "ขาว",
+        "temperament" => "เชื่อง, เป็นมิตร, ชอบขนม",
+        "vaccination" => "ฉีดวัคซีนครบ"
+    ],
+    "datePosted" => "11 May 2022"
+];
+?>
 
 <body>
     <!-- sec slide page -->
@@ -314,17 +572,15 @@
                 <div class="service-main-content">
                     <div class="service-category">
                         <div class="service-category-search">
-                            <label for="service-search" class="mr-2">ค้นหาสัตว์เลี้ยง:</label>
+                            <label id="search_category" for="service-search-1" class="mr-2">ค้นหาหมวดหมู่:</label>
                             <select id="service-search" class="form-control">
-                                <option value="">เลือกสัตว์เลี้ยง</option>
-                                <option value="สุนัข">สุนัข</option>
-                                <option value="แมว">แมว</option>
-                                <option value="นก">นก</option>
-                                <option value="ปลา">ปลา</option>
-                                <option value="กระต่าย">กระต่าย</option>
-                                <option value="หนูแฮมสเตอร์">หนูแฮมสเตอร์</option>
-                                <option value="เต่า">เต่า</option>
-                                <option value="สัตว์เลี้ยงแปลกๆ">สัตว์เลี้ยงแปลกๆ</option>
+                                <option value="select_category" id="select_category"></option>
+                                <option value="price_high_to_low" id="price_high_to_low">ราคาสูงไปต่ำ</option>
+                                <option value="price_low_to_high" id="price_low_to_high">ราคาต่ำไปสูง</option>
+                                <option value="latest_date" id="latest_date">วันที่เก่าสุด</option>
+                                <option value="new_date" id="new_date">วันที่ใหม่</option>
+                                <option value="dog" id="dog">สุนัข</option>
+                                <option value="cat" id="cat">แมว</option>
                             </select>
                         </div>
                     </div>
@@ -346,6 +602,51 @@
         </div>
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title" id="pet_detail">รายละเอียดสัตว์เลี้ยง</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center mb-3">
+                        <img class="modal-pic" src="<?= base_url('dist/img/pic_service_4.png') ?>">
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title-modal" style="font-weight: 600;"><?php echo $pet['title']; ?></h4>
+                            <p class="card-text" id="price">ราคา: <?php echo $pet['price']; ?></p>
+                            <p class="card-text" id="pet_information"><strong>ข้อมูลสัตว์เลี้ยง</strong></p>
+                            <ul class="list-unstyled" style="margin-left: 10px;">
+                                <li><i class="fas fa-dog" style="color: #0198B4; margin-right: 10px;"></i><span id="breed">พันธุ์:</span> <?php echo $pet['details']['breed']; ?></li>
+                                <li><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 14px;"></i><span id="age">อายุ:</span> <?php echo $pet['details']['age']; ?></li>
+                                <li><i class="fas fa-venus-mars" style="color: #0198B4; margin-right: 10px;"></i><span id="gender">เพศ:</span> <?php echo $pet['details']['gender']; ?></li>
+                                <li><i class="fas fa-paw" style="color: #0198B4; margin-right: 13px;"></i><span id="color">สีขน:</span> <?php echo $pet['details']['color']; ?></li>
+                                <li><i class="fas fa-bone" style="color: #0198B4; margin-right: 10px;"></i><span id="characteristic">ลักษณะนิสัย:</span> <?php echo $pet['details']['temperament']; ?></li>
+                                <li><i class="fas fa-notes-medical" style="color: #0198B4; margin-right: 16px;"></i><span id="vaccination_history">ประวัติการฉีดวัคซีน:</span> <?php echo $pet['details']['vaccination']; ?></li>
+                            </ul>
+                            <p class="text-muted d-flex justify-content-end" id="sell_date">วันที่ลงขาย:</p>
+                        </div>
+                    </div>
+                    <div class="button-modal-container d-flex justify-content-center">
+                        <span href="#" class="button-modal button-modal-call">
+                            <i class="fas fa-phone-alt"></i>
+                            <span id="contact_seller">ติดต่อผู้ขาย</span>
+                        </span>
+                        <span href="#" class="button-modal button-modal-close" data-dismiss="modal">
+                            <i class="fas fa-times"></i>
+                            <span id="close">Close</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -356,6 +657,7 @@
     <script>
         AOS.init();
     </script>
+
     <script>
         const base_url = '<?= base_url(); ?>';
 
@@ -380,9 +682,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#service-search').select2();
+            $('#service-search-1').select2();
 
-            $('#service-search').on('change', function() {
+            $('#service-search-1').on('change', function() {
                 const selectedService = $(this).val();
                 const listItems = $('#service-list-item li');
                 listItems.each(function() {
@@ -398,82 +700,144 @@
 
     <script>
         const pets = [{
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
+                id: 1,
+                title: "แมวสีขาวที่มีลักษณะนุ่มนวลเหมือนหิมะ แมวสีขาวที่มีลักษณะนุ่มนวลเหมือนหิมะ",
+                species: "เปอร์เซีย",
                 age: "3 เดือน",
                 weight: "3 กิโล",
                 price: "12000 บาท",
-                image: "dist/img/pic_service_1.png",
+                images: [
+                    "dist/img/pic_service_1.png",
+                    "dist/img/pic_service_2.png",
+                    "dist/img/pic_service_3.png"
+                ],
                 gender: "male"
             },
             {
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
+                id: 2,
+                title: "ลูกสุนัขที่ดูเป็นมิตร",
+                species: "เปอร์เซีย",
                 age: "3 เดือน",
                 weight: "3 กิโล",
                 price: "12000 บาท",
-                image: "dist/img/pic_service_2.png",
+                images: [
+                    "dist/img/pic_service_6.png",
+                    "dist/img/pic_service_5.png",
+                    "dist/img/pic_service_4.png"
+                ],
                 gender: "female"
             },
             {
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
+                id: 3,
+                title: "แมวที่มีหนวดเด่นชัดและน่ารัก",
+                species: "เปอร์เซีย",
                 age: "3 เดือน",
                 weight: "3 กิโล",
                 price: "12000 บาท",
-                image: "dist/img/pic_service_3.png",
+                images: [
+                    "dist/img/pic_service_2.png",
+                ],
+                gender: "male"
+            },
+            {
+                id: 4,
+                title: "แมวที่มีลักษณะขนหนาและดูอบอุ่นเหมือนสวมถุงมือ",
+                species: "เปอร์เซีย",
+                age: "3 เดือน",
+                weight: "3 กิโล",
+                price: "12000 บาท",
+                images: [
+                    "dist/img/pic_service_3.png",
+                ],
+                gender: "male"
+            },
+            {
+                id: 5,
+                title: "ลูกสุนัขที่ดูซนและกระตือรือร้น",
+                species: "เปอร์เซีย",
+                age: "3 เดือน",
+                weight: "3 กิโล",
+                price: "12000 บาท",
+                images: [
+                    "dist/img/pic_service_5.png",
+                ],
                 gender: "female"
             },
             {
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
+                id: 6,
+                title: "แมวที่มีลักษณะสงบและดูเหมือนแสงจันทร์",
+                species: "เปอร์เซีย",
                 age: "3 เดือน",
                 weight: "3 กิโล",
                 price: "12000 บาท",
-                image: "dist/img/pic_service_4.png",
+                images: [
+                    "dist/img/pic_service_2.png",
+                ],
+                gender: "male"
+            },
+            {
+                id: 7,
+                title: "ลูกสุนัขที่ดูแข็งแรงและเต็มไปด้วยพลัง",
+                species: "เปอร์เซีย",
+                age: "3 เดือน",
+                weight: "3 กิโล",
+                price: "12000 บาท",
+                images: [
+                    "dist/img/pic_service_6.png",
+                ],
                 gender: "female"
             },
             {
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
+                id: 8,
+                title: "ลูกสุนัขสีน้ำตาลที่มีลักษณะคล้ายช็อกโกแลต",
+                species: "เปอร์เซีย",
                 age: "3 เดือน",
                 weight: "3 กิโล",
                 price: "12000 บาท",
-                image: "dist/img/pic_service_5.png",
+                images: [
+                    "dist/img/pic_service_4.png",
+                ],
                 gender: "female"
             },
-            {
-                title: "text title",
-                species: "พันธุ์ เปอร์เซีย",
-                age: "3 เดือน",
-                weight: "3 กิโล",
-                price: "12000 บาท",
-                image: "dist/img/pic_service_6.png",
-                gender: "female"
-            }
         ];
 
         const serviceSellBox = document.querySelector('.service-sell-box');
 
         pets.forEach(pet => {
             const petCard = `
-        <div class="card pet-card">
-            <img src="${base_url}/${pet.image}" class="card-img-top" alt="${pet.title}">
-            <div class="card-body">
-                <div class="date-posted">Date Posted: 11 May 2022</div>
-                <h5 class="card-title">${pet.title}</h5>
-                <p class="card-text"><i class="fas fa-paw"></i> ${pet.species}</p>
-                <p class="card-text"><i class="fas fa-birthday-cake"></i> ${pet.age}</p>
-                <p class="card-text"><i class="fas fa-weight"></i> ${pet.weight}</p>
-                <p class="card-text"><strong>ราคา: ${pet.price}</strong></p>
-                <a href="#" class="btn btn-warning">view more</a>
-                <span class="${pet.gender === 'male' ? 'male-icon' : 'female-icon'}"></span>
+            <div class="pet-card">
+                <div class="set-img swiper-container">
+                    <div class="swiper-wrapper">
+                        ${pet.images.map(image => `<div class="swiper-slide"><img src="${base_url}/${image}" alt="${pet.title}"></div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="date-posted" id="sell_date${pet.id}"> ${pet.datePosted}</div>
+                    <h5 class="card-title">${pet.title}</h5>
+                    <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id}">พันธุ์:</span> ${pet.species}</p>
+                    <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id}">อายุ:</span> ${pet.age}</p>
+                    <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id}"></span> </p>
+                    <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
+                </div>
+                <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal"><button class="small-primary-button" id="btn_view_more${pet.id}">view more</button></div>
             </div>
-        </div>
     `;
             serviceSellBox.innerHTML += petCard;
         });
+        // new Swiper('.swiper-container', {
+        //     slidesPerView: 1,
+        //     spaceBetween: 0,
+        //     navigation: {
+        //         nextEl: '.swiper-button-next',
+        //         prevEl: '.swiper-button-prev',
+        //     },
+        //     loop: true,
+        // });
+        //         <div class="swiper-button-next"></div>
+        // <div class="swiper-button-prev"></div>
     </script>
+
 </body>
 
 </html>
