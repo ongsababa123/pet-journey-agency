@@ -17,6 +17,7 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 280px;
+            z-index: 100;
         }
 
         .footer img {
@@ -148,13 +149,14 @@
     </style>
 </head>
 <?php
-    $cut_url = explode('/', $uri_menu);
-    ?>
+$cut_url = explode('/', $uri_menu);
+?>
+
 <body>
     <footer class="footer">
         <img class="pic-footer" src="<?= base_url('dist/img/footerpic.png') ?>" alt="Logo">
         <div>
-        <img src="<?= base_url('dist/img/logo/'). $contact_data['logo_image_path'] ?>" alt="Logo">
+            <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
         </div>
         <div class="contact-info">
             <div class="info-item">
@@ -190,5 +192,21 @@
         </div>
     </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const footer = document.querySelector("footer");
+        const currentUrl = window.location.href;
+
+        const regexen = /\/pet-journey-agency\/en\/servicepage(\/buysale)?\/\d+/;
+        const regexth = /\/pet-journey-agency\/th\/servicepage(\/buysale)?\/\d+/;
+
+        if (regexen.test(currentUrl) || regexth.test(currentUrl)) {
+            footer.style.marginTop = "0px";
+        } else {
+            footer.style.marginTop = "280px";
+        }
+    });
+</script>
+
 
 </html>

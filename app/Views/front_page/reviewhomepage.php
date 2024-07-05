@@ -73,6 +73,7 @@
             border-radius: 10px;
             background-color: #23456B;
             display: flex;
+            justify-content: center;
             align-items: center;
             height: 100px;
         }

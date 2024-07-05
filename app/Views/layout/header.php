@@ -24,6 +24,96 @@
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
 
     <style>
+        /* Loading Page Styles */
+        .loading-container {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .spinner {
+            margin: 20px auto;
+            width: 70px;
+            text-align: center;
+        }
+
+        .spinner>div {
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+
+            0%,
+            80%,
+            100% {
+                -webkit-transform: scale(0)
+            }
+
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+
+            0%,
+            80%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .ml2 {
+            font-weight: 600;
+            font-size: 1.0em;
+        }
+
+        .ml2 .letter {
+            display: inline-block;
+            line-height: 1em;
+        }
+
         /* general */
         * {
             font-family: 'Kanit', sans-serif;
@@ -545,157 +635,179 @@
 </head>
 
 <body>
-    <header>
-        <!-- header normal -->
-        <div class="header-top">
-            <div class="logo">
-                <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
-            </div>
-            <div class="contact-info">
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <span id="info_open1"></span>
-                        <?php if ($cut_url['0'] == 'th') echo $contact_data['open_time'];
-                        else echo $contact_data['open_time_en']; ?>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <span id="info_email1"></span>
-                        <span><?= $contact_data['email'] ?></span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <span id="info_callus1"></span>
-                        <span><?= $contact_data['phone_number'] ?></span>
-                    </div>
-                </div>
-            </div>
-            <div class="social-icons">
-                <?php if (!empty($contact_data['facebook_link'])) : ?>
-                    <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
-                <?php endif; ?>
-                <?php if (!empty($contact_data['instragram_link'])) : ?>
-                    <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
-                <?php endif; ?>
-                <div class="language-selector">
-                    <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-                    <select id="language-select">
-                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
-                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
-                    </select>
-                </div>
-            </div>
+    <div class="loading-container" id="loading-container">
+        <img width="20%" src="<?= base_url('dist/img/loadind_page.gif'); ?>" alt="Loading GIF">
+        <span class="ml2 loading-text" id="loading">Please wait, loading data..</span>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
-        <div class="header-bottom">
-            <div class="logo">
-                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
-            </div>
-            <div class="navbar-nav">
-                <div class="nav-link"><a id="menu_home" href="<?= base_url($cut_url[0] . '/homepage') ?>">Home</a></div>
-                <div class="nav-link"><a id="menu_about_us" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">About us</a></div>
-                <div class="nav-link">
-                    <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <?php foreach ($service_header as $service) : ?>
-                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>">
-                                <?php
-                                if ($cut_url[0] == 'th') {
-                                    echo $service['header_service_name_th'];
-                                } else {
-                                    echo $service['header_service_name_en'];
-                                } ?>
-                            </a>
-                        <?php endforeach; ?>
+    </div>
+    <div id="content" class="hidden">
+        <header>
+            <!-- header normal -->
+            <div class="header-top">
+                <div class="logo">
+                    <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <span id="info_open1"></span>
+                            <?php if ($cut_url['0'] == 'th') echo $contact_data['open_time'];
+                            else echo $contact_data['open_time_en']; ?>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <span id="info_email1"></span>
+                            <span><?= $contact_data['email'] ?></span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span id="info_callus1"></span>
+                            <span><?= $contact_data['phone_number'] ?></span>
+                        </div>
                     </div>
                 </div>
-                <div class="nav-link"><a id="menu_review" href="<?= base_url($cut_url[0] . '/reviewpage') ?>">Review</a></div>
-                <div class="nav-link"><a id="menu_contact" href="<?= base_url($cut_url[0] . '/contactpage') ?>">Contact</a></div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="social-icons-bottom">
+                <div class="social-icons">
                     <?php if (!empty($contact_data['facebook_link'])) : ?>
-                        <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+                        <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
                     <?php endif; ?>
                     <?php if (!empty($contact_data['instragram_link'])) : ?>
-                        <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+                        <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
+                    <?php endif; ?>
+                    <div class="language-selector">
+                        <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                        <select id="language-select">
+                            <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
+                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="logo">
+                    <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+                </div>
+                <div class="navbar-nav">
+                    <div class="nav-link"><a id="menu_home" href="<?= base_url($cut_url[0] . '/homepage') ?>">Home</a></div>
+                    <div class="nav-link"><a id="menu_about_us" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">About us</a></div>
+                    <div class="nav-link">
+                        <a id="menu_service" href="#">Our Service <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <?php foreach ($service_header as $service) : ?>
+                                <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>">
+                                    <?php
+                                    if ($cut_url[0] == 'th') {
+                                        echo $service['header_service_name_th'];
+                                    } else {
+                                        echo $service['header_service_name_en'];
+                                    } ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div class="nav-link"><a id="menu_review" href="<?= base_url($cut_url[0] . '/reviewpage') ?>">Review</a></div>
+                    <div class="nav-link"><a id="menu_contact" href="<?= base_url($cut_url[0] . '/contactpage') ?>">Contact</a></div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="social-icons-bottom">
+                        <?php if (!empty($contact_data['facebook_link'])) : ?>
+                            <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>&nbsp; &nbsp;
+                        <?php endif; ?>
+                        <?php if (!empty($contact_data['instragram_link'])) : ?>
+                            <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>&nbsp; &nbsp;
+                        <?php endif; ?>
+                    </div>
+                    <div class="language-selector">
+                        <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
+                        <select id="language-select-bottom">
+                            <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
+                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- header mobile -->
+            <div class="header-top-mobile">
+                <div class="menu">
+                    <i class="fas fa-bars" onclick="toggleMobileMenu()"></i>
+                </div>
+                <div class="logo">
+                    <img src="<?= base_url('dist/img/logo_mobile.png') ?>" alt="Logo">
+                    <!-- <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo"> -->
+                </div>
+                <div class="lang">
+                    <div class="language-selector">
+                        <select id="language-select-mobile">
+                            <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>EN</option>
+                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>TH</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
+
+            <div class="menu-mobile" id="menu-mobile">
+                <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
+                <div>
+                    <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
+                    <a href="<?= base_url($cut_url[0] . '/homepage') ?>"><i class="fas fa-home"></i>Home</a>
+                    <a href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"><i class="fas fa-info-circle"></i>About us</a>
+                    <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
+                    <a href="<?= base_url($cut_url[0] . '/reviewpage') ?>"><i class="fas fa-star"></i>Review</a>
+                    <a href="<?= base_url($cut_url[0] . '/contactpage') ?>"><i class="fas fa-file-alt"></i>Contact</a>
+                </div>
+                <div class="contact">
+                    <p style="font-size: larger;">Contact</p>
+                    <?php if (!empty($contact_data['facebook_name'])) : ?>
+                        <div>
+                            <i class="fab fa-facebook"></i>
+                            <p>&nbsp;<?= $contact_data['facebook_name'] ?></p>
+                        </div>
+                    <?php endif; ?>
+                    <div>
+                        <i class="fas fa-phone-alt"></i>
+                        <p>&nbsp;081 615 5644</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone-alt"></i>
+                        <p>&nbsp;088 657 3909</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone-alt"></i>
+                        <p>&nbsp;082 519 2892</p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <?php if (!empty($contact_data['facebook_name'])) : ?>
+                        <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
+                    <?php endif; ?>
+                    <?php if (!empty($contact_data['instragram_name'])) : ?>
+                        <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
                     <?php endif; ?>
                 </div>
-                <div class="language-selector">
-                    <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
-                    <select id="language-select-bottom">
-                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
-                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
-                    </select>
-                </div>
             </div>
-        </div>
-
-        <!-- header mobile -->
-        <div class="header-top-mobile">
-            <div class="menu">
-                <i class="fas fa-bars" onclick="toggleMobileMenu()"></i>
-            </div>
-            <div class="logo">
-                <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
-            </div>
-            <div class="lang">
-                <div class="language-selector">
-                    <select id="language-select-mobile">
-                        <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
-                        <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="backdrop" id="backdrop" onclick="toggleMobileMenu()"></div>
-
-        <div class="menu-mobile" id="menu-mobile">
-            <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
-            <div>
-                <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                <a href="<?= base_url($cut_url[0] . '/homepage') ?>"><i class="fas fa-home"></i>Home</a>
-                <a href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"><i class="fas fa-info-circle"></i>About us</a>
-                <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
-                <a href="<?= base_url($cut_url[0] . '/reviewpage') ?>"><i class="fas fa-star"></i>Review</a>
-                <a href="<?= base_url($cut_url[0] . '/contactpage') ?>"><i class="fas fa-file-alt"></i>Contact</a>
-            </div>
-            <div class="contact">
-                <p style="font-size: larger;">Contact</p>
-                <?php if (!empty($contact_data['facebook_name'])) : ?>
-                    <div>
-                        <i class="fab fa-facebook"></i>
-                        <p>&nbsp;<?= $contact_data['facebook_name'] ?></p>
-                    </div>
-                <?php endif; ?>
-                <div>
-                    <i class="fas fa-phone-alt"></i>
-                    <p>&nbsp;081 615 5644</p>
-                </div>
-                <div>
-                    <i class="fas fa-phone-alt"></i>
-                    <p>&nbsp;088 657 3909</p>
-                </div>
-                <div>
-                    <i class="fas fa-phone-alt"></i>
-                    <p>&nbsp;082 519 2892</p>
-                </div>
-            </div>
-            <div class="social-icons">
-                <?php if (!empty($contact_data['facebook_name'])) : ?>
-                    <a href="<?= $contact_data['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a>
-                <?php endif; ?>
-                <?php if (!empty($contact_data['instragram_name'])) : ?>
-                    <a href="<?= $contact_data['instragram_link'] ?>"><i class="fab fa-instagram"></i></a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </header>
+        </header>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- loading page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('loading-container').style.display = 'none';
+                document.getElementById('content').classList.remove('hidden');
+            }, 800);
+        });
+    </script>
 
     <!-- Script to handle language change -->
     <script>

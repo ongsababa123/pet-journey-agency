@@ -9,7 +9,8 @@
         "menu_contact": "Contact",
         "info_open1": "Opening",
         "info_email1": "Email",
-        "info_callus1": "Call Us"
+        "info_callus1": "Call Us",
+        "loading": "Please wait, loading data..."
     },
     "th": {
         "lang_en": "ภาษาอังกฤษ",
@@ -21,6 +22,7 @@
         "menu_contact": "ติดต่อ",
         "info_open1": "เวลาทําการ",
         "info_email1": "อีเมล์",
-        "info_callus1": "ติดต่อเรา"
+        "info_callus1": "ติดต่อเรา",
+        "loading": "กรุณารอสักครู่ กำลังโหลดข้อมูล..."
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
+    <title>About Us Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -353,8 +353,8 @@ $cut_url = explode('/', $uri_menu);
     <!-- sec veterinary team -->
     <section class="veterinary-team-section">
         <div class="d-flex justify-content-center mb-4">
-            <h2 id="ab_title_team1" style="color: #ffffff;">Veterinary</h2>
-            <h2 id="ab_title_team2" style="color: #FAD046;">Team</h2>
+            <h2 id="ab_title_team1" style="color: #ffffff;">ทีม</h2>
+            <h2 id="ab_title_team2" style="color: #FAD046;">ของเรา</h2>
         </div>
         <div class="slideboxr">
             <div class="slideboxs" id="slideboxs-container"></div>
@@ -367,7 +367,7 @@ $cut_url = explode('/', $uri_menu);
     <section class="pet-story-section">
         <div class="row d-flex align-items-center justify-content-center mb-4">
             <img class="petstorypic" src="<?= base_url('dist/img/about_us_cat_dog.png') ?>" alt="PetStory">
-            <span id="ab_title_story1" class="title-pet-story" style="color: #fcd20f;">สร้างความสุข</span>
+            <span id="ab_title_story1" class="title-pet-story" style="color: #fcd20f; margin-right: 1%;">สร้างความสุข</span>
             <span id="ab_title_story2" class="title-pet-story" style="color: #4A4A4A;">สบายให้กับเพื่อนสัตว์ของคุณ</spa>
         </div>
         <div class="container" id="content-container">

@@ -133,6 +133,7 @@
             padding: 50px 0;
             background-color: #fff;
             text-align: center;
+            position: relative;
         }
 
         .quote-title {
@@ -161,6 +162,33 @@
             top: 10%;
             transform: translateY(-50%);
             z-index: 3;
+        }
+
+        .feetpet-icon1 {
+            position: absolute;
+            top: 700px;
+            left: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        .feetpet-icon2 {
+            position: absolute;
+            top: 300px;
+            right: 37px;
+            z-index: 1;
+            width: 100px;
+        }
+
+        @media (max-width: 1300px) {
+            .feetpet-icon1 {
+                width: 90px;
+                top: 1200px;
+            }
+            .feetpet-icon2 {
+                width: 90px;
+                top: 100px;
+            }
         }
 
         @media (max-width: 800px) {
@@ -203,6 +231,14 @@
 
         }
 
+        @media (max-width: 700px) {
+            .feetpet-icon1 {
+               display: none;
+            }
+            .feetpet-icon2 {
+               display: none;
+            }
+        }
         @media (max-width: 400px) {
             .contact-details p {
                 font-size: 9pt;
@@ -246,6 +282,10 @@
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
             text-align: left;
+        }
+
+        .select2-results__option--selectable:hover {
+            background-color: #DDDDDD;
         }
 
         .contact-details-icon {
@@ -482,6 +522,8 @@ $cut_url = explode('/', $uri_menu);
                 </div>
             </form>
         </div>
+        <img class="feetpet-icon1" src="<?= base_url('dist/img/iconfeetpet.png') ?>" style="margin-left: 7px;">
+        <img class="feetpet-icon2" src="<?= base_url('dist/img/iconfeetpet.png') ?>" style="margin-left: 7px;">
     </section>
     <br>
     <!-- Scripts -->

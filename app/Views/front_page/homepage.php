@@ -456,7 +456,7 @@
 
         .feetpet-icon1 {
             position: absolute;
-            top: 650px;
+            top: 700px;
             left: 37px;
             z-index: 1;
             width: 100px;
@@ -613,6 +613,10 @@
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
             text-align: left;
+        }
+
+        .select2-results__option--selectable:hover {
+            background-color: #DDDDDD;
         }
     </style>
 </head>
