@@ -283,6 +283,10 @@
                 margin-bottom: 300px;
             }
         }
+
+        .service-main-content p img {
+            width: 50% !important;
+        }
     </style>
 </head>
 <?php

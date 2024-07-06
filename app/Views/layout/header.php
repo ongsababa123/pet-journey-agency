@@ -446,6 +446,7 @@
         }
 
         .menu-mobile a {
+            text-decoration: none;
             color: #333;
             display: block;
             padding: 10px;
@@ -461,6 +462,7 @@
         }
 
         .menu-mobile a:hover {
+            text-decoration: none;
             background-color: #FFF792;
             color: #23456B;
             border-radius: 13px;
@@ -627,6 +629,20 @@
                 display: block;
             }
         }
+
+        .sub-menu {
+            display: none;
+            margin-left: 20px;
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+
+        .sub-menu.open {
+            display: block;
+            max-height: 200px;
+            /* ปรับตามความเหมาะสม */
+        }
     </style>
 
     <?php
@@ -761,7 +777,14 @@
                     <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
                     <a href="<?= base_url($cut_url[0] . '/homepage') ?>"><i class="fas fa-home"></i>Home</a>
                     <a href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"><i class="fas fa-info-circle"></i>About us</a>
-                    <a href="#service"><i class="fas fa-concierge-bell"></i>Our Service</a>
+                    <a href="javascript:void(0);" onclick="toggleSubMenu()"><i class="fas fa-concierge-bell"></i>Our Service</a>
+                    <div id="sub-menu" class="sub-menu">
+                        <?php foreach ($service_header as $service) : ?>
+                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>">
+                                <?= $cut_url[0] == 'th' ? $service['header_service_name_th'] : $service['header_service_name_en']; ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                     <a href="<?= base_url($cut_url[0] . '/reviewpage') ?>"><i class="fas fa-star"></i>Review</a>
                     <a href="<?= base_url($cut_url[0] . '/contactpage') ?>"><i class="fas fa-file-alt"></i>Contact</a>
                 </div>
@@ -795,6 +818,7 @@
                     <?php endif; ?>
                 </div>
             </div>
+
         </header>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -876,17 +900,16 @@
     </script>
 
     <script>
-        // document.getElementById('toggleServices').addEventListener('click', function() {
-        //     var servicesMenu = document.getElementById('servicesMenu');
-        //     var arrowIcon = document.getElementById('arrowIcon');
-        //     if (servicesMenu.classList.contains('show')) {
-        //         servicesMenu.classList.remove('show');
-        //         arrowIcon.classList.remove('rotate');
-        //     } else {
-        //         servicesMenu.classList.add('show');
-        //         arrowIcon.classList.add('rotate');
-        //     }
-        // });
+        function toggleSubMenu() {
+            var subMenu = document.getElementById("sub-menu");
+            if (subMenu.classList.contains("open")) {
+                subMenu.classList.remove("open");
+                subMenu.style.maxHeight = "0";
+            } else {
+                subMenu.classList.add("open");
+                subMenu.style.maxHeight = subMenu.scrollHeight + "px";
+            }
+        }
     </script>
 </body>
 
