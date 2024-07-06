@@ -185,6 +185,7 @@
                 width: 90px;
                 top: 1200px;
             }
+
             .feetpet-icon2 {
                 width: 90px;
                 top: 100px;
@@ -233,12 +234,14 @@
 
         @media (max-width: 700px) {
             .feetpet-icon1 {
-               display: none;
+                display: none;
             }
+
             .feetpet-icon2 {
-               display: none;
+                display: none;
             }
         }
+
         @media (max-width: 400px) {
             .contact-details p {
                 font-size: 9pt;
@@ -296,6 +299,110 @@
         .contact-details-text {
             font-size: 1rem;
             line-height: 1.5;
+        }
+
+        .checkbox-container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1rem;
+        }
+
+        .form-check-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-check-input:checked~.checkmark {
+            background-color: #0396af;
+            animation: checkmark-animation 0.5s ease;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .form-check-input:checked~.checkmark:after {
+            display: block;
+            animation: checkmark-stroke 0.3s ease forwards;
+        }
+
+        .form-check-label {
+            margin-left: 10px;
+            transition: color 0.3s ease;
+            font-size: inherit;
+            font-weight: 400;
+        }
+
+        .form-check-input:checked~.form-check-label {
+            color: #0396af;
+            font-weight: 400;
+            animation: label-animation 0.3s ease;
+        }
+
+        @keyframes checkmark-animation {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes checkmark-stroke {
+            0% {
+                stroke-dashoffset: 30;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes label-animation {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
@@ -487,11 +594,14 @@ $cut_url = explode('/', $uri_menu);
                         <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
                         <div id="services-container">
                             <?php foreach ($service_header as $key => $value) : ?>
-                                <div class="form-check">
+                                <label class="checkbox-container">
                                     <input class="form-check-input" type="checkbox" id="service_<?= $key ?>" name="service_<?= $key ?>" value="<?= $value['id_service_header'] ?>">
-                                    <label class="form-check-label" for="service1"> <?php if ($cut_url['0'] == 'th') echo $value['header_service_name_th'];
-                                                                                    else echo $value['header_service_name_en']; ?></label>
-                                </div>
+                                    <span class="checkmark"></span>
+                                    <span class="form-check-label">
+                                        <?php if ($cut_url['0'] == 'th') echo $value['header_service_name_th'];
+                                        else echo $value['header_service_name_en']; ?>
+                                    </span>
+                                </label>
                             <?php endforeach; ?>
                         </div>
                     </div>

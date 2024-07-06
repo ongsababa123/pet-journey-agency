@@ -10,8 +10,8 @@ class EmailController extends BaseController
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('6239010001@p-vec.ac.th', 'Pet Journey Agency');
-        $email->setTo('6239010001@p-vec.ac.th');
+        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
+        $email->setTo('areeyeooo@gmail.com');
 
         $email->setSubject('คำขอใบเสนอราคาใหม่จากคุณ');
 
@@ -30,8 +30,8 @@ class EmailController extends BaseController
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('6239010001@p-vec.ac.th', 'Pet Journey Agency');
-        $email->setTo('6239010001@p-vec.ac.th');
+        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
+        $email->setTo('areeyeooo@gmail.com');
 
         $email->setSubject('คำขอใบเสนอราคาใหม่จากคุณ - ' . $data['name_last']);
 
@@ -49,8 +49,8 @@ class EmailController extends BaseController
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('6239010001@p-vec.ac.th', 'Pet Journey Agency');
-        $email->setTo('6239010001@p-vec.ac.th');
+        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
+        $email->setTo('areeyeooo@gmail.com');
 
         $email->setSubject('ข้อมูลการติดต่อใหม่!');
 
