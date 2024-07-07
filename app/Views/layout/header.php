@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:300,400,400i,700&display=swap">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css'); ?>">
     <!-- overlayScrollbars -->
@@ -461,12 +462,12 @@
             margin-right: 10px;
         }
 
-        .menu-mobile a:hover {
+        /* .menu-mobile a:hover {
             text-decoration: none;
             background-color: #FFF792;
             color: #23456B;
             border-radius: 13px;
-        }
+        } */
 
         .close-btn {
             position: absolute;
@@ -630,18 +631,42 @@
             }
         }
 
+        #dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+        }
+
+        #dropdown-icon {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+
         .sub-menu {
             display: none;
             margin-left: 20px;
-            transition: max-height 0.3s ease-out;
-            overflow: hidden;
             max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
 
         .sub-menu.open {
             display: block;
             max-height: 200px;
             /* ปรับตามความเหมาะสม */
+        }
+
+        #dropdown-icon.open {
+            transform: rotate(90deg);
+            /* หมุน 90 องศา */
         }
     </style>
 
@@ -775,9 +800,21 @@
                 <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
                 <div>
                     <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                    <a href="<?= base_url($cut_url[0] . '/homepage') ?>"><i class="fas fa-home"></i>Home</a>
-                    <a href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"><i class="fas fa-info-circle"></i>About us</a>
-                    <a href="javascript:void(0);" onclick="toggleSubMenu()"><i class="fas fa-concierge-bell"></i>Our Service</a>
+                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/homepage') ?>">
+                        <i class="fas fa-home"></i>
+                        <a id="menu_home_mb"> Home</a>
+                    </div>
+                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">
+                        <i class="fas fa-info-circle"></i>
+                        <a id="menu_about_us_mb"> About us</a>
+                    </div>
+                    <div class="menu-item" href="javascript:void(0);" onclick="toggleSubMenu()">
+                        <i class="fas fa-concierge-bell"></i>
+                        <a id="menu_service_mb">
+                            Our Service
+                        </a>
+                        <i id="dropdown-icon" class="fas fa-chevron-right"></i>
+                    </div>
                     <div id="sub-menu" class="sub-menu">
                         <?php foreach ($service_header as $service) : ?>
                             <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>">
@@ -785,11 +822,17 @@
                             </a>
                         <?php endforeach; ?>
                     </div>
-                    <a href="<?= base_url($cut_url[0] . '/reviewpage') ?>"><i class="fas fa-star"></i>Review</a>
-                    <a href="<?= base_url($cut_url[0] . '/contactpage') ?>"><i class="fas fa-file-alt"></i>Contact</a>
+                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/reviewpage') ?>">
+                        <i class="fas fa-star"></i>
+                        <a id="menu_review_mb"> Review</a>
+                    </div>
+                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/contactpage') ?>">
+                        <i class="fas fa-file-alt"></i>
+                        <a id="menu_contact_mb"> Contact</a>
+                    </div>
                 </div>
                 <div class="contact">
-                    <p style="font-size: larger;">Contact</p>
+                    <p style="font-size: larger;" id="info_callus1">Contact</p>
                     <?php if (!empty($contact_data['facebook_name'])) : ?>
                         <div>
                             <i class="fab fa-facebook"></i>
@@ -902,12 +945,16 @@
     <script>
         function toggleSubMenu() {
             var subMenu = document.getElementById("sub-menu");
+            var dropdownIcon = document.getElementById("dropdown-icon");
+
             if (subMenu.classList.contains("open")) {
                 subMenu.classList.remove("open");
                 subMenu.style.maxHeight = "0";
+                dropdownIcon.classList.remove("open");
             } else {
                 subMenu.classList.add("open");
                 subMenu.style.maxHeight = subMenu.scrollHeight + "px";
+                dropdownIcon.classList.add("open");
             }
         }
     </script>
