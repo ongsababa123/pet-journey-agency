@@ -757,8 +757,7 @@
                     <i class="fas fa-bars" onclick="toggleMobileMenu()"></i>
                 </div>
                 <div class="logo">
-                    <img src="<?= base_url('dist/img/logo_mobile.png') ?>" alt="Logo">
-                    <!-- <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo"> -->
+                    <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
                 </div>
                 <div class="lang">
                     <div class="language-selector">
@@ -839,12 +838,15 @@
             var defaultLang = '<?= $cut_url[0] ?>';
             updateLanguage(defaultLang);
             var flagImg = document.getElementById('flag-img');
-            if (defaultLang === 'th') {
+            var flag_img_bottom = document.getElementById('flag-img-bottom');
+            
+            if (defaultLang == 'th') {
                 flagImg.src = BASE_URL + 'dist/img/flagth.png';
+                flag_img_bottom.src = BASE_URL + 'dist/img/flagth.png';
             } else {
                 flagImg.src = BASE_URL + 'dist/img/flagen.png';
+                flag_img_bottom.src = BASE_URL + 'dist/img/flagen.png';
             }
-            var url_ = '<?= $uri_menu ?>';
         });
 
         function load_language(value_language) {

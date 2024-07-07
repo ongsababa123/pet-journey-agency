@@ -17,12 +17,12 @@
                         <div class="card-header" style="border-bottom: none">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <h1 class="m-0"><strong><?= $data_service['header_service_name_th']  . ' ' . $data_service['language'] ?></strong></h1>
+                                    <h1 class="m-0"><strong><?= $data_service['header_service_name_th'] ?></strong></h1>
                                 </div><!-- /.col -->
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-sm-right">
                                         <li class="breadcrumb-item"><a href="#">จัดการหน้าเพจ</a></li>
-                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name_th'] . ' ' . $data_service['language'] ?></li>
+                                        <li class="breadcrumb-item active"><?= $data_service['header_service_name_th'] ?></li>
                                         <li class="breadcrumb-item active">ข้อมูลสัตว์เลี้ยง</li>
                                     </ol>
                                 </div><!-- /.col -->
@@ -108,14 +108,14 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="name_pet">ชื่อสัตว์เลี้ยง</label>
-                                <input type="text" id="name_pet" name="name_pet" class="form-control" required>
+                                <label for="name_pet_th">ชื่อสัตว์เลี้ยง (ภาษาไทย)</label>
+                                <input type="text" id="name_pet_th" name="name_pet_th" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="breed">ชื่อพันธ์</label>
-                                <input type="text" id="breed" name="breed" class="form-control" required>
+                                <label for="breed_th">ชื่อพันธ์ (ภาษาไทย)</label>
+                                <input type="text" id="breed_th" name="breed_th" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-4">
@@ -131,40 +131,79 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
+                                <label for="name_pet_en">ชื่อสัตว์เลี้ยง (ภาษาอังกฤษ)</label>
+                                <input type="text" id="name_pet_en" name="name_pet_en" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="breed_en">ชื่อพันธ์ (ภาษาอังกฤษ)</label>
+                                <input type="text" id="breed_en" name="breed_en" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="color_th">สีขน (ภาษาไทย)</label>
+                                <input type="text" id="color_th" name="color_th" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="characteristics_th">ลักษณะนิสัย (ภาษาไทย)</label>
+                                <input type="text" id="characteristics_th" name="characteristics_th" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
                                 <label for="age">อายุ</label>
                                 <input type="text" id="age" name="age" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="color">สีขน</label>
-                                <input type="text" id="color" name="color" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="characteristics">ลักษณะนิสัย</label>
-                                <input type="text" id="characteristics" name="characteristics" class="form-control" required>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="vaccination_history">ประวัติการฉีดวัคซีน</label>
-                                <textarea name="vaccination_history" id="vaccination_history" class="form-control" rows="5"></textarea>
+                                <label for="color_en">สีขน (ภาษาอังกฤษ)</label>
+                                <input type="text" id="color_en" name="color_en" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <div class="form-group">
+                                <label for="characteristics_en">ลักษณะนิสัย (ภาษาอังกฤษ)</label>
+                                <input type="text" id="characteristics_en" name="characteristics_en" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                        <div class="form-group">
                                 <label for="price">ราคา</label>
                                 <input type="text" id="price" name="price" class="form-control" required>
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="vaccination_history_th">ประวัติการฉีดวัคซีน (ภาษาไทย)</label>
+                                <textarea name="vaccination_history_th" id="vaccination_history_th" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="vaccination_history_en">ประวัติการฉีดวัคซีน (ภาษาอังกฤษ)</label>
+                                <textarea name="vaccination_history_en" id="vaccination_history_en" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
-                <input type="text" id="select_language" name="select_language" hidden value="<?= $data_service['language'] ?>">
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -182,13 +221,18 @@
 
     function load_modal(action, data_encode) {
         $('#upload_image').val('');
-        $('#name_pet').val('');
-        $('#breed').val('');
+        $('#name_pet_th').val('');
+        $('#name_pet_en').val('');
+        $('#breed_th').val('');
+        $('#breed_en').val('');
         $('#gender').val('male');
         $('#age').val('');
-        $('#color').val('');
-        $('#characteristics').val('');
-        $('#vaccination_history').val('');
+        $('#color_th').val('');
+        $('#color_en').val('');
+        $('#characteristics_th').val('');
+        $('#characteristics_en').val('');
+        $('#vaccination_history_th').val('');
+        $('#vaccination_history_en').val('');
         $('#price').val('');
         removeUpload();
         switch (action) {
@@ -200,13 +244,18 @@
             case 'Update':
                 $("#modal-title").text('แก้ไขข้อมูลสัตว์เลี้ยง');
                 const data = JSON.parse(decodeURIComponent(data_encode));
-                $('#name_pet').val(data.name_pet);
-                $('#breed').val(data.breed);
+                $('#name_pet_th').val(data.name_pet_th);
+                $('#name_pet_en').val(data.name_pet_en);
+                $('#breed_th').val(data.breed_th);
+                $('#breed_en').val(data.breed_en);
                 $('#gender').val(data.gender);
                 $('#age').val(data.age);
-                $('#color').val(data.color);
-                $('#characteristics').val(data.characteristics);
-                $('#vaccination_history').val(data.vaccination_history);
+                $('#color_th').val(data.color_th);
+                $('#color_en').val(data.color_en);
+                $('#characteristics_th').val(data.characteristics_th);
+                $('#characteristics_en').val(data.characteristics_en);
+                $('#vaccination_history_th').val(data.vaccination_history_th);
+                $('#vaccination_history_en').val(data.vaccination_history_en);
                 $('#price').val(data.price);
                 $('#url_route').val('dashboard/animal/update/' + data.id_service_content_buy_sale + '/' + data.image_path);
                 check_action = 'Update';
@@ -223,7 +272,7 @@
             $('#example2').DataTable({
                 'serverSide': true,
                 'ajax': {
-                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header'] . '/' . $data_service['language']); ?>",
+                    'url': "<?php echo site_url('dashboard/animal/getdata/' . $data_service['id_service_header']); ?>",
                     'type': 'GET',
                     'dataSrc': 'data',
                 },
@@ -242,7 +291,7 @@
                     sInfoThousands: ",",
                     sLoadingRecords: "กำลังโหลดข้อมูล...",
                     sProcessing: "กำลังดำเนินการ...",
-                    sSearch: "ค้นหา ชื่อเซอร์วิส: ",
+                    sSearch: "ค้นหา ชื่อสัตว์เลี้ยงและพันธ์: ",
                     oPaginate: {
                         sFirst: "หน้าแรก",
                         sPrevious: "ก่อนหน้า",
@@ -273,12 +322,12 @@
                         'data': null,
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
-                            return `<a href="<?= base_url('dist/img/animal/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_pet}" data-gallery="gallery">
+                            return `<a href="<?= base_url('dist/img/animal/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_pet_th}" data-gallery="gallery">
                                 <img src="<?= base_url('dist/img/animal/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                 </a>`;
                         }
                     }, {
-                        'data': 'name_pet',
+                        'data': 'name_pet_th',
                         'class': 'text-center',
                     },
                     {

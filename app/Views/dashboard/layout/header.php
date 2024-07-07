@@ -498,12 +498,12 @@ function check_menu_state($uri_menu, $input, $type)
                 },
                 success: function(response) {
                     Swal.close();
-                    console.log(response);
                     if (response.success) {
                         Swal.fire({
                             title: response.message,
                             icon: 'success',
                             allowOutsideClick: false,
+                            showConfirmButton: false
                         });
                         if (response.reload) {
                             setTimeout(function() {

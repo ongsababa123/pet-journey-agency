@@ -289,15 +289,12 @@
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
                         if (data.id_service_header == 1) {
-                            return `<a href="<?= base_url('dashboard/animal/') ?>${data.id_service_header}/th" class="btn btn-info btn-sm">ข้อมูลสัตว์เลี้ยงไทย</a>
-                                        <br>
-                                        <br>
-                                        <a href="<?= base_url('dashboard/animal/') ?>${data.id_service_header}/en" class="btn btn-info btn-sm">ข้อมูลสัตว์เลี้ยงอังกฤษ</a>`;
+                            return `<a href="<?= base_url('dashboard/animal/') ?>${data.id_service_header}" class="btn btn-info btn-sm">ข้อมูลซื้อขายสัตว์เลี้ยง</a>`;
                         } else {
                             return `<a href="<?= base_url('dashboard/service_content/') ?>${data.id_service_header}/th" class="btn btn-info">หน้าเพจ ภาษาไทย</i></a>
                                         <br>
                                         <br>
-                                        <a href="<?= base_url('dashboard/service_content/') ?>${data.id_service_header}/en" class="btn btn-info">หน้าเพจ ภาษาอังกฤษ</i></a>`;
+                                    <a href="<?= base_url('dashboard/service_content/') ?>${data.id_service_header}/en" class="btn btn-info">หน้าเพจ ภาษาอังกฤษ</i></a>`;
                         }
                     }
                 },

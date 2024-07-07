@@ -711,6 +711,7 @@ $pet = [
     </script>
 
     <script>
+        const cut_url = <?php echo json_encode($cut_url); ?>;
         function handleCategoryChange() {
             const pets = <?php echo json_encode($service_content_buy_sale); ?>;
             const serviceSellBox = document.querySelector('.service-sell-box');
@@ -750,13 +751,13 @@ $pet = [
                     <div class="pet-card">
                         <div class="set-img swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
+                                <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${cut_url[0] == 'th' ? pet.name_pet_th : pet.name_pet_en}"></div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="date-posted">${pet.create_date}</div>
-                            <h5 class="card-title">${pet.name_pet}</h5>
-                            <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.breed}</p>
+                            <h5 class="card-title">${cut_url[0] == 'th' ? pet.name_pet_th : pet.name_pet_en}</h5>
+                            <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${cut_url[0] == 'th' ? pet.breed_th : pet.breed_en}</p>
                             <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
                             <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
                             <p class="card-text"><i class="fas fa-star" style="color: #0198B4; margin-right: 10px;"></i><span id="status_pet_${pet.id_service_content_buy_sale}">สถานะ :</span> ${pet.status === '1' ? 'รอเจ้าของใหม่' : 'ขายแล้ว'}</p>
@@ -774,14 +775,14 @@ $pet = [
         function load_modal(data_pets) {
             const data = JSON.parse(decodeURIComponent(data_pets));
             $('#image_pet').attr('src', base_url + '/dist/img/animal/' + data.image_path);
-            $('#name_pet').text(data.name_pet);
+            $('#name_pet').text(cut_url[0] == 'th' ? data.name_pet_th : data.name_pet_en);
             $('#price_pet').text('<?php echo $cut_url[0] == 'th' ? 'ราคา: ' : 'Price: '; ?>' + data.price);
-            $('#breed_pet').text('<?php echo $cut_url[0] == 'th' ? 'พันธุ์: ' : 'Breed: '; ?>' + data.breed);
+            $('#breed_pet').text('<?php echo $cut_url[0] == 'th' ? 'พันธุ์: ' : 'Breed: '; ?>' + (cut_url[0] == 'th' ? data.breed_th : data.breed_en));
             $('#age_pet').text('<?php echo $cut_url[0] == 'th' ? 'อายุ: ' : 'Age: '; ?>' + data.age);
-            $('#gender_pet').text('<?php echo $cut_url[0] == 'th' ? 'เพศ: ' : 'Gender: '; ?>' + data.gender);
-            $('#color_pet').text('<?php echo $cut_url[0] == 'th' ? 'สีขน: ' : 'Color: '; ?>' + data.color);
-            $('#characteristic_pet').text('<?php echo $cut_url[0] == 'th' ? 'ลักษณะนิสัย: ' : 'Characteristic: '; ?>' + data.characteristics);
-            $('#vaccination_history_pet').text('<?php echo $cut_url[0] == 'th' ? 'ประวัติการฉีดวัคซีน: ' : 'Vaccination History: '; ?>' + data.vaccination_history);
+            $('#gender_pet').text('<?php echo $cut_url[0] == 'th' ? 'เพศ: ' : 'Gender: '; ?>' + (data.gender === 'male' ? 'ชาย' : 'หญิง'));
+            $('#color_pet').text('<?php echo $cut_url[0] == 'th' ? 'สีขน: ' : 'Color: '; ?>' + (cut_url[0] == 'th' ? data.color_th : data.color_en));
+            $('#characteristic_pet').text('<?php echo $cut_url[0] == 'th' ? 'ลักษณะนิสัย: ' : 'Characteristic: '; ?>' + (cut_url[0] == 'th' ? data.characteristics_th : data.characteristics_en));
+            $('#vaccination_history_pet').text('<?php echo $cut_url[0] == 'th' ? 'ประวัติการฉีดวัคซีน: ' : 'Vaccination History: '; ?>' + (cut_url[0] == 'th' ? data.vaccination_history_th : data.vaccination_history_en));
         }
 
         // new Swiper('.swiper-container', {

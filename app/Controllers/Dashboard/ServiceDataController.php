@@ -171,18 +171,19 @@ class ServiceDataController extends BaseController
 
     //------------------------------ service_content_buy_sale --------------------------//
 
-    public function index_service_content_buy_sale($id_service_header , $language)
+    public function index_service_content_buy_sale($id_service_header)
     {
         $data['uri_menu'] = $this->uri_menu;
         $data_service['data_service'] = $this->ServiceHeaderModel->find($id_service_header);
-        $data_service['data_service'] = array_merge($data_service['data_service'], ['language' => $language]);
+        $data_service['data_service'] = array_merge($data_service['data_service']);
+
         echo view('dashboard/layout/header', $data);
         echo view('dashboard/service/index_content_buy_sale', $data_service);
         echo view('dashboard/layout/footer');
     }
 
     //-- get data animal --//
-    public function getData_animal($id_service_header , $language)
+    public function getData_animal($id_service_header)
     {
         $limit = $this->request->getVar('length');
         $start = $this->request->getVar('start');
@@ -191,20 +192,24 @@ class ServiceDataController extends BaseController
 
         if (!empty($searchValue)) {
             $this->Service_Content_Buy_SaleModel->groupStart()
-                ->like('name_pet', $searchValue)
-                ->like('breed', $searchValue)
+                ->like('name_pet_th', $searchValue)
+                ->orLike('name_pet_en', $searchValue)
+                ->orLike('breed_th', $searchValue)
+                ->orLike('breed_en', $searchValue)
                 ->groupEnd();
         }
-        $totalRecords = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->where('language', $language)->countAllResults();
+        $totalRecords = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->countAllResults();
 
         $recordsFiltered = $totalRecords;
         if (!empty($searchValue)) {
             $this->Service_Content_Buy_SaleModel->groupStart()
-                ->like('name_pet', $searchValue)
-                ->like('breed', $searchValue)
+                ->orLike('name_pet_th', $searchValue)
+                ->like('name_pet_en', $searchValue)
+                ->like('breed_th', $searchValue)
+                ->like('breed_en', $searchValue)
                 ->groupEnd();
         }
-        $data = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->where('language', $language)->findAll($limit, $start);
+        $data = $this->Service_Content_Buy_SaleModel->where('id_service_header', $id_service_header)->findAll($limit, $start);
 
         $response = [
             'draw' => intval($draw),
@@ -232,18 +237,22 @@ class ServiceDataController extends BaseController
 
             $image->move($target_dir, $imageName);
             $data_animal = [
-                'name_pet' => $this->request->getVar('name_pet'),
-                'breed' => $this->request->getVar('breed'),
+                'name_pet_th' => $this->request->getVar('name_pet_th'),
+                'name_pet_en' => $this->request->getVar('name_pet_en'),
+                'breed_th' => $this->request->getVar('breed_th'),
+                'breed_en' => $this->request->getVar('breed_en'),
                 'gender' => $this->request->getVar('gender'),
                 'age' => $this->request->getVar('age'),
-                'color' => $this->request->getVar('color'),
-                'characteristics' => $this->request->getVar('characteristics'),
-                'vaccination_history' => $this->request->getVar('vaccination_history'),
+                'color_th' => $this->request->getVar('color_th'),
+                'color_en' => $this->request->getVar('color_en'),
+                'characteristics_th' => $this->request->getVar('characteristics_th'),
+                'characteristics_en' => $this->request->getVar('characteristics_en'),
+                'vaccination_history_th' => $this->request->getVar('vaccination_history_th'),
+                'vaccination_history_en' => $this->request->getVar('vaccination_history_en'),
                 'price' => $this->request->getVar('price'),
                 'create_date' => date('Y-m-d H:i:s'),
                 'image_path' => $imageName,
                 'status' => 0,
-                'language' => $this->request->getVar('select_language'),
                 'id_service_header' => $id_service_header
             ];
 
@@ -268,13 +277,18 @@ class ServiceDataController extends BaseController
     public function update_animal($id_service_content_buy_sale, $path_image_old)
     {
         $data_animal = [
-            'name_pet' => $this->request->getVar('name_pet'),
-            'breed' => $this->request->getVar('breed'),
+            'name_pet_th' => $this->request->getVar('name_pet_th'),
+            'name_pet_en' => $this->request->getVar('name_pet_en'),
+            'breed_th' => $this->request->getVar('breed_th'),
+            'breed_en' => $this->request->getVar('breed_en'),
             'gender' => $this->request->getVar('gender'),
             'age' => $this->request->getVar('age'),
-            'color' => $this->request->getVar('color'),
-            'characteristics' => $this->request->getVar('characteristics'),
-            'vaccination_history' => $this->request->getVar('vaccination_history'),
+            'color_th' => $this->request->getVar('color_th'),
+            'color_en' => $this->request->getVar('color_en'),
+            'characteristics_th' => $this->request->getVar('characteristics_th'),
+            'characteristics_en' => $this->request->getVar('characteristics_en'),
+            'vaccination_history_th' => $this->request->getVar('vaccination_history_th'),
+            'vaccination_history_en' => $this->request->getVar('vaccination_history_en'),
             'price' => $this->request->getVar('price'),
             'create_date' => date('Y-m-d H:i:s'),
         ];

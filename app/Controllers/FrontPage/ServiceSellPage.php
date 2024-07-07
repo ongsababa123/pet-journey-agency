@@ -37,14 +37,12 @@ class ServiceSellPage extends BaseController
     public function index($id_service_header)
     {
         $data['uri_menu'] = $this->uri_menu;
-        $cut_url = explode('/', $this->uri_menu);
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
         $data['cover_page'] = $this->CoverPageModel->where('status', 1)->findAll();
         $data['service_content_buy_sale'] = $this->Service_Content_Buy_SaleModel
             ->whereIn('status', [1, 2])
             ->where('id_service_header', $id_service_header)
-            ->where('language', $cut_url[0])
             ->findAll();
         $data['id_service_header'] = $id_service_header;
 

@@ -791,7 +791,7 @@ $cut_url = explode('/', $uri_menu);
                         <p><?php if ($cut_url['0'] == 'th') echo $about_home[0]['detail'];
                             else echo $about_home[1]['detail']; ?></p>
                         <div class="about-us-button">
-                            <a id="btn_view_more1" href="<?= base_url($cut_url[0] . '/about') ?>">View More</a>
+                            <a id="btn_view_more1" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">View More</a>
                         </div>
                     </div>
                 </div>
@@ -817,7 +817,7 @@ $cut_url = explode('/', $uri_menu);
                                             if ($cut_url['0'] == 'th') echo $service['header_service_name_th'];
                                             else echo $service['header_service_name_en'];
                                             ?></h3>
-                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . $service['id_service_header']) ?>" class="badge badge-pill badge-primary btn_view_more2"></a>
+                            <a href="<?= base_url($cut_url[0] . '/servicepage/' . ($service['id_service_header'] == 1 ? 'buysale/' : '') . $service['id_service_header']) ?>" class="badge badge-pill badge-primary btn_view_more2"></a>
                         </div>
                     </div>
                 <?php } ?>

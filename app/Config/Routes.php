@@ -90,8 +90,8 @@ $routes->group('dashboard/',  ['namespace' => 'App\Controllers\Dashboard', 'filt
     $routes->post('service/create', 'ServiceDataController::create_service'); //create service data
     $routes->post('service/update/(:num)/(:segment)', 'ServiceDataController::update_service/$1/$2'); //update service data
     //------------------------------------------------------------------------------------------------------------------------------------//
-    $routes->get('animal/(:num)/(:segment)', 'ServiceDataController::index_service_content_buy_sale/$1/$2'); //index animal
-    $routes->get('animal/getdata/(:num)/(:segment)', 'ServiceDataController::getData_animal/$1/$2'); //getdata animal
+    $routes->get('animal/(:num)', 'ServiceDataController::index_service_content_buy_sale/$1'); //index animal
+    $routes->get('animal/getdata/(:num)', 'ServiceDataController::getData_animal/$1'); //getdata animal
     $routes->post('animal/create/(:num)', 'ServiceDataController::create_animal/$1'); //create animal
     $routes->post('animal/update/(:num)/(:segment)', 'ServiceDataController::update_animal/$1/$2'); //update animal
     $routes->get('animal/changestatus/(:num)/(:num)', 'ServiceDataController::change_status_animal/$1/$2'); //change status animal

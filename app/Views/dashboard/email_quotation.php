@@ -10,7 +10,7 @@
 <body style="font-family: 'Kanit', sans-serif; background-color: #F5F5F5; padding: 20px;">
     <div style="width: 100%; max-width: 700px; margin: 0 auto; padding: 20px; background-color: #F5F5F5;">
         <div style="background-color: #FFE072; border-radius: 20px 20px 0 0; padding: 20px; text-align: left;">
-            <img src="https://scontent.fbkk6-2.fna.fbcdn.net/v/t39.30808-6/439282521_755721613383839_1251049117654634332_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=kOgKxWHrig8Q7kNvgEA-FbI&_nc_ht=scontent.fbkk6-2.fna&oh=00_AYB7zhBLhoDtj20APylo1PtxBKSSL7E_zgGCv7SsKHuR_w&oe=668834E3" alt="Pet Journey Agency" style="float: right; width: 50px; height: 50px; border-radius: 50%;">
+            <img src="https://petjourneyagency.com/dist/img/logo.jpg" alt="Pet Journey Agency" style="float: right; width: 50px; height: 50px; border-radius: 50%;">
             <h1 style="margin: 0; padding: 0; color: #002157;"><strong>Pet Journey Agency</strong></h1>
             <h2 style="margin: 0; padding: 0; color: #0198B4;">รายละเอียดคำขอใบเสนอราคา</h2>
             <h3 style="margin: 0; padding: 0; color: #0198B4">คุณ <?= $data['name_last'] ?></h3>
