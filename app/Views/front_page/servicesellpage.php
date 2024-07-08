@@ -217,7 +217,7 @@
             top: 55%;
             right: 7%;
         }
-        
+
         .date-posted {
             position: absolute;
             top: 10px;
@@ -757,7 +757,10 @@ $pet = [
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="date-posted">${pet.create_date}</div>
+                                <div class="date-posted d-flex">
+                                    <div id="date_post${pet.id_service_content_buy_sale}"></div>&nbsp;
+                                    <div>: ${pet.create_date}</div>
+                                </div>   
                                 <h5 class="card-title">${cut_url[0] == 'th' ? pet.name_pet_th : pet.name_pet_en}</h5>
                                 <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${cut_url[0] == 'th' ? pet.breed_th : pet.breed_en}</p>
                                 <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>

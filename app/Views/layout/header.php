@@ -681,7 +681,7 @@
 <body>
     <div class="loading-container" id="loading-container">
         <img width="20%" src="<?= base_url('dist/img/loadind_page.gif'); ?>" alt="Loading GIF">
-        <span class="ml2 loading-text" id="loading">Please wait, loading data..</span>
+        <span class="ml2 loading-text" id="loading"></span>
         <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -802,7 +802,7 @@
                 <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
                 <div>
                     <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                    <div class="menu-item" >
+                    <div class="menu-item">
                         <i class="fas fa-home"></i>
                         <a id="menu_home_mb" href="<?= base_url($cut_url[0] . '/homepage') ?>"> Home</a>
                     </div>
@@ -824,11 +824,11 @@
                             </a>
                         <?php endforeach; ?>
                     </div>
-                    <div class="menu-item" >
+                    <div class="menu-item">
                         <i class="fas fa-star"></i>
                         <a id="menu_review_mb" href="<?= base_url($cut_url[0] . '/reviewpage') ?>"> Review</a>
                     </div>
-                    <div class="menu-item" >
+                    <div class="menu-item">
                         <i class="fas fa-file-alt"></i>
                         <a id="menu_contact_mb" href="<?= base_url($cut_url[0] . '/contactpage') ?>"> Contact</a>
                     </div>
@@ -874,12 +874,7 @@
 
     <!-- loading page -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.getElementById('loading-container').style.display = 'none';
-                document.getElementById('content').classList.remove('hidden');
-            }, 800);
-        });
+
     </script>
 
     <!-- Script to handle language change -->
@@ -889,7 +884,7 @@
             updateLanguage(defaultLang);
             var flagImg = document.getElementById('flag-img');
             var flag_img_bottom = document.getElementById('flag-img-bottom');
-            
+
             if (defaultLang == 'th') {
                 flagImg.src = BASE_URL + 'dist/img/flagth.png';
                 flag_img_bottom.src = BASE_URL + 'dist/img/flagth.png';
@@ -897,6 +892,11 @@
                 flagImg.src = BASE_URL + 'dist/img/flagen.png';
                 flag_img_bottom.src = BASE_URL + 'dist/img/flagen.png';
             }
+
+            setTimeout(function() {
+                document.getElementById('loading-container').style.display = 'none';
+                document.getElementById('content').classList.remove('hidden');
+            }, 800);
         });
 
         function load_language(value_language) {
