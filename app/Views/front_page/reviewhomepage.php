@@ -226,7 +226,7 @@
                 width: 130px;
             }
 
-            .review-buttons {
+            .review-section .review-buttons {
                 display: none;
             }
 
@@ -239,8 +239,8 @@
 
             .btn-right-mobile {
                 position: absolute;
-                top: 420px;
-                right: 8px;
+                top: 50%;
+                right: 5%;
                 z-index: 1;
                 font-size: 25px;
                 color: #FFD700;
@@ -249,8 +249,8 @@
 
             .btn-left-mobile {
                 position: absolute;
-                top: 420px;
-                left: 8px;
+                top: 50%;
+                left: 5%;
                 z-index: 1;
                 font-size: 25px;
                 color: #FFD700;
