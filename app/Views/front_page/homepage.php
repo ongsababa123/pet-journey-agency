@@ -859,7 +859,7 @@ $cut_url = explode('/', $uri_menu);
                     Pet Journey Agency เข้าใจถึงความสำคัญของความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของเสมือนสมาชิกครอบครัว ดังนั้น เราได้รวบรวมพันธมิตรที่มีความเชี่ยวชาญและมืออาชีพเพื่อให้บริการที่ดีที่สุดแก่ลูกค้าของเรา
                 </span>
             </div>
-            <div class="partner-category" data-aos="fade-right" >
+            <div class="partner-category" data-aos="fade-right">
                 <div class="title-animalclinic">
                     <span id="sub_title_animal_clinic" style="font-size: 12pt;">
                         Animal clinic
@@ -876,7 +876,7 @@ $cut_url = explode('/', $uri_menu);
                     <?php } ?>
                 </div>
             </div>
-            <div class="partner-category" data-aos="fade-right" >
+            <div class="partner-category" data-aos="fade-right">
                 <div class="title-petfriendly">
                     <span id="sub_title_pet_friendly" style="font-size: 12pt;">
                         Pet friendly hotel
@@ -893,7 +893,7 @@ $cut_url = explode('/', $uri_menu);
                     <?php } ?>
                 </div>
             </div>
-            <div class="partner-category" data-aos="fade-right" >
+            <div class="partner-category" data-aos="fade-right">
                 <div class="title-pethotel">
                     <span id="sub_title_pet_hotel" style="font-size: 12pt;">
                         Pet hotel

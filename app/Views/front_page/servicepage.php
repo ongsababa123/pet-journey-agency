@@ -296,7 +296,7 @@ $cut_url = explode('/', $uri_menu);
 <body>
     <!-- sec slide page -->
     <section>
-        <?php include 'app\Views\layout\slide.php'; ?>
+        <?php include 'app/Views/layout/slide.php'; ?>
     </section>
 
     <!-- sec service page -->
