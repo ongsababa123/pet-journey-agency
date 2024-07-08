@@ -20,6 +20,7 @@
         .review-section {
             padding: 50px 0;
             text-align: center;
+            position: relative;
         }
 
         .review-title {
@@ -107,14 +108,13 @@
             width: 100px;
         }
 
-        .review-buttons {
-            position: relative;
-            z-index: 2;
+        .review-section .review-buttons {
+            z-index: 10;
+            /* transform: translate(-50%, -50%); */
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
-            /* Adjust as needed */
         }
 
         .review-buttons-mobile {
@@ -123,9 +123,8 @@
 
         .btn-right {
             position: absolute;
-            top: -350px;
-            right: -50px;
-            z-index: 1;
+            top: 50%;
+            right: 5%;
             font-size: 30px;
             color: #FFD700;
             cursor: pointer;
@@ -133,9 +132,9 @@
 
         .btn-left {
             position: absolute;
-            top: -350px;
-            left: -50px;
-            z-index: 1;
+            top: 50%;
+            left: 5%;
+            z-index: 3;
             font-size: 30px;
             color: #FFD700;
             cursor: pointer;
@@ -168,27 +167,6 @@
                 font-size: 9px;
                 height: 80px;
             }
-
-            .btn-right {
-                position: absolute;
-                top: -250px;
-                right: -50px;
-                z-index: 1;
-                font-size: 30px;
-                color: #FFD700;
-                cursor: pointer;
-            }
-
-            .btn-left {
-                position: absolute;
-                top: -250px;
-                left: -50px;
-                z-index: 1;
-                font-size: 30px;
-                color: #FFD700;
-                cursor: pointer;
-            }
-
         }
 
         @media (max-width: 767.98px) {
@@ -325,7 +303,7 @@
 
 <body>
     <!-- sec reviews our customers -->
-    <section>
+    <section class="review-section">
         <div class="container mt-5">
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
