@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
-
 
     <style>
         /* General Styles */
@@ -240,8 +240,6 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .service-item.visible {
@@ -265,6 +263,15 @@
             background: linear-gradient(to top, rgba(9, 18, 66, 0.6) 0%, rgba(9, 18, 66, 0) 70%);
             z-index: 1;
             transition: background 0.5s ease;
+        }
+
+        .service-item {
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+            /* ขยายขนาด 1.05 เท่าเมื่อ hover */
         }
 
         .service-item:hover::before {
@@ -727,6 +734,7 @@
 <?php
 $cut_url = explode('/', $uri_menu);
 ?>
+
 <body>
     <!-- sec slide page -->
     <section>
@@ -778,7 +786,7 @@ $cut_url = explode('/', $uri_menu);
     <section>
         <div class="about-us-section">
             <div class="container">
-                <div class="about-us-content">
+                <div class="about-us-content" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="video-wrapper">
                         <video width="500" controls id="video_about">
                             <source src="<?php
@@ -808,7 +816,7 @@ $cut_url = explode('/', $uri_menu);
                     <span id="title_our_service_part2" style="color: #FFD700;">SERVICE</span>
                 </h2>
             </div>
-            <div class="row">
+            <div class="row" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
                 <?php foreach ($service_header as $index => $service) { ?>
                     <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <div class="service-item fade-in">
@@ -852,7 +860,7 @@ $cut_url = explode('/', $uri_menu);
                     Pet Journey Agency เข้าใจถึงความสำคัญของความรักและความผูกพันระหว่างสัตว์เลี้ยงกับเจ้าของเสมือนสมาชิกครอบครัว ดังนั้น เราได้รวบรวมพันธมิตรที่มีความเชี่ยวชาญและมืออาชีพเพื่อให้บริการที่ดีที่สุดแก่ลูกค้าของเรา
                 </span>
             </div>
-            <div class="partner-category">
+            <div class="partner-category" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                 <div class="title-animalclinic">
                     <span id="sub_title_animal_clinic" style="font-size: 12pt;">
                         Animal clinic
@@ -869,7 +877,7 @@ $cut_url = explode('/', $uri_menu);
                     <?php } ?>
                 </div>
             </div>
-            <div class="partner-category">
+            <div class="partner-category" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                 <div class="title-petfriendly">
                     <span id="sub_title_pet_friendly" style="font-size: 12pt;">
                         Pet friendly hotel
@@ -886,7 +894,7 @@ $cut_url = explode('/', $uri_menu);
                     <?php } ?>
                 </div>
             </div>
-            <div class="partner-category">
+            <div class="partner-category" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                 <div class="title-pethotel">
                     <span id="sub_title_pet_hotel" style="font-size: 12pt;">
                         Pet hotel
@@ -920,23 +928,23 @@ $cut_url = explode('/', $uri_menu);
             <form class="mb-3" id="form_quotation" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="container mt-3">
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="name_last" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
                             <input class="form-control" type="text" id="ph_name" name="name_last" placeholder="ระบุชื่อผู้ติดต่อ">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
                             <input class="form-control" type="text" id="ph_phone" name="phone_number" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
                             <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
                             <input class="form-control" type="date" id="ph_date" name="travel_date">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
                             <select class="form-control select2" id="ph_origin_country" name="country_of_origin" oninput="get_airport_of_origin(this.value)">
                                 <option value="null" selected>
@@ -945,14 +953,14 @@ $cut_url = explode('/', $uri_menu);
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
                             <select class="form-control select2" id="ph_origin_airport" name="airport_of_origin">
 
                             </select>
                         </div>
                         <div class="form-group col-md-4 coltest"></div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
                             <select class="form-control select2" id="ph_destination_country" name="destination_country" oninput="get_airport_of_destination(this.value)">
                                 <option value="null" selected>
@@ -961,25 +969,25 @@ $cut_url = explode('/', $uri_menu);
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
                             <select class="form-control select2" id="ph_destination_airport" name="destination_airport">
                                 <option id="option_destination_airport" value="destination_airport"></option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
                             <select class="form-control" id="ph_travel_type" name="travel_type">
 
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
                             <select class="form-control" id="ph_pet_transport" name="transport_format">
                             </select>
                         </div>
                     </div>
-                    <div class="form-group text-left">
+                    <div class="form-group text-left" data-aos="fade-up" data-aos-duration="500">
                         <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
                         <div id="services-container">
                             <?php foreach ($service_header as $key => $value) : ?>
@@ -996,28 +1004,28 @@ $cut_url = explode('/', $uri_menu);
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
                             <input type="text" class="form-control" id="ph_pet_type" name="animal_type" placeholder="ระบุชนิดสัตว์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
                             <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="age" id="label_age" class="d-flex">อายุ</label>
                             <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
                             <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
                             <input type="text" class="form-control" id="ph_reason" name="note" placeholder="ระบุหมายเหตุ">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
+                    <button type="submit" class="btn btn-dark" data-aos="fade-up" data-aos-duration="500"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
                 </div>
             </form>
         </div>
@@ -1038,6 +1046,10 @@ $cut_url = explode('/', $uri_menu);
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -1046,10 +1058,11 @@ $cut_url = explode('/', $uri_menu);
             });
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
-                threshold: 0.3
+                threshold: 0.1
             };
 
             const observerCallback = (entries, observer) => {

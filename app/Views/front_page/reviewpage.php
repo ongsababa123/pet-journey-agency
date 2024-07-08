@@ -318,6 +318,14 @@
             color: #ffffff;
         }
 
+        .layout-box {
+            transition: transform 0.3s ease;
+        }
+
+        .layout-box:hover {
+            transform: scale(1.02);
+        }
+
         .box1 {
             grid-column: span 2;
             grid-row: span 1;

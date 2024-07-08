@@ -325,12 +325,12 @@
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
                 <?php foreach ($review_data as $index => $review) : ?>
-                    <div class="review-box review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
+                    <div class="review-box review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;" data-aos="zoom-in-up" data-aos-duration="1500">
                         <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
                             <?php if ($cut_url['0'] == 'th') echo $review['detail_comment_th'];
-                            else echo $review['detail_comment_en'] ?> 
+                            else echo $review['detail_comment_en'] ?>
                             <i class="fas fa-quote-right icon-quote-right"></i>
                         </p>
                     </div>

@@ -28,10 +28,11 @@ async function updateLanguage(lang) {
       "sub_title_animal_clinic",
       "sub_title_pet_friendly",
       "sub_title_pet_hotel",
-      "mb_menu_home",
-      "mb_menu_about_us",
-      "mb_menu_service",
-      "mb_menu_review",
+      "menu_home_mb",
+      "menu_about_us_mb",
+      "menu_service_mb",
+      "menu_review_mb",
+      "menu_contact_mb",
       "mb_menu_contact1",
       "mb_menu_contact2",
       "loading"
@@ -314,52 +315,7 @@ async function updateLanguage(lang) {
       pet_detail: "pet_detail",
     };
 
-    // อัพเดตข้อความของตัวเลือกทั้งหมดใน select
-    const selectElement = document.getElementById("service-search");
-    Array.from(selectElement.options).forEach((option) => {
-      if (service2Data[lang][option.value]) {
-        option.textContent = service2Data[lang][option.value];
-      } else {
-        option.textContent = option.value;
-      }
-    });
 
-    // อัพเดตข้อความของตัวเลือกแรกใน select
-    if (selectElement.options.length > 0) {
-      selectElement.options[0].textContent =
-        service2Data[lang][selectElement.options[0].value];
-    }
-
-    // ลูปผ่าน element แต่ละตัวเพื่อตั้งค่า textContent ใหม่
-    for (const [key, id] of Object.entries(service2Elements)) {
-      if (
-        [
-          "select_category",
-          "price_high_to_low",
-          "price_low_to_high",
-          "latest_date",
-          "new_date",
-          "dog",
-          "cat",
-        ].includes(key)
-      ) {
-        // เลือก element ของ option และอัพเดตข้อความ
-        const optionElement = document.querySelector(
-          `#service-search option[value='${id}']`
-        );
-        if (optionElement) {
-          optionElement.textContent = service2Data[lang][key];
-        }
-      } else {
-        // อัพเดตข้อความของ element อื่นๆ
-        const element = document.getElementById(id);
-        if (element) {
-          element.textContent = service2Data[lang][key];
-        }
-      }
-    }
-
-    // อัพเดตข้อความใน pet cards (ถ้ามี)
     document.querySelectorAll(".pet-card").forEach((petCard) => {
       const petId = petCard
         .querySelector(".card-body .date-posted")
