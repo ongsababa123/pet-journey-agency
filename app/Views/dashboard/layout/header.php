@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('dist/logo.ico'); ?>">
 </head>
 <style>
     /* Add font family for the entire webpage */

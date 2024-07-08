@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('dist/logo.ico'); ?>">
 
     <script>
         var BASE_URL = '<?= base_url(); ?>';
