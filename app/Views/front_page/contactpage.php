@@ -579,12 +579,14 @@ $cut_url = explode('/', $uri_menu);
                             </select>
                         </div>
                         <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
-                            <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
+                            <label for="travel-type" id="label_travel_type" class="d-flex">รูปแบบการเดินทาง</label>
                             <select class="form-control" id="ph_travel_type" name="travel_type">
-
+                                <option value="1"><?= $cut_url['0'] == 'th' ? 'เดินทางพร้อมผู้โดยสาร (โหลดใต้ท้องเครื่อง)' : 'Traveling with passengers (loaded under the machine)' ?></option>
+                                <option value="2"><?= $cut_url['0'] == 'th' ? 'เดินทางพร้อมผู้โดยสาร (บนเคบิน)' : 'Traveling with passengers (in the cabin)' ?></option>
+                                <option value="3"><?= $cut_url['0'] == 'th' ? 'คาร์โก้ (ไม่มีผู้เดินทางด้วย)' : 'Cargo (no accompanying passengers)' ?></option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500" hidden>
                             <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
                             <select class="form-control" id="ph_pet_transport" name="transport_format">
                             </select>

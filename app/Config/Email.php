@@ -34,13 +34,13 @@ class Email extends BaseConfig
      * SMTP Username
      */
     // public string $SMTPUser = '';
-    public string $SMTPUser = 'jailyootbandit@gmail.com';
+    public string $SMTPUser = 'petjourney.agency@gmail.com';
 
     /**
      * SMTP Password
      */
     // public string $SMTPPass = 'ywdq sscr cbtu hpkk';
-    public string $SMTPPass = 'pnhs dnyv akwp rtab';
+    public string $SMTPPass = 'uyjl meoy nqli lvxj';
     /**
      * SMTP Port
      */

@@ -57,6 +57,16 @@ class HomePage extends BaseController
 
     public function index_redirect()
     {
-        return redirect()->to('/th/homepage');
+        // return redirect()->to('/th/homepage');
+        $data['uri_menu'] = 'th';
+        $data['contact_data'] = $this->ContactModel->first();
+        $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
+        $data['about_home'] = $this->AboutHomeModel->findAll();
+        $data['cover_page'] = $this->CoverPageModel->where('status', 1)->findAll();
+        $data['review_data'] = $this->ReviewDataModel->where('status', 1)->findAll();
+        $data['partner_data'] = $this->PartnerModel->where('status', 1)->findAll();
+        echo view('layout/header' , $data);
+        echo view('front_page/homepage' , $data);
+        echo view('layout/footer' , $data);
     }
 }

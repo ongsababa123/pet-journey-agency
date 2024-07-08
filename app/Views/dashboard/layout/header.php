@@ -270,7 +270,7 @@ function check_menu_state($uri_menu, $input, $type)
                         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="img-circle" src="<?= base_url('dist/img/avatar3.png'); ?>" alt="User Image">
                             <span class="username" style="color: white !important;">
-                                <?php echo session()->get('name_last_admin'); ?> 
+                                <?php echo session()->get('name_last_admin'); ?>
                             </span>
                             <span class="description" style="color: white !important;">
                                 <?php echo session()->get('email_admin'); ?>
@@ -440,6 +440,11 @@ function check_menu_state($uri_menu, $input, $type)
                                 </p>
                             </a>
                         </li>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

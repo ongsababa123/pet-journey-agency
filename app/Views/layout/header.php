@@ -2,9 +2,16 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
+    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - Pet Journey Agency">
+    <meta property="og:description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://petjourneyagency.com">
+    <link rel="canonical" href="https://petjourneyagency.com">
+    <meta name="google-site-verification" content="AmwQxltY35fczxrgHnoEfXbmeAsr48M4pKkubYJoU40" />
     <!-- Google Font: Kanit -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:300,400,400i,700&display=swap">
     <!-- Font Awesome -->
@@ -732,7 +739,7 @@
                         <img id="flag-img" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
                         <select id="language-select">
                             <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
-                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
+                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>ไทย</option>
                         </select>
                     </div>
                 </div>
@@ -775,7 +782,7 @@
                         <img id="flag-img-bottom" src="<?= base_url('dist/img/flagen.png') ?>" alt="Flag">
                         <select id="language-select-bottom">
                             <option value="en" <?php if ($cut_url['0'] == 'en') echo 'selected'; ?>>English</option>
-                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>Thai</option>
+                            <option value="th" <?php if ($cut_url['0'] == 'th') echo 'selected'; ?>>ไทย</option>
                         </select>
                     </div>
                 </div>

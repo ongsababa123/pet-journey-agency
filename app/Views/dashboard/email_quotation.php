@@ -78,12 +78,20 @@
                     <col style="width: 50%;">
                 </colgroup>
                 <tr>
-                    <td style="font-weight: bold; font-size: 16px; color: #002157;">ประเภทการเดินทาง</td>
-                    <td style="font-weight: bold; font-size: 16px; color: #002157;">รูปแบบขนส่งสัตว์เลี้ยง</td>
+                    <td style="font-weight: bold; font-size: 16px; color: #002157;">รูปแบบการเดินทาง</td>
                 </tr>
                 <tr>
-                    <td style="font-size: 16px;"><?= !empty($data['travel_type']) ? $data['travel_type'] : 'ไม่ระบุ' ?></td>
-                    <td style="font-size: 16px;"><?= !empty($data['transport_format']) ? $data['transport_format'] : 'ไม่ระบุ' ?></td>
+                    <td style="font-size: 16px;"><?php if (!empty($data['travel_type'])) {
+                                                        if ($data['travel_type'] == 1) {
+                                                            echo 'เดินทางพร้อมผู้โดยสาร (โหลดใต้ท้องเครื่อง)';
+                                                        } elseif ($data['travel_type'] == 2) {
+                                                            echo 'เดินทางพร้อมผู้โดยสาร (บนเคบิน)';
+                                                        } elseif ($data['travel_type'] == 3) {
+                                                            echo 'คาร์โก้ (ไม่มีผู้เดินทางด้วย)';
+                                                        }
+                                                    }else{
+                                                        echo 'ไม่ระบุ';
+                                                    } ?></td>
                 </tr>
             </table>
             <hr>

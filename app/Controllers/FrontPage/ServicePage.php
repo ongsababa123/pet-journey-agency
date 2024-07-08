@@ -31,7 +31,7 @@ class ServicePage extends BaseController
         $path_parts = explode('/', $parsed_url);
 
         // สมมติว่าเราต้องการส่วนสุดท้ายสองส่วน
-        $this->uri_menu = $path_parts[3] . '/' . $path_parts[4];
+        $this->uri_menu = $path_parts[2] . '/' . $path_parts[4];
     }
 
 

@@ -29,7 +29,7 @@ class ServiceSellPage extends BaseController
         $path_parts = explode('/', $parsed_url);
 
         // สมมติว่าเราต้องการส่วนสุดท้ายสองส่วน
-        $this->uri_menu = $path_parts[3] . '/' . $path_parts[4];
+        $this->uri_menu = $path_parts[2] . '/' . $path_parts[4];
     }
 
 
@@ -37,6 +37,7 @@ class ServiceSellPage extends BaseController
     public function index($id_service_header)
     {
         $data['uri_menu'] = $this->uri_menu;
+        // var_dump($data['uri_menu']);
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
         $data['cover_page'] = $this->CoverPageModel->where('status', 1)->findAll();

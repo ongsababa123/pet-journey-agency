@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Journey Agency | Home</title>
-    <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง บริรับเลี้ยงดูแลสัตว์เลี้ยง">
+    <!-- <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง บริรับเลี้ยงดูแลสัตว์เลี้ยง"> -->
+    <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
+    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - Pet Journey Agency">
+    <meta property="og:description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://petjourneyagency.com">
+    <link rel="canonical" href="https://petjourneyagency.com">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -976,12 +984,14 @@ $cut_url = explode('/', $uri_menu);
                             </select>
                         </div>
                         <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
-                            <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
+                            <label for="travel-type" id="label_travel_type" class="d-flex">รูปแบบการเดินทาง</label>
                             <select class="form-control" id="ph_travel_type" name="travel_type">
-
+                                <option value="1"><?= $cut_url['0'] == 'th' ? 'เดินทางพร้อมผู้โดยสาร (โหลดใต้ท้องเครื่อง)' : 'Traveling with passengers (loaded under the machine)' ?></option>
+                                <option value="2"><?= $cut_url['0'] == 'th' ? 'เดินทางพร้อมผู้โดยสาร (บนเคบิน)' : 'Traveling with passengers (in the cabin)' ?></option>
+                                <option value="3"><?= $cut_url['0'] == 'th' ? 'คาร์โก้ (ไม่มีผู้เดินทางด้วย)' : 'Cargo (no accompanying passengers)' ?></option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500" hidden>
                             <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
                             <select class="form-control" id="ph_pet_transport" name="transport_format">
                             </select>

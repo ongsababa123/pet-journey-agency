@@ -188,17 +188,16 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name_last">ประเภทการเดินทาง</label>
+                                <label for="name_last">รูปแบบการเดินทาง</label>
                                 <select name="travel_type" id="travel_type" class="form-control">
-                                    <option value="0">กรุณาเลือกประเภทการเดินทาง</option>
-                                    <option value="เดินทางเอง">เดินทางเอง</option>
-                                    <option value="เดินทางกับสัตว์เลี้ยง">เดินทางกับสัตว์เลี้ยง</option>
-                                    <option value="ใช้บริการจากเรา">ใช้บริการจากเรา</option>
+                                    <option value="1">เดินทางพร้อมผู้โดยสาร (โหลดใต้ท้องเครื่อง)</option>
+                                    <option value="2">เดินทางพร้อมผู้โดยสาร (บนเคบิน)</option>
+                                    <option value="3">คาร์โก้ (ไม่มีผู้เดินทางด้วย)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label for="name_last">รูปแบบขนส่งสัตว์เลี้ยง</label>
                                 <select name="transport_format" id="transport_format" class="form-control">
                                     <option value="0">กรุณาเลือกรูปแบบขนส่งสัตว์เลี้ยง</option>
@@ -433,7 +432,7 @@
                             return '<span class="badge bg-warning">กำลังดำเนินการ</span>';
                         } else if (data.status == 2) {
                             return '<span class="badge bg-success">ดำเนินการเสร็จสิ้น</span>';
-                        }else if (data.status == 3) {
+                        } else if (data.status == 3) {
                             return '<span class="badge bg-danger">ยกเลิก</span>';
                         }
                     }
