@@ -61,7 +61,7 @@
         }
 
         .review-box:hover {
-            transform: scale(1.025);
+            transform: scale(1.025) !important;
         }
 
         .review-box p {
@@ -323,7 +323,7 @@
         }
 
         .layout-box:hover {
-            transform: scale(1.02);
+            transform: scale(1.02) !important;
         }
 
         .box1 {

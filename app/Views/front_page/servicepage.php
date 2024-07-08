@@ -322,18 +322,18 @@ $cut_url = explode('/', $uri_menu);
                         <img class="partner-img" src="<?= base_url('dist/img/service_partner.png') ?>" alt="Pet Service">
                     </div>
                     <div class="partner-section">
-                        <div class="partner-logos" id="partner-logos" data-aos="fade-up" data-aos-duration="1500">
+                        <div class="partner-logos" id="partner-logos" data-aos="fade-up" data-aos-duration="1000">
                             <!-- Logo images will be inserted here by JavaScript -->
                         </div>
                     </div>
                 <?php endif; ?>
             </div>
             <div class="service-list">
-                <div class="service-list-sticky" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
+                <div class="service-list-sticky" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1000">
                     <ul class="service-list-item" id="service-list-item">
                         <span class="service-list-title" id="service_list_title">บริการของเรา</span>
                     </ul>
-                    <div class="price-request" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
+                    <div class="price-request" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1000">
                         <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
                         <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
                         <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
