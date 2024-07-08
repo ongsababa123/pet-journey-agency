@@ -426,7 +426,7 @@ $cut_url = explode('/', $uri_menu);
         </div>
         <div>
             <div class="row">
-                <div class="col-lg-6 mt-4" style="padding: 5%;">
+                <div class="col-lg-6 mt-4" style="padding: 5%;" data-aos="fade-right">
                     <div class="contact-form">
                         <form class="mb-3" id="form_message_contact" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                             <h2 id="contact_us">ติดต่อเรา</h2>
@@ -452,7 +452,7 @@ $cut_url = explode('/', $uri_menu);
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-6" style="padding: 5%;">
+                <div class="col-lg-6" style="padding: 5%;" data-aos="fade-left">
                     <div class="contact-details">
                         <div class="contact-details-title">
                             <p id="contact_greeting"></p>
@@ -531,23 +531,23 @@ $cut_url = explode('/', $uri_menu);
             <form class="mb-3" id="form_quotation" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="container mt-3">
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="name_last" id="label_name" class="d-flex">ชื่อ<div style="color: red;">*</div></label>
                             <input class="form-control" type="text" id="ph_name" name="name_last" placeholder="ระบุชื่อผู้ติดต่อ">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="phone" id="label_phone" class="d-flex">หมายเลขโทรศัพท์<div style="color: red;">*</div></label>
                             <input class="form-control" type="text" id="ph_phone" name="phone_number" placeholder="ระบุผู้ติดต่อหมายเลขโทรศัพท์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="email" id="label_email" class="d-flex">อีเมล<div style="color: red;">*</div></label>
                             <input class="form-control" type="email" id="ph_email" name="email" placeholder="ระบุอีเมล">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="travel-date" id="label_date" class="d-flex">วันเดินทาง</label>
                             <input class="form-control" type="date" id="ph_date" name="travel_date">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="origin-country" id="label_country" class="d-flex">ประเทศต้นทาง</label>
                             <select class="form-control select2" id="ph_origin_country" name="country_of_origin" oninput="get_airport_of_origin(this.value)">
                                 <option value="null" selected>
@@ -556,14 +556,14 @@ $cut_url = explode('/', $uri_menu);
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="origin-airport" id="label_origin_airport" class="d-flex">สนามบินต้นทาง</label>
                             <select class="form-control select2" id="ph_origin_airport" name="airport_of_origin">
 
                             </select>
                         </div>
                         <div class="form-group col-md-4 coltest"></div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="destination-country" id="label_destination_country" class="d-flex">ประเทศปลายทาง</label>
                             <select class="form-control select2" id="ph_destination_country" name="destination_country" oninput="get_airport_of_destination(this.value)">
                                 <option value="null" selected>
@@ -572,25 +572,25 @@ $cut_url = explode('/', $uri_menu);
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="destination-airport" id="label_destination_airport" class="d-flex">สนามบินปลายทาง</label>
                             <select class="form-control select2" id="ph_destination_airport" name="destination_airport">
                                 <option id="option_destination_airport" value="destination_airport"></option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="travel-type" id="label_travel_type" class="d-flex">ประเภทการเดินทาง</label>
                             <select class="form-control" id="ph_travel_type" name="travel_type">
 
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="pet-transport" id="label_pet_transport" class="d-flex">รูปแบบขนส่งสัตว์เลี้ยง</label>
                             <select class="form-control" id="ph_pet_transport" name="transport_format">
                             </select>
                         </div>
                     </div>
-                    <div class="form-group text-left">
+                    <div class="form-group text-left" data-aos="fade-up" data-aos-duration="500">
                         <label for="services" id="label_services">กรุณาเลือกบริการที่ท่านต้องการ:</label><br>
                         <div id="services-container">
                             <?php foreach ($service_header as $key => $value) : ?>
@@ -607,28 +607,28 @@ $cut_url = explode('/', $uri_menu);
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="pet-type" id="label_pet_type" class="d-flex">ชนิดสัตว์</label>
                             <input type="text" class="form-control" id="ph_pet_type" name="animal_type" placeholder="ระบุชนิดสัตว์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="breed" id="label_breed" class="d-flex">สายพันธุ์</label>
                             <input type="text" class="form-control" id="ph_breed" name="breed" placeholder="ระบุสายพันธุ์">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="age" id="label_age" class="d-flex">อายุ</label>
                             <input type="text" class="form-control" id="ph_age" name="age" placeholder="ระบุอายุ">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="weight" id="label_weight" class="d-flex">น้ำหนัก</label>
                             <input type="text" class="form-control" id="ph_weight" name="weight" placeholder="ระบุน้ำหนัก">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-aos="fade-up" data-aos-duration="500">
                             <label for="reason" id="label_reason" class="d-flex">หมายเหตุ</label>
                             <input type="text" class="form-control" id="ph_reason" name="note" placeholder="ระบุหมายเหตุ">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-dark"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
+                    <button type="submit" class="btn btn-dark" data-aos="fade-up" data-aos-duration="500"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<span id="btn_submit_quote">ส่งใบเสนอราคา</span></button>
                 </div>
             </form>
         </div>
@@ -748,7 +748,7 @@ $cut_url = explode('/', $uri_menu);
                 dataType: "JSON",
                 beforeSend: function() {
                     Swal.fire({
-                        title: 'กําลังดําเนินการ...',
+                        title: '<?php echo ($cut_url['0'] == 'th') ? 'กรุณารอสักครู่...' : 'Please wait...'; ?>',
                         allowEscapeKey: false,
                         allowOutsideClick: false,
                         showConfirmButton: false,
@@ -756,9 +756,10 @@ $cut_url = explode('/', $uri_menu);
                 },
                 success: function(response) {
                     Swal.close();
+                    console.log(response);
                     if (response.success) {
                         Swal.fire({
-                            title: response.message,
+                            title: '<?= ($cut_url['0'] == 'th') ? 'ดําเนินการสําเร็จ' : 'Success'; ?>',
                             icon: 'success',
                             allowOutsideClick: false,
                         });
@@ -769,7 +770,7 @@ $cut_url = explode('/', $uri_menu);
                         }
                     } else {
                         Swal.fire({
-                            title: response.message,
+                            title: '<?= ($cut_url['0'] == 'th') ? 'เกิดข้อผิดพลาด' : 'Error'; ?>',
                             icon: 'error',
                             showConfirmButton: true,
                             confirmButtonText: 'ตกลง',
@@ -778,7 +779,7 @@ $cut_url = explode('/', $uri_menu);
                 },
                 error: function(xhr, status, error) {
                     Swal.fire({
-                        title: "เกิดข้อผิดพลาด",
+                        title: '<?= ($cut_url['0'] == 'th') ? 'เกิดข้อผิดพลาด' : 'Error'; ?>',
                         icon: 'error',
                         showConfirmButton: true,
                         confirmButtonText: 'ตกลง',

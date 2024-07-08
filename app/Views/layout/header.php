@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.css'); ?>">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
@@ -799,13 +802,13 @@
                 <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
                 <div>
                     <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
-                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/homepage') ?>">
+                    <div class="menu-item" >
                         <i class="fas fa-home"></i>
-                        <a id="menu_home_mb"> Home</a>
+                        <a id="menu_home_mb" href="<?= base_url($cut_url[0] . '/homepage') ?>"> Home</a>
                     </div>
-                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>">
+                    <div class="menu-item" h>
                         <i class="fas fa-info-circle"></i>
-                        <a id="menu_about_us_mb"> About us</a>
+                        <a id="menu_about_us_mb" href="<?= base_url($cut_url[0] . '/aboutuspage') ?>"> About us</a>
                     </div>
                     <div class="menu-item" href="javascript:void(0);" onclick="toggleSubMenu()">
                         <i class="fas fa-concierge-bell"></i>
@@ -821,13 +824,13 @@
                             </a>
                         <?php endforeach; ?>
                     </div>
-                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/reviewpage') ?>">
+                    <div class="menu-item" >
                         <i class="fas fa-star"></i>
-                        <a id="menu_review_mb"> Review</a>
+                        <a id="menu_review_mb" href="<?= base_url($cut_url[0] . '/reviewpage') ?>"> Review</a>
                     </div>
-                    <div class="menu-item" href="<?= base_url($cut_url[0] . '/contactpage') ?>">
+                    <div class="menu-item" >
                         <i class="fas fa-file-alt"></i>
-                        <a id="menu_contact_mb"> Contact</a>
+                        <a id="menu_contact_mb" href="<?= base_url($cut_url[0] . '/contactpage') ?>"> Contact</a>
                     </div>
                 </div>
                 <div class="contact">
@@ -840,7 +843,7 @@
                     <?php endif; ?>
                     <div>
                         <i class="fas fa-phone-alt"></i>
-                        <p>&nbsp;081 615 5644</p>
+                        <p>&nbsp;<?= $contact_data['phone_number'] ?></p>
                     </div>
                     <div>
                         <i class="fas fa-phone-alt"></i>
@@ -864,6 +867,10 @@
         </header>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <!-- loading page -->
     <script>

@@ -3,15 +3,26 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
+use App\Models\ContactModel;
 
 class EmailController extends BaseController
 {
+    protected $ContactModel;
+    protected $email_receive;
+    public function __construct()
+    {
+        helper(['form', 'file']);
+        $this->ContactModel = new ContactModel();
+
+        $email_receive_get = $this->ContactModel->select('email_receive')->first();
+        $this->email_receive = $email_receive_get['email_receive'];
+    }
     public function sendEmail()
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
-        $email->setTo('areeyeooo@gmail.com');
+        $email->setFrom($this->email_receive, 'Pet Journey Agency');
+        $email->setTo($this->email_receive);
 
         $email->setSubject('คำขอใบเสนอราคาใหม่จากคุณ');
 
@@ -30,8 +41,8 @@ class EmailController extends BaseController
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
-        $email->setTo('areeyeooo@gmail.com');
+        $email->setFrom($this->email_receive, 'Pet Journey Agency');
+        $email->setTo($this->email_receive);
 
         $email->setSubject('คำขอใบเสนอราคาใหม่จากคุณ - ' . $data['name_last']);
 
@@ -49,8 +60,8 @@ class EmailController extends BaseController
     {
         $email = \Config\Services::email();
 
-        $email->setFrom('areeyeooo@gmail.com', 'Pet Journey Agency');
-        $email->setTo('areeyeooo@gmail.com');
+        $email->setFrom($this->email_receive, 'Pet Journey Agency');
+        $email->setTo($this->email_receive);
 
         $email->setSubject('ข้อมูลการติดต่อใหม่!');
 

@@ -604,7 +604,7 @@ $cut_url = explode('/', $uri_menu);
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
                 <?php foreach ($review_data as $index => $review) : ?>
-                    <div class="review-box review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;">
+                    <div class="review-box review-item" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;" data-aos="zoom-in-up">
                         <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>
@@ -658,22 +658,22 @@ $cut_url = explode('/', $uri_menu);
                 <div id="rv_team_work_results2">การทำงานของทีม</div>
             </h3>
             <div class="layout-grid">
-                <div class="layout-box box1" id="box-1"></div>
-                <div class="layout-box box2" id="box-2"></div>
-                <div class="layout-box box3" id="box-3"></div>
-                <div class="layout-box box4" id="box-4"></div>
-                <div class="layout-box box5" id="box-5"></div>
-                <div class="layout-box box6" id="box-6"></div>
-                <div class="layout-box box7" id="box-7"></div>
-                <div class="layout-box box8" id="box-8"></div>
-                <div class="layout-box box9" id="box-9"></div>
-                <div class="layout-box box10" id="box-10"></div>
-                <div class="layout-box box11" id="box-11"></div>
-                <div class="layout-box box12" id="box-12"></div>
-                <div class="layout-box box13" id="box-13"></div>
-                <div class="layout-box box14" id="box-14"></div>
-                <div class="layout-box box15" id="box-15"></div>
-                <div class="layout-box box16" id="box-16"></div>
+                <div class="layout-box box1" id="box-1" data-aos="fade-up" data-aos-duration="1000"></div>
+                <div class="layout-box box2" id="box-2" data-aos="fade-up" data-aos-duration="800"></div>
+                <div class="layout-box box3" id="box-3" data-aos="fade-up" data-aos-duration="600"></div>
+                <div class="layout-box box4" id="box-4" data-aos="fade-up" data-aos-duration="8000"></div>
+                <div class="layout-box box5" id="box-5" data-aos="fade-up" data-aos-duration="6000"></div>
+                <div class="layout-box box6" id="box-6" data-aos="fade-up" data-aos-duration="1000"></div>
+                <div class="layout-box box7" id="box-7" data-aos="fade-up" data-aos-duration="8000"></div>
+                <div class="layout-box box8" id="box-8" data-aos="fade-up" data-aos-duration="7000"></div>
+                <div class="layout-box box9" id="box-9" data-aos="fade-up" data-aos-duration="5000"></div>
+                <div class="layout-box box10" id="box-10" data-aos="fade-up" data-aos-duration="1000"></div>
+                <div class="layout-box box11" id="box-11" data-aos="fade-up" data-aos-duration="200"></div>
+                <div class="layout-box box12" id="box-12" data-aos="fade-up" data-aos-duration="600"></div>
+                <div class="layout-box box13" id="box-13" data-aos="fade-up" data-aos-duration="000"></div>
+                <div class="layout-box box14" id="box-14" data-aos="fade-up" data-aos-duration="1000"></div>
+                <div class="layout-box box15" id="box-15" data-aos="fade-up" data-aos-duration="1000"></div>
+                <div class="layout-box box16" id="box-16" data-aos="fade-up" data-aos-duration="1000"></div>
 
             </div>
         </div>
@@ -687,6 +687,7 @@ $cut_url = explode('/', $uri_menu);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <!-- reviews our customers -->
     <script>
         $(document).ready(function() {

@@ -589,7 +589,7 @@ $pet = [
                         <div class="service-category-search">
                             <label id="search_category" for="service-search-1" class="mr-2">ค้นหาหมวดหมู่:</label>
                             <select id="service-search" class="form-control" name="service" onchange="handleCategoryChange()">
-                                <option value="select_category" id="select_category" selected></option>
+                                <option value="select_category" id="select_category" selected>ทั้งหมด</option>
                                 <option value="price_high_to_low" id="price_high_to_low">ราคาสูงไปต่ำ</option>
                                 <option value="price_low_to_high" id="price_low_to_high">ราคาต่ำไปสูง</option>
                                 <option value="latest_date" id="latest_date">วันที่เก่าสุด</option>
@@ -603,11 +603,11 @@ $pet = [
                 </div>
             </div>
             <div class="service-list">
-                <div class="service-list-sticky">
+                <div class="service-list-sticky" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
                     <ul class="service-list-item" id="service-list-item">
                         <span class="service-list-title" id="service_list_title">บริการของเรา</span>
                     </ul>
-                    <div class="price-request">
+                    <div class="price-request" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
                         <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
                         <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
                         <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
@@ -748,14 +748,14 @@ $pet = [
             filteredPets.forEach(pet => {
                 const encodedRowData = encodeURIComponent(JSON.stringify(pet));
                 const petCard = `
-                    <div class="pet-card">
+                    <div class="pet-card" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
                         <div class="set-img swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${cut_url[0] == 'th' ? pet.name_pet_th : pet.name_pet_en}"></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="date-posted">${pet.create_date}</div>
+                            <div class="date-posted">วันที่ลง: ${pet.create_date}</div>
                             <h5 class="card-title">${cut_url[0] == 'th' ? pet.name_pet_th : pet.name_pet_en}</h5>
                             <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${cut_url[0] == 'th' ? pet.breed_th : pet.breed_en}</p>
                             <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>

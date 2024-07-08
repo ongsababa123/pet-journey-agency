@@ -48,6 +48,7 @@ class ContactDataController extends BaseController
             'line_link' => $this->request->getVar('input_line_link'),
             'line_name' => $this->request->getVar('input_line_name'),
             'whatsapp' => $this->request->getVar('input_whatsapp'),
+            'email_receive' => $this->request->getVar('input_email_receive'),
         ];
         $target_dir = ROOTPATH . 'dist/img/logo/';
         $image = $this->request->getFile('logo_image');

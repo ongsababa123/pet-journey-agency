@@ -145,6 +145,12 @@
                                             <input type="text" class="form-control" id="input_whatsapp" name="input_whatsapp" placeholder="กรอกลิ้งค์โปรไฟล์ Whatsapp" value="<?= $data_contact['whatsapp'] ?>">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="input_email_receive">อีเมล์รับข้อมูล</label>
+                                            <input type="text" class="form-control" id="input_email_receive" name="input_email_receive" placeholder="กรอก อีเมล์รับข้อมูล" value="<?= $data_contact['email_receive'] ?>">
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>

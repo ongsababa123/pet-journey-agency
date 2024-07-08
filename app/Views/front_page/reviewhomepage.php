@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
     <style>
         * {
             font-family: 'Kanit', sans-serif;
@@ -52,6 +53,13 @@
             cursor: pointer;
         }
 
+        .review-box:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+            /* Optional: Enhance the shadow on hover */
+        }
+
+
         .review-box img {
             width: 100%;
             height: auto;
@@ -60,9 +68,6 @@
             border-radius: 10px;
         }
 
-        .review-box:hover {
-            transform: scale(1.025);
-        }
 
         .review-box p {
             margin: 0;
@@ -325,7 +330,7 @@
             <!-- review-grid -->
             <div id="review-grid" class="review-grid">
                 <?php foreach ($review_data as $index => $review) : ?>
-                    <div class="review-box review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;" data-aos="zoom-in-up" data-aos-duration="1500">
+                    <div class="review-box review-item-desktop" style="display: <?php echo $index < 8 ? 'block' : 'none'; ?>;" data-aos="zoom-in-up" >
                         <img src="<?= base_url('dist/img/review/' . $review['image_path']); ?>" alt="Review Image">
                         <p>
                             <i class="fas fa-quote-left icon-quote-left"></i>

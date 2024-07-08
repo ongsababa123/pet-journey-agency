@@ -329,16 +329,14 @@ $cut_url = explode('/', $uri_menu);
                 <?php endif; ?>
             </div>
             <div class="service-list">
-                <div class="service-list-sticky">
+                <div class="service-list-sticky" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
                     <ul class="service-list-item" id="service-list-item">
-                        <span class="service-list-title" id="service_list_title">
-                            บริการของเรา
-                        </span>
+                        <span class="service-list-title" id="service_list_title">บริการของเรา</span>
                     </ul>
-                    <div class="price-request">
+                    <div class="price-request" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
                         <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
                         <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
-                        <a type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request" href="<?= base_url($cut_url[0] . '/contactpage') ?>">ขอใบเสนอราคา</a>
+                        <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
                     </div>
                 </div>
             </div>
