@@ -610,7 +610,7 @@ $pet = [
                     <div class="price-request" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1000">
                         <h5 id="title_price_request">ต้องการใบเสนอราคา</h5>
                         <span id="detail_price_request">หากต้องการใบเสนอราคาสามารถคลิกที่ปุ่มด้านล่างนี้ได้เลย!!!</span> <br>
-                        <button type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request">ขอใบเสนอราคา</button>
+                        <a type="button" class="btn btn-warning btn-sm mt-2" id="btn_price_request" href="<?= base_url($cut_url[0] . '/contactpage') ?>">ขอใบเสนอราคา</a>
                     </div>
                 </div>
             </div>
