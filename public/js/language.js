@@ -313,6 +313,7 @@ async function updateLanguage(lang) {
       contact_seller: "contact_seller",
       close: "close",
       pet_detail: "pet_detail",
+      date_post: "date_post",
     };
 
     // อัพเดตข้อความของตัวเลือกทั้งหมดใน select
@@ -359,13 +360,13 @@ async function updateLanguage(lang) {
         }
       }
     }
-    // อัพเดตข้อความใน pet cards (ถ้ามี)
+    // อัพเดตข้อความใน pet cards
     document.querySelectorAll(".pet-card").forEach((petCard) => {
       const petId = petCard.getAttribute("data-id"); // ใช้ data-id ที่เก็บค่า id_service_content_buy_sale
       console.log("Updating pet card:", petId);
 
-      // ให้แน่ใจว่า id ของ element ตรงกับ HTML structure ของคุณ
       const elements = {
+        date_post: petCard.querySelector(`#date_post${petId}`),
         breed: petCard.querySelector(`#breed${petId}`),
         age: petCard.querySelector(`#age${petId}`),
         price: petCard.querySelector(`#price${petId}`),

@@ -23,7 +23,8 @@
     "pet_detail": "Pet Details",
     "sale_complete": "Sale Completed",
     "not_sale": "Waiting for new owner",
-    "status_pet_": "Status:"
+    "status_pet_": "Status:",
+    "date_post": "Date Posted"
   },
   "th": {
     "search_category": "ค้นหาหมวดหมู่:",
@@ -49,6 +50,7 @@
     "pet_detail": "รายละเอียดสัตว์เลี้ยง",
     "sale_complete": "ขายแล้ว",
     "not_sale": "รอเจ้าของใหม่",
-    "status_pet_": "สถานะ:"
+    "status_pet_": "สถานะ:",
+    "date_post": "วันที่โพสต์"
   }
 }
