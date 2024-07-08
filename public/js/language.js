@@ -315,27 +315,76 @@ async function updateLanguage(lang) {
       pet_detail: "pet_detail",
     };
 
+    // อัพเดตข้อความของตัวเลือกทั้งหมดใน select
+    const selectElement = document.getElementById("service-search");
+    Array.from(selectElement.options).forEach((option) => {
+      if (service2Data[lang][option.value]) {
+        option.textContent = service2Data[lang][option.value];
+      } else {
+        option.textContent = option.value;
+      }
+    });
 
-    document.querySelectorAll(".pet-card").forEach((petCard) => {
-      const petId = petCard
-        .querySelector(".card-body .date-posted")
-        .id.replace("sell_date", "");
-      const elements = {
-        [`sell_date${petId}`]: "sell_date",
-        [`breed${petId}`]: "breed",
-        [`age${petId}`]: "age",
-        [`price${petId}`]: "price",
-        [`price_unit_${petId}`]: "price_unit",
-        [`btn_view_more${petId}`]: "view_more",
-      };
+    // อัพเดตข้อความของตัวเลือกแรกใน select
+    if (selectElement.options.length > 0) {
+      selectElement.options[0].textContent =
+        service2Data[lang][selectElement.options[0].value];
+    }
 
-      for (const [id, key] of Object.entries(elements)) {
+    // ลูปผ่าน element แต่ละตัวเพื่อตั้งค่า textContent ใหม่
+    for (const [key, id] of Object.entries(service2Elements)) {
+      if (
+        [
+          "select_category",
+          "price_high_to_low",
+          "price_low_to_high",
+          "latest_date",
+          "new_date",
+          "dog",
+          "cat",
+        ].includes(key)
+      ) {
+        // เลือก element ของ option และอัพเดตข้อความ
+        const optionElement = document.querySelector(
+          `#service-search option[value='${id}']`
+        );
+        if (optionElement) {
+          optionElement.textContent = service2Data[lang][key];
+        }
+      } else {
+        // อัพเดตข้อความของ element อื่นๆ
         const element = document.getElementById(id);
         if (element) {
           element.textContent = service2Data[lang][key];
         }
       }
+    }
+    // อัพเดตข้อความใน pet cards (ถ้ามี)
+    document.querySelectorAll(".pet-card").forEach((petCard) => {
+      const petId = petCard.getAttribute("data-id"); // ใช้ data-id ที่เก็บค่า id_service_content_buy_sale
+      console.log("Updating pet card:", petId);
+
+      // ให้แน่ใจว่า id ของ element ตรงกับ HTML structure ของคุณ
+      const elements = {
+        breed: petCard.querySelector(`#breed${petId}`),
+        age: petCard.querySelector(`#age${petId}`),
+        price: petCard.querySelector(`#price${petId}`),
+        price_unit: petCard.querySelector(`#price_unit_${petId}`),
+        view_more: petCard.querySelector(`#view_more${petId}`),
+        status_pet_: petCard.querySelector(`#status_pet_${petId}`),
+      };
+
+      for (const [key, element] of Object.entries(elements)) {
+        if (element) {
+          console.log(`Updating element with key ${key}:`, service2Data[lang][key]);
+          element.textContent = service2Data[lang][key];
+        } else {
+          console.warn(`Element with key ${key} not found for pet card ${petId}`);
+        }
+      }
     });
+
+
   } catch (error) {
     console.error("Failed to fetch content: ", error);
   }

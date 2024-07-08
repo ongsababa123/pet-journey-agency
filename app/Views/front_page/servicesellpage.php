@@ -747,29 +747,26 @@ $pet = [
             filteredPets.forEach(pet => {
                 const encodedRowData = encodeURIComponent(JSON.stringify(pet));
                 const petCard = `
-                    <div class="pet-card">
-                        <div class="set-img swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="date-posted">${pet.create_date}</div>
-                            <h5 class="card-title">${pet.name_pet}</h5>
-                            <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.breed}</p>
-                            <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
-                            <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
-                            <p class="card-text"><i class="fas fa-star" style="color: #0198B4; margin-right: 10px;"></i><span id="status_pet_${pet.id_service_content_buy_sale}">สถานะ :</span> ${pet.status === '1' ? 'รอเจ้าของใหม่' : 'ขายแล้ว'}</p>
-                            <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
-                        </div>
-                        <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal" onclick="load_modal('${encodedRowData}')"><button class="small-primary-button" id="btn_view_more${pet.id_service_content_buy_sale}">view more</button></div>
-                    </div>`;
+        <div class="pet-card" data-id="${pet.id_service_content_buy_sale}">
+            <div class="set-img swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="${base_url}/dist/img/animal/${pet.image_path}" alt="${pet.name_pet}"></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="date-posted">${pet.create_date}</div>
+                <h5 class="card-title">${pet.name_pet}</h5>
+                <p class="card-text"><i class="fas fa-paw" style="color: #0198B4; margin-right: 10px;"></i><span id="breed${pet.id_service_content_buy_sale}">พันธุ์:</span> ${pet.breed}</p>
+                <p class="card-text"><i class="fas fa-birthday-cake" style="color: #0198B4; margin-right: 10px;"></i><span id="age${pet.id_service_content_buy_sale}">อายุ:</span> ${pet.age}</p>
+                <p class="card-text"><i class="fas fa-hand-holding-usd" style="color: #0198B4; margin-right: 10px;"></i><span id="price${pet.id_service_content_buy_sale}">ราคา:</span> ${pet.price}<span id="price_unit_${pet.id_service_content_buy_sale}"></span> </p>
+                <p class="card-text"><i class="fas fa-star" style="color: #0198B4; margin-right: 10px;"></i><span id="status_pet_${pet.id_service_content_buy_sale}">สถานะ :</span> ${pet.status === '1' ? 'รอเจ้าของใหม่' : 'ขายแล้ว'}</p>
+                <span class="pet-card-icon ${pet.gender === 'male' ? 'fas fa-mars male-icon' : 'fas fa-venus female-icon'}"></span>
+            </div>
+            <div class="btn-view-more mb-2" data-toggle="modal" data-target="#exampleModal" onclick="load_modal('${encodedRowData}')"><button class="small-primary-button" id="view_more${pet.id_service_content_buy_sale}">view more</button></div>
+        </div>`;
                 serviceSellBox.innerHTML += petCard;
             });
         }
-
-
-
 
         function load_modal(data_pets) {
             const data = JSON.parse(decodeURIComponent(data_pets));
