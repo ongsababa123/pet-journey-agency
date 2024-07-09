@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Pet Journey Agency - ซื้อขายนำเข้าส่งออกสัตว์เลี้ยง | <?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
     <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">

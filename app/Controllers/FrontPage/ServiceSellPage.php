@@ -47,6 +47,12 @@ class ServiceSellPage extends BaseController
             ->findAll();
         $data['id_service_header'] = $id_service_header;
 
+        foreach ($data['service_header'] as $key => $value) {
+            if ($value['id_service_header'] == $id_service_header) {
+                $data['title'] = $value['header_service_name_en'];
+            }
+        }
+
         echo view('layout/header', $data);
         echo view('front_page/servicesellpage', $data);
         echo view('layout/footer');

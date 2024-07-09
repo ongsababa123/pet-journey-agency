@@ -43,6 +43,7 @@ class HomePage extends BaseController
     //-- index --//
     public function index()
     {
+        $data['title'] = 'Home';
         $data['uri_menu'] = $this->uri_menu;
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
@@ -58,6 +59,7 @@ class HomePage extends BaseController
     public function index_redirect()
     {
         // return redirect()->to('/th/homepage');
+        $data['title'] = 'Home';
         $data['uri_menu'] = 'th';
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Journey Agency | Home</title>
     <!-- <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง บริรับเลี้ยงดูแลสัตว์เลี้ยง"> -->
     <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
     <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">

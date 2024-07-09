@@ -34,6 +34,7 @@ class ContactPage extends BaseController
     //-- index --//
     public function index()
     {
+        $data['title'] = 'Contact';
         $data['uri_menu'] = $this->uri_menu;
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();

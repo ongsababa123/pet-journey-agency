@@ -53,6 +53,11 @@ class ServicePage extends BaseController
                 $data['service_content']['data_partners'] = $this->PartnerModel->where('type_partner', $data['service_content']['type_partner'])->where('status', 1)->findAll();
             }
             $data['id_service_header'] = $id_service_header;
+            foreach ($data['service_header'] as $key => $value) {
+                if ($value['id_service_header'] == $id_service_header) {
+                    $data['title'] = $value['header_service_name_en'];
+                }
+            }
 
             echo view('layout/header', $data);
             echo view('front_page/servicepage', $data);
