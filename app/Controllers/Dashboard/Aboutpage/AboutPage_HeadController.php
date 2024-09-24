@@ -34,11 +34,12 @@ class AboutPage_HeadController extends BaseController
     }
 
     //-- update about head--//
-    public function update_about_head($id_about_page, $image_page_path_old)
+    public function update_about_head($id_about_page)
     {
         $data_update = [
             'detail_page' => $this->request->getVar('text_area_content_about')
         ];
+        $image_page_path_old = $this->request->getVar('image_page_path_old');
 
         $image = $this->request->getFile('upload_image');
         if ($image->isValid() && !$image->hasMoved()) {

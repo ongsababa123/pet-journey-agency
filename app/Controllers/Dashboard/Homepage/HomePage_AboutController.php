@@ -36,11 +36,13 @@ class HomePage_AboutController extends BaseController
     }
 
     // อัพเดทข้อมูลหน้าแรกเกี่ยวกับ //
-    public function update_about_homepage($id_about_home = null, $path_video_old = null)
+    public function update_about_homepage($id_about_home = null)
     {
         $data_update = [
             'detail' => $this->request->getVar('text_area_content_about')
         ];
+
+        $path_video_old = $this->request->getVar('path_video_old');
 
         $file_video = $this->request->getFile('upload_video');
         if ($file_video->isValid() && !$file_video->hasMoved()) {

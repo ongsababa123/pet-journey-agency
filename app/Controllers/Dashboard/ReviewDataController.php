@@ -120,8 +120,9 @@ class ReviewDataController extends BaseController
         return $this->response->setJSON($response);
     }
     //-- delete image cover --//
-    public function delete_cover($id_review, $path_image)
+    public function delete_cover($id_review)
     {
+        $path_image = $this->ReviewDataModel->find($id_review)['image_path'];
         $this->ReviewDataModel->delete($id_review);
         if (file_exists(ROOTPATH . 'dist/img/review/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/review/' . $path_image);
@@ -134,8 +135,9 @@ class ReviewDataController extends BaseController
         return $this->response->setJSON($response);
     }
     //- edit review --//
-    public function update_review($id_review, $path_image_old)
+    public function update_review($id_review)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
         $data_cover = [
             'detail_comment_th' => $this->request->getVar('detail_comment_th'),
             'detail_comment_en' => $this->request->getVar('detail_comment_en'),

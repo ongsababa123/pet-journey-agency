@@ -152,6 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="text" id="path_image_old" name="path_image_old" value="<?= $data_contact['logo_image_path'] ?>" hidden>
                             </form>
                         </div>
                     </div>
@@ -253,7 +254,7 @@
     $("#form_contact").on('submit', function(event) {
         event.preventDefault();
         const value_image = document.getElementById('logo_image').value;
-        action_('dashboard/contact/update/<?= $data_contact['id_contact'] ?>/<?= $data_contact['logo_image_path'] ?>', 'form_contact');
+        action_('dashboard/contact/update/<?= $data_contact['id_contact'] ?>', 'form_contact');
 
     });
 </script>

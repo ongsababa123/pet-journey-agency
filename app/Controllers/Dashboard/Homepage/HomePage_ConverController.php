@@ -146,13 +146,13 @@ class HomePage_ConverController extends BaseController
     }
 
     //- edit image cover --//
-    public function update_cover($id_cover, $path_image_old)
+    public function update_cover($id_cover)
     {
         $data_cover = [
             'name_image' => $this->request->getVar('inputName_cover'),
             'language' => $this->request->getVar('select_language'),
         ];
-
+        $path_image_old = $this->request->getVar('path_image_old');
         $target_dir = ROOTPATH . 'dist/img/cover/';
         $image = $this->request->getFile('upload_image');
         if ($image->isValid() && !$image->hasMoved()) {
@@ -177,8 +177,10 @@ class HomePage_ConverController extends BaseController
         return $this->response->setJSON($response);
     }
     //-- delete image cover --//
-    public function delete_cover($id_cover, $path_image)
+    public function delete_cover($id_cover)
     {
+        $path_image = $this->CoverPageModel->find($id_cover)['path_image'];
+
         $this->CoverPageModel->delete($id_cover);
         if (file_exists(ROOTPATH . 'dist/img/cover/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/cover/' . $path_image);

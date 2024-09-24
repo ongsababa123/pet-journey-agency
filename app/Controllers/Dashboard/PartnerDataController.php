@@ -120,8 +120,9 @@ class PartnerDataController extends BaseController
     }
 
     //-- delete image partner --//
-    public function delete_partner($id_partner, $path_image)
+    public function delete_partner($id_partner)
     {
+        $path_image = $this->PartnerModel->find($id_partner)['logo_partner_path'];
         $this->PartnerModel->delete($id_partner);
         if (file_exists(ROOTPATH . 'dist/img/partner/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/partner/' . $path_image);
@@ -135,8 +136,9 @@ class PartnerDataController extends BaseController
     }
 
     //- edit partner --//
-    public function update_partner($id_partner, $path_image_old)
+    public function update_partner($id_partner)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
         $data_partner = [
             'name_partner' => $this->request->getVar('name_partner'),
         ];

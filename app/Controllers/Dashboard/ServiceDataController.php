@@ -124,8 +124,9 @@ class ServiceDataController extends BaseController
     }
 
     //- edit data service --//
-    public function update_service($id_service_header, $path_image_old)
+    public function update_service($id_service_header)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
         $data_service = [
             'header_service_name_th' => $this->request->getVar('header_service_name_th'),
             'header_service_name_en' => $this->request->getVar('header_service_name_en'),
@@ -274,8 +275,9 @@ class ServiceDataController extends BaseController
     }
 
     //- edit data service --//
-    public function update_animal($id_service_content_buy_sale, $path_image_old)
+    public function update_animal($id_service_content_buy_sale)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
         $data_animal = [
             'name_pet_th' => $this->request->getVar('name_pet_th'),
             'name_pet_en' => $this->request->getVar('name_pet_en'),
@@ -332,8 +334,10 @@ class ServiceDataController extends BaseController
     }
 
     //-- delete animal --//
-    public function delete_animal($id_service_content_buy_sale, $path_image)
+    public function delete_animal($id_service_content_buy_sale)
     {
+        $path_image = $this->Service_Content_Buy_SaleModel->find($id_service_content_buy_sale)['image_path'];
+
         $this->Service_Content_Buy_SaleModel->delete($id_service_content_buy_sale);
         if (file_exists(ROOTPATH . 'dist/img/animal/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/animal/' . $path_image);

@@ -348,6 +348,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="text" name="image_path_old" id="image_path_old" hidden>
                     </form>
                 </div>
             </div>
@@ -459,7 +460,7 @@
             $('#color_text').val(foundItem.color_text);
             $('#color_bg').val(foundItem.color_bg);
             $('input[name="r2"]').filter('[value="' + foundItem.type_show + '"]').prop('checked', true);
-
+            $('#image_path_old').val(foundItem.image_path);
             if (foundItem.type_show == 1 || foundItem.type_show == 2) {
                 $('#' + id_box + '-img').attr('src', '<?= base_url('dist/img/performance/') ?>' + foundItem.image_path);
                 $('.image-upload-wrap').hide();
@@ -621,10 +622,10 @@
             return item.id_team === id[1];
         });
 
-        const urlRouteInput = 'dashboard/performanceteam/update/' + foundItem.id_team + '/' + foundItem.image_path;
+        const urlRouteInput = 'dashboard/performanceteam/update/' + foundItem.id_team;
 
         if (selectedRadio.value == '1' || selectedRadio.value == '2') {
-            console.log('value_image', value_image, 'input_image_img.src', input_image_img.src);
+            // console.log('value_image', value_image, 'input_image_img.src', input_image_img.src);
             if ((!value_image && !input_image_img.src) || (!input_image_img.src)) {
                 Swal.fire({
                     title: 'กรุณาเลือกรูปภาพ...',

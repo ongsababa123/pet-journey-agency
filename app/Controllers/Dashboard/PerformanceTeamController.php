@@ -36,8 +36,9 @@ class PerformanceTeamController extends BaseController
     }
 
     //-- update performance --//
-    public function update_performance($id_team, $image_path_old)
+    public function update_performance($id_team)
     {
+        $image_path_old = $this->request->getVar('image_path_old');
         $type_show =  $this->request->getVar('r2');
         $data_update = [];
         if ($type_show === '1') {

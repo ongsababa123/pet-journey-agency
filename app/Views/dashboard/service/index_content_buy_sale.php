@@ -204,6 +204,7 @@
                     </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
+                <input type="text" id="path_image_old" name="path_image_old" hidden>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -257,7 +258,8 @@
                 $('#vaccination_history_th').val(data.vaccination_history_th);
                 $('#vaccination_history_en').val(data.vaccination_history_en);
                 $('#price').val(data.price);
-                $('#url_route').val('dashboard/animal/update/' + data.id_service_content_buy_sale + '/' + data.image_path);
+                $('#url_route').val('dashboard/animal/update/' + data.id_service_content_buy_sale);
+                $('#path_image_old').val(data.image_path);
                 check_action = 'Update';
                 break;
             default:
@@ -353,7 +355,7 @@
                             const encodedRowData = encodeURIComponent(JSON.stringify(row));
                             return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:alert_change_status('dashboard/animal/changestatus/${data.id_service_content_buy_sale}/')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/animal/delete/${data.id_service_content_buy_sale}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/animal/delete/${data.id_service_content_buy_sale}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                         }
                     },
                 ],

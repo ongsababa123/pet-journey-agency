@@ -213,6 +213,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="text" name="image_page_path_old" id="image_page_path_old" hidden>
             </form>
         </div>
     </div>
@@ -386,11 +387,11 @@
         var image_page_path = '';
         if (lang == 'en') {
             id_about_page = <?= $about_page['1']['id_about_page'] ?>;
-            image_page_path = '<?= $about_page['1']['image_page_path'] ?>';
+            $('#image_page_path_old').val('<?= $about_page['1']['image_page_path'] ?>');
         } else if (lang == 'th') {
             id_about_page = <?= $about_page['0']['id_about_page'] ?>;
-            image_page_path = '<?= $about_page['0']['image_page_path'] ?>';
+            $('#image_page_path_old').val('<?= $about_page['0']['image_page_path'] ?>');
         }
-        action_('dashboard/aboutpage/abouthead/update/' + id_about_page + '/' + image_page_path, 'form_about');
+        action_('dashboard/aboutpage/abouthead/update/' + id_about_page, 'form_about');
     });
 </script>

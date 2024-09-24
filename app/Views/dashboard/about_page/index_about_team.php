@@ -155,6 +155,7 @@
                     </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
+                <input type="text" id="path_image_old" name="path_image_old" hidden>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -190,7 +191,8 @@
                 $('#position_th').val(data.position_th);
                 $('#name_last_name_en').val(data.name_last_name_en);
                 $('#position_en').val(data.position_en);
-                $('#url_route').val('dashboard/aboutpage/aboutteam/update/' + data.id_team + '/' + data.image_path);
+                $('#url_route').val('dashboard/aboutpage/aboutteam/update/' + data.id_team);
+                $('#path_image_old').val(data.image_path);
                 check_action = 'Update';
                 break;
             default:
@@ -301,7 +303,7 @@
                         const encodedRowData = encodeURIComponent(JSON.stringify(row));
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/aboutpage/aboutteam/changestatus/${data.id_team}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutteam/delete/${data.id_team}/${data.image_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutteam/delete/${data.id_team}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],

@@ -117,8 +117,10 @@ class AboutPage_TeamController extends BaseController
     }
 
     //- edit data team --//
-    public function update_about_team($id_team, $path_image_old)
+    public function update_about_team($id_team)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
+
         $data_team = [
             'name_last_name_th' => $this->request->getVar('name_last_name_th'),
             'position_th' => $this->request->getVar('position_th'),
@@ -151,8 +153,9 @@ class AboutPage_TeamController extends BaseController
     }
 
     //-- delete data team --//
-    public function delete_team($id_team, $path_image)
+    public function delete_team($id_team)
     {
+        $path_image = $this->TeamModel->find($id_team)['image_path'];
         $this->TeamModel->delete($id_team);
         if (file_exists(ROOTPATH . 'dist/img/team/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/team/' . $path_image);

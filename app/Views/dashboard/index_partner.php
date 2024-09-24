@@ -239,6 +239,7 @@
                         </div>
                     </div>
                     <input type="text" id="url_route" name="url_route" hidden>
+                    <input type="text" id="path_image_old" name="path_image_old" hidden>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
@@ -269,7 +270,8 @@
                 $("#modal-title").text('แก้ไขพาร์ทเนอร์');
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#name_partner').val(data.name_partner);
-                $('#url_route').val('dashboard/partner/update/' + data.id_partner + '/' + data.logo_partner_path);
+                $('#url_route').val('dashboard/partner/update/' + data.id_partner);
+                $('#path_image_old').val(data.logo_partner_path);
                 check_action = 'Update';
                 break;
             default:
@@ -375,7 +377,7 @@
                         const encodedRowData = encodeURIComponent(JSON.stringify(row));
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/partner/changestatus/${data.id_partner}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}/${data.logo_partner_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],
@@ -482,7 +484,7 @@
                                 const encodedRowData = encodeURIComponent(JSON.stringify(row));
                                 return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/partner/changestatus/${data.id_partner}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}/${data.logo_partner_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                             }
                         },
                     ],
@@ -592,7 +594,7 @@
                                 const encodedRowData = encodeURIComponent(JSON.stringify(row));
                                 return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/partner/changestatus/${data.id_partner}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}/${data.logo_partner_path}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/partner/delete/${data.id_partner}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                             }
                         },
                     ],

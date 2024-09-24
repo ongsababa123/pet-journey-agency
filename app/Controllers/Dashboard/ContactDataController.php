@@ -35,7 +35,9 @@ class ContactDataController extends BaseController
     }
 
     //-- update contact --//
-    public function update_contact($id_contact, $path_image){
+    public function update_contact($id_contact){
+
+        $path_image = $this->request->getVar('path_image_old');
         $data_contact = [
             'open_time' => $this->request->getVar('input_opentime'),
             'open_time_en' => $this->request->getVar('input_opentime_en'),

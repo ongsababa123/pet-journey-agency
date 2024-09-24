@@ -113,8 +113,9 @@ class AboutPage_MoreController extends BaseController
     }
 
     //- edit data more --//
-    public function update_about_more($id_more_about_pet, $path_image_old)
+    public function update_about_more($id_more_about_pet)
     {
+        $path_image_old = $this->request->getVar('path_image_old');
         $data_more = [
             'topic_name_th' => $this->request->getVar('topic_name_th'),
             'topic_name_en' => $this->request->getVar('topic_name_en'),
@@ -147,8 +148,9 @@ class AboutPage_MoreController extends BaseController
     }
 
     //-- delete data more --//
-    public function delete_more($id_more_about_pet, $path_image)
+    public function delete_more($id_more_about_pet)
     {
+        $path_image = $this->More_aboutModel->find($id_more_about_pet)['image_path'];
         $this->More_aboutModel->delete($id_more_about_pet);
         if (file_exists(ROOTPATH . 'dist/img/about-more/' . $path_image)) {
             unlink(ROOTPATH . 'dist/img/about-more/' . $path_image);

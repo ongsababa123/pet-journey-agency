@@ -221,6 +221,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="text" name="path_video_old" id="path_video_old" hidden>
                     </form>
                 </div>
             </div>
@@ -377,14 +378,13 @@
     $("#form_about").on('submit', function(event) {
         event.preventDefault();
         var id_about_home = '';
-        var path_video = '';
         if (lang == 'en') {
             id_about_home = <?= $about_home_data['1']['id_about_home'] ?>;
-            path_video = '<?= $about_home_data['1']['path_video'] ?>';
+            $('#path_video_old').val('<?= $about_home_data['1']['path_video'] ?>');
         } else if (lang == 'th') {
             id_about_home = <?= $about_home_data['0']['id_about_home'] ?>;
-            path_video = '<?= $about_home_data['0']['path_video'] ?>';
+            $('#path_video_old').val('<?= $about_home_data['0']['path_video'] ?>');
         }
-        action_('dashboard/homepage/about/update/' + id_about_home + '/' + path_video, 'form_about');
+        action_('dashboard/homepage/about/update/' + id_about_home, 'form_about');
     });
 </script>

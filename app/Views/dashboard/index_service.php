@@ -141,6 +141,7 @@
                     </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
+                <input type="text" id="path_image_old" name="path_image_old" hidden>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -172,7 +173,8 @@
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#header_service_name_th').val(data.header_service_name_th);
                 $('#header_service_name_en').val(data.header_service_name_en);
-                $('#url_route').val('dashboard/service/update/' + data.id_service_header + '/' + data.image_path);
+                $('#url_route').val('dashboard/service/update/' + data.id_service_header);
+                $('#path_image_old').val(data.image_path);
                 check_action = 'Update';
                 break;
             default:

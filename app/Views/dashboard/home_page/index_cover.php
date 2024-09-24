@@ -176,6 +176,7 @@
                     </div>
                 </div>
                 <input type="text" id="url_route" name="url_route" hidden>
+                <input type="text" id="path_image_old" name="path_image_old" hidden>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
@@ -207,7 +208,8 @@
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#inputName_cover').val(data.name_image);
                 $('#select_language').val(data.language);
-                $('#url_route').val('dashboard/homepage/cover/update/' + data.id_cover + '/' + data.path_image);
+                $('#url_route').val('dashboard/homepage/cover/update/' + data.id_cover);
+                $('#path_image_old').val(data.path_image);
                 check_action = 'Update';
                 break;
             default:
@@ -334,7 +336,7 @@
                         const encodedRowData = encodeURIComponent(JSON.stringify(row));
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/homepage/cover/changestatus/${data.id_cover}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/homepage/cover/delete/${data.id_cover}/${data.path_image}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/homepage/cover/delete/${data.id_cover}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],
