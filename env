@@ -67,3 +67,15 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+
+#--------------------------------------------------------------------
+# Google / SEO settings
+#--------------------------------------------------------------------
+# Google Analytics 4 Measurement ID (example: G-XXXXXXXXXX)
+# You can also set this at runtime via helper: set_meta(['ga_id'=>'G-XXXXXXXXXX'])
+GA_MEASUREMENT_ID=G-5E70H3QR8F
+
+# Google Search Console verification token (leave blank if not set)
+# Example: GOOGLE_SITE_VERIFICATION=AbCdEfG12345
+GOOGLE_SITE_VERIFICATION=Z-aqkBlV2lm3NVrU36hOTKplBbSYueTR7PEMC7uI81c

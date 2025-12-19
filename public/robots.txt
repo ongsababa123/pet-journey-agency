@@ -1,2 +1,8 @@
 User-agent: *
 Disallow: 
+
+# Sitemap (relative path). Replace with full URL in production if needed:
+Sitemap: /sitemap.xml
+
+# Example production entry:
+# Sitemap: https://www.example.com/sitemap.xml

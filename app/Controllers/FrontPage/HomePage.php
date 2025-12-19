@@ -43,7 +43,17 @@ class HomePage extends BaseController
     //-- index --//
     public function index()
     {
-        $data['title'] = 'Home';
+        helper('seo');
+        $data['title'] = 'PetEx - นำเข้าและส่งออกสัตว์เลี้ยง | บริการครบวงจร';
+        // set page meta (improve description for better click-through)
+        $meta_description = 'PetEx ให้บริการนำเข้า-ส่งออกสัตว์เลี้ยงแบบครบวงจร พร้อมบริการดูแล การขนส่ง และคำแนะนำระดับมืออาชีพ ช่วยให้การเดินทางของสัตว์เลี้ยงปลอดภัยและถูกต้องตามกฎหมาย';
+        set_meta([
+            'description' => $meta_description,
+            'keywords' => 'PetEx, นำเข้าส่งออกสัตว์เลี้ยง, ขนส่งสัตว์เลี้ยง, บริการสัตว์เลี้ยง, pet export import',
+            'image' => base_url('dist/img/og-image-demo.png'),
+            'image_alt' => 'PetEx - นำเข้า/ส่งออกสัตว์เลี้ยง',
+            'canonical' => current_url(),
+        ]);
         $data['uri_menu'] = $this->uri_menu;
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
@@ -51,6 +61,20 @@ class HomePage extends BaseController
         $data['cover_page'] = $this->CoverPageModel->where('status', 1)->findAll();
         $data['review_data'] = $this->ReviewDataModel->where('status', 1)->findAll();
         $data['partner_data'] = $this->PartnerModel->where('status', 1)->findAll();
+        // WebPage JSON-LD for homepage
+        $data['ld_service'] = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $data['title'],
+            'description' => $meta_description,
+            'url' => current_url(),
+            'inLanguage' => 'th',
+            'isPartOf' => [
+                '@type' => 'WebSite',
+                'url' => base_url(),
+                'name' => 'PetEx'
+            ]
+        ];
         echo view('layout/header' , $data);
         echo view('front_page/homepage' , $data);
         echo view('layout/footer' , $data);
@@ -59,7 +83,16 @@ class HomePage extends BaseController
     public function index_redirect()
     {
         // return redirect()->to('/th/homepage');
-        $data['title'] = 'Home';
+        helper('seo');
+        $data['title'] = 'PetEx - นำเข้าและส่งออกสัตว์เลี้ยง | บริการครบวงจร';
+        $meta_description = 'PetEx ให้บริการนำเข้า-ส่งออกสัตว์เลี้ยงแบบครบวงจร พร้อมบริการดูแล การขนส่ง และคำแนะนำระดับมืออาชีพ ช่วยให้การเดินทางของสัตว์เลี้ยงปลอดภัยและถูกต้องตามกฎหมาย';
+        set_meta([
+            'description' => $meta_description,
+            'keywords' => 'PetEx, นำเข้าส่งออกสัตว์เลี้ยง, ขนส่งสัตว์เลี้ยง, บริการสัตว์เลี้ยง, pet export import',
+            'image' => base_url('dist/img/og-image-demo.png'),
+            'image_alt' => 'PetEx - นำเข้า/ส่งออกสัตว์เลี้ยง',
+            'canonical' => current_url(),
+        ]);
         $data['uri_menu'] = 'th';
         $data['contact_data'] = $this->ContactModel->first();
         $data['service_header'] = $this->ServiceHeaderModel->where('status', 1)->findAll();
@@ -67,6 +100,19 @@ class HomePage extends BaseController
         $data['cover_page'] = $this->CoverPageModel->where('status', 1)->findAll();
         $data['review_data'] = $this->ReviewDataModel->where('status', 1)->findAll();
         $data['partner_data'] = $this->PartnerModel->where('status', 1)->findAll();
+        $data['ld_service'] = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $data['title'],
+            'description' => $meta_description,
+            'url' => current_url(),
+            'inLanguage' => 'th',
+            'isPartOf' => [
+                '@type' => 'WebSite',
+                'url' => base_url(),
+                'name' => 'PetEx'
+            ]
+        ];
         echo view('layout/header' , $data);
         echo view('front_page/homepage' , $data);
         echo view('layout/footer' , $data);

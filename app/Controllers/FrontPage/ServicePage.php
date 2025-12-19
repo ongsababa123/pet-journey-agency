@@ -53,11 +53,60 @@ class ServicePage extends BaseController
                 $data['service_content']['data_partners'] = $this->PartnerModel->where('type_partner', $data['service_content']['type_partner'])->where('status', 1)->findAll();
             }
             $data['id_service_header'] = $id_service_header;
+            $lang = isset($cut_url[0]) ? $cut_url[0] : 'en';
             foreach ($data['service_header'] as $key => $value) {
                 if ($value['id_service_header'] == $id_service_header) {
-                    $data['title'] = $value['header_service_name_en'];
+                    if ($lang === 'th') {
+                        $data['title'] = !empty($value['header_service_name_th']) ? $value['header_service_name_th'] : ($value['header_service_name_en'] ?? 'บริการ');
+                    } else {
+                        $data['title'] = !empty($value['header_service_name_en']) ? $value['header_service_name_en'] : ($value['header_service_name_th'] ?? 'Service');
+                    }
                 }
             }
+
+            // set SEO metas for service page
+            helper('seo');
+            $serviceTitle = isset($data['title']) ? $data['title'] : ($lang === 'th' ? 'บริการ' : 'Service');
+            $description = '';
+            if (!empty($data['service_content']['content'])) {
+                $plain = strip_tags($data['service_content']['content']);
+                $description = mb_substr(trim(preg_replace('/\s+/', ' ', $plain)), 0, 150);
+            } else {
+                $description = $lang === 'th' ? ($serviceTitle . ' - บริการจาก PetEx') : ($serviceTitle . ' - Services by PetEx');
+            }
+            $keywords = $serviceTitle . ', PetEx, ' . ($lang === 'th' ? 'บริการสัตว์เลี้ยง' : 'pet services');
+            set_meta([
+                'description' => $description,
+                'keywords' => $keywords,
+                'image' => base_url('dist/img/og-image-demo.png'),
+                'image_alt' => $serviceTitle,
+                'canonical' => current_url(),
+            ]);
+
+            // Breadcrumbs for this service page (for JSON-LD)
+            $data['breadcrumbs'] = [
+                ['name' => ($cut_url[0] == 'th' ? 'หน้าแรก' : 'Home'), 'url' => base_url($cut_url[0] . '/homepage')],
+                ['name' => ($cut_url[0] == 'th' ? 'บริการ' : 'Services'), 'url' => base_url($cut_url[0] . '/servicepage/' . $id_service_header)],
+                ['name' => $serviceTitle, 'url' => current_url()],
+            ];
+
+            // Service structured data
+            $ld = [
+                "@context" => "https://schema.org",
+                "@type" => "Service",
+                "name" => $serviceTitle,
+                "description" => $description,
+                "provider" => [
+                    "@type" => "Organization",
+                    "name" => isset($data['contact_data']['company_name']) ? $data['contact_data']['company_name'] : ($data['contact_data']['facebook_name'] ?? 'PetEx'),
+                    "url" => base_url()
+                ],
+                "url" => current_url(),
+                "image" => [base_url('dist/img/og-image-demo.png')],
+                "inLanguage" => ($lang === 'th' ? 'th' : 'en')
+            ];
+
+            $data['ld_service'] = $ld;
 
             echo view('layout/header', $data);
             echo view('front_page/servicepage', $data);

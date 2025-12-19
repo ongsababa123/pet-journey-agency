@@ -835,7 +835,7 @@
                     'data': null,
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
-                        return `<a href="<?= base_url('dist/img/service/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.header_service_name}" data-gallery="gallery">
+                        return `<a href="<?= base_url('dist/img/service/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.header_service_name_th}" data-gallery="gallery">
                                         <img src="<?= base_url('dist/img/service/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
                     }

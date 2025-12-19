@@ -4,15 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <title>PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง | <?php echo $title ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
-    <meta name="keywords" content="PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
-    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง">
-    <meta property="og:description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://petexthailand.com">
-    <link rel="canonical" href="https://petexthailand.com">
-    <meta name="google-site-verification" content="AmwQxltY35fczxrgHnoEfXbmeAsr48M4pKkubYJoU40" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php
+        // SEO defaults - override per view by setting $meta_description, $meta_keywords, $meta_image, $canonical
+        helper('seo');
+        $site_name = 'PetEx';
+        $meta_description = isset($meta_description) ? $meta_description : (function_exists('seo') ? seo('description', 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ') : 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ');
+        $meta_keywords = isset($meta_keywords) ? $meta_keywords : (function_exists('seo') ? seo('keywords', 'PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง') : 'PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง');
+        $meta_image = isset($meta_image) ? $meta_image : (function_exists('seo') ? seo('image', base_url('dist/logo.png')) : base_url('dist/logo.png'));
+        $meta_image_alt = isset($meta_image_alt) ? $meta_image_alt : (function_exists('seo') ? seo('image_alt', $title) : $title);
+        $canonical = isset($canonical) ? $canonical : (function_exists('seo') ? seo('canonical', current_url()) : current_url());
+        ?>
+
+        <meta name="description" content="<?= esc($meta_description) ?>">
+        <meta name="keywords" content="<?= esc($meta_keywords) ?>">
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph -->
+        <meta property="og:site_name" content="<?= esc($site_name) ?>">
+        <meta property="og:title" content="<?= esc($title) ?>">
+        <meta property="og:description" content="<?= esc($meta_description) ?>">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="<?= esc($canonical) ?>">
+        <meta property="og:image" content="<?= esc($meta_image) ?>">
+        <meta property="og:image:alt" content="<?= esc($meta_image_alt) ?>">
+        <meta property="og:locale" content="th_TH">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="<?= esc($title) ?>">
+        <meta name="twitter:description" content="<?= esc($meta_description) ?>">
+        <meta name="twitter:image" content="<?= esc($meta_image) ?>">
+
+        <link rel="canonical" href="<?= esc($canonical) ?>">
+
+        <!-- JSON-LD (Organization + Website) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "name": "<?= esc($site_name) ?>",
+                    "url": "<?= esc(base_url()) ?>",
+                    "logo": "<?= esc(base_url('dist/logo.png')) ?>"
+                },
+                {
+                    "@type": "WebSite",
+                    "url": "<?= esc(base_url()) ?>",
+                    "name": "<?= esc($site_name) ?>",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "<?= esc(base_url('search?query={search_term_string}')) ?>",
+                        "query-input": "required name=search_term_string"
+                    }
+                }
+            ]
+        }
+        </script>
+    <?php
+    // Allow setting Google verification token and GA4 ID via seo helper or environment
+    $google_verification = null;
+    if (function_exists('seo')) {
+        $google_verification = seo('google_site_verification', null);
+    }
+    if (empty($google_verification)) {
+        $google_verification = getenv('GOOGLE_SITE_VERIFICATION') ?: getenv('GOOGLE_SITE_VERIFICATION_TOKEN') ?: null;
+    }
+    if (!empty($google_verification)) : ?>
+        <meta name="google-site-verification" content="<?= esc($google_verification) ?>" />
+    <?php else: ?>
+        <!-- No google-site-verification token set; to set add GOOGLE_SITE_VERIFICATION in .env or use set_meta(['google_site_verification'=>'TOKEN']) -->
+    <?php endif; ?>
+
+    <?php
+    // Google Analytics 4 (gtag) insertion: configure via seo('ga_id') or env var GA_MEASUREMENT_ID
+    $ga_id = null;
+    if (function_exists('seo')) {
+        $ga_id = seo('ga_id', null);
+    }
+    if (empty($ga_id)) {
+        $ga_id = getenv('GA_MEASUREMENT_ID') ?: getenv('GA4_MEASUREMENT_ID') ?: null;
+    }
+    ?>
+    <?php if (!empty($ga_id)) : ?>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?= esc($ga_id) ?>"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', '<?= esc($ga_id) ?>', { 'anonymize_ip': true });
+        </script>
+    <?php endif; ?>
+
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="<?= esc(base_url('sitemap.xml')) ?>" />
     <!-- Google Font: Kanit -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:300,400,400i,700&display=swap">
     <!-- Font Awesome -->
@@ -35,6 +120,68 @@
     <script>
         var BASE_URL = '<?= base_url(); ?>';
     </script>
+        <?php
+        // LocalBusiness JSON-LD (uses $contact_data if available)
+        if (isset($contact_data) && is_array($contact_data)) :
+                $org_name = isset($contact_data['company_name']) ? $contact_data['company_name'] : ($contact_data['facebook_name'] ?? 'PetEx');
+                $org_phone = $contact_data['phone_number'] ?? '';
+                $org_email = $contact_data['email'] ?? '';
+                $org_address = isset($contact_data['address']) ? $contact_data['address'] : null;
+                $org_logo = base_url('dist/img/logo/') . ($contact_data['logo_image_path'] ?? 'logo-pet.png');
+        ?>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "<?= esc($org_name) ?>",
+            "image": "<?= esc($org_logo) ?>",
+            "telephone": "<?= esc($org_phone) ?>",
+            "email": "<?= esc($org_email) ?>",
+            "url": "<?= esc(base_url()) ?>",
+            "sameAs": [<?= !empty($contact_data['facebook_link']) ? '"' . esc($contact_data['facebook_link']) . '"' : '' ?><?= !empty($contact_data['instragram_link']) ? ( !empty($contact_data['facebook_link']) ? ', ' : '') . '"' . esc($contact_data['instragram_link']) . '"' : '' ?>]
+            <?= $org_address ? ',"address": {"@type":"PostalAddress","streetAddress":"' . esc($org_address) . '"}' : '' ?>
+        }
+        </script>
+        <?php
+        endif;
+
+        // BreadcrumbList: controllers can pass $breadcrumbs = [ ['name'=>'..','url'=>'..'], ... ]
+        if (isset($breadcrumbs) && is_array($breadcrumbs) && count($breadcrumbs) > 0) :
+                $items = [];
+                $pos = 1;
+                foreach ($breadcrumbs as $b) {
+                        $items[] = ['position' => $pos, 'name' => $b['name'], 'item' => $b['url']];
+                        $pos++;
+                }
+        ?>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                <?php foreach ($items as $i => $it) : ?>
+                {
+                    "@type": "ListItem",
+                    "position": <?= $it['position'] ?>,
+                    "name": <?= json_encode($it['name'], JSON_UNESCAPED_UNICODE) ?>,
+                    "item": <?= json_encode($it['item']) ?>
+                }<?= $i < count($items)-1 ? ',' : '' ?>
+                <?php endforeach; ?>
+            ]
+        }
+        </script>
+        <?php endif; ?>
+
+        <?php
+        // Service/Product structured data (controller can set $ld_service with JSON string or array)
+        if (isset($ld_service)) {
+                if (is_array($ld_service)) {
+                        echo "<script type=\"application/ld+json\">" . json_encode($ld_service, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES) . "</script>\n";
+                } else {
+                        echo "<script type=\"application/ld+json\">" . $ld_service . "</script>\n";
+                }
+        }
+        ?>
     <script src="<?= base_url('public/js/language.js'); ?>"></script>
 
     <style>

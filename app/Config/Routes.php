@@ -21,6 +21,8 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 
 // Default route
 
+$routes->get('sitemap.xml', '\\App\\Controllers\\Sitemap::index');
+
 
 $routes->group('/', ['namespace' => 'App\Controllers\FrontPage'], function ($routes) {
     $routes->get('', 'HomePage::index_redirect');
