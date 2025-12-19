@@ -595,6 +595,8 @@
         }
         $('#btn_save').show();
         $('#btn_cancel').show();
+                $('#btn_save').prop('disabled', false);
+        $('#btn_cancel').prop('disabled', false);
         $('#btn_action').hide();
         // Enable all form controls inside the form
         $('#form_contact').find('input, textarea, select, button').prop('disabled', false);
