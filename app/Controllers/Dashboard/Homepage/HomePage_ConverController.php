@@ -139,7 +139,7 @@ class HomePage_ConverController extends BaseController
         ]);
         $response = [
             'success' => true,
-            'message' => 'เปลี่ยนสถานะของรางวัลสําเร็จ',
+            'message' => 'เปลี่ยนสถานะภาพหน้าปกสําเร็จ',
             'reload' => true,
         ];
         return $this->response->setJSON($response);

@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง บริรับเลี้ยงดูแลสัตว์เลี้ยง"> -->
-    <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
-    <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
-    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - Pet Journey Agency">
-    <meta property="og:description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="keywords" content="PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
+    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง">
+    <meta property="og:description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://petjourneyagency.com">
-    <link rel="canonical" href="https://petjourneyagency.com">
+    <meta property="og:url" content="https://petexthailand.com">
+    <link rel="canonical" href="https://petexthailand.com">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

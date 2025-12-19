@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:300,400,400i,700&display=swap">
+    <!-- Google Font: Modern fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css'); ?>">
     <!-- Theme style -->
@@ -21,93 +22,446 @@
     <link rel="icon" type="image/x-icon" href="<?= base_url('dist/logo.ico'); ?>">
 </head>
 <style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #4ecdc4 0%, #44a08d 25%, #f39c12 75%, #e67e22 100%);
+        --teal-primary: #4ecdc4;
+        --teal-dark: #44a08d;
+        --accent-orange: #f39c12;
+        --orange-dark: #e67e22;
+        --navy-blue: #1a2a6c;
+        --text-dark: #1a2a6c;
+        --text-light: #5f7c8a;
+        --white: #ffffff;
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --shadow-soft: 0 4px 20px rgba(78, 205, 196, 0.15);
+        --shadow-medium: 0 8px 30px rgba(78, 205, 196, 0.2);
+    }
+
     /* Add font family for the entire webpage */
     * {
-        font-family: 'Kanit', sans-serif;
+        font-family: 'Kanit', 'Poppins', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Main Header/Navbar Styling */
+    .main-header {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 50%, var(--accent-orange) 100%) !important;
+        border: none;
+        box-shadow: var(--shadow-medium);
+        transition: all 0.3s ease;
+    }
+
+    .main-header .nav-link {
+        transition: all 0.3s ease;
+    }
+
+    .main-header .nav-link:hover {
+        transform: scale(1.1);
+    }
+
+    /* User Block Styling */
+    .user-block {
+        transition: all 0.3s ease;
+    }
+
+    .user-block:hover {
+        transform: translateY(-2px);
+    }
+
+    .user-block .img-circle {
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-block:hover .img-circle {
+        border-color: var(--white);
+        transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%) !important;
+        border-radius: 12px !important;
+        border: none;
+        box-shadow: var(--shadow-medium);
+        animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .dropdown-item {
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: translateX(5px);
     }
 
     /* Main Sidebar Styles */
-    .main-sidebar,
+    .main-sidebar {
+        background: var(--white) !important;
+        box-shadow: var(--shadow-soft);
+        transition: all 0.3s ease;
+    }
+
+    .main-sidebar .nav-sidebar .nav-link {
+        border-radius: 8px;
+        margin: 0rem -0.5rem;
+        padding: 0.75rem 2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     .main-sidebar .nav-sidebar .nav-link p,
     .main-sidebar .nav-sidebar .nav-header,
     .main-sidebar .nav-sidebar .nav-link .nav-icon {
-        background-color: #ffffff !important;
-        color: #000000 !important;
+        color: var(--text-dark) !important;
+        transition: all 0.3s ease;
     }
 
-    /* Menu treeview */
-    .nav-sidebar .nav-item .nav-link:not(:focus):hover,
+    /* Menu Hover Effects */
+    .nav-sidebar .nav-item .nav-link:not(:focus):hover {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%) !important;
+        transform: translateX(5px);
+        box-shadow: var(--shadow-soft);
+    }
+
     .nav-sidebar .nav-item .nav-link:not(:focus):hover p,
     .nav-sidebar .nav-item .nav-link:not(:focus):hover .nav-icon {
-        background-color: #23456B !important;
-        color: white !important;
+        color: var(--white) !important;
+        transform: scale(1.05);
     }
 
+    /* Active Menu States */
     .nav-sidebar .nav-item.menu-is-opening.menu-open>.nav-link,
-    .nav-sidebar .nav-item.menu-is-opening.menu-open>.nav-link p,
-    .nav-sidebar .nav-item.menu-is-opening.menu-open>.nav-link .nav-icon {
-        background-color: #23456B !important;
-        color: white !important;
-    }
-
-    /* Menu */
     .nav-sidebar .nav-item .nav-link:focus,
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .nav-sidebar .nav-item.menu-is-opening.menu-open>.nav-link p,
+    .nav-sidebar .nav-item.menu-is-opening.menu-open>.nav-link .nav-icon,
     .nav-sidebar .nav-item .nav-link:focus p,
-    .nav-sidebar .nav-item .nav-link:focus .nav-icon {
-        background-color: #23456B !important;
-        color: white !important;
-    }
-
-    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+    .nav-sidebar .nav-item .nav-link:focus .nav-icon,
     .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active p,
-    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active .nav-icon,
-    .nav-sidebar .nav-item .nav-link:active .nav-icon {
-        background-color: #23456B !important;
-        color: white !important;
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active .nav-icon {
+        color: var(--white) !important;
+        font-weight: 600;
     }
 
-    /* Tree View */
+    /* Tree View Styles */
+    .nav-sidebar .nav-treeview {
+        background: rgba(78, 205, 196, 0.05);
+        border-radius: 8px;
+        margin: 0.25rem 0;
+        padding: 0.5rem 0;
+    }
+
     .nav-sidebar .nav-treeview .nav-link:focus,
-    .nav-sidebar .nav-treeview .nav-link:focus p,
-    .nav-sidebar .nav-treeview .nav-link:focus .nav-icon {
-        background-color: #EACB56 !important;
-        color: black !important;
-    }
-
     .nav-sidebar .nav-treeview .nav-link:not(:focus):hover,
-    .nav-sidebar .nav-treeview .nav-link:not(:focus):hover p,
-    .nav-sidebar .nav-treeview .nav-link:not(:focus):hover .nav-icon {
-        background-color: #EACB56 !important;
-        color: black !important;
+    .nav-treeview>.nav-item>.nav-link.active {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%) !important;
+        box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
     }
 
-    .nav-treeview>.nav-item>.nav-link.active,
+    .nav-sidebar .nav-treeview .nav-link:focus p,
+    .nav-sidebar .nav-treeview .nav-link:focus .nav-icon,
+    .nav-sidebar .nav-treeview .nav-link:not(:focus):hover p,
+    .nav-sidebar .nav-treeview .nav-link:not(:focus):hover .nav-icon,
     .nav-treeview>.nav-item>.nav-link.active p,
     .nav-treeview>.nav-item>.nav-link.active .nav-icon {
-        background-color: #EACB56 !important;
-        color: black !important;
+        color: var(--white) !important;
+        font-weight: 600;
+    }
+
+    /* Brand Link */
+    .brand-link {
+        border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .brand-link:hover {
+        background: rgba(78, 205, 196, 0.05);
     }
 
     .brand-link .brand-image {
-        height: 200px;
+        height: auto;
         max-height: 70px;
-        width: 217px;
+        width: auto;
+        max-width: 217px;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+
+    .brand-link:hover .brand-image {
+        transform: scale(1.05);
     }
 
     .layout-fixed .brand-link {
-        height: 100px;
+        height: auto;
+        min-height: 100px;
     }
-</style>
-<!-- file uploade image -->
+
+    /* Nav Header */
+    .nav-header {
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 1rem 1rem 0.5rem;
+        color: var(--text-light) !important;
+    }
+
+    /* Preloader */
+    .preloader {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+    }
+
+    /* Scrollbar Styling */
+    .sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+        background: rgba(78, 205, 196, 0.1);
+        border-radius: 10px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background: var(--teal-primary);
+        border-radius: 10px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-orange);
+    }
+    /* Custom Alert Modal */
+    .custom-alert-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 42, 108, 0.7);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .custom-alert-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .custom-alert {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border-radius: 20px;
+        padding: 2rem;
+        min-width: 320px;
+        max-width: 500px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 2px solid rgba(78, 205, 196, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-alert-overlay.show .custom-alert {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .custom-alert::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+    }
+
+    .custom-alert-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        animation: bounceIn 0.6s ease-out;
+    }
+
+    @keyframes bounceIn {
+        0% { transform: scale(0); opacity: 0; }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .custom-alert-icon.success {
+        background: linear-gradient(135deg, #d4f4dd 0%, #a7f3d0 100%);
+        color: #059669;
+        border: 3px solid #10b981;
+    }
+
+    .custom-alert-icon.error {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        color: #dc2626;
+        border: 3px solid #ef4444;
+    }
+
+    .custom-alert-icon.warning {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        color: #d97706;
+        border: 3px solid #f59e0b;
+    }
+
+    .custom-alert-icon.question {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        color: #2563eb;
+        border: 3px solid #3b82f6;
+    }
+
+    .custom-alert-icon.loading {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        color: var(--white);
+        border: 3px solid var(--teal-primary);
+    }
+
+    .custom-alert-icon.loading i {
+        animation: spin 1s linear infinite;
+    }
+
+    .custom-alert-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    .custom-alert-message {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    .custom-alert-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .custom-alert-btn {
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Kanit', sans-serif;
+    }
+
+    .custom-alert-btn.primary {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    }
+
+    .custom-alert-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+    }
+
+    .custom-alert-btn.success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .custom-alert-btn.success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .custom-alert-btn.danger {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .custom-alert-btn.danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    }
+
+    .custom-alert-btn.secondary {
+        background: #e5e7eb;
+        color: var(--text-dark);
+    }
+
+    .custom-alert-btn.secondary:hover {
+        background: #d1d5db;
+        transform: translateY(-2px);
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+        20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+
+    .custom-alert.shake {
+        animation: shake 0.6s;
+    }
+
+    /* file uploade image */
 <style>
     .file-upload {
-        background-color: #ffffff;
+        background-color: var(--white);
         width: 600px;
         margin: 0 auto;
         padding: 20px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-soft);
     }
-
-    /* Media query for larger screens */
 
     @media (min-width: 0px) {
         .file-upload {
@@ -119,17 +473,15 @@
         }
     }
 
-
-
     .file-upload-btn {
         width: 100%;
         margin: 0;
-        color: #fff;
-        background: #23456B;
+        color: var(--white);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
         border: none;
         padding: 10px;
-        border-radius: 4px;
-        border-bottom: 4px solid #FAD046;
+        border-radius: 10px;
+        border-bottom: 4px solid var(--accent-orange);
         transition: all .2s ease;
         outline: none;
         text-transform: uppercase;
@@ -137,9 +489,9 @@
     }
 
     .file-upload-btn:hover {
-        background: #043062;
-        color: #ffffff;
-        transition: all .2s ease;
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
         cursor: pointer;
     }
 
@@ -166,19 +518,22 @@
 
     .image-upload-wrap {
         margin-top: 20px;
-        border: 4px dashed #23456B;
+        border: 4px dashed var(--teal-primary);
         position: relative;
+        border-radius: 12px;
+        transition: all 0.3s ease;
     }
 
     .image-dropping,
     .image-upload-wrap:hover {
-        background-color: #FAD046;
-        border: 4px dashed #23456B;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+        border: 4px dashed var(--accent-orange);
+        transform: scale(1.02);
     }
 
     .image-title-wrap {
         padding: 0 15px 15px 15px;
-        color: #222;
+        color: var(--text-dark);
     }
 
     .drag-text {
@@ -186,9 +541,9 @@
     }
 
     .drag-text h3 {
-        font-weight: 100;
+        font-weight: 600;
         text-transform: uppercase;
-        color: black;
+        color: var(--text-dark);
         padding: 60px 0;
     }
 
@@ -197,17 +552,18 @@
         max-width: 200px;
         margin: auto;
         padding: 20px;
+        border-radius: 12px;
     }
 
     .remove-image {
         width: 300px;
         margin: 0;
-        color: #fff;
-        background: #cd4535;
+        color: var(--white);
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         border: none;
         padding: 10px;
-        border-radius: 4px;
-        border-bottom: 4px solid #b02818;
+        border-radius: 10px;
+        border-bottom: 4px solid #b91c1c;
         transition: all .2s ease;
         outline: none;
         text-transform: uppercase;
@@ -215,9 +571,9 @@
     }
 
     .remove-image:hover {
-        background: #c13b2a;
-        color: #ffffff;
-        transition: all .2s ease;
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         cursor: pointer;
     }
 
@@ -248,6 +604,20 @@ function check_menu_state($uri_menu, $input, $type)
 ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Custom Alert Modal -->
+    <div class="custom-alert-overlay" id="customAlertOverlay">
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert-icon" id="alertIcon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="custom-alert-title" id="alertTitle">ข้อความ</h3>
+            <p class="custom-alert-message" id="alertMessage"></p>
+            <div class="custom-alert-buttons" id="alertButtons">
+                <button class="custom-alert-btn primary" id="alertConfirmBtn">ตกลง</button>
+            </div>
+        </div>
+    </div>
+
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -256,7 +626,7 @@ function check_menu_state($uri_menu, $input, $type)
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #23456B !important;">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -479,8 +849,122 @@ function check_menu_state($uri_menu, $input, $type)
     <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
     <!-- Ekko Lightbox -->
     <script src="<?= base_url('plugins/ekko-lightbox/ekko-lightbox.min.js'); ?>"></script>
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom Alert System -->
+    <script>
+        const CustomAlert = {
+            overlay: null,
+            alert: null,
+            icon: null,
+            title: null,
+            message: null,
+            buttons: null,
+            confirmBtn: null,
+            cancelBtn: null,
+            
+            init() {
+                this.overlay = document.getElementById('customAlertOverlay');
+                this.alert = document.getElementById('customAlert');
+                this.icon = document.getElementById('alertIcon');
+                this.title = document.getElementById('alertTitle');
+                this.message = document.getElementById('alertMessage');
+                this.buttons = document.getElementById('alertButtons');
+                this.confirmBtn = document.getElementById('alertConfirmBtn');
+                
+                this.overlay.addEventListener('click', (e) => {
+                    if (e.target === this.overlay) {
+                        this.close();
+                    }
+                });
+            },
+            
+            show(options) {
+                const {
+                    icon = 'success',
+                    title = '',
+                    text = '',
+                    confirmButtonText = 'ตกลง',
+                    confirmButtonColor = 'primary',
+                    showConfirmButton = true,
+                    showCancelButton = false,
+                    cancelButtonText = 'ยกเลิก',
+                    timer = null,
+                    onConfirm = null,
+                    onCancel = null
+                } = options;
+                
+                const iconMap = {
+                    success: '<i class="fas fa-check"></i>',
+                    error: '<i class="fas fa-times"></i>',
+                    warning: '<i class="fas fa-exclamation"></i>',
+                    question: '<i class="fas fa-question"></i>',
+                    loading: '<i class="fas fa-spinner"></i>'
+                };
+                
+                this.icon.className = 'custom-alert-icon ' + icon;
+                this.icon.innerHTML = iconMap[icon] || iconMap.success;
+                this.title.textContent = title;
+                this.message.textContent = text;
+                this.message.style.display = text ? 'block' : 'none';
+                
+                // Clear existing buttons
+                this.buttons.innerHTML = '';
+                
+                // Add cancel button if needed
+                if (showCancelButton) {
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'custom-alert-btn danger';
+                    cancelBtn.textContent = cancelButtonText;
+                    cancelBtn.onclick = () => {
+                        if (onCancel) onCancel();
+                        this.close();
+                    };
+                    this.buttons.appendChild(cancelBtn);
+                }
+                
+                // Add confirm button
+                if (showConfirmButton) {
+                    const confirmBtn = document.createElement('button');
+                    confirmBtn.className = 'custom-alert-btn ' + confirmButtonColor;
+                    confirmBtn.textContent = confirmButtonText;
+                    confirmBtn.onclick = () => {
+                        if (onConfirm) onConfirm();
+                        this.close();
+                    };
+                    this.buttons.appendChild(confirmBtn);
+                }
+                
+                this.overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+                
+                if (icon === 'error' || icon === 'warning') {
+                    this.alert.classList.add('shake');
+                    setTimeout(() => this.alert.classList.remove('shake'), 600);
+                }
+                
+                if (timer) {
+                    setTimeout(() => this.close(), timer);
+                }
+            },
+            
+            showLoading() {
+                this.show({
+                    icon: 'loading',
+                    title: 'กำลังดำเนินการ...',
+                    showConfirmButton: false
+                });
+            },
+            
+            close() {
+                this.overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            CustomAlert.init();
+        });
+    </script>
 
     <!-- function action ajax request -->
     <script>
@@ -495,21 +979,16 @@ function check_menu_state($uri_menu, $input, $type)
                 contentType: false,
                 dataType: "JSON",
                 beforeSend: function() {
-                    Swal.fire({
-                        title: 'กําลังดําเนินการ...',
-                        allowEscapeKey: false,
-                        allowOutsideClick: false,
-                        showConfirmButton: false,
-                    });
+                    CustomAlert.showLoading();
                 },
                 success: function(response) {
-                    Swal.close();
+                    CustomAlert.close();
                     if (response.success) {
-                        Swal.fire({
-                            title: response.message,
+                        CustomAlert.show({
                             icon: 'success',
-                            allowOutsideClick: false,
-                            showConfirmButton: false
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
                         });
                         if (response.reload) {
                             setTimeout(function() {
@@ -517,20 +996,19 @@ function check_menu_state($uri_menu, $input, $type)
                             }, 2000);
                         }
                     } else {
-                        Swal.fire({
-                            title: response.message,
+                        CustomAlert.show({
                             icon: 'error',
-                            showConfirmButton: true,
-                            confirmButtonText: 'ตกลง',
+                            title: response.message,
+                            confirmButtonText: 'ตกลง'
                         });
                     }
                 },
                 error: function(xhr, status, error) {
-                    Swal.fire({
-                        title: "เกิดข้อผิดพลาด",
+                    CustomAlert.show({
                         icon: 'error',
-                        showConfirmButton: true,
-                        confirmButtonText: 'ตกลง',
+                        title: 'เกิดข้อผิดพลาด',
+                        text: 'กรุณาลองอีกครั้ง',
+                        confirmButtonText: 'ตกลง'
                     });
                 }
             });
@@ -540,45 +1018,49 @@ function check_menu_state($uri_menu, $input, $type)
     <!-- function check confirm after ajax request -->
     <script>
         function confirm_Alert(text, url) {
-            Swal.fire({
-                title: text,
+            CustomAlert.show({
                 icon: 'question',
+                title: text,
                 showCancelButton: true,
-                confirmButtonColor: "#28a745",
-                confirmButtonText: "ตกลง",
-                cancelButtonText: "ยกเลิก",
-                cancelButtonColor: "#dc3545",
-                preConfirm: () => {
-                    return $.ajax({
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: 'success',
+                cancelButtonText: 'ยกเลิก',
+                onConfirm: () => {
+                    $.ajax({
                         url: '<?= base_url() ?>' + url,
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },
                         beforeSend: function() {
-                            Swal.fire({
-                                title: 'Loading...',
-                                allowEscapeKey: false,
-                                allowOutsideClick: false,
-                                showConfirmButton: false,
-                            });
+                            CustomAlert.showLoading();
                         },
-                    }).then(function(response) {
-                        if (response.success) {
-                            Swal.fire({
-                                title: response.message,
-                                icon: 'success',
-                                showConfirmButton: false
-                            });
-                            setTimeout(() => {
-                                if (response.reload) {
-                                    window.location.reload();
-                                }
-                            }, 2000);
-                        } else {
-                            Swal.fire({
-                                title: response.message,
+                        success: function(response) {
+                            CustomAlert.close();
+                            if (response.success) {
+                                CustomAlert.show({
+                                    icon: 'success',
+                                    title: response.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                setTimeout(() => {
+                                    if (response.reload) {
+                                        window.location.reload();
+                                    }
+                                }, 2000);
+                            } else {
+                                CustomAlert.show({
+                                    icon: 'error',
+                                    title: response.message,
+                                    confirmButtonText: 'ตกลง'
+                                });
+                            }
+                        },
+                        error: function() {
+                            CustomAlert.show({
                                 icon: 'error',
-                                showConfirmButton: true
+                                title: 'เกิดข้อผิดพลาด',
+                                confirmButtonText: 'ตกลง'
                             });
                         }
                     });
