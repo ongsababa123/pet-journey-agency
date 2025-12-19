@@ -1,0 +1,281 @@
+/* Dashboard Performance Optimizations */
+/* GPU Acceleration และการปรับปรุงประสิทธิภาพ Animation สำหรับ Dashboard */
+
+/* Global Performance Settings */
+* {
+    /* ปิดใช้งาน anti-aliasing ที่ไม่จำเป็น */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* เพิ่มประสิทธิภาพการ render text */
+    text-rendering: optimizeLegibility;
+}
+
+/* Base Animation Settings */
+body {
+    /* เปิดใช้งาน GPU acceleration สำหรับ body */
+    transform: translate3d(0, 0, 0);
+    
+    /* ปรับปรุงการ scroll */
+    scroll-behavior: smooth;
+    
+    /* เพิ่มประสิทธิภาพการ repaint */
+    backface-visibility: hidden;
+}
+
+/* Performance-optimized transitions */
+.btn,
+.card,
+.small-box,
+.nav-link,
+.dropdown-item,
+.table tbody tr,
+.form-control,
+.upload-zone,
+.tab-btn,
+.offcanvas,
+.user-block,
+.icon-spacing {
+    /* ใช้ transform แทน properties อื่น เมื่อเป็นไปได้ */
+    transform: translate3d(0, 0, 0);
+    
+    /* เพิ่ม GPU layer */
+    will-change: transform;
+    
+    /* ป้องกันการ flicker */
+    backface-visibility: hidden;
+    
+    /* จำกัด repaint area */
+    contain: layout style;
+}
+
+/* Hover effects optimization */
+.btn:hover,
+.card:hover,
+.small-box:hover,
+.nav-link:hover,
+.dropdown-item:hover,
+.table tbody tr:hover,
+.upload-zone:hover,
+.user-block:hover,
+.icon-spacing:hover {
+    /* ใช้ transform สำหรับการเคลื่อนไหวเท่านั้น */
+    transform: translate3d(0, -2px, 0);
+}
+
+/* Specific optimizations for common elements */
+
+/* Cards */
+.card {
+    /* ใช้ composite layer */
+    transform: translate3d(0, 0, 0);
+    
+    /* เพิ่มประสิทธิภาพ shadow */
+    filter: drop-shadow(0 4px 20px rgba(78, 205, 196, 0.15));
+}
+
+.card:hover {
+    transform: translate3d(0, -3px, 0);
+    filter: drop-shadow(0 8px 30px rgba(78, 205, 196, 0.2));
+}
+
+/* Small boxes */
+.small-box {
+    /* ใช้ GPU layer สำหรับ animation */
+    transform: translate3d(0, 0, 0);
+    
+    /* เพิ่มประสิทธิภาพ */
+    contain: layout style paint;
+}
+
+.small-box:hover {
+    transform: translate3d(0, -8px, 0) scale(1.01);
+}
+
+/* Navigation */
+.nav-link {
+    transform: translate3d(0, 0, 0);
+    contain: layout style;
+}
+
+.nav-link:hover {
+    transform: translate3d(5px, 0, 0);
+}
+
+/* Tables */
+.table tbody tr {
+    transform: translate3d(0, 0, 0);
+    contain: layout;
+}
+
+.table tbody tr:hover {
+    transform: translate3d(0, -1px, 0);
+}
+
+/* Videos และ Media Elements */
+video {
+    /* ปรับปรุงการ render video */
+    transform: translate3d(0, 0, 0);
+    will-change: opacity, transform;
+    contain: layout style;
+    
+    /* เพิ่มประสิทธิภาพการ decode */
+    object-fit: contain;
+}
+
+/* Modal และ Offcanvas */
+.offcanvas {
+    /* ใช้ GPU acceleration สำหรับ modal */
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    will-change: transform, opacity;
+    contain: layout style paint;
+}
+
+.offcanvas.show {
+    transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.offcanvas-backdrop {
+    will-change: opacity;
+    contain: layout style paint;
+    backdrop-filter: blur(10px);
+}
+
+/* Form Elements */
+.form-control {
+    transform: translate3d(0, 0, 0);
+    will-change: border-color, box-shadow;
+    contain: layout style;
+}
+
+/* Upload Zone */
+.upload-zone {
+    transform: translate3d(0, 0, 0);
+    will-change: transform, border-color, background;
+    contain: layout style;
+}
+
+.upload-zone:hover {
+    transform: translate3d(0, -2px, 0);
+}
+
+.upload-zone.dragging {
+    transform: translate3d(0, 0, 0) scale(1.02);
+}
+
+/* Icons */
+.icon-spacing,
+.fa-edit,
+.btn-tool i {
+    transform: translate3d(0, 0, 0);
+    will-change: transform, color;
+    contain: layout;
+}
+
+.icon-spacing:hover {
+    transform: translate3d(0, 0, 0) scale(1.15);
+}
+
+/* Step circles */
+.step-circle {
+    transform: translate3d(0, 0, 0);
+    will-change: transform, background, border-color, color;
+    contain: layout style;
+}
+
+.step.active .step-circle {
+    transform: translate3d(0, 0, 0) scale(1.1);
+}
+
+/* Tab buttons */
+.tab-btn {
+    transform: translate3d(0, 0, 0);
+    will-change: color, background-color, border-color;
+    contain: layout style;
+}
+
+/* Language switching */
+#header_about,
+#content_about,
+#video_about {
+    transform: translate3d(0, 0, 0);
+    will-change: opacity, transform;
+    contain: layout style;
+}
+
+/* Animation performance optimizations */
+@media (prefers-reduced-motion: no-preference) {
+    /* เปิดใช้งาน smooth animations เมื่อผู้ใช้ไม่ได้ปิด */
+    * {
+        transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* ลด animation เมื่อผู้ใช้เปิด reduce motion */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Viewport optimizations */
+@media (max-width: 768px) {
+    /* ลดความซับซ้อนของ animation บน mobile */
+    .small-box:hover {
+        transform: translate3d(0, -4px, 0) scale(1.01);
+    }
+    
+    .card:hover {
+        transform: translate3d(0, -2px, 0);
+    }
+    
+    .nav-link:hover {
+        transform: translate3d(2px, 0, 0);
+    }
+}
+
+/* Browser-specific optimizations */
+@supports (backdrop-filter: blur(10px)) {
+    .offcanvas-backdrop,
+    .breadcrumb {
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Fallback สำหรับ browsers ที่ไม่รองรับ will-change */
+@supports not (will-change: transform) {
+    .btn,
+    .card,
+    .small-box,
+    .nav-link {
+        /* ใช้ GPU acceleration แบบ fallback */
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Performance monitoring และ debugging */
+@media (prefers-reduced-data: reduce) {
+    /* ลด animation เมื่อผู้ใช้ต้องการประหยัด data */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Optimize for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card,
+    .small-box,
+    .offcanvas {
+        /* ปรับการ render สำหรับหน้าจอ high DPI */
+        transform: translate3d(0, 0, 0);
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}

@@ -46,7 +46,7 @@ class Cookie extends BaseConfig
      * Set to `.your-domain.com` for site-wide cookies.
      */
     // Set site-wide domain to allow cookies for subdomains (production)
-    public string $domain = '.petexthailand.com';
+    public string $domain = '';
 
     /**
      * --------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class Cookie extends BaseConfig
      * Cookie will only be set if a secure HTTPS connection exists.
      */
     // In production we require secure cookies (HTTPS)
-    public bool $secure = true;
+    public bool $secure = false;
 
     /**
      * --------------------------------------------------------------------------
@@ -90,7 +90,7 @@ class Cookie extends BaseConfig
      * @phpstan-var 'None'|'Lax'|'Strict'|''
      */
     // Use 'None' with secure=true to allow cookies in modern browsers (including iOS/Safari)
-    public string $samesite = 'None';
+    public string $samesite = 'Lax';
 
     /**
      * --------------------------------------------------------------------------

@@ -1,9 +1,555 @@
 <title>แก้ไขข้อมูลทีมแพทย์</title>
-<!-- Content Wrapper. Contains page content -->
 <style>
+    :root {
+        --teal-primary: #4ecdc4;
+        --teal-dark: #44a08d;
+        --accent-orange: #f39c12;
+        --orange-dark: #e67e22;
+        --navy-blue: #1a2a6c;
+        --text-dark: #1a2a6c;
+        --text-light: #5f7c8a;
+        --white: #ffffff;
+        --shadow-soft: 0 4px 20px rgba(78, 205, 196, 0.15);
+        --shadow-medium: 0 8px 30px rgba(78, 205, 196, 0.2);
+    }
+
+    /* Modern Card Styling */
+    .card {
+        border-radius: 20px !important;
+        border: none;
+        box-shadow: var(--shadow-soft);
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        overflow: hidden;
+        will-change: transform, box-shadow;
+        contain: layout style paint;
+        backface-visibility: hidden;
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-medium);
+        transform: translate3d(0, -3px, 0);
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        border: none;
+        padding: 1.5rem;
+        border-radius: 20px 20px 0 0 !important;
+        border-bottom: none !important;
+    }
+
+    .card-header h1,
+    .card-header h3 {
+        color: var(--white) !important;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin: 0;
+    }
+
+    .card-body {
+        padding: 2rem;
+        background: var(--white);
+    }
+
+    /* Breadcrumb Modern */
+    .breadcrumb {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .breadcrumb-item a {
+        color: var(--white) !important;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .breadcrumb-item a:hover {
+        color: var(--navy-blue) !important;
+    }
+
+    .breadcrumb-item.active {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 600;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    /* Table Styling */
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table thead {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+    }
+
+    .table thead th {
+        color: var(--white) !important;
+        font-weight: 600;
+        border: none;
+        padding: 1rem;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform, background-color, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
+    }
+
+    .table tbody tr:hover {
+        background: rgba(78, 205, 196, 0.05);
+        transform: translate3d(0, -1px, 0);
+        box-shadow: 0 2px 8px rgba(78, 205, 196, 0.1);
+    }
+
+    .table tbody td {
+        vertical-align: middle;
+        padding: 1rem;
+        border-color: rgba(78, 205, 196, 0.1);
+    }
+
+    .table img {
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
+        will-change: transform, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
+    }
+
+    .table img:hover {
+        transform: translate3d(0, -2px, 0) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Buttons */
+    .btn {
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        border: none;
+        box-shadow: var(--shadow-soft);
+        will-change: transform, background, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        color: var(--white);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        transform: translate3d(0, -2px, 0);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: var(--white);
+    }
+
+    .btn-success:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: var(--white);
+    }
+
+    .btn-danger:hover {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
+    .btn-warning {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: var(--white);
+    }
+
+    .btn-warning:hover {
+        background: linear-gradient(135deg, var(--orange-dark) 0%, var(--accent-orange) 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
+    .btn-tool {
+        color: var(--white) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
+        backface-visibility: hidden;
+    }
+
+    .btn-tool:hover {
+        transform: translate3d(0, 0, 0) scale(1.1);
+    }
+
+    /* Action Icons */
     .icon-spacing {
         margin-right: 10px;
-        /* สามารถปรับค่าได้ตามต้องการ */
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), color 0.3s ease;
+        cursor: pointer;
+        will-change: transform, color;
+        contain: layout style;
+        backface-visibility: hidden;
+    }
+
+    .icon-spacing:hover {
+        transform: translate3d(0, 0, 0) scale(1.15);
+    }
+
+    .fa-edit {
+        color: var(--teal-primary);
+        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .fa-edit:hover {
+        color: var(--accent-orange);
+    }
+
+    .fa-exchange-alt {
+        color: #3b82f6;
+        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .fa-exchange-alt:hover {
+        color: #2563eb;
+    }
+
+    .fa-trash {
+        color: #ef4444;
+        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .fa-trash:hover {
+        color: #dc2626;
+    }
+
+    /* Form Controls */
+    .form-control,
+    .select2 {
+        border-radius: 10px;
+        border: 2px solid rgba(78, 205, 196, 0.3);
+        padding: 0rem 1rem;
+        transition: border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.95);
+        will-change: border-color, box-shadow, background-color;
+        contain: layout style;
+    }
+
+    .form-control:focus,
+    .select2:focus {
+        border-color: var(--teal-primary);
+        box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        background: white;
+    }
+
+    /* Modern Modal */
+    .modal-content {
+        border-radius: 25px;
+        border: none;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        border: none;
+        padding: 1.5rem 2rem;
+        border-radius: 25px 25px 0 0;
+    }
+
+    .modal-title {
+        color: var(--white);
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header .close {
+        color: var(--white);
+        opacity: 0.9;
+        text-shadow: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .modal-header .close:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .modal-body {
+        padding: 2rem;
+        background: var(--white);
+    }
+
+    .modal-footer {
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
+        border: none;
+        padding: 1.5rem 2rem;
+        border-radius: 0 0 25px 25px;
+    }
+
+    .modal.fade .modal-dialog {
+        transform: scale(0.85) translateY(-50px);
+        opacity: 0;
+        transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   opacity 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .modal.show .modal-dialog {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    /* File Upload Styling */
+    .file-upload-btn {
+        width: 100%;
+        margin: 0 0 1.5rem 0;
+        color: var(--white);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .file-upload-btn:hover {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        transform: translate3d(0, -2px, 0);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .image-upload-wrap {
+        border: 3px dashed rgba(78, 205, 196, 0.4);
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.08) 0%, rgba(243, 156, 18, 0.08) 100%);
+        position: relative;
+        border-radius: 15px;
+        padding: 3rem 2rem;
+        transition: border-color 0.3s ease,
+                    background 0.3s ease,
+                    transform 0.3s ease;
+        text-align: center;
+    }
+
+    .image-upload-wrap:hover {
+        border-color: var(--teal-primary);
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(243, 156, 18, 0.15) 100%);
+        transform: translate3d(0, 0, 0) scale(1.01);
+    }
+
+    .image-dropping {
+        border-color: var(--accent-orange) !important;
+        background: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%) !important;
+        transform: translate3d(0, 0, 0) scale(1.02);
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+    .drag-text h3 {
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        margin: 0.5rem 0 0 0;
+    }
+
+    .drag-text i {
+        font-size: 3rem;
+        color: var(--teal-primary);
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .file-upload-content {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .file-upload-image {
+        max-height: 300px;
+        max-width: 100%;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+        padding: 1rem;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
+    }
+
+    .remove-image {
+        width: 200px;
+        margin: 1rem auto 0;
+        color: var(--white);
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        cursor: pointer;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .remove-image:hover {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        transform: translate3d(0, -2px, 0);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .remove-image span {
+        display: none;
+    }
+
+    /* Section Headers */
+    .section-header {
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid rgba(78, 205, 196, 0.2);
+    }
+
+    .section-header h5 {
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-header h5 i {
+        color: var(--teal-primary);
+        margin-right: 0.5rem;
+    }
+
+    /* Responsive - Tablet */
+    @media (max-width: 992px) {
+        .card-body {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Responsive - Mobile */
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .modal-body {
+            padding: 1rem;
+        }
+
+        .table {
+            font-size: 0.85rem;
+        }
+
+        .table thead th {
+            padding: 0.75rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .table tbody td {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .table img {
+            max-width: 100px !important;
+        }
+    }
+
+    /* Responsive - Small Mobile */
+    @media (max-width: 576px) {
+        .card-header h1,
+        .card-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .btn-sm {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .image-upload-wrap {
+            padding: 2rem 1rem;
+        }
+
+        .drag-text h3 {
+            font-size: 0.95rem;
+        }
+
+        .drag-text i {
+            font-size: 2rem !important;
+        }
+    }
+    
+    /* DataTables search/length alignment fixes */
+    /* Keeps the "ค้นหา" label vertically aligned with the input */
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_length {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .dataTables_wrapper .dataTables_filter label {
+        margin: 0 !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .dataTables_wrapper .dataTables_filter input[type="search"] {
+        margin: 0 !important;
+        height: calc(1.5em + 0.75rem) !important;
+        padding: 0.375rem 0.75rem !important;
+        border-radius: 8px !important;
+    }
+
+    /* Ensure length select aligns with controls */
+    .dataTables_wrapper .dataTables_length label {
+        margin: 0 !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 </style>
 <div class="content-wrapper">
@@ -102,69 +648,122 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title"></h4>
+                <h4 class="modal-title" id="modal-title">
+                    <i class="fas fa-user-md mr-2"></i>เพิ่มข้อมูลทีม
+                </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form class="mb-3" id="form_team" action="javascript:void(0)" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class="file-upload">
-                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">เพิ่มรูปภาพ</button>
+                    <!-- Upload Section -->
+                    <div class="section-header">
+                        <h5>
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            อัพโหลดรูปภาพ
+                        </h5>
+                        <small style="color: var(--text-light);">รองรับไฟล์ภาพ JPG, PNG ขนาดแนะนำ 550 x 600 px</small>
+                    </div>
+
+                    <div class="mb-4">
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">
+                            <i class="fas fa-folder-open mr-2"></i>เลือกรูปภาพ
+                        </button>
+                        
                         <div class="image-upload-wrap">
                             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" id="upload_image" name="upload_image" />
                             <div class="drag-text">
-                                <h3>"ลากและวางไฟล์ หรือเลือกเพิ่มรูปภาพ"</h3>
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>ลากและวางไฟล์ที่นี่</h3>
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin: 0.5rem 0 0 0;">หรือคลิกปุ่มด้านบนเพื่อเลือกไฟล์</p>
                             </div>
                         </div>
+                        
                         <div class="file-upload-content">
                             <img class="file-upload-image" src="#" alt="your image" />
                             <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image">ลบรูปภาพ <span class="image-title">Uploaded Image</span></button>
-                            </div>
-                        </div>
-                        <p class="text-right text-gray text-sm mt-2">* ขนาดรูปภาพแนะนำ 550 x 600 px</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="name_last_name_th">ชื่อ - นามสกุล (ภาษาไทย)</label>
-                                <input type="text" id="name_last_name_th" name="name_last_name_th" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="position_th">ตำแหน่ง (ภาษาไทย)</label>
-                                <input type="text" id="position_th" name="position_th" class="form-control" required>
+                                <button type="button" onclick="removeUpload()" class="remove-image">
+                                    <i class="fas fa-trash mr-2"></i>ลบรูปภาพ
+                                    <span class="image-title">Uploaded Image</span>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
+
+                    <!-- Thai Information Section -->
+                    <div class="section-header">
+                        <h5>
+                            <i class="fas fa-language"></i>
+                            ข้อมูลภาษาไทย
+                        </h5>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name_last_name_en">ชื่อ - นามสกุล (ภาษาอังกฤษ)</label>
-                                <input type="text" id="name_last_name_en" name="name_last_name_en" class="form-control" required>
+                                <label for="name_last_name_th">
+                                    <i class="fas fa-user mr-1" style="color: var(--teal-primary);"></i>
+                                    ชื่อ - นามสกุล (ภาษาไทย)
+                                </label>
+                                <input type="text" id="name_last_name_th" name="name_last_name_th" class="form-control" placeholder="กรุณากรอกชื่อ-นามสกุล" required>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="position_en">ตำแหน่ง (ภาษาอังกฤษ)</label>
-                                <input type="text" id="position_en" name="position_en" class="form-control" required>
+                                <label for="position_th">
+                                    <i class="fas fa-briefcase mr-1" style="color: var(--teal-primary);"></i>
+                                    ตำแหน่ง (ภาษาไทย)
+                                </label>
+                                <input type="text" id="position_th" name="position_th" class="form-control" placeholder="กรุณากรอกตำแหน่ง" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- English Information Section -->
+                    <div class="section-header">
+                        <h5>
+                            <i class="fas fa-globe"></i>
+                            ข้อมูลภาษาอังกฤษ
+                        </h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name_last_name_en">
+                                    <i class="fas fa-user mr-1" style="color: var(--teal-primary);"></i>
+                                    ชื่อ - นามสกุล (ภาษาอังกฤษ)
+                                </label>
+                                <input type="text" id="name_last_name_en" name="name_last_name_en" class="form-control" placeholder="Please enter name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="position_en">
+                                    <i class="fas fa-briefcase mr-1" style="color: var(--teal-primary);"></i>
+                                    ตำแหน่ง (ภาษาอังกฤษ)
+                                </label>
+                                <input type="text" id="position_en" name="position_en" class="form-control" placeholder="Please enter position" required>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <input type="text" id="url_route" name="url_route" hidden>
                 <input type="text" id="path_image_old" name="path_image_old" hidden>
+
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i>ยกเลิก
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save mr-2"></i>บันทึกข้อมูล
+                    </button>
                 </div>
             </form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <!-- modal -->
@@ -180,12 +779,12 @@
         removeUpload();
         switch (action) {
             case 'Create':
-                $("#modal-title").text('เพิ่มข้อมูลทีม');
+                $("#modal-title").html('<i class="fas fa-user-md mr-2"></i>เพิ่มข้อมูลทีม');
                 $('#url_route').val('dashboard/aboutpage/aboutteam/create');
                 check_action = 'Create';
                 break;
             case 'Update':
-                $("#modal-title").text('ข้อมูลทีม');
+                $("#modal-title").html('<i class="fas fa-edit mr-2"></i>แก้ไขข้อมูลทีม');
                 const data = JSON.parse(decodeURIComponent(data_encode));
                 $('#name_last_name_th').val(data.name_last_name_th);
                 $('#position_th').val(data.position_th);
@@ -269,7 +868,7 @@
                     'data': null,
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
-                        return `<a href="<?= base_url('dist/img/team/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_last_name}" data-gallery="gallery">
+                        return `<a href="<?= base_url('dist/img/team/') ?>${data.image_path}" data-toggle="lightbox" data-title="${data.name_last_name_th}" data-gallery="gallery">
                                         <img src="<?= base_url('dist/img/team/') ?>${data.image_path}" class="img-fluid mb-2" alt="white sample" style="width: 10rem;" />
                                     </a>`;
                     }
@@ -320,6 +919,23 @@
             });
         });
     })
+</script>
+<style>
+    /* Modal / lightbox animation helpers */
+    .modal-enter .modal-content, .modal-enter .card { transform: translateY(20px) scale(0.98); opacity: 0; }
+    .modal-opened .modal-content, .modal-opened .card { transform: translateY(0) scale(1); opacity: 1; transition: transform 260ms cubic-bezier(0.4,0,0.2,1), opacity 260ms ease-out; }
+    .modal-exit .modal-content, .modal-exit .card { transform: translateY(12px) scale(0.99); opacity: 0; transition: transform 200ms ease-in, opacity 200ms ease-in; }
+</style>
+
+<script>
+    // global handlers for bootstrap modals
+    $(document).on('show.bs.modal', '.modal', function () { $(this).find('.modal-dialog').addClass('modal-enter'); });
+    $(document).on('shown.bs.modal', '.modal', function () { const d = $(this).find('.modal-dialog'); d.removeClass('modal-enter').addClass('modal-opened'); });
+    $(document).on('hide.bs.modal', '.modal', function () { $(this).find('.modal-dialog').addClass('modal-exit'); });
+    $(document).on('hidden.bs.modal', '.modal', function () { $(this).find('.modal-dialog').removeClass('modal-exit modal-opened'); });
+
+    // ekkoLightbox integration
+    $(document).on('click', '[data-toggle="lightbox"]', function() { setTimeout(function(){ const $ekko = $('.ekko-lightbox'); if ($ekko.length) { $ekko.find('.modal-dialog').addClass('modal-enter'); } }, 10); });
 </script>
 <!-- script upload image -->
 <script>

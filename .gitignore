@@ -127,3 +127,7 @@ writable/debugbar/*
 app/Config/App.php
 app/Config/Database.php
 app/Config/Cookie.php
+petjourn_database.sql
+app/Config/App.php
+app/Config/Database.php
+app/Config/Cookie.php

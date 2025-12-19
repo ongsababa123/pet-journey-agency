@@ -19,7 +19,8 @@
         border-radius: 20px !important;
         border: none;
         box-shadow: var(--shadow-soft);
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease,
+                    box-shadow 0.3s ease;
         overflow: hidden;
     }
 
@@ -50,11 +51,12 @@
 
     /* Breadcrumb Modern */
     .breadcrumb {
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 0.75rem 1.5rem;
         box-shadow: var(--shadow-soft);
-        backdrop-filter: blur(10px);
+        /* ตัด blur ออกเพื่อให้เลื่อนและสลับหน้าได้ลื่นขึ้น */
+        /* backdrop-filter: blur(10px); */
     }
 
     .breadcrumb-item a {
@@ -106,7 +108,9 @@
     }
 
     .table tbody tr {
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease,
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
     }
 
     .table tbody tr:hover {
@@ -145,7 +149,9 @@
         border-radius: 10px;
         padding: 0.75rem 1.5rem;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: background 0.3s ease,
+                    box-shadow 0.3s ease,
+                    transform 0.3s ease;
         border: none;
         box-shadow: var(--shadow-soft);
     }
@@ -196,7 +202,9 @@
         border-radius: 10px;
         border: 2px solid rgba(78, 205, 196, 0.2);
         padding: 0rem 1rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s ease,
+                    box-shadow 0.3s ease,
+                    background-color 0.3s ease;
         font-weight: 500;
     }
 
@@ -214,7 +222,8 @@
     /* Action Icons */
     .icon-spacing {
         margin-right: 10px;
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease,
+                    color 0.3s ease;
         cursor: pointer;
     }
 
@@ -250,7 +259,18 @@
     .modal-content {
         border-radius: 20px;
         border: none;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Smooth modal animation */
+    .modal.fade .modal-dialog {
+        transform: translate3d(0, 20px, 0) scale(0.96);
+        transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    opacity 0.25s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     .modal-header {
@@ -290,7 +310,8 @@
     .table img {
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease,
+                    box-shadow 0.3s ease;
     }
 
     .table img:hover {
@@ -329,7 +350,9 @@
         border-radius: 10px;
         font-size: 1rem;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: background 0.3s ease,
+                    box-shadow 0.3s ease,
+                    transform 0.3s ease;
         box-shadow: var(--shadow-soft);
     }
 
@@ -367,7 +390,9 @@
         position: relative;
         border-radius: 15px;
         padding: 3rem 2rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s ease,
+                    background 0.3s ease,
+                    transform 0.3s ease;
     }
 
     .image-upload-wrap:hover {
@@ -461,6 +486,38 @@
             font-size: 0.95rem;
         }
     }
+
+    @media (max-width: 576px) {
+        .card-header h1,
+        .card-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .carousel-container {
+            padding: 1.25rem;
+        }
+
+        /* จัด row filter ให้เรียงเป็นคอลัมน์ในมือถือ */
+        .filter-row > [class^="col-"] {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 0.75rem;
+        }
+
+        .filter-row .col-8 {
+            margin-bottom: 0;
+        }
+
+        .modal-dialog.modal-lg {
+            margin: 0.5rem;
+            max-width: 100%;
+        }
+    }
 </style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -486,7 +543,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row filter-row">
                                 <div class="col-12 carousel-container">
                                     <div id="carouselExampleIndicators" class="carousel slide mx-auto" data-ride="carousel" style="width: 100%;">
                                         <ol class="carousel-indicators" id="carousel-indicators">
@@ -558,6 +615,7 @@
                                 </div>
                             </div>
                             <hr style="border-color: rgba(78, 205, 196, 0.2);">
+                            <div class="table-responsive">
                             <table id="example2" class="table table-hover text-center">
                                 <thead>
                                     <tr>
@@ -572,6 +630,7 @@
                                 <tbody>
                                 </tbody>
                             </table>
+                            </div>
                         </div><!-- /.card-body -->
                         <div class="overlay dark" id="overlay_1">
                             <i class="fas fa-2x fa-sync-alt fa-spin"></i>
@@ -813,6 +872,38 @@
             });
         });
     })
+</script>
+<!-- lightbox/modal animations -->
+<script>
+    // Add animated classes when any bootstrap modal is shown/hidden
+    $(document).on('show.bs.modal', '.modal', function (e) {
+        const dialog = $(this).find('.modal-dialog');
+        dialog.addClass('modal-enter');
+    });
+    $(document).on('shown.bs.modal', '.modal', function (e) {
+        const dialog = $(this).find('.modal-dialog');
+        dialog.removeClass('modal-enter').addClass('modal-opened');
+    });
+    $(document).on('hide.bs.modal', '.modal', function (e) {
+        const dialog = $(this).find('.modal-dialog');
+        dialog.addClass('modal-exit');
+    });
+    $(document).on('hidden.bs.modal', '.modal', function (e) {
+        const dialog = $(this).find('.modal-dialog');
+        dialog.removeClass('modal-exit modal-opened');
+    });
+
+    // ekkoLightbox uses bootstrap modal internally; add entry/exit classes for its modal
+    $(document).on('click', '[data-toggle="lightbox"]', function() {
+        // small timeout to wait for ekko to create modal
+        setTimeout(function(){
+            const $ekko = $('.ekko-lightbox');
+            if ($ekko.length) {
+                $ekko.find('.modal-dialog').addClass('modal-enter');
+            }
+        }, 10);
+    });
+    // when ekko modal is shown/hidden the same bootstrap events fire so above handlers apply
 </script>
 <!-- script upload image -->
 <script>

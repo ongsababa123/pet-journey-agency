@@ -46,23 +46,28 @@
 
     /* Breadcrumb Styling */
     .breadcrumb {
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         padding: 0.75rem 1.5rem;
         box-shadow: var(--shadow-soft);
-        backdrop-filter: blur(10px);
+        /* ตัด blur ออกเพื่อลดภาระ GPU/CPU */
+        /* backdrop-filter: blur(10px); */
     }
 
     .breadcrumb-item a {
         color: var(--teal-primary);
         text-decoration: none;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: color, transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .breadcrumb-item a:hover {
         color: var(--accent-orange);
-        transform: translateX(3px);
+        transform: translate3d(3px, 0, 0);
     }
 
     .breadcrumb-item.active {
@@ -75,21 +80,25 @@
         border-radius: 16px;
         position: relative;
         overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: var(--shadow-soft);
         border: none;
         margin-bottom: 1.5rem;
         animation: fadeInUp 0.6s ease-out backwards;
+        will-change: transform, box-shadow;
+        contain: layout style paint;
+        backface-visibility: hidden;
     }
 
     @keyframes fadeInUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translate3d(0, 30px, 0);
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
         }
     }
 
@@ -100,7 +109,7 @@
     .small-box:nth-child(5) { animation-delay: 0.5s; }
 
     .small-box:hover {
-        transform: translateY(-8px) scale(1.02);
+        transform: translate3d(0, -8px, 0) scale(1.01);
         box-shadow: var(--shadow-heavy);
     }
 
@@ -163,15 +172,19 @@
         position: absolute;
         right: 1rem;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translate3d(0, -50%, 0);
         font-size: 4rem;
         opacity: 0.3;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         z-index: 1;
+        will-change: transform, opacity;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .small-box:hover .icon {
-        transform: translateY(-50%) scale(1.2) rotate(10deg);
+        transform: translate3d(0, -50%, 0) scale(1.15) rotate(8deg);
         opacity: 0.4;
     }
 
@@ -186,9 +199,13 @@
         justify-content: center;
         gap: 0.5rem;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   gap 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         position: relative;
         z-index: 2;
+        will-change: background-color, color;
+        contain: layout style;
     }
 
     .small-box-footer:hover {
@@ -202,16 +219,20 @@
         border-radius: 16px;
         border: none;
         box-shadow: var(--shadow-soft);
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
+        /* เดิมใช้ background แบบ glass + blur ซึ่งหนักมากบนบางเครื่อง */
+        /* background: var(--glass-bg); */
+        /* backdrop-filter: blur(10px); */
+        background: #ffffff;
         margin-bottom: 1.5rem;
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform, box-shadow;
     }
 
     .card:hover {
         box-shadow: var(--shadow-medium);
-        transform: translateY(-3px);
+        transform: translate3d(0, -3px, 0);
     }
 
     .card-header {
@@ -249,11 +270,15 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform, color;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .chart-legend li:hover {
-        transform: translateX(5px);
+        transform: translate3d(5px, 0, 0);
         color: var(--teal-primary);
     }
 
@@ -267,8 +292,11 @@
         border-radius: 10px;
         border: 2px solid rgba(78, 205, 196, 0.2);
         padding: 0rem 1rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         font-weight: 500;
+        will-change: border-color, box-shadow;
+        contain: layout style;
     }
 
     .form-control:focus {
@@ -278,11 +306,14 @@
 
     /* Buttons */
     .btn-tool {
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .btn-tool:hover {
-        transform: scale(1.1) rotate(90deg);
+        transform: translate3d(0, 0, 0) scale(1.1) rotate(90deg);
     }
 
     /* Responsive adjustments */
@@ -642,6 +673,9 @@
 
 <!-- Pie Chart -->
 <script>
+    // เก็บ instance ของกราฟไว้เพื่อไม่ให้สร้าง Chart ใหม่ซ้ำ ๆ
+    var pieChartInstance = null;
+
     function PieChart() {
         const labels_service = [];
         const data_service = [];
@@ -666,24 +700,34 @@
             data_service.push(count_service);
         });
 
-        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
         var pieData = {
             labels: labels_service,
             datasets: [{
                 data: data_service,
                 backgroundColor: color_service
             }]
-        }
+        };
+
         var pieOptions = {
             legend: {
                 display: false
+            },
+            animation: {
+                duration: 500,
+                easing: 'easeOutCubic'
             }
+        };
+
+        if (pieChartInstance) {
+            pieChartInstance.destroy();
         }
-        var pieChart = new Chart(pieChartCanvas, {
+
+        pieChartInstance = new Chart(pieChartCanvas, {
             type: 'doughnut',
             data: pieData,
             options: pieOptions
-        })
+        });
     }
 </script>
 
@@ -692,22 +736,26 @@
     //-------------
     //- Bar CHART -
     //--------------
+    var barChartInstance = null;
+
     function BarChart() {
         var value_year = document.getElementById("year_service").value; // ปีที่เลือก
         var count_by_year_month = {};
 
         quotation_data.forEach(function(element) {
-            if (element.craete_date.substring(0, 4) === value_year.toString()) {
-                var createDate = new Date(element.craete_date);
-                var year = createDate.getFullYear();
+            if (!element.craete_date) return;
+
+            var createDate = new Date(element.craete_date);
+            var year = createDate.getFullYear();
+
+            if (year === parseInt(value_year, 10)) {
                 var month = createDate.getMonth() + 1;
 
                 if (!count_by_year_month[month]) {
                     count_by_year_month[month] = 0;
                 }
+                count_by_year_month[month]++;
             }
-
-            count_by_year_month[month]++;
         });
 
         var areaChartData = {
@@ -731,10 +779,10 @@
         //-------------
         //- BAR CHART -
         //-------------
-        var barChartCanvas = $('#barChart').get(0).getContext('2d')
-        var barChartData = $.extend(true, {}, areaChartData)
-        var temp0 = areaChartData.datasets[0]
-        barChartData.datasets[0] = temp0
+        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+        var barChartData = $.extend(true, {}, areaChartData);
+        var temp0 = areaChartData.datasets[0];
+        barChartData.datasets[0] = temp0;
 
         var barChartOptions = {
             responsive: true,
@@ -780,14 +828,23 @@
                 cornerRadius: 8,
                 xPadding: 15,
                 yPadding: 15
+            },
+            animation: {
+                duration: 500,
+                easing: 'easeOutCubic'
             }
+        };
+
+        // ถ้ามีกราฟเก่าอยู่ให้ทำลายก่อนเพื่อไม่ให้กินหน่วยความจำ/ช้าเมื่อเปลี่ยนปีบ่อย ๆ
+        if (barChartInstance) {
+            barChartInstance.destroy();
         }
 
-        new Chart(barChartCanvas, {
+        barChartInstance = new Chart(barChartCanvas, {
             type: 'bar',
             data: barChartData,
             options: barChartOptions
-        })
+        });
     }
 </script>
 <!-- move tab function -->

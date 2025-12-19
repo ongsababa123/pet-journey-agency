@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'https://petexthailand.com/';
-    // public string $baseURL = 'http://localhost/pet-journey-agency/';
+    // public string $baseURL = 'https://petexthailand.com/';
+    public string $baseURL = 'http://localhost/pet-journey-agency/';
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
      * If you want to accept multiple Hostnames, set this.
@@ -158,7 +158,7 @@ class App extends BaseConfig
      * and the HTTP Strict Transport Security (HSTS) header will be set.
      */
     // In production, force HTTPS to ensure cookies with Secure attribute are set correctly
-    public bool $forceGlobalSecureRequests = true;
+    public bool $forceGlobalSecureRequests = false;
 
     /**
      * --------------------------------------------------------------------------

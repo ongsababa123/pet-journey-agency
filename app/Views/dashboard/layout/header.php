@@ -53,31 +53,41 @@
     }
 
     .main-header .nav-link {
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .main-header .nav-link:hover {
-        transform: scale(1.1);
+        transform: translate3d(0, 0, 0) scale(1.1);
     }
 
     /* User Block Styling */
     .user-block {
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .user-block:hover {
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
     }
 
     .user-block .img-circle {
         border: 3px solid rgba(255, 255, 255, 0.3);
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        will-change: transform, border-color;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .user-block:hover .img-circle {
         border-color: var(--white);
-        transform: scale(1.1);
+        transform: translate3d(0, 0, 0) scale(1.1);
     }
 
     /* Dropdown Menu */
@@ -103,46 +113,59 @@
     .dropdown-item {
         padding: 0.75rem 1.5rem;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform, background-color;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .dropdown-item:hover {
         background: rgba(255, 255, 255, 0.2) !important;
-        transform: translateX(5px);
+        transform: translate3d(5px, 0, 0);
     }
 
     /* Main Sidebar Styles */
     .main-sidebar {
         background: var(--white) !important;
         box-shadow: var(--shadow-soft);
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
     }
 
     .main-sidebar .nav-sidebar .nav-link {
         border-radius: 8px;
         margin: 0rem -0.5rem;
         padding: 0.75rem 2rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, background, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .main-sidebar .nav-sidebar .nav-link p,
     .main-sidebar .nav-sidebar .nav-header,
     .main-sidebar .nav-sidebar .nav-link .nav-icon {
         color: var(--text-dark) !important;
-        transition: all 0.3s ease;
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                   transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: color, transform;
     }
 
     /* Menu Hover Effects */
     .nav-sidebar .nav-item .nav-link:not(:focus):hover {
         background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%) !important;
-        transform: translateX(5px);
+        transform: translate3d(5px, 0, 0);
         box-shadow: var(--shadow-soft);
     }
 
     .nav-sidebar .nav-item .nav-link:not(:focus):hover p,
     .nav-sidebar .nav-item .nav-link:not(:focus):hover .nav-icon {
         color: var(--white) !important;
-        transform: scale(1.05);
+        transform: translate3d(0, 0, 0) scale(1.05);
     }
 
     /* Active Menu States */
@@ -260,16 +283,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(26, 42, 108, 0.7);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        background: rgba(26, 42, 108, 0.75);
+        /* ลดงาน render: ตัด blur แบบเต็มหน้าจอออก */
+        /* backdrop-filter: blur(5px); */
+        /* -webkit-backdrop-filter: blur(5px); */
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 9999;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
     }
 
     .custom-alert-overlay.show {
@@ -278,17 +302,19 @@
     }
 
     .custom-alert {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(16px) saturate(180%);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background: #ffffff;
+        /* ลดงาน GPU: ไม่ใช้ blur ซ้อนในกล่องอีกชั้น */
+        /* backdrop-filter: blur(16px) saturate(180%); */
+        /* -webkit-backdrop-filter: blur(16px) saturate(180%); */
         border-radius: 20px;
         padding: 2rem;
         min-width: 320px;
         max-width: 500px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         transform: scale(0.7);
         opacity: 0;
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    opacity 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
         border: 2px solid rgba(78, 205, 196, 0.3);
         position: relative;
         overflow: hidden;

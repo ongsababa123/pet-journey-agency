@@ -381,16 +381,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(26, 42, 108, 0.7);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        background: rgba(26, 42, 108, 0.75);
+        /* ลดงาน render: ตัด blur เต็มหน้าจอออก */
+        /* backdrop-filter: blur(5px); */
+        /* -webkit-backdrop-filter: blur(5px); */
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 9999;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
     }
 
     .custom-alert-overlay.show {
@@ -399,17 +400,19 @@
     }
 
     .custom-alert {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(16px) saturate(180%);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background: #ffffff;
+        /* ลดงาน GPU: ไม่ใช้ blur ซ้อนในกล่องอีกชั้น */
+        /* backdrop-filter: blur(16px) saturate(180%); */
+        /* -webkit-backdrop-filter: blur(16px) saturate(180%); */
         border-radius: 20px;
         padding: 2rem;
         min-width: 320px;
         max-width: 500px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         transform: scale(0.7);
         opacity: 0;
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    opacity 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
         border: 2px solid rgba(78, 205, 196, 0.3);
         position: relative;
         overflow: hidden;

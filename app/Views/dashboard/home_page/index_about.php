@@ -19,13 +19,17 @@
         border-radius: 20px !important;
         border: none;
         box-shadow: var(--shadow-soft);
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         overflow: hidden;
+        will-change: transform, box-shadow;
+        contain: layout style paint;
+        backface-visibility: hidden;
     }
 
     .card:hover {
         box-shadow: var(--shadow-medium);
-        transform: translateY(-3px);
+        transform: translate3d(0, -3px, 0);
     }
 
     .card-header {
@@ -51,11 +55,11 @@
 
     /* Breadcrumb Modern */
     .breadcrumb {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 0.75rem 1.5rem;
         box-shadow: none;
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(10px); */
     }
 
     .breadcrumb-item a {
@@ -99,12 +103,17 @@
     }
 
     .table tbody tr {
-        transition: all 0.3s ease;
+        transition: background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform, background-color, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .table tbody tr:hover {
         background: rgba(78, 205, 196, 0.05);
-        transform: scale(1.01);
+        transform: translate3d(0, -1px, 0);
         box-shadow: 0 2px 8px rgba(78, 205, 196, 0.1);
     }
 
@@ -118,13 +127,16 @@
     .table video {
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
         max-height: 300px;
         width: auto;
+        will-change: transform, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .table video:hover {
-        transform: scale(1.02);
+        transform: translate3d(0, -2px, 0) scale(1.01);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
@@ -133,9 +145,14 @@
         border-radius: 10px;
         padding: 0.75rem 1.5rem;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         border: none;
         box-shadow: var(--shadow-soft);
+        will-change: transform, background, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .btn-primary {
@@ -145,7 +162,7 @@
 
     .btn-primary:hover {
         background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
 
@@ -156,7 +173,7 @@
 
     .btn-success:hover {
         background: linear-gradient(135deg, #059669 0%, #047857 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
     }
 
     .btn-danger {
@@ -166,31 +183,38 @@
 
     .btn-danger:hover {
         background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
     }
 
     .btn-tool {
         color: var(--white) !important;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .btn-tool:hover {
-        transform: scale(1.1) rotate(90deg);
+        transform: translate3d(0, 0, 0) scale(1.1) rotate(90deg);
     }
 
     /* Action Icons */
     .icon-spacing {
         margin-right: 10px;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), color 0.3s ease;
         cursor: pointer;
+        will-change: transform, color;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .icon-spacing:hover {
-        transform: scale(1.2);
+        transform: translate3d(0, 0, 0) scale(1.15);
     }
 
     .fa-edit {
         color: var(--teal-primary);
+        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     .fa-edit:hover {
@@ -202,30 +226,38 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(0.7);
+        transform: translate3d(-50%, -50%, 0) scale(0.85);
         width: 90%;
         max-width: 1200px;
         max-height: 90vh;
         background: white;
         z-index: 1051;
         border-radius: 25px;
-        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        transition: transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1), 
+                   opacity 0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   visibility 0s linear 0.28s;
         overflow: hidden;
+        will-change: transform, opacity;
+        contain: layout style paint;
+        backface-visibility: hidden;
     }
 
     .offcanvas.show {
         opacity: 1;
         visibility: visible;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        transition: transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1), 
+                   opacity 0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   visibility 0s linear 0s;
     }
 
     .offcanvas.half {
         opacity: 1;
         visibility: visible;
-        transform: translate(-50%, -50%) scale(0.95);
+        transform: translate3d(-50%, -50%, 0) scale(0.95);
     }
 
     .offcanvas-backdrop {
@@ -234,17 +266,23 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(26, 42, 108, 0.7) 0%, rgba(68, 160, 141, 0.7) 100%);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(135deg, rgba(26, 42, 108, 0.8) 0%, rgba(68, 160, 141, 0.8) 100%);
+        /* ลดงาน render: ตัด blur เต็มหน้าจอออก */
+        /* backdrop-filter: blur(10px); */
         z-index: 1050;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: opacity 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   visibility 0s linear 0.25s;
+        will-change: opacity;
+        contain: layout style paint;
     }
 
     .offcanvas-backdrop.show {
         opacity: 1;
         visibility: visible;
+        transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   visibility 0s linear 0s;
     }
 
     .offcanvas .card {
@@ -378,7 +416,11 @@
 
     /* Smooth transitions for language content */
     #header_about, #content_about, #video_about {
-        transition: all 0.3s ease;
+        transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: opacity, transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     /* Enhanced Upload Zone */
@@ -388,21 +430,26 @@
         border-radius: 20px;
         padding: 3rem;
         text-align: center;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         cursor: pointer;
         position: relative;
+        will-change: transform, border-color, background;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .upload-zone:hover {
         border-color: var(--teal-primary);
         background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
     }
 
     .upload-zone.dragging {
         border-color: var(--accent-orange);
         background: linear-gradient(135deg, rgba(243, 156, 18, 0.15) 0%, rgba(78, 205, 196, 0.15) 100%);
-        transform: scale(1.02);
+        transform: translate3d(0, 0, 0) scale(1.02);
     }
 
     .upload-icon {
@@ -433,6 +480,9 @@
         margin-left: auto;
         margin-right: auto;
         object-fit: contain;
+        will-change: opacity, transform;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     /* Main about video (responsive and supports portrait/tall videos) */
@@ -445,6 +495,8 @@
         margin-left: auto;
         margin-right: auto;
         object-fit: contain;
+        will-change: opacity;
+        contain: layout style;
     }
 
     /* About section responsive styles */
@@ -485,12 +537,34 @@
 
     @media (max-width: 576px) {
         #video_about {
-            max-height: 250px;
+            max-height: 240px;
         }
 
         .about-video-section,
         .about-content-section {
             padding: 1rem !important;
+        }
+
+        .card-header h1,
+        .card-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .table {
+            font-size: 0.8rem;
+        }
+
+        .table thead th {
+            padding: 0.5rem 0.35rem;
+        }
+
+        .table tbody td {
+            padding: 0.5rem 0.35rem;
         }
     }
 
@@ -531,15 +605,21 @@
         justify-content: center;
         font-weight: 700;
         color: var(--text-light);
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         margin-bottom: 0.5rem;
+        will-change: transform, background, border-color, color;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .step.active .step-circle {
         background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
         border-color: var(--teal-primary);
         color: white;
-        transform: scale(1.1);
+        transform: translate3d(0, 0, 0) scale(1.1);
     }
 
     .step.completed .step-circle {
@@ -564,9 +644,13 @@
         border-radius: 10px;
         border: 2px solid rgba(78, 205, 196, 0.3);
         padding: 0.75rem 1rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         font-weight: 500;
         background: rgba(255, 255, 255, 0.95);
+        will-change: border-color, box-shadow, background-color;
+        contain: layout style;
     }
 
     .form-control:focus {
@@ -595,13 +679,18 @@
         border-radius: 10px;
         font-size: 1rem;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         box-shadow: var(--shadow-soft);
+        will-change: transform, background, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .file-upload-btn:hover {
         background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
 
@@ -629,19 +718,21 @@
         position: relative;
         border-radius: 15px;
         padding: 3rem 2rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.3s ease,
+                    background 0.3s ease,
+                    transform 0.3s ease;
     }
 
     .image-upload-wrap:hover {
         border-color: var(--teal-primary);
         background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(243, 156, 18, 0.15) 100%);
-        transform: scale(1.01);
+        transform: translate3d(0, 0, 0) scale(1.01);
     }
 
     .image-dropping {
         border-color: var(--accent-orange) !important;
         background: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%) !important;
-        transform: scale(1.02);
+        transform: translate3d(0, 0, 0) scale(1.02);
     }
 
     .drag-text {
@@ -673,14 +764,19 @@
         border-radius: 10px;
         font-size: 0.9rem;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         cursor: pointer;
         box-shadow: var(--shadow-soft);
+        will-change: transform, background, box-shadow;
+        contain: layout style;
+        backface-visibility: hidden;
     }
 
     .remove-image:hover {
         background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
 
@@ -918,26 +1014,24 @@
                                 </div><!-- /.col -->
                             </div>
                         </div><!-- /.card-header -->
-                        <div class="card-body">
+                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 p-lg-5 p-md-4 p-3" style="background-color: #ECF0F3; border-radius: 15px;">
+                                <div class="col-12 p-5" style="background-color: #ECF0F3; border-radius: 15px;">
                                     <div class="row">
-                                        <div class="col-lg-7 col-12 mb-lg-0 mb-3 about-video-section">
-                                            <div class="p-lg-5 p-md-4 p-3 text-center">
-                                                <video controls id="video_about">
+                                        <div class="col-md-7 col-12 about-video-section">
+                                            <div class="p-5 text-center">
+                                                <video width="700" controls id="video_about">
                                                     <source src="<?= base_url('dist/video/about_video/' . $about_home_data['0']['path_video']) ?>" type="video/mp4" id="video_about_src">
                                                 </video>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-12 about-content-section">
-                                            <div class="p-lg-5 p-md-4 p-3">
-                                                <p class="text-left mb-3" style="color: #EACC52;" id="header_about">
-                                                    <strong class="d-block" style="font-size: clamp(1.75rem, 5vw, 4.5rem); line-height: 1.2;">เกี่ยวกับเรา</strong>
-                                                </p>
-                                                <p class="text-left mb-0" style="color: white;" id="content_about">
-                                                    <span style="font-size: clamp(0.95rem, 2vw, 1.25rem); line-height: 1.6; display: block;"><?= $about_home_data['0']['detail'] ?></span>
-                                                </p>
-                                            </div>
+                                        <div class="col-md-5 col-12 about-content-section">
+                                            <p class="text-left pl-5 pt-5" style="color: #EACC52;font-size: 70px" id="header_about">
+                                                <strong>เกี่ยวกับเรา</strong>
+                                            </p>
+                                            <p class="text-left pl-5 mr-5" style="color: white;font-size: 20px" id="content_about">
+                                                <?= $about_home_data['0']['detail'] ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1023,6 +1117,26 @@
     </div>
     <!-- /.content-header -->
 </div>
+
+                <style>
+                    /* Modal animation helpers for image modal */
+                    .modal-enter .modal-content { transform: translateY(20px) scale(0.98); opacity: 0; }
+                    .modal-opened .modal-content { transform: translateY(0) scale(1); opacity: 1; transition: transform 250ms cubic-bezier(0.4,0,0.2,1), opacity 250ms ease-out; }
+                    .modal-exit .modal-content { transform: translateY(12px) scale(0.99); opacity: 0; transition: transform 200ms ease-in, opacity 200ms ease-in; }
+                </style>
+
+                <script>
+                    // Apply modal animation classes globally
+                    $(document).on('show.bs.modal', '.modal', function () { $(this).find('.modal-dialog').addClass('modal-enter'); });
+                    $(document).on('shown.bs.modal', '.modal', function () { const d = $(this).find('.modal-dialog'); d.removeClass('modal-enter').addClass('modal-opened'); });
+                    $(document).on('hide.bs.modal', '.modal', function () { $(this).find('.modal-dialog').addClass('modal-exit'); });
+                    $(document).on('hidden.bs.modal', '.modal', function () { $(this).find('.modal-dialog').removeClass('modal-exit modal-opened'); });
+
+                    // Ensure ekkoLightbox uses same animation hooks
+                    $(document).on('click', '[data-toggle="lightbox"]', function() {
+                        setTimeout(function(){ const $ekko = $('.ekko-lightbox'); if ($ekko.length) { $ekko.find('.modal-dialog').addClass('modal-enter'); } }, 10);
+                    });
+                </script>
 
 <div id="offcanvas" class="offcanvas">
     <div class="card" style="background-color: white;">
