@@ -27,8 +27,11 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
+        // 'username'     => 'petjourn_database',
+        // 'password'     => 'ongsababa196',
+        // 'database'     => 'petjourn_database',
         'username'     => 'root',
-        'password'     => '',
+        'password'     => 'rootpassword',
         'database'     => 'pet_journey',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',

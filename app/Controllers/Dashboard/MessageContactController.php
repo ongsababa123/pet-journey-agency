@@ -96,6 +96,7 @@ class MessageContactController extends BaseController
                 ->orLike('lastname', $searchValue)
                 ->groupEnd();
         }
+		$this->Message_ContactModel->orderBy('date_time', 'DESC');
         $data = ($select_status == 'all') ? $this->Message_ContactModel->findAll($limit, $start) : $this->Message_ContactModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [

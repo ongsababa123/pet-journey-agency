@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pet Journey Agency - ซื้อขายนำเข้าส่งออกสัตว์เลี้ยง | <?php echo $title ?></title>
+    <title>PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง | <?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
-    <meta name="keywords" content="Pet Journey Agency, Pet Journey, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
-    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - Pet Journey Agency">
-    <meta property="og:description" content="Pet Journey Agency บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
+    <meta name="keywords" content="PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง">
+    <meta property="og:title" content="บริการนำเข้าส่งออกสัตว์เลี้ยง - PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง">
+    <meta property="og:description" content="PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://petjourneyagency.com">
-    <link rel="canonical" href="https://petjourneyagency.com">
+    <meta property="og:url" content="https://petexthailand.com">
+    <link rel="canonical" href="https://petexthailand.com">
     <meta name="google-site-verification" content="AmwQxltY35fczxrgHnoEfXbmeAsr48M4pKkubYJoU40" />
     <!-- Google Font: Kanit -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:300,400,400i,700&display=swap">
@@ -689,8 +689,9 @@
 </head>
 
 <body>
+            <!-- Preloader -->
     <div class="loading-container" id="loading-container">
-        <img width="20%" src="<?= base_url('dist/img/loadind_page.gif'); ?>" alt="Loading GIF">
+        <img class="animation__shake" src="<?= base_url('dist/img/logo-pet.png'); ?>" alt="AdminLTELogo" width="300">
         <span class="ml2 loading-text" id="loading"></span>
         <div class="spinner">
             <div class="bounce1"></div>
@@ -702,7 +703,7 @@
         <header>
             <!-- header normal -->
             <div class="header-top">
-                <div class="logo">
+                <div class="logo" width="100%">
                     <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" alt="Logo">
                 </div>
                 <div class="contact-info">
@@ -747,7 +748,8 @@
             </div>
             <div class="header-bottom">
                 <div class="logo">
-                    <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" style="width: 165px;" alt="Logo">
+                    <img src="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" style="width: 165px;" alt="Logo">
+                    
                 </div>
                 <div class="navbar-nav">
                     <div class="nav-link"><a id="menu_home" href="<?= base_url($cut_url[0] . '/homepage') ?>">Home</a></div>
@@ -811,7 +813,7 @@
             <div class="menu-mobile" id="menu-mobile">
                 <span class="close-btn" onclick="toggleMobileMenu()">✖</span>
                 <div>
-                    <img class="mb-3" src="<?= base_url('dist/img/logo1.jpg') ?>" style="width: 150px;" alt="Logo">
+                    <img rc="<?= base_url('dist/img/logo/') . $contact_data['logo_image_path'] ?>" style="width: 165px;" alt="Logo">
                     <div class="menu-item">
                         <i class="fas fa-home"></i>
                         <a id="menu_home_mb" href="<?= base_url($cut_url[0] . '/homepage') ?>"> Home</a>

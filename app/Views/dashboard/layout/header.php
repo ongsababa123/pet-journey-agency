@@ -297,7 +297,7 @@ function check_menu_state($uri_menu, $input, $type)
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Pet Ex Logo" class="brand-image">
             </a>
 
             <!-- Sidebar -->

@@ -137,6 +137,7 @@ class QuotationDataController extends BaseController
                 ->orLike('email', $searchValue)
                 ->groupEnd();
         }
+		$this->QuotationModel->orderBy('craete_date', 'DESC');
         $data = ($select_status == 'all') ? $this->QuotationModel->findAll($limit, $start) : $this->QuotationModel->where('status', $select_status)->findAll($limit, $start);
 
         $response = [
