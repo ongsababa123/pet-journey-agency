@@ -437,7 +437,7 @@
 
     /* Main about video (responsive and supports portrait/tall videos) */
     #video_about {
-        width: auto !important;
+        width: 100% !important;
         max-width: 100%;
         height: auto;
         max-height: 400px;
@@ -445,6 +445,53 @@
         margin-left: auto;
         margin-right: auto;
         object-fit: contain;
+    }
+
+    /* About section responsive styles */
+    .about-video-section {
+        background-color: #EACC52;
+        border-radius: 15px;
+    }
+
+    .about-content-section {
+        background-color: #0198B4;
+        border-radius: 15px;
+    }
+
+    @media (max-width: 991px) {
+        .about-video-section {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .about-content-section {
+            border-radius: 0 0 15px 15px;
+        }
+
+        #video_about {
+            max-height: 350px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #video_about {
+            max-height: 300px;
+        }
+
+        .about-video-section .p-lg-5,
+        .about-content-section .pl-lg-5 {
+            padding: 1.5rem !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        #video_about {
+            max-height: 250px;
+        }
+
+        .about-video-section,
+        .about-content-section {
+            padding: 1rem !important;
+        }
     }
 
     /* Progress Steps */
@@ -655,7 +702,32 @@
         object-fit: contain;
     }
 
-    /* Responsive */
+    /* Responsive - Tablet */
+    @media (max-width: 992px) {
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .table video {
+            max-height: 200px;
+        }
+
+        .offcanvas {
+            width: 95%;
+            max-width: 100%;
+        }
+
+        .tab-navigation {
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            font-size: 0.9rem;
+            padding: 0.75rem 0.5rem;
+        }
+    }
+
+    /* Responsive - Mobile */
     @media (max-width: 768px) {
         .card-body {
             padding: 1rem;
@@ -666,9 +738,21 @@
             font-size: 0.9rem;
         }
 
+        .btn-lg {
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+        }
+
         .offcanvas {
-            height: 90vh;
-            bottom: -90vh;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 15px;
+            max-height: 95vh;
+        }
+
+        .offcanvas .card-body {
+            padding: 1rem;
+            max-height: calc(95vh - 100px);
         }
 
         .video-preview {
@@ -677,6 +761,137 @@
 
         #final-preview-video {
             max-height: 25vh !important;
+        }
+
+        .tab-navigation {
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            font-size: 0.85rem;
+            padding: 0.75rem 0.5rem;
+        }
+
+        .tab-btn i {
+            display: block;
+            margin: 0 0 0.25rem 0 !important;
+            font-size: 1.2rem;
+        }
+
+        .progress-steps {
+            margin-bottom: 1.5rem;
+        }
+
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            font-size: 0.9rem;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+        }
+
+        .upload-zone {
+            padding: 2rem 1rem;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            font-size: 0.95rem;
+        }
+
+        .table {
+            font-size: 0.85rem;
+        }
+
+        .table thead th {
+            padding: 0.75rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .table tbody td {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .table video {
+            max-height: 150px;
+        }
+
+        .icon-spacing {
+            font-size: 1.2rem;
+        }
+
+        /* Stack action buttons vertically on small screens */
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .d-flex.justify-content-between > div {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .d-flex.justify-content-between button {
+            flex: 1;
+        }
+
+        .d-flex.justify-content-between .btn-secondary {
+            order: 2;
+        }
+
+        .col-md-6 {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    /* Responsive - Small Mobile */
+    @media (max-width: 576px) {
+        .card-header h1,
+        .card-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .breadcrumb-item {
+            display: inline-block;
+        }
+
+        .upload-zone h4 {
+            font-size: 1rem;
+        }
+
+        .upload-zone p {
+            font-size: 0.85rem;
+        }
+
+        .tab-btn {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .step-label {
+            display: none;
+        }
+
+        .progress-steps::before {
+            left: 15%;
+            right: 15%;
+        }
+
+        .d-flex.justify-content-between button {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
         }
     }
 </style>
@@ -705,22 +920,24 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 p-5" style="background-color: #ECF0F3; border-radius: 15px;">
+                                <div class="col-12 p-lg-5 p-md-4 p-3" style="background-color: #ECF0F3; border-radius: 15px;">
                                     <div class="row">
-                                        <div class="col-7" style="background-color: #EACC52;">
-                                            <div class="p-5 text-center">
-                                                <video width="700" controls id="video_about">
+                                        <div class="col-lg-7 col-12 mb-lg-0 mb-3 about-video-section">
+                                            <div class="p-lg-5 p-md-4 p-3 text-center">
+                                                <video controls id="video_about">
                                                     <source src="<?= base_url('dist/video/about_video/' . $about_home_data['0']['path_video']) ?>" type="video/mp4" id="video_about_src">
                                                 </video>
                                             </div>
                                         </div>
-                                        <div class="col-5" style="background-color: #0198B4;">
-                                            <p class="text-left pl-5 pt-5" style="color: #EACC52;font-size: 70px" id="header_about">
-                                                <strong>เกี่ยวกับเรา</strong>
-                                            </p>
-                                            <p class="text-left pl-5 mr-5" style="color: white;font-size: 20px" id="content_about">
-                                                <?= $about_home_data['0']['detail'] ?>
-                                            </p>
+                                        <div class="col-lg-5 col-12 about-content-section">
+                                            <div class="p-lg-5 p-md-4 p-3">
+                                                <p class="text-left mb-3" style="color: #EACC52;" id="header_about">
+                                                    <strong class="d-block" style="font-size: clamp(1.75rem, 5vw, 4.5rem); line-height: 1.2;">เกี่ยวกับเรา</strong>
+                                                </p>
+                                                <p class="text-left mb-0" style="color: white;" id="content_about">
+                                                    <span style="font-size: clamp(0.95rem, 2vw, 1.25rem); line-height: 1.6; display: block;"><?= $about_home_data['0']['detail'] ?></span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -750,6 +967,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="table-responsive">
                             <table id="example2" class="table table-hover text-center">
                                 <thead>
                                     <tr>
@@ -762,7 +980,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <video width="300" controls>
+                                            <video style="width: 100%; max-width: 300px; height: auto;" controls>
                                                 <source src="<?= base_url('dist/video/about_video/' . $about_home_data['0']['path_video']) ?>" type="video/mp4" id="video_about_th">
                                             </video>
                                         </td>
@@ -778,7 +996,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <video width="300" controls>
+                                            <video style="width: 100%; max-width: 300px; height: auto;" controls>
                                                 <source src="<?= base_url('dist/video/about_video/' . $about_home_data['1']['path_video']) ?>" type="video/mp4" id="video_about_en">
                                             </video>
                                         </td>
@@ -794,6 +1012,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </div><!-- /.card-body -->
                     </div>
                     <!-- /.card -->
