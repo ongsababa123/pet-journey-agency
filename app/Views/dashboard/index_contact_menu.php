@@ -583,6 +583,7 @@
     });
 
     function open_edit() {
+        // Show UI for editing
         $('#btn_addImage').show();
         $('#image_title').show();
         if ($('#preview_image').attr('src') == '') {
@@ -595,10 +596,14 @@
         $('#btn_save').show();
         $('#btn_cancel').show();
         $('#btn_action').hide();
-        $('input[type="text"]').prop('disabled', false);
+        // Enable all form controls inside the form
+        $('#form_contact').find('input, textarea, select, button').prop('disabled', false);
+        // Ensure file input is enabled for image upload
+        $('#form_contact').find('.file-upload-input').prop('disabled', false);
     }
 
     function cancel() {
+        // Revert UI to read-only state
         $('#btn_addImage').hide();
         $('#image_title').hide();
         $('.image-upload-wrap').hide();
@@ -606,7 +611,13 @@
         $('#btn_action').show();
         $('#btn_save').hide();
         $('#btn_cancel').hide();
-        $('input[type="text"]').prop('disabled', true);
+        // Disable all form controls inside the form to prevent editing
+        $('#form_contact').find('input, textarea, select, button').prop('disabled', true);
+        // Keep the action buttons hidden/visible appropriately
+        $('#btn_action').prop('disabled', false);
+        $('#btn_save').prop('disabled', true);
+        $('#btn_cancel').prop('disabled', true);
+        // Restore preview image and reset file input value
         $('.file-upload-image').attr('src', '<?= base_url('dist/img/logo/'.$data_contact['logo_image_path']) ?>');
         $('#logo_image').val('');
     }
