@@ -192,6 +192,16 @@
         transform: translate3d(0, -2px, 0);
     }
 
+    .btn-info {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: var(--white);
+    }
+
+    .btn-info:hover {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
     .btn-tool {
         color: var(--white) !important;
         transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -222,12 +232,12 @@
     }
 
     .fa-exchange-alt {
-        color: #3b82f6;
+        color: var(--service-blue);
     }
 
     .fa-exchange-alt:hover {
-        color: #2563eb;
-        transform: scale(1.15);
+        color: var(--teal-primary);
+        transform: rotate(90deg) scale(1.15);
     }
 
     .fa-trash {
@@ -237,6 +247,52 @@
     .fa-trash:hover {
         color: #dc2626;
         transform: scale(1.15);
+    }
+
+    /* Status Badges */
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-status-active {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+    }
+
+    .badge-status-inactive {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+    }
+
+    .badge-status-pending {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+    }
+
+    .badge-status-processing {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: white;
+    }
+
+    .badge-status-completed {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
+        color: white;
+    }
+
+    .badge-status-cancelled {
+        background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        color: white;
     }
 
     /* Form Controls */
@@ -403,12 +459,40 @@
         display: none;
     }
 
+    .image-preview-wrapper {
+        padding: 1rem;
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+        border-radius: 15px;
+        margin-bottom: 1rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid rgba(1, 152, 180, 0.2);
+    }
+
+    .section-header h5 {
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        color: var(--text-dark);
+        font-weight: 600;
+    }
+
+    .section-header p {
+        margin: 0;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
     /* Labels */
     label {
         font-weight: 600;
         color: var(--text-dark);
         margin-bottom: 0.5rem;
-        display: flex;
+        /* display: flex; */
         align-items: center;
     }
 
@@ -427,6 +511,7 @@
         .card-body {
             padding: 1.5rem;
         }
+
         .modal-body {
             padding: 1.5rem;
         }
@@ -437,22 +522,39 @@
         .card-body {
             padding: 1rem;
         }
+        
         .btn {
             padding: 0.5rem 1rem;
             font-size: 0.9rem;
         }
+
         .modal-body {
             padding: 1rem;
         }
+
+        .section-header h5 {
+            font-size: 1.1rem;
+        }
+
+        .section-header p {
+            font-size: 0.8rem !important;
+        }
+
         .table {
             font-size: 0.85rem;
         }
+
         .table thead th {
             padding: 0.75rem 0.5rem;
             font-size: 0.75rem;
         }
+
         .table tbody td {
             padding: 0.75rem 0.5rem;
+        }
+
+        .table img {
+            max-height: 150px;
         }
     }
 
@@ -462,20 +564,35 @@
         .card-header h3 {
             font-size: 1.25rem;
         }
+
         .breadcrumb {
             font-size: 0.8rem;
             padding: 0.5rem 1rem;
         }
+
+        .btn-sm {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .btn-lg {
+            font-size: 0.95rem;
+            padding: 0.65rem 1.25rem;
+        }
+
         .image-upload-wrap {
             padding: 2rem 1rem;
         }
+
         .drag-text h3 {
             font-size: 0.95rem;
         }
+
         .modal-footer {
             flex-direction: column;
             gap: 0.5rem;
         }
+
         .modal-footer .btn {
             width: 100%;
         }
@@ -748,9 +865,9 @@
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
                         if (data.status == 0) {
-                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                            return '<span class="badge badge-status-inactive">ไม่ใช้งาน</span>';
                         } else {
-                            return '<span class="badge bg-success">ใช้งาน</span>';
+                            return '<span class="badge badge-status-active">ใช้งาน</span>';
                         }
                     }
                 },
@@ -761,7 +878,7 @@
                         const encodedRowData = encodeURIComponent(JSON.stringify(row));
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/review/changestatus/${data.id_review}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/review/delete/${data.id_review}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/review/delete/${data.id_review}')"><i class="fas fa-trash fa-lg icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],

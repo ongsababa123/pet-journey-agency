@@ -6,6 +6,7 @@
         --accent-orange: #f39c12;
         --orange-dark: #e67e22;
         --navy-blue: #1a2a6c;
+        --service-blue: #0198B4;
         --text-dark: #1a2a6c;
         --text-light: #5f7c8a;
         --white: #ffffff;
@@ -32,7 +33,7 @@
     }
 
     .card-header {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
         border: none;
         padding: 1.5rem;
         border-radius: 20px 20px 0 0 !important;
@@ -87,7 +88,7 @@
     }
 
     .table thead {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
     }
 
     .table thead th {
@@ -110,15 +111,15 @@
     }
 
     .table tbody tr:hover {
-        background: rgba(78, 205, 196, 0.05);
+        background: rgba(1, 152, 180, 0.05);
         transform: translate3d(0, -1px, 0);
-        box-shadow: 0 2px 8px rgba(78, 205, 196, 0.1);
+        box-shadow: 0 2px 8px rgba(1, 152, 180, 0.1);
     }
 
     .table tbody td {
         vertical-align: middle;
         padding: 1rem;
-        border-color: rgba(78, 205, 196, 0.1);
+        border-color: rgba(1, 152, 180, 0.1);
     }
 
     .table img {

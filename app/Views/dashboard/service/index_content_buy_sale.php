@@ -211,12 +211,12 @@
     }
 
     .fa-exchange-alt {
-        color: #3b82f6;
+        color: var(--service-blue);
     }
 
     .fa-exchange-alt:hover {
-        color: #2563eb;
-        transform: scale(1.15);
+        color: var(--teal-primary);
+        transform: rotate(90deg) scale(1.15);
     }
 
     .fa-trash {
@@ -226,6 +226,52 @@
     .fa-trash:hover {
         color: #dc2626;
         transform: scale(1.15);
+    }
+
+    /* Status Badges */
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-status-active {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+    }
+
+    .badge-status-inactive {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+    }
+
+    .badge-status-pending {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+    }
+
+    .badge-status-processing {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: white;
+    }
+
+    .badge-status-completed {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
+        color: white;
+    }
+
+    .badge-status-cancelled {
+        background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        color: white;
     }
 
     /* Form Controls */
@@ -961,12 +1007,12 @@
                         'class': 'text-center',
                         'render': function(data, type, row, meta) {
                             if (data.status == 0) {
-                                return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                                return '<span class="badge badge-status-inactive">ไม่ใช้งาน</span>';
                             }
                             if (data.status == 1) {
-                                return '<span class="badge bg-success">ใช้งาน</span>';
+                                return '<span class="badge badge-status-active">ใช้งาน</span>';
                             } else {
-                                return '<span class="badge bg-warning">ขายแล้ว</span>';
+                                return '<span class="badge badge-status-cancelled">ขายแล้ว</span>';
                             }
                         }
                     }, {
@@ -976,7 +1022,7 @@
                             const encodedRowData = encodeURIComponent(JSON.stringify(row));
                             return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:alert_change_status('dashboard/animal/changestatus/${data.id_service_content_buy_sale}/')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/animal/delete/${data.id_service_content_buy_sale}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/animal/delete/${data.id_service_content_buy_sale}')"><i class="fas fa-trash fa-lg icon-spacing" title="ลบข้อมูล"></i></a>`;
                         }
                     },
                 ],

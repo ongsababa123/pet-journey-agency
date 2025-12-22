@@ -50,56 +50,206 @@
         border: none;
         box-shadow: var(--shadow-medium);
         transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
     }
 
     .main-header .nav-link {
-        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        will-change: transform;
-        contain: layout style;
-        backface-visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        color: white !important;
+        border-radius: 10px;
     }
 
-    .main-header .nav-link:hover {
-        transform: translate3d(0, 0, 0) scale(1.1);
+    /* Menu Toggle Button */
+    .nav-menu-toggle {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.5rem 0.75rem !important;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
     }
 
-    /* User Block Styling */
-    .user-block {
-        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        will-change: transform;
-        contain: layout style;
-        backface-visibility: hidden;
+    .nav-menu-toggle::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
     }
 
-    .user-block:hover {
-        transform: translate3d(0, -2px, 0);
+    .nav-menu-toggle:active::before {
+        width: 300px;
+        height: 300px;
     }
 
-    .user-block .img-circle {
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
-                   border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        will-change: transform, border-color;
-        contain: layout style;
-        backface-visibility: hidden;
+    .nav-menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.05);
     }
 
-    .user-block:hover .img-circle {
-        border-color: var(--white);
-        transform: translate3d(0, 0, 0) scale(1.1);
+    .nav-menu-toggle i {
+        transition: transform 0.3s ease;
+        display: inline-block;
     }
 
-    /* Dropdown Menu */
-    .dropdown-menu {
-        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%) !important;
-        border-radius: 12px !important;
+    .sidebar-collapse .nav-menu-toggle i {
+        transform: rotate(90deg);
+    }
+
+    .nav-menu-toggle:active i {
+        transform: scale(0.9);
+    }
+
+    /* Brand Text */
+    .navbar-brand-text {
+        color: white;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        margin-top: 2%;
+    }
+
+    /* Navbar Icon Buttons */
+    .navbar-icon-btn {
+        position: relative;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.5rem 0.75rem !important;
+        margin: 0 0.25rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar-icon-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .navbar-icon-btn i {
+        font-size: 1.1rem;
+    }
+
+    .navbar-badge {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        border: 2px solid white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* User Profile Link */
+    .user-profile-link {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.35rem 0.65rem !important;
+        margin-left: 0.5rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .user-profile-link:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .user-panel-compact {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* User Avatar */
+    .user-avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .user-avatar i {
+        font-size: 1.75rem;
+        color: white;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    .status-indicator {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+    }
+
+    /* User Info */
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.05rem;
+        line-height: 1;
+    }
+
+    .user-name {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: white;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+    .user-role {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        line-height: 1;
+    }
+
+    .dropdown-arrow {
+        font-size: 0.75rem;
+        transition: transform 0.3s ease;
+    }
+
+    .user-profile-link[aria-expanded="true"] .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* User Dropdown Menu */
+    .user-dropdown-menu {
+        background: white;
         border: none;
-        box-shadow: var(--shadow-medium);
-        animation: fadeInDown 0.3s ease;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        padding: 0;
+        min-width: 280px;
+        margin-top: 0.5rem;
+        animation: dropdownFadeIn 0.3s ease;
     }
 
-    @keyframes fadeInDown {
+    @keyframes dropdownFadeIn {
         from {
             opacity: 0;
             transform: translateY(-10px);
@@ -110,19 +260,113 @@
         }
     }
 
-    .dropdown-item {
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
-                   background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        will-change: transform, background-color;
-        contain: layout style;
-        backface-visibility: hidden;
+    .dropdown-header {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        padding: 1.25rem;
+        border-radius: 15px 15px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .dropdown-item:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
-        transform: translate3d(5px, 0, 0);
+    .user-dropdown-avatar i {
+        font-size: 3rem;
+        color: white;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    }
+
+    .user-dropdown-info {
+        flex: 1;
+    }
+
+    .user-dropdown-info strong {
+        color: white;
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 0.25rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-email {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .dropdown-divider {
+        margin: 0;
+        border-color: rgba(78, 205, 196, 0.1);
+    }
+
+    .dropdown-item-icon {
+        padding: 0.75rem 1.25rem;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .dropdown-item-icon i {
+        width: 20px;
+        color: var(--teal-primary);
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-item-icon:hover {
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+        color: var(--text-dark);
+        padding-left: 1.5rem;
+    }
+
+    .dropdown-item-icon:hover i {
+        transform: translateX(3px);
+    }
+
+    .logout-btn {
+        border-radius: 0 0 15px 15px;
+    }
+
+    .logout-btn i {
+        color: #ef4444;
+    }
+
+    .logout-btn:hover {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+        .navbar-brand-text {
+            font-size: 0.95rem;
+        }
+
+        .user-dropdown-menu {
+            min-width: 250px;
+        }
+
+        .navbar-icon-btn {
+            padding: 0.4rem 0.6rem !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .main-header {
+            padding: 0.4rem 0.75rem;
+        }
+
+        .user-panel-compact {
+            gap: 0.5rem;
+        }
+
+        .user-avatar i {
+            font-size: 1.75rem;
+        }
+
+        .navbar-badge {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.3rem;
+        }
     }
 
     /* Main Sidebar Styles */
@@ -219,13 +463,50 @@
         align-items: center;
         justify-content: center;
         padding: 1.5rem 0.5rem;
+        position: relative;
+        overflow: hidden;
     }
 
     .brand-link:hover {
         background: rgba(78, 205, 196, 0.05);
     }
 
-    .brand-link .brand-image {
+    /* Brand Logo Wrapper */
+    .brand-logo-wrapper {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar-collapse .brand-logo-wrapper {
+        opacity: 0;
+        transform: scale(0.8) translateX(-20px);
+        pointer-events: none;
+        position: absolute;
+    }
+
+    /* Brand Icon Wrapper */
+    .brand-icon-wrapper {
+        opacity: 0;
+        transform: scale(0.8) translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+    }
+
+    .sidebar-collapse .brand-icon-wrapper {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+        position: relative;
+    }
+
+    /* Brand Full Image */
+    .brand-image-full {
         height: auto;
         max-height: 70px;
         width: auto;
@@ -234,13 +515,41 @@
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     }
 
-    .brand-link:hover .brand-image {
+    .brand-link:hover .brand-image-full {
         transform: scale(1.05);
+    }
+
+    /* Brand Mini Icon */
+    .brand-icon-mini {
+        font-size: 2.5rem;
+        color: var(--teal-primary);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        transition: all 0.3s ease;
+        animation: pawBounce 2s ease-in-out infinite;
+    }
+
+    .brand-link:hover .brand-icon-mini {
+        transform: scale(1.15) rotate(15deg);
+        color: var(--accent-orange);
+    }
+
+    @keyframes pawBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
     }
 
     .layout-fixed .brand-link {
         height: auto;
         min-height: 100px;
+    }
+
+    /* Sidebar Transition */
+    .main-sidebar {
+        transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     }
 
     /* Nav Header */
@@ -656,34 +965,62 @@ function check_menu_state($uri_menu, $input, $type)
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white !important;"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link nav-menu-toggle" data-widget="pushmenu" href="#" role="button" title="Toggle Sidebar">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </li>
+                <li class="nav-item d-none d-md-inline-block ml-3">
+                    <span class="navbar-brand-text">
+                        <i class="fas fa-paw mr-2"></i>
+                        <strong>Pet Journey Agency</strong>
+                    </span>
                 </li>
             </ul>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <div class="user-block">
-                        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-circle" src="<?= base_url('dist/img/avatar3.png'); ?>" alt="User Image">
-                            <span class="username" style="color: white !important;">
-                                <?php echo session()->get('name_last_admin'); ?>
-                            </span>
-                            <span class="description" style="color: white !important;">
-                                <?php echo session()->get('email_admin'); ?>
-                            </span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: #FFC107 !important;border-radius: 10px !important;">
-                            <!-- Dropdown items go here -->
-                            <a class="dropdown-item" href="<?= base_url('/dashboard/logout'); ?>" style="color: black !important;"> <i class="fas fa-sign-out-alt"></i>
-                                ลงชื่อออก
-                            </a>
-                        </div>
-                    </div>
-                </li>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto align-items-center">
+                <!-- Fullscreen -->
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white !important;">
+                    <a class="nav-link navbar-icon-btn" data-widget="fullscreen" href="#" role="button" title="เต็มหน้าจอ">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
+                </li>
+
+                <!-- User Menu -->
+                <li class="nav-item dropdown user-menu-dropdown">
+                    <a class="nav-link user-profile-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="user-panel-compact">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                                <span class="status-indicator"></span>
+                            </div>
+                            <div class="user-info d-none d-lg-block">
+                                <span class="user-name">
+                                    <?php echo session()->get('name_last_admin'); ?>
+                                </span>
+                                <span class="user-role">
+                                    <i class="fas fa-shield-alt mr-1"></i>ผู้ดูแลระบบ
+                                </span>
+                            </div>
+                            <i class="fas fa-chevron-down ml-2 dropdown-arrow"></i>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right user-dropdown-menu" aria-labelledby="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="user-dropdown-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-dropdown-info">
+                                <strong><?php echo session()->get('name_last_admin'); ?></strong>
+                                <p class="user-email"><?php echo session()->get('email_admin'); ?></p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropdown-item-icon logout-btn" href="<?= base_url('/dashboard/logout'); ?>">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            <span>ออกจากระบบ</span>
+                        </a>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -693,7 +1030,12 @@ function check_menu_state($uri_menu, $input, $type)
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Pet Ex Logo" class="brand-image">
+                <div class="brand-logo-wrapper">
+                    <img src="<?= base_url('dist/img/logo_pet_journey.png') ?>" alt="Pet Ex Logo" class="brand-image-full">
+                </div>
+                <div class="brand-icon-wrapper">
+                    <i class="fas fa-paw brand-icon-mini"></i>
+                </div>
             </a>
 
             <!-- Sidebar -->

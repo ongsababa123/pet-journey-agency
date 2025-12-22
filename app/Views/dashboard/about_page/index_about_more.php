@@ -7,6 +7,7 @@
         --accent-orange: #f39c12;
         --orange-dark: #e67e22;
         --navy-blue: #1a2a6c;
+        --service-blue: #0198B4;
         --text-dark: #1a2a6c;
         --text-light: #5f7c8a;
         --white: #ffffff;
@@ -33,7 +34,7 @@
     }
 
     .card-header {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
         border: none;
         padding: 1.5rem;
         border-radius: 20px 20px 0 0 !important;
@@ -88,7 +89,7 @@
     }
 
     .table thead {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
     }
 
     .table thead th {
@@ -111,15 +112,15 @@
     }
 
     .table tbody tr:hover {
-        background: rgba(78, 205, 196, 0.05);
+        background: rgba(1, 152, 180, 0.05);
         transform: translate3d(0, -1px, 0);
-        box-shadow: 0 2px 8px rgba(78, 205, 196, 0.1);
+        box-shadow: 0 2px 8px rgba(1, 152, 180, 0.1);
     }
 
     .table tbody td {
         vertical-align: middle;
         padding: 1rem;
-        border-color: rgba(78, 205, 196, 0.1);
+        border-color: rgba(1, 152, 180, 0.1);
     }
 
     .table img {
@@ -152,12 +153,12 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
         color: var(--white);
     }
 
     .btn-primary:hover {
-        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
         transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
@@ -192,6 +193,16 @@
         transform: translate3d(0, -2px, 0);
     }
 
+    .btn-info {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: var(--white);
+    }
+
+    .btn-info:hover {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
     .btn-tool {
         color: var(--white) !important;
         transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -222,12 +233,12 @@
     }
 
     .fa-exchange-alt {
-        color: #3b82f6;
+        color: var(--service-blue);
     }
 
     .fa-exchange-alt:hover {
-        color: #2563eb;
-        transform: scale(1.15);
+        color: var(--teal-primary);
+        transform: rotate(90deg) scale(1.15);
     }
 
     .fa-trash {
@@ -239,17 +250,63 @@
         transform: scale(1.15);
     }
 
+    /* Status Badges */
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-status-active {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+    }
+
+    .badge-status-inactive {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+    }
+
+    .badge-status-pending {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+    }
+
+    .badge-status-processing {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: white;
+    }
+
+    .badge-status-completed {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
+        color: white;
+    }
+
+    .badge-status-cancelled {
+        background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        color: white;
+    }
+
     /* Form Controls */
     .form-control {
         border-radius: 10px;
-        border: 2px solid rgba(78, 205, 196, 0.2);
+        border: 2px solid rgba(1, 152, 180, 0.2);
         padding: 0rem 1rem;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .form-control:focus {
-        border-color: var(--teal-primary);
-        box-shadow: 0 0 0 0.2rem rgba(78, 205, 196, 0.25);
+        border-color: var(--service-blue);
+        box-shadow: 0 0 0 0.2rem rgba(1, 152, 180, 0.25);
     }
 
     /* Modal Styling */
@@ -270,7 +327,7 @@
     }
 
     .modal-header {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
         border-radius: 25px 25px 0 0;
         border: none;
         padding: 1.5rem 2rem;
@@ -299,9 +356,9 @@
     }
 
     .modal-footer {
-        border-top: 1px solid rgba(78, 205, 196, 0.1);
+        border-top: 1px solid rgba(1, 152, 180, 0.1);
         padding: 1.5rem 2rem;
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
         border-radius: 0 0 25px 25px;
     }
 
@@ -310,7 +367,7 @@
         width: 100%;
         margin: 0;
         color: var(--white);
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
         border: none;
         padding: 1rem;
         border-radius: 10px;
@@ -323,15 +380,15 @@
     }
 
     .file-upload-btn:hover {
-        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
         transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
 
     .image-upload-wrap {
         margin-top: 1.5rem;
-        border: 3px dashed rgba(78, 205, 196, 0.4);
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.08) 0%, rgba(243, 156, 18, 0.08) 100%);
+        border: 3px dashed rgba(1, 152, 180, 0.4);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.08) 0%, rgba(78, 205, 196, 0.08) 100%);
         position: relative;
         border-radius: 15px;
         padding: 3rem 2rem;
@@ -341,14 +398,14 @@
     }
 
     .image-upload-wrap:hover {
-        border-color: var(--teal-primary);
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(243, 156, 18, 0.15) 100%);
+        border-color: var(--service-blue);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.15) 0%, rgba(78, 205, 196, 0.15) 100%);
         transform: translate3d(0, 0, 0) scale(1.01);
     }
 
     .image-dropping {
-        border-color: var(--accent-orange) !important;
-        background: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%) !important;
+        border-color: var(--teal-primary) !important;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(1, 152, 180, 0.2) 100%) !important;
         transform: translate3d(0, 0, 0) scale(1.02);
     }
 
@@ -405,7 +462,7 @@
 
     .image-preview-wrapper {
         padding: 1rem;
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
         border-radius: 15px;
         margin-bottom: 1rem;
     }
@@ -414,7 +471,7 @@
     .section-header {
         padding-bottom: 1rem;
         margin-bottom: 1.5rem;
-        border-bottom: 2px solid rgba(78, 205, 196, 0.2);
+        border-bottom: 2px solid rgba(1, 152, 180, 0.2);
     }
 
     .section-header h5 {
@@ -430,6 +487,25 @@
         color: var(--text-light);
         font-size: 0.9rem;
     }
+
+    /* Labels */
+    label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        /* display: flex; */
+        align-items: center;
+    }
+
+    label i {
+        color: var(--service-blue);
+        margin-right: 0.5rem;
+    }
+
+    /* Modal animation helpers */
+    .modal-enter .modal-content { transform: translateY(20px) scale(0.98); opacity: 0; }
+    .modal-opened .modal-content { transform: translateY(0) scale(1); opacity: 1; transition: transform 250ms cubic-bezier(0.4,0,0.2,1), opacity 250ms ease-out; }
+    .modal-exit .modal-content { transform: translateY(12px) scale(0.99); opacity: 0; transition: transform 200ms ease-in, opacity 200ms ease-in; }
 
     /* Responsive - Tablet */
     @media (max-width: 992px) {
@@ -856,9 +932,9 @@
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
                         if (data.status == 0) {
-                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                            return '<span class="badge badge-status-inactive">ไม่ใช้งาน</span>';
                         } else {
-                            return '<span class="badge bg-success">ใช้งาน</span>';
+                            return '<span class="badge badge-status-active">ใช้งาน</span>';
                         }
                     }
                 },
@@ -871,7 +947,7 @@
                         const encodedRowData = encodeURIComponent(RowData);
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/aboutpage/aboutmore/changestatus/${data.id_more_about_pet}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutmore/delete/${data.id_more_about_pet}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutmore/delete/${data.id_more_about_pet}')"><i class="fas fa-trash fa-lg icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],

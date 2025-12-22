@@ -6,6 +6,7 @@
         --accent-orange: #f39c12;
         --orange-dark: #e67e22;
         --navy-blue: #1a2a6c;
+        --service-blue: #0198B4;
         --text-dark: #1a2a6c;
         --text-light: #5f7c8a;
         --white: #ffffff;
@@ -32,7 +33,7 @@
     }
 
     .card-header {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
         border: none;
         padding: 1.5rem;
         border-radius: 20px 20px 0 0 !important;
@@ -87,7 +88,7 @@
     }
 
     .table thead {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%) !important;
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%) !important;
     }
 
     .table thead th {
@@ -110,15 +111,15 @@
     }
 
     .table tbody tr:hover {
-        background: rgba(78, 205, 196, 0.05);
+        background: rgba(1, 152, 180, 0.05);
         transform: translate3d(0, -1px, 0);
-        box-shadow: 0 2px 8px rgba(78, 205, 196, 0.1);
+        box-shadow: 0 2px 8px rgba(1, 152, 180, 0.1);
     }
 
     .table tbody td {
         vertical-align: middle;
         padding: 1rem;
-        border-color: rgba(78, 205, 196, 0.1);
+        border-color: rgba(1, 152, 180, 0.1);
     }
 
     .table img {
@@ -151,12 +152,12 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
         color: var(--white);
     }
 
     .btn-primary:hover {
-        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
         transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
@@ -191,6 +192,16 @@
         transform: translate3d(0, -2px, 0);
     }
 
+    .btn-info {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: var(--white);
+    }
+
+    .btn-info:hover {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        transform: translate3d(0, -2px, 0);
+    }
+
     .btn-tool {
         color: var(--white) !important;
         transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -206,129 +217,156 @@
     /* Action Icons */
     .icon-spacing {
         margin-right: 10px;
-        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), color 0.3s ease;
         cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         will-change: transform, color;
-        contain: layout style;
-        backface-visibility: hidden;
-    }
-
-    .icon-spacing:hover {
-        transform: translate3d(0, 0, 0) scale(1.15);
     }
 
     .fa-edit {
         color: var(--teal-primary);
-        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     .fa-edit:hover {
         color: var(--accent-orange);
+        transform: scale(1.15);
     }
 
     .fa-exchange-alt {
-        color: #3b82f6;
-        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        color: var(--service-blue);
     }
 
     .fa-exchange-alt:hover {
-        color: #2563eb;
+        color: var(--teal-primary);
+        transform: rotate(90deg) scale(1.15);
     }
 
     .fa-trash {
         color: #ef4444;
-        transition: color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     .fa-trash:hover {
         color: #dc2626;
+        transform: scale(1.15);
+    }
+
+    /* Status Badges */
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-status-active {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+    }
+
+    .badge-status-inactive {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+    }
+
+    .badge-status-pending {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+    }
+
+    .badge-status-processing {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: white;
+    }
+
+    .badge-status-completed {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
+        color: white;
+    }
+
+    .badge-status-cancelled {
+        background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        color: white;
     }
 
     /* Form Controls */
-    .form-control,
-    .select2 {
+    .form-control {
         border-radius: 10px;
-        border: 2px solid rgba(78, 205, 196, 0.3);
+        border: 2px solid rgba(1, 152, 180, 0.2);
         padding: 0rem 1rem;
-        transition: border-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
-                   box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
-                   background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        font-weight: 500;
-        background: rgba(255, 255, 255, 0.95);
-        will-change: border-color, box-shadow, background-color;
-        contain: layout style;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .form-control:focus,
-    .select2:focus {
-        border-color: var(--teal-primary);
-        box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
-        background: white;
+    .form-control:focus {
+        border-color: var(--service-blue);
+        box-shadow: 0 0 0 0.2rem rgba(1, 152, 180, 0.25);
     }
 
-    /* Modern Modal */
+    /* Modal Styling */
     .modal-content {
         border-radius: 25px;
         border: none;
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-        overflow: hidden;
+    }
+
+    .modal.fade .modal-dialog {
+        transform: translate3d(0, 20px, 0) scale(0.96);
+        transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
+                    opacity 0.25s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     .modal-header {
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
+        border-radius: 25px 25px 0 0;
         border: none;
         padding: 1.5rem 2rem;
-        border-radius: 25px 25px 0 0;
     }
 
-    .modal-title {
+    .modal-header .modal-title {
         color: var(--white);
         font-weight: 700;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 1.5rem;
     }
 
     .modal-header .close {
         color: var(--white);
-        opacity: 0.9;
+        opacity: 1;
         text-shadow: none;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: all 0.3s ease;
     }
 
     .modal-header .close:hover {
-        opacity: 1;
-        transform: scale(1.1);
+        transform: rotate(90deg) scale(1.2);
     }
 
     .modal-body {
         padding: 2rem;
-        background: var(--white);
+        background: white;
     }
 
     .modal-footer {
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
-        border: none;
+        border-top: 1px solid rgba(1, 152, 180, 0.1);
         padding: 1.5rem 2rem;
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
         border-radius: 0 0 25px 25px;
-    }
-
-    .modal.fade .modal-dialog {
-        transform: scale(0.85) translateY(-50px);
-        opacity: 0;
-        transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1),
-                   opacity 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-    }
-
-    .modal.show .modal-dialog {
-        transform: scale(1) translateY(0);
-        opacity: 1;
     }
 
     /* File Upload Styling */
     .file-upload-btn {
         width: 100%;
-        margin: 0 0 1.5rem 0;
+        margin: 0;
         color: var(--white);
-        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--accent-orange) 100%);
+        background: linear-gradient(135deg, var(--service-blue) 0%, var(--teal-primary) 100%);
         border: none;
         padding: 1rem;
         border-radius: 10px;
@@ -341,32 +379,32 @@
     }
 
     .file-upload-btn:hover {
-        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--teal-primary) 100%);
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
         transform: translate3d(0, -2px, 0);
         box-shadow: var(--shadow-medium);
     }
 
     .image-upload-wrap {
-        border: 3px dashed rgba(78, 205, 196, 0.4);
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.08) 0%, rgba(243, 156, 18, 0.08) 100%);
+        margin-top: 1.5rem;
+        border: 3px dashed rgba(1, 152, 180, 0.4);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.08) 0%, rgba(78, 205, 196, 0.08) 100%);
         position: relative;
         border-radius: 15px;
         padding: 3rem 2rem;
         transition: border-color 0.3s ease,
                     background 0.3s ease,
                     transform 0.3s ease;
-        text-align: center;
     }
 
     .image-upload-wrap:hover {
-        border-color: var(--teal-primary);
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(243, 156, 18, 0.15) 100%);
+        border-color: var(--service-blue);
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.15) 0%, rgba(78, 205, 196, 0.15) 100%);
         transform: translate3d(0, 0, 0) scale(1.01);
     }
 
     .image-dropping {
-        border-color: var(--accent-orange) !important;
-        background: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%) !important;
+        border-color: var(--teal-primary) !important;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(1, 152, 180, 0.2) 100%) !important;
         transform: translate3d(0, 0, 0) scale(1.02);
     }
 
@@ -378,19 +416,12 @@
         font-weight: 600;
         color: var(--text-dark);
         font-size: 1.1rem;
-        margin: 0.5rem 0 0 0;
-    }
-
-    .drag-text i {
-        font-size: 3rem;
-        color: var(--teal-primary);
-        display: block;
-        margin-bottom: 1rem;
+        margin: 0;
     }
 
     .file-upload-content {
+        display: none;
         text-align: center;
-        margin-top: 1.5rem;
     }
 
     .file-upload-image {
@@ -399,8 +430,6 @@
         margin: auto;
         border-radius: 12px;
         box-shadow: var(--shadow-medium);
-        padding: 1rem;
-        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
     }
 
     .remove-image {
@@ -430,29 +459,60 @@
         display: none;
     }
 
+    .image-preview-wrapper {
+        padding: 1rem;
+        background: linear-gradient(135deg, rgba(1, 152, 180, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+        border-radius: 15px;
+        margin-bottom: 1rem;
+    }
+
     /* Section Headers */
     .section-header {
         padding-bottom: 1rem;
         margin-bottom: 1.5rem;
-        border-bottom: 2px solid rgba(78, 205, 196, 0.2);
+        border-bottom: 2px solid rgba(1, 152, 180, 0.2);
     }
 
     .section-header h5 {
-        margin: 0;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
         color: var(--text-dark);
         font-weight: 600;
-        display: flex;
+    }
+
+    .section-header p {
+        margin: 0;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    /* Labels */
+    label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        /* display: flex; */
         align-items: center;
     }
 
-    .section-header h5 i {
-        color: var(--teal-primary);
+    label i {
+        color: var(--service-blue);
         margin-right: 0.5rem;
     }
+
+    /* Modal animation helpers */
+    .modal-enter .modal-content { transform: translateY(20px) scale(0.98); opacity: 0; }
+    .modal-opened .modal-content { transform: translateY(0) scale(1); opacity: 1; transition: transform 250ms cubic-bezier(0.4,0,0.2,1), opacity 250ms ease-out; }
+    .modal-exit .modal-content { transform: translateY(12px) scale(0.99); opacity: 0; transition: transform 200ms ease-in, opacity 200ms ease-in; }
 
     /* Responsive - Tablet */
     @media (max-width: 992px) {
         .card-body {
+            padding: 1.5rem;
+        }
+
+        .modal-body {
             padding: 1.5rem;
         }
     }
@@ -472,6 +532,14 @@
             padding: 1rem;
         }
 
+        .section-header h5 {
+            font-size: 1.1rem;
+        }
+
+        .section-header p {
+            font-size: 0.8rem !important;
+        }
+
         .table {
             font-size: 0.85rem;
         }
@@ -486,7 +554,7 @@
         }
 
         .table img {
-            max-width: 100px !important;
+            max-height: 150px;
         }
     }
 
@@ -507,6 +575,11 @@
             padding: 0.4rem 0.8rem;
         }
 
+        .btn-lg {
+            font-size: 0.95rem;
+            padding: 0.65rem 1.25rem;
+        }
+
         .image-upload-wrap {
             padding: 2rem 1rem;
         }
@@ -515,41 +588,14 @@
             font-size: 0.95rem;
         }
 
-        .drag-text i {
-            font-size: 2rem !important;
+        .modal-footer {
+            flex-direction: column;
+            gap: 0.5rem;
         }
-    }
-    
-    /* DataTables search/length alignment fixes */
-    /* Keeps the "ค้นหา" label vertically aligned with the input */
-    .dataTables_wrapper .dataTables_filter,
-    .dataTables_wrapper .dataTables_length {
-        display: flex !important;
-        align-items: center !important;
-        gap: 0.5rem;
-        justify-content: flex-end;
-    }
 
-    .dataTables_wrapper .dataTables_filter label {
-        margin: 0 !important;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .dataTables_wrapper .dataTables_filter input[type="search"] {
-        margin: 0 !important;
-        height: calc(1.5em + 0.75rem) !important;
-        padding: 0.375rem 0.75rem !important;
-        border-radius: 8px !important;
-    }
-
-    /* Ensure length select aligns with controls */
-    .dataTables_wrapper .dataTables_length label {
-        margin: 0 !important;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+        .modal-footer .btn {
+            width: 100%;
+        }
     }
 </style>
 <div class="content-wrapper">
@@ -889,9 +935,9 @@
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
                         if (data.status == 0) {
-                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                            return '<span class="badge badge-status-inactive">ไม่ใช้งาน</span>';
                         } else {
-                            return '<span class="badge bg-success">ใช้งาน</span>';
+                            return '<span class="badge badge-status-active">ใช้งาน</span>';
                         }
                     }
                 },
@@ -902,7 +948,7 @@
                         const encodedRowData = encodeURIComponent(JSON.stringify(row));
                         return `<a href="javascript:load_modal('Update', '${encodedRowData}')"><i class="fas fa-edit fa-lg icon-spacing" title="แก้ไขข้อมูล" data-toggle="modal" data-target="#modal-lg"></i></a>
                             <a href="javascript:confirm_Alert('ต้องการเปลี่ยนสถานะหรือไม่', 'dashboard/aboutpage/aboutteam/changestatus/${data.id_team}/${data.status}')"><i class="fas fa-exchange-alt fa-lg icon-spacing" title="เปลี่ยนสถานะ"></i></a>
-                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutteam/delete/${data.id_team}')"><i class="fas fa-trash icon-spacing" title="ลบข้อมูล"></i></a>`;
+                            <a href="javascript:confirm_Alert('ต้องการลบหรือไม่', 'dashboard/aboutpage/aboutteam/delete/${data.id_team}')"><i class="fas fa-trash fa-lg icon-spacing" title="ลบข้อมูล"></i></a>`;
                     }
                 },
             ],

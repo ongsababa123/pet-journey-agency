@@ -232,12 +232,67 @@
     }
 
     .fa-exchange-alt {
-        color: #3b82f6;
+        color: var(--service-blue);
     }
 
     .fa-exchange-alt:hover {
-        color: #2563eb;
+        color: var(--teal-primary);
+        transform: rotate(90deg) scale(1.15);
+    }
+
+    .fa-trash {
+        color: #ef4444;
+    }
+
+    .fa-trash:hover {
+        color: #dc2626;
         transform: scale(1.15);
+    }
+
+    /* Status Badges */
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    .badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-status-active {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+    }
+
+    .badge-status-inactive {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+    }
+
+    .badge-status-pending {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+    }
+
+    .badge-status-processing {
+        background: linear-gradient(135deg, var(--accent-orange) 0%, var(--orange-dark) 100%);
+        color: white;
+    }
+
+    .badge-status-completed {
+        background: linear-gradient(135deg, var(--teal-primary) 0%, var(--service-blue) 100%);
+        color: white;
+    }
+
+    .badge-status-cancelled {
+        background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        color: white;
     }
 
     /* Form Controls */
@@ -856,9 +911,9 @@
                     'class': 'text-center',
                     'render': function(data, type, row, meta) {
                         if (data.status == 0) {
-                            return '<span class="badge bg-danger">ไม่ใช้งาน</span>';
+                            return '<span class="badge badge-status-inactive">ไม่ใช้งาน</span>';
                         } else {
-                            return '<span class="badge bg-success">ใช้งาน</span>';
+                            return '<span class="badge badge-status-active">ใช้งาน</span>';
                         }
                     }
                 },
