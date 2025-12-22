@@ -72,7 +72,7 @@ class HomePage extends BaseController
             'isPartOf' => [
                 '@type' => 'WebSite',
                 'url' => base_url(),
-                'name' => 'PetEx'
+                'name' => 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง'
             ]
         ];
         echo view('layout/header' , $data);
@@ -110,7 +110,7 @@ class HomePage extends BaseController
             'isPartOf' => [
                 '@type' => 'WebSite',
                 'url' => base_url(),
-                'name' => 'PetEx'
+                'name' => 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง'
             ]
         ];
         echo view('layout/header' , $data);

@@ -8,7 +8,7 @@
         <?php
         // SEO defaults - override per view by setting $meta_description, $meta_keywords, $meta_image, $canonical
         helper('seo');
-        $site_name = 'PetEx';
+        $site_name = 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง';
         $meta_description = isset($meta_description) ? $meta_description : (function_exists('seo') ? seo('description', 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ') : 'PetEx ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง บริการนำเข้าส่งออกสัตว์เลี้ยง รับเลี้ยงดูแลสัตว์เลี้ยง และบริการครบวงจรสำหรับสัตว์เลี้ยงของคุณ');
         $meta_keywords = isset($meta_keywords) ? $meta_keywords : (function_exists('seo') ? seo('keywords', 'PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง') : 'PetEx, ศูนย์นำเข้า-ส่งออกสัตว์เลี้ยง, นำเข้าส่งออกสัตว์เลี้ยง, ดูแลสัตว์เลี้ยง, รับเลี้ยงสัตว์เลี้ยง');
         $meta_image = isset($meta_image) ? $meta_image : (function_exists('seo') ? seo('image', base_url('dist/logo.png')) : base_url('dist/logo.png'));
