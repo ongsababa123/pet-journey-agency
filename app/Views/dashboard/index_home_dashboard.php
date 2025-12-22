@@ -559,7 +559,7 @@
                 </section>
 
                 <!-- right col -->
-                <section class="col-lg-6 connectedSortable">
+                <!-- <section class="col-lg-6 connectedSortable">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">รีวิว</h3>
@@ -569,12 +569,11 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <div class="elfsight-app-1636610a-59c7-4af4-a012-d1571f251c26" data-elfsight-app-lazy></div>
                         </div>
                     </div>
-                </section>
+                </section> -->
             </div>
         </div><!-- /.container-fluid -->
     </section>
